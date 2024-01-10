@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html lang="vi">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to readme-md-generator 👋</title>
-</head>
 
-<body>
 
-  <h1 align="center">Welcome to readme-md-generator 👋</h1>
+  <h1 align="center">Nhật ký làm việc môn Phát triển Ứng dụng của Nhóm 7</h1>
+  <p align="center">Chào mừng bạn đến với Hành trình Sáng tạo của chúng tôi!</p>
 
-  <p align="center">
-    <img src="https://img.shields.io/npm/v/readme-md-generator.svg?orange=blue" />
-    <a href="https://www.npmjs.com/package/readme-md-generator">
-      <img alt="downloads" src="https://img.shields.io/npm/dm/readme-md-generator.svg?color=blue" target="_blank" />
-    </a>
-    <a href="https://github.com/kefranabg/readme-md-generator/blob/master/LICENSE">
-      <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-yellow.svg" target="_blank" />
-    </a>
-    <a href="https://codecov.io/gh/kefranabg/readme-md-generator">
-      <img src="https://codecov.io/gh/kefranabg/readme-md-generator/branch/master/graph/badge.svg" />
-    </a>
-    <a href="https://github.com/frinyvonnick/gitmoji-changelog">
-      <img src="https://img.shields.io/badge/changelog-gitmoji-brightgreen.svg" alt="gitmoji-changelog">
-    </a>
-  </p>
+  <h2>Giới Thiệu</h2>
+  <p>Chào mừng bạn đến với thế giới sôi động của Nhật ký làm việc Phát triển Ứng dụng của Nhóm 7! Chúng tôi là một đội ngũ động lực, cam kết đẩy ranh giới của sự đổi mới trong lĩnh vực phát triển ứng dụng. Trong kho lưu trữ này, bạn sẽ tìm thấy một hồ sơ toàn diện về những nỗ lực, thách thức, chiến thắng và hành trình phi thường mà chúng tôi đã cùng nhau bắt đầu.</p>
 
-</body>
+  <h2>Thành Viên Nhóm</h2>
+  <ul>
+    <li>[Thành viên 1]: Người Tầm Nhìn</li>
+    <li>[Thành viên 2]: Bậc Thánh Mã Lập Trình</li>
+    <li>[Thành viên 3]: Người Thiết Kế Năng Động</li>
+    <li>[Thành viên 4]: Chuyên Gia Kiểm Thử</li>
+  </ul>
 
-</html>
+
+
+
+
+
