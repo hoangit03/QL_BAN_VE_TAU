@@ -12,7 +12,7 @@
     <li>[Reporter]: Đào Huy Hoàng </li>
     <li>[Facilitator]: Phan Mạnh Tân</li>
     <li>[Recorder]: Lê Đình Nam</li>
-    <li>[Time keeper]: Đặng Hữu Phúc</li>
+    <li>[Time keeper]: Phạm Hữu Phúc</li>
   </ul>
 
 
