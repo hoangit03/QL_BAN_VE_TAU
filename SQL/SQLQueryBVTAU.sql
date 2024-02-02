@@ -34,7 +34,7 @@ CREATE TABLE KHACHHANG(
 	CCCD nvarchar(20) not null PRIMARY KEY ,
 	HoTen nvarchar(30) not null,
 	tuoi int not null,
-	SDT nvarchar(20) not null,
+	SDT nvarchar(20) not null
 )
 
 
@@ -43,11 +43,11 @@ CREATE TABLE TAU(
 	MaTau nvarchar(20) not null PRIMARY KEY,
 	TaiTrong int not null,
 	TocDo int not null,
-	loaiTau nvarchar(20)not null 
-)
 
 CREATE TABLE TOA(
 	MaToa nvarchar(20) not null PRIMARY KEY,
+	loaiTau nvarchar(20)not null 
+)
 	MaTau nvarchar(20) not null FOREIGN KEY REFERENCES TAU(MaTau),
 	SoMayLanh int not null
 )
