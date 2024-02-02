@@ -37,34 +37,36 @@ CREATE TABLE KHACHHANG(
 	SDT nvarchar(20) not null
 )
 
+CREATE TABLE GHE(
+	MaGhe nvarchar(20) not null PRIMARY KEY,
+	ViTri int not null,
+	TrangThai bit not null,
+	LoaiGhe nvarchar(10) not null,
+	
+)
 
+CREATE TABLE GIUONG(
+	MaGiuong nvarchar(20) not null PRIMARY KEY,
+	ViTri int not null,
+	TrangThai bit not null,
+	LoaiGiuong nvarchar(10) not null
+)
 
+CREATE TABLE TOA(
+	MaToa nvarchar(20) not null PRIMARY KEY,
+	MaGhe nvarchar(20) FOREIGN KEY REFERENCES GHE(MaGhe),
+	MaGiuong nvarchar(20) FOREIGN KEY REFERENCES GIUONG(MaGiuong),
+	SoMayLanh int not null
+)
 CREATE TABLE TAU(
 	MaTau nvarchar(20) not null PRIMARY KEY,
 	TaiTrong int not null,
 	TocDo int not null,
-
-CREATE TABLE TOA(
-	MaToa nvarchar(20) not null PRIMARY KEY,
+	MaToa nvarchar(20) not null FOREIGN KEY REFERENCES TOA(MaToa),
 	loaiTau nvarchar(20)not null 
 )
-	MaTau nvarchar(20) not null FOREIGN KEY REFERENCES TAU(MaTau),
-	SoMayLanh int not null
-)
 
-CREATE TABLE GHE(
-	ViTri int not null PRIMARY KEY,
-	TrangThai bit not null,
-	LoaiGhe nvarchar(10) not null,
-	MaToa nvarchar(20) not null FOREIGN KEY REFERENCES TOA(MaToa)
-)
 
-CREATE TABLE GIUONG(
-	ViTri int not null PRIMARY KEY,
-	TrangThai bit not null,
-	LoaiGiuong nvarchar(10) not null,
-	MaToa nvarchar(20) not null FOREIGN KEY REFERENCES TOA(MaToa)
-)
 
 
 CREATE TABLE GA(
