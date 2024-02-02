@@ -52,11 +52,19 @@ CREATE TABLE GIUONG(
 	LoaiGiuong nvarchar(10) not null
 )
 
+CREATE TABLE KHOANG(
+	MaKhoang nvarchar(20) not null PRIMARY KEY,
+	LoaiKhoang nvarchar(20) not null,
+	SoDieuHoa int not null,
+	MaGhe nvarchar(20) FOREIGN KEY REFERENCES GHE(MaGhe),
+	MaGiuong nvarchar(20) FOREIGN KEY REFERENCES GIUONG(MaGiuong)
+
+)
+
 CREATE TABLE TOA(
 	MaToa nvarchar(20) not null PRIMARY KEY,
-	MaGhe nvarchar(20) FOREIGN KEY REFERENCES GHE(MaGhe),
-	MaGiuong nvarchar(20) FOREIGN KEY REFERENCES GIUONG(MaGiuong),
-	SoMayLanh int not null
+	LoaiToa nvarchar(20) not null,
+	MaKhoang nvarchar(20) FOREIGN KEY REFERENCES KHOANG(MaKhoang)
 )
 CREATE TABLE TAU(
 	MaTau nvarchar(20) not null PRIMARY KEY,
