@@ -78,17 +78,16 @@ CREATE TABLE TAU(
 
 
 CREATE TABLE GA(
-	TenGa nvarchar(30) not null PRIMARY KEY,
+	ID int not null PRIMARY KEY,
+	TenGa nvarchar(30) not null,
 	DiaChi nvarchar(50) not null,
-	GaDen nvarchar(30) not null,
-	GaDi nvarchar(30) not null,
+	ThoiGian time not null,
 )
 
 CREATE TABLE TUYEN(
 	MaTuyen nvarchar(20) not null PRIMARY KEY,
-	GaBatDau nvarchar(30) not null FOREIGN KEY REFERENCES GA(TenGa),
-	GaKetThuc nvarchar(30) not null FOREIGN KEY REFERENCES GA(TenGa)
-
+	ID1 int not null FOREIGN KEY REFERENCES GA(ID),
+	ID2 int not null FOREIGN KEY REFERENCES GA(ID)
 )
 
 
