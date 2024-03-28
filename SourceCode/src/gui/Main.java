@@ -4,8 +4,8 @@ package gui;
 import component.Herder;
 import component.Menu;
 import event.EventMenuSelected;
-import from.GD_Chinh;
-import from.MainForm;
+import form.GD_Chinh;
+import form.MainForm;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 

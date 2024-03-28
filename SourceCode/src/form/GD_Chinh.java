@@ -1,5 +1,5 @@
 
-package from;
+package form;
 
 public class GD_Chinh extends javax.swing.JPanel {
 

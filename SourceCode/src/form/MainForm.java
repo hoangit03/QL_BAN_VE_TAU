@@ -1,5 +1,5 @@
 
-package from;
+package form;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
