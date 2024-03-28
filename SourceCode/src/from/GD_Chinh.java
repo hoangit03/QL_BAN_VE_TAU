@@ -1,44 +1,38 @@
 
 package from;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
+public class GD_Chinh extends javax.swing.JPanel {
 
-public class MainForm extends javax.swing.JPanel {
-
-    public MainForm() {
+    public GD_Chinh() {
         initComponents();
-        setOpaque(false);
-        setLayout(new BorderLayout());
-//        setBorder(new EmptyBorder(10,20,10,20));
     }
 
-    public void showForm(Component form){
-        removeAll();
-        add(form);
-        repaint();
-        revalidate();
-    }
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        imgHome = new javax.swing.JLabel();
+
+        imgHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/home.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 306, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(imgHome)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 224, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(imgHome)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel imgHome;
     // End of variables declaration//GEN-END:variables
 }

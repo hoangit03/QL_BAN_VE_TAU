@@ -32,10 +32,10 @@ public class MenuAnimation {
             public void timingEvent(float fraction) {
                 float h;
                 if (open) {
-                    h = 70 + ((height - 70) * fraction);
+                    h = 66 + ((height - 66) * fraction);
                     menuItem.setAlpha(fraction);
                 } else {
-                    h = 70 + ((height - 70) * (1f - fraction));
+                    h = 66 + ((height - 66) * (1f - fraction));
                     menuItem.setAlpha(1f - fraction);
                 }
                 layout.setComponentConstraints(menuItem, "h " + h + "!");

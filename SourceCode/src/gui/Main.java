@@ -4,6 +4,7 @@ package gui;
 import component.Herder;
 import component.Menu;
 import event.EventMenuSelected;
+import from.GD_Chinh;
 import from.MainForm;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
@@ -48,8 +49,12 @@ public class Main extends javax.swing.JFrame {
         bg.add(menu,"w 300!, spany 2");
         bg.add(herder,"h 100!,wrap");
         bg.add(main,"w 100%, h 100%");
+        
+        main.add(new GD_Chinh());
     }
 
+    
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

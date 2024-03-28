@@ -41,6 +41,7 @@ public class MenuButton extends JButton {
         setIcon(icon);
         init();
         setBorder(new EmptyBorder(1, 20, 1, 1));
+        
     }
 
     public MenuButton(String text) {
