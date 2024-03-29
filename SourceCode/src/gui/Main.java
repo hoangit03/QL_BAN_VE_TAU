@@ -4,15 +4,6 @@ package gui;
 import component.Herder;
 import component.Menu;
 import event.EventMenuSelected;
-import form.GD_Chinh;
-import form.GD_DoiTra;
-import form.GD_KhuyenMaiKhachHang;
-import form.GD_KhuyenMaiTrenVe;
-import form.GD_MuaVe;
-import form.GD_QuanLyKhachHang;
-import form.GD_QuanLyNhanVien;
-import form.GD_ThongKe;
-import form.GD_XuLyDonTam;
 import form.MainForm;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
@@ -63,9 +54,11 @@ public class Main extends javax.swing.JFrame {
                         break;
                     case 1:
                         main.showForm(new GD_QuanLyKhachHang());
+                        menu.hideallMenu();
                         break;
                     case 2:
                         main.showForm(new GD_QuanLyNhanVien());
+                        menu.hideallMenu();
                         break;
                     case 3:
                         switch (subMenuIndex) {
