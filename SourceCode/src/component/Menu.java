@@ -73,9 +73,11 @@ public class Menu extends javax.swing.JPanel {
         return new EvenMenu() {
             @Override
             public boolean menuPressed(Component com, boolean open) {
+                
                if (enableMenu) {
                     if (isShowMenu()) {
                         if (open) {
+                            hideallMenu();
                             new MenuAnimation(layout, com).openMenu();
                         } else {
                             new MenuAnimation(layout, com).closeMenu();
@@ -89,6 +91,20 @@ public class Menu extends javax.swing.JPanel {
             }
         };
     }
+    
+    
+//    Tắt menu đang select
+    public void hideallMenu() {
+        for (Component com : panel.getComponents()) {
+            MenuItem item = (MenuItem) com;
+            if (item.isOpen()) {
+                new MenuAnimation(layout, com, 200).closeMenu();
+                item.setOpen(false);
+            }
+        }
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -164,10 +180,10 @@ public class Menu extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                .addComponent(sp, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(64, 64, 64))
+                .addGap(54, 54, 54))
         );
     }// </editor-fold>//GEN-END:initComponents
 

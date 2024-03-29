@@ -5,6 +5,14 @@ import component.Herder;
 import component.Menu;
 import event.EventMenuSelected;
 import form.GD_Chinh;
+import form.GD_DoiTra;
+import form.GD_KhuyenMaiKhachHang;
+import form.GD_KhuyenMaiTrenVe;
+import form.GD_MuaVe;
+import form.GD_QuanLyKhachHang;
+import form.GD_QuanLyNhanVien;
+import form.GD_ThongKe;
+import form.GD_XuLyDonTam;
 import form.MainForm;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
@@ -35,14 +43,90 @@ public class Main extends javax.swing.JFrame {
         menu.addEvent(new EventMenuSelected() {
             @Override
             public void menuSelected(int menuIndex, int subMenuIndex) {
-                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
-//                if (menuIndex == 0) {
-//                    if (subMenuIndex == 0) {
-//                        main.showForm(new Form_Home());
-//                    } else if (subMenuIndex == 1) {
-//                        main.showForm(new Form1());
-//                    }
-//                }
+                
+                switch(menuIndex){
+                    case 0:
+                        switch (subMenuIndex) {
+                            case 0:
+                                main.showForm(new GD_MuaVe());
+                                menu.hideallMenu();
+                                break;
+                            case 1:
+                                main.showForm(new GD_DoiTra());
+                                menu.hideallMenu();
+                                break;
+                            case 2:
+                                main.showForm(new GD_XuLyDonTam());
+                                menu.hideallMenu();
+                                break;
+                        }
+                        break;
+                    case 1:
+                        main.showForm(new GD_QuanLyKhachHang());
+                        break;
+                    case 2:
+                        main.showForm(new GD_QuanLyNhanVien());
+                        break;
+                    case 3:
+                        switch (subMenuIndex) {
+                            case 0:
+                                main.showForm(new GD_KhuyenMaiKhachHang());
+                                menu.hideallMenu();
+                                break;
+                            case 1:
+                                main.showForm(new GD_KhuyenMaiTrenVe());
+                                menu.hideallMenu();
+                                break;
+                            
+                        }
+                        break;
+                    case 4:
+                        switch (subMenuIndex) {
+                            case 0:
+                                main.showForm(new GD_ThongKe());
+                                menu.hideallMenu();
+                                break;
+                            case 1:
+                                main.showForm(new GD_ThongKe());
+                                menu.hideallMenu();
+                                break;
+                            case 2:
+                                main.showForm(new GD_ThongKe());
+                                menu.hideallMenu();
+                                break;
+                            case 3:
+                                main.showForm(new GD_ThongKe());
+                                menu.hideallMenu();
+                                break;
+                            case 4:
+                                main.showForm(new GD_ThongKe());
+                                menu.hideallMenu();
+                                break;
+                        }
+                        break;
+                    case 5:
+                        switch (subMenuIndex) {
+                            case 0:
+                                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                                break;
+                            case 1:
+                                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                                break;
+                            case 2:
+                                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                                break;
+                            case 3:
+                                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                                break;
+                            case 4:
+                                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                                break;
+                        }
+                        break;
+                    case 6:
+                        System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                        break;
+                }
             }
         });
         menu.initMenuItem();
