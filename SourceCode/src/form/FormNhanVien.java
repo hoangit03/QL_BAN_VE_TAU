@@ -14,7 +14,9 @@ public class FormNhanVien extends javax.swing.JPanel {
         formThongTin.setBorder(new EmptyBorder(0, 0, 0, 0));
         formThongTin.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Thông tin nhân viên", 0, 0, new Font(Font.SANS_SERIF,Font.BOLD,20) {
         }, Color.WHITE));
-        
+        table.setShowGrid(false);
+        table.setShowHorizontalLines(false);
+        table.setShowVerticalLines(false);
     }
 
 
@@ -24,7 +26,7 @@ public class FormNhanVien extends javax.swing.JPanel {
 
         groupRadio = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         formThongTin = new form.FormThongTin();
         lbMaNV = new javax.swing.JLabel();
         jtMaNV = new javax.swing.JTextField();
@@ -45,64 +47,89 @@ public class FormNhanVien extends javax.swing.JPanel {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         rdNam = new javax.swing.JRadioButton();
         rdNu = new javax.swing.JRadioButton();
+        btnXoaTrang = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
+        btnCapNhat = new javax.swing.JButton();
+        btnTaoTaiKhoan = new javax.swing.JButton();
+        btnExcel = new javax.swing.JButton();
 
         setOpaque(false);
 
-        jTable1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
                 "Mã nhân viên", "CCCD", "Họ tên", "Ngày sinh", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        table.setRowHeight(30);
+        jScrollPane1.setViewportView(table);
 
+        lbMaNV.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lbMaNV.setForeground(new java.awt.Color(255, 255, 255));
         lbMaNV.setText("Mã nhân viên");
 
         jtMaNV.setEditable(false);
+        jtMaNV.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jtMaNV.setBorder(null);
 
+        lbCCCD.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lbCCCD.setForeground(new java.awt.Color(255, 255, 255));
         lbCCCD.setText("CCCD");
 
+        jtCCCD.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jtCCCD.setBorder(null);
 
+        lbTen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lbTen.setForeground(new java.awt.Color(255, 255, 255));
         lbTen.setText("Họ tên");
 
+        jtTen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jtTen.setBorder(null);
 
+        lbNgaySinh.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lbNgaySinh.setForeground(new java.awt.Color(255, 255, 255));
         lbNgaySinh.setText("Ngày sinh");
 
+        lbGioiTinh.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lbGioiTinh.setForeground(new java.awt.Color(255, 255, 255));
         lbGioiTinh.setText("Giới tính");
 
+        lbDiaChi.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lbDiaChi.setForeground(new java.awt.Color(255, 255, 255));
         lbDiaChi.setText("Địa chỉ");
 
+        lbEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lbEmail.setForeground(new java.awt.Color(255, 255, 255));
         lbEmail.setText("Email");
 
+        lbSdt.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lbSdt.setForeground(new java.awt.Color(255, 255, 255));
         lbSdt.setText("Số điện thoại");
 
+        lbTrangThai.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lbTrangThai.setForeground(new java.awt.Color(255, 255, 255));
         lbTrangThai.setText("Trạng Thái");
 
+        jTextField9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField9.setBorder(null);
 
+        jTextField10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField10.setBorder(null);
 
+        jTextField11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField11.setBorder(null);
 
+        jTextField12.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField12.setBorder(null);
 
         jDateChooser1.setAlignmentX(0.0F);
         jDateChooser1.setAlignmentY(0.0F);
+        jDateChooser1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         groupRadio.add(rdNam);
         rdNam.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -196,31 +223,93 @@ public class FormNhanVien extends javax.swing.JPanel {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        btnXoaTrang.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        btnXoaTrang.setText("Xóa Trắng");
+        btnXoaTrang.setBorderPainted(false);
+        btnXoaTrang.setFocusPainted(false);
+
+        btnThem.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        btnThem.setText("Thêm");
+        btnThem.setBorderPainted(false);
+        btnThem.setFocusPainted(false);
+
+        btnCapNhat.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        btnCapNhat.setText("Cập nhật");
+        btnCapNhat.setBorderPainted(false);
+        btnCapNhat.setFocusable(false);
+
+        btnTaoTaiKhoan.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        btnTaoTaiKhoan.setText("Tạo tài khoản");
+        btnTaoTaiKhoan.setBorderPainted(false);
+        btnTaoTaiKhoan.setFocusPainted(false);
+
+        btnExcel.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        btnExcel.setText("Xuất Excel");
+        btnExcel.setBorderPainted(false);
+        btnExcel.setFocusPainted(false);
+        btnExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1042, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(formThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnTaoTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnXoaTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(formThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 391, Short.MAX_VALUE))
+                .addGap(119, 119, 119)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnXoaTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTaoTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 120, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCapNhat;
+    private javax.swing.JButton btnExcel;
+    private javax.swing.JButton btnTaoTaiKhoan;
+    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnXoaTrang;
     private form.FormThongTin formThongTin;
     private javax.swing.ButtonGroup groupRadio;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
@@ -239,5 +328,6 @@ public class FormNhanVien extends javax.swing.JPanel {
     private javax.swing.JLabel lbTrangThai;
     private javax.swing.JRadioButton rdNam;
     private javax.swing.JRadioButton rdNu;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
