@@ -105,6 +105,8 @@ public class FormNhanVien extends javax.swing.JPanel {
         jDateChooser1.setAlignmentY(0.0F);
 
         groupRadio.add(rdNam);
+        rdNam.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        rdNam.setForeground(new java.awt.Color(255, 255, 255));
         rdNam.setText("Nam");
         rdNam.setAlignmentY(0.0F);
         rdNam.setBorder(null);
@@ -112,6 +114,8 @@ public class FormNhanVien extends javax.swing.JPanel {
         rdNam.setFocusPainted(false);
 
         groupRadio.add(rdNu);
+        rdNu.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        rdNu.setForeground(new java.awt.Color(255, 255, 255));
         rdNu.setText("Nữ");
         rdNu.setAlignmentY(0.0F);
         rdNu.setBorder(null);
@@ -206,7 +210,7 @@ public class FormNhanVien extends javax.swing.JPanel {
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(formThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 394, Short.MAX_VALUE))
+                .addGap(0, 391, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
