@@ -1,10 +1,14 @@
 package gui;
 
+import form.FormNhanVien;
+import form.FormTaiKhoan;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.border.EmptyBorder;
 
 
@@ -14,6 +18,20 @@ public class GD_QuanLyNhanVien extends javax.swing.JPanel {
         initComponents();
         setBorder(new EmptyBorder(10,10,10,10));
         
+        btnNhanVien.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainForm1.showForm(new FormNhanVien());
+            }
+        });
+        btnTaiKhoan.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainForm1.showForm(new FormTaiKhoan());
+            }
+        });
+        
+        mainForm1.showForm(new FormNhanVien());
     }
 
 
@@ -35,9 +53,7 @@ public class GD_QuanLyNhanVien extends javax.swing.JPanel {
 
         btnNhanVien = new javax.swing.JButton();
         btnTaiKhoan = new javax.swing.JButton();
-        formNhanVien1 = new form.FormNhanVien();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableNV = new javax.swing.JTable();
+        mainForm1 = new form.MainForm();
 
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1600, 1100));
@@ -50,33 +66,7 @@ public class GD_QuanLyNhanVien extends javax.swing.JPanel {
         btnTaiKhoan.setText("Tài khoản");
         btnTaiKhoan.setFocusTraversalPolicyProvider(true);
 
-        formNhanVien1.setOpaque(false);
-
-        tableNV.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Mã nhân viên", "CCCD/CMND", "Họ tên", "Ngày sinh", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái"
-            }
-        ));
-        tableNV.setOpaque(false);
-        jScrollPane1.setViewportView(tableNV);
-
-        javax.swing.GroupLayout formNhanVien1Layout = new javax.swing.GroupLayout(formNhanVien1);
-        formNhanVien1.setLayout(formNhanVien1Layout);
-        formNhanVien1Layout.setHorizontalGroup(
-            formNhanVien1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formNhanVien1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 435, Short.MAX_VALUE))
-        );
-        formNhanVien1Layout.setVerticalGroup(
-            formNhanVien1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formNhanVien1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 898, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
+        mainForm1.setPreferredSize(new java.awt.Dimension(1600, 1000));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,7 +77,7 @@ public class GD_QuanLyNhanVien extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(formNhanVien1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,8 +86,7 @@ public class GD_QuanLyNhanVien extends javax.swing.JPanel {
                     .addComponent(btnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(formNhanVien1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, 1061, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -105,8 +94,6 @@ public class GD_QuanLyNhanVien extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNhanVien;
     private javax.swing.JButton btnTaiKhoan;
-    private form.FormNhanVien formNhanVien1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableNV;
+    private form.MainForm mainForm1;
     // End of variables declaration//GEN-END:variables
 }
