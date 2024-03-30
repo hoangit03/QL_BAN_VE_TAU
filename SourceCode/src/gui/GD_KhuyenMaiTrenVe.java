@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package form;
+package gui;
 
 /**
  *
  * @author HOANG
  */
-public class GD_DoiTra extends javax.swing.JPanel {
+public class GD_KhuyenMaiTrenVe extends javax.swing.JPanel {
 
     /**
-     * Creates new form GD_DoiTra
+     * Creates new form GD_KhuyenMaiTrenVe
      */
-    public GD_DoiTra() {
+    public GD_KhuyenMaiTrenVe() {
         initComponents();
     }
 
@@ -29,7 +29,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("GD_DoiTra");
+        jLabel1.setText("GD_KhuyenMaiVe");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -40,8 +40,8 @@ public class GD_DoiTra extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 253, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 246, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
