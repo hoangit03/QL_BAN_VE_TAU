@@ -50,10 +50,10 @@ public class FormNhanVien extends javax.swing.JPanel {
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         rdNam = new javax.swing.JRadioButton();
         rdNu = new javax.swing.JRadioButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
         btnXoaTrang = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
@@ -103,6 +103,7 @@ public class FormNhanVien extends javax.swing.JPanel {
 
         jtCCCD.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jtCCCD.setBorder(null);
+        jtCCCD.setPreferredSize(new java.awt.Dimension(64, 30));
 
         lbTen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lbTen.setForeground(new java.awt.Color(255, 255, 255));
@@ -110,6 +111,8 @@ public class FormNhanVien extends javax.swing.JPanel {
 
         jtTen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jtTen.setBorder(null);
+        jtTen.setMinimumSize(new java.awt.Dimension(64, 30));
+        jtTen.setPreferredSize(new java.awt.Dimension(64, 30));
 
         lbNgaySinh.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         lbNgaySinh.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,19 +140,20 @@ public class FormNhanVien extends javax.swing.JPanel {
 
         jTextField9.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField9.setBorder(null);
+        jTextField9.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jTextField10.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField10.setBorder(null);
+        jTextField10.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jTextField11.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jTextField11.setBorder(null);
-
-        jTextField12.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField12.setBorder(null);
+        jTextField11.setPreferredSize(new java.awt.Dimension(64, 30));
 
         jDateChooser1.setAlignmentX(0.0F);
         jDateChooser1.setAlignmentY(0.0F);
         jDateChooser1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jDateChooser1.setPreferredSize(new java.awt.Dimension(88, 30));
 
         groupRadio.add(rdNam);
         rdNam.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -169,6 +173,12 @@ public class FormNhanVien extends javax.swing.JPanel {
         rdNu.setContentAreaFilled(false);
         rdNu.setFocusPainted(false);
 
+        jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang làm", "Nghỉ làm" }));
+        jComboBox1.setBorder(null);
+        jComboBox1.setMinimumSize(new java.awt.Dimension(75, 35));
+        jComboBox1.setPreferredSize(new java.awt.Dimension(95, 35));
+
         javax.swing.GroupLayout formThongTinLayout = new javax.swing.GroupLayout(formThongTin);
         formThongTin.setLayout(formThongTinLayout);
         formThongTinLayout.setHorizontalGroup(
@@ -180,11 +190,10 @@ public class FormNhanVien extends javax.swing.JPanel {
                         .addComponent(rdNam, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rdNu, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField12)
                     .addComponent(lbTrangThai)
-                    .addComponent(jTextField11)
-                    .addComponent(jTextField10)
-                    .addComponent(jtCCCD)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtCCCD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jtMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbSdt)
                     .addComponent(lbEmail)
@@ -192,11 +201,12 @@ public class FormNhanVien extends javax.swing.JPanel {
                     .addComponent(lbTen)
                     .addComponent(lbCCCD)
                     .addComponent(lbMaNV)
-                    .addComponent(jTextField9)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lbDiaChi)
                     .addComponent(lbGioiTinh)
-                    .addComponent(jtTen)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jtTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         formThongTinLayout.setVerticalGroup(
@@ -239,8 +249,8 @@ public class FormNhanVien extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbTrangThai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         btnXoaTrang.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -320,7 +330,7 @@ public class FormNhanVien extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTaoTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 130, Short.MAX_VALUE))
+                .addGap(0, 117, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -337,11 +347,11 @@ public class FormNhanVien extends javax.swing.JPanel {
     private javax.swing.JButton btnXoaTrang;
     private form.FormThongTin formThongTin;
     private javax.swing.ButtonGroup groupRadio;
+    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jtCCCD;
     private javax.swing.JTextField jtMaNV;
