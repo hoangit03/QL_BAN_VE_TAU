@@ -34,16 +34,16 @@
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnTaoTaiKhoan" min="-2" pref="199" max="-2" attributes="0"/>
+                              <Component id="btnTaoTaiKhoan" min="-2" pref="200" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnExcel" min="-2" pref="127" max="-2" attributes="0"/>
+                              <Component id="btnExcel" min="-2" pref="130" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnXoaTrang" min="-2" pref="113" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnThem" min="-2" pref="109" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnCapNhat" min="-2" pref="98" max="-2" attributes="0"/>
+                              <Component id="btnCapNhat" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -58,9 +58,9 @@
               <Component id="formThongTin" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnXoaTrang" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
-                  <Component id="btnThem" alignment="3" min="-2" pref="49" max="-2" attributes="0"/>
-                  <Component id="btnCapNhat" alignment="3" min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="btnXoaTrang" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="btnThem" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="btnCapNhat" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -467,6 +467,9 @@
         <Property name="text" type="java.lang.String" value="X&#xf3;a Tr&#x1eaf;ng"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="focusPainted" type="boolean" value="false"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[103, 55]"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnThem">
@@ -477,6 +480,9 @@
         <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="focusPainted" type="boolean" value="false"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[105, 55]"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnCapNhat">
@@ -487,6 +493,9 @@
         <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="focusable" type="boolean" value="false"/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[100, 55]"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnTaoTaiKhoan">
@@ -497,6 +506,7 @@
         <Property name="text" type="java.lang.String" value="T&#x1ea1;o t&#xe0;i kho&#x1ea3;n"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="focusPainted" type="boolean" value="false"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnExcel">

@@ -1,4 +1,3 @@
-
 package component;
 
 import event.EventShowPopupMenu;
@@ -19,7 +18,6 @@ import swing.ScrollBarCustom;
 
 public class Menu extends javax.swing.JPanel {
 
-    
     public boolean isShowMenu() {
         return showMenu;
     }
@@ -39,28 +37,30 @@ public class Menu extends javax.swing.JPanel {
     public void addEventShowPopup(EventShowPopupMenu eventShowPopup) {
         this.eventShowPopup = eventShowPopup;
     }
-    
+
     private final MigLayout layout;
     private EventMenuSelected event;
     private EventShowPopupMenu eventShowPopup;
     private boolean enableMenu = true;
     private boolean showMenu = true;
-    
+
     public Menu() {
         initComponents();
         setOpaque(false);
         sp.getViewport().setOpaque(false);
+        sp.setViewportBorder(null);
+
         sp.setVerticalScrollBar(new ScrollBarCustom());
         layout = new MigLayout("wrap, fillx, insets 0", "[fill]", "[]0[]");
         panel.setLayout(layout);
     }
-    
+
     private void addMenu(Model_Menu menu) {
-        panel.add(new MenuItem(menu, getEventMenu(), event, panel.getComponentCount()),"h 66!");
+        panel.add(new MenuItem(menu, getEventMenu(), event, panel.getComponentCount()), "h 66!");
     }
-    
-     public void initMenuItem() {
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/ve.png")),"Quản lý vé", "Mua vé", "Đổi-Trả vé","Xử lý đơn tạm"));
+
+    public void initMenuItem() {
+        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/ve.png")), "Quản lý vé", "Mua vé", "Đổi-Trả vé", "Xử lý đơn tạm"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khachhang.png")), "Khách Hàng"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khuyenmai.png")), "Khuyến Mãi", "Khuyến Mãi trên khách hàng", "Khuyến mãi trên vé"));
@@ -73,8 +73,8 @@ public class Menu extends javax.swing.JPanel {
         return new EvenMenu() {
             @Override
             public boolean menuPressed(Component com, boolean open) {
-                
-               if (enableMenu) {
+
+                if (enableMenu) {
                     if (isShowMenu()) {
                         if (open) {
                             hideallMenu();
@@ -91,8 +91,7 @@ public class Menu extends javax.swing.JPanel {
             }
         };
     }
-    
-    
+
 //    Tắt menu đang select
     public void hideallMenu() {
         for (Component com : panel.getComponents()) {
@@ -103,8 +102,7 @@ public class Menu extends javax.swing.JPanel {
             }
         }
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -113,7 +111,7 @@ public class Menu extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         sp = new javax.swing.JScrollPane();
         panel = new javax.swing.JPanel();
-        button1 = new swing.Button();
+        btnThoat = new swing.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(300, 1100));
@@ -136,9 +134,15 @@ public class Menu extends javax.swing.JPanel {
 
         sp.setBorder(null);
         sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        sp.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        sp.setAlignmentX(0.0F);
+        sp.setAlignmentY(0.0F);
         sp.setOpaque(false);
         sp.setPreferredSize(new java.awt.Dimension(333, 900));
+        sp.setViewportView(null);
 
+        panel.setAlignmentX(0.0F);
+        panel.setAlignmentY(0.0F);
         panel.setMaximumSize(new java.awt.Dimension(333, 900));
         panel.setOpaque(false);
         panel.setPreferredSize(new java.awt.Dimension(333, 900));
@@ -155,13 +159,15 @@ public class Menu extends javax.swing.JPanel {
         );
 
         sp.setViewportView(panel);
+        panel.getAccessibleContext().setAccessibleName("");
+        panel.getAccessibleContext().setAccessibleDescription("");
 
-        button1.setBorder(null);
-        button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/thoat.png"))); // NOI18N
-        button1.setText("Thoát");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        btnThoat.setBorder(null);
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/thoat.png"))); // NOI18N
+        btnThoat.setText("Thoát");
+        btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                btnThoatActionPerformed(evt);
             }
         });
 
@@ -169,43 +175,42 @@ public class Menu extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(sp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(btnThoat, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(button1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Logo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 666, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(58, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_btnThoatActionPerformed
 
     @Override
     protected void paintChildren(Graphics g) {
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         GradientPaint g3 = new GradientPaint(0, 0, Color.decode("#56CCF2"), 0, getHeight(), Color.decode("#2F80ED"));
         g2.setPaint(g3);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 0, 0);
-        super.paintChildren(g); 
+        super.paintChildren(g);
     }
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Logo;
-    private swing.Button button1;
+    private swing.Button btnThoat;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel panel;
     private javax.swing.JScrollPane sp;
