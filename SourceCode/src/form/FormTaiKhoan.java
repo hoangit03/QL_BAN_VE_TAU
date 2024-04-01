@@ -12,9 +12,9 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 
     public FormTaiKhoan() {
         initComponents();
-        fNhap.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Thông tin tài khoản", 0, 0, new Font(Font.SANS_SERIF,Font.BOLD,20) {
+        fNhap.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Thông tin tài khoản", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
         }, Color.WHITE));
-        fHienThi.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Thông tin nhân viên", 0, 0, new Font(Font.SANS_SERIF,Font.BOLD,20) {
+        fHienThi.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Thông tin nhân viên", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
         }, Color.WHITE));
         table.setShowGrid(false);
         table.setShowHorizontalLines(false);
@@ -30,7 +30,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 
         sp = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        fNhap = new form.FormThongTin();
+        fNhap = new form.Form();
         lbMa1 = new javax.swing.JLabel();
         jtMa = new javax.swing.JTextField();
         lbTen1 = new javax.swing.JLabel();
@@ -39,7 +39,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         jbTK = new javax.swing.JTextField();
         lbMK = new javax.swing.JLabel();
         jtMK = new javax.swing.JTextField();
-        fHienThi = new form.FormThongTin();
+        fHienThi = new form.Form();
         lbMa2 = new javax.swing.JLabel();
         lbtMa = new javax.swing.JLabel();
         lbCCCD = new javax.swing.JLabel();
@@ -65,7 +65,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(1430, 970));
+        setPreferredSize(new java.awt.Dimension(1600, 950));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,77 +83,86 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 
         fNhap.setPreferredSize(new java.awt.Dimension(380, 405));
 
-        lbMa1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbMa1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbMa1.setForeground(new java.awt.Color(255, 255, 255));
         lbMa1.setText("Mã nhân viên");
 
-        jtMa.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jtMa.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jtMa.setBorder(null);
-        jtMa.setPreferredSize(new java.awt.Dimension(300, 30));
+        jtMa.setPreferredSize(new java.awt.Dimension(300, 40));
 
-        lbTen1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbTen1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbTen1.setForeground(new java.awt.Color(255, 255, 255));
         lbTen1.setText("Họ tên");
 
-        jtTen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jtTen.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jtTen.setBorder(null);
-        jtTen.setPreferredSize(new java.awt.Dimension(300, 30));
+        jtTen.setPreferredSize(new java.awt.Dimension(300, 40));
 
-        lbTK.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbTK.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbTK.setForeground(new java.awt.Color(255, 255, 255));
         lbTK.setText("Tên tài khoản");
 
-        jbTK.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jbTK.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jbTK.setBorder(null);
-        jbTK.setPreferredSize(new java.awt.Dimension(300, 30));
+        jbTK.setPreferredSize(new java.awt.Dimension(300, 40));
 
-        lbMK.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbMK.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbMK.setForeground(new java.awt.Color(255, 255, 255));
         lbMK.setText("Mật Khẩu");
 
+        jtMK.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jtMK.setBorder(null);
-        jtMK.setPreferredSize(new java.awt.Dimension(300, 30));
+        jtMK.setPreferredSize(new java.awt.Dimension(300, 40));
 
         javax.swing.GroupLayout fNhapLayout = new javax.swing.GroupLayout(fNhap);
         fNhap.setLayout(fNhapLayout);
         fNhapLayout.setHorizontalGroup(
             fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fNhapLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(30, 30, 30)
                 .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbMK)
-                    .addComponent(jbTK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbTK)
-                    .addComponent(lbMa1)
-                    .addComponent(jtMa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbTen1)
-                    .addComponent(jtTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jtMK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(fNhapLayout.createSequentialGroup()
+                        .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbTK)
+                            .addComponent(lbMK))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtMK, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                            .addComponent(jbTK, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)))
+                    .addGroup(fNhapLayout.createSequentialGroup()
+                        .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbMa1)
+                            .addComponent(lbTen1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtMa, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+                            .addComponent(jtTen, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         fNhapLayout.setVerticalGroup(
             fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fNhapLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(lbMa1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbTen1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbTK)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbMK)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtMK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbMa1)
+                    .addComponent(jtMa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbTen1))
+                .addGap(20, 20, 20)
+                .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbTK)
+                    .addComponent(jbTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbMK)
+                    .addComponent(jtMK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
-        lbMa2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbMa2.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbMa2.setForeground(new java.awt.Color(255, 255, 255));
         lbMa2.setText("Mã nhân viên");
 
@@ -161,7 +170,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbtMa.setForeground(new java.awt.Color(255, 255, 255));
         lbtMa.setText("AAAAAAAAAAAA");
 
-        lbCCCD.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbCCCD.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbCCCD.setForeground(new java.awt.Color(255, 255, 255));
         lbCCCD.setText("CCCD");
 
@@ -169,7 +178,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbtCCCD.setForeground(new java.awt.Color(255, 255, 255));
         lbtCCCD.setText("AAAAAAAAAAAAAAAAAA");
 
-        lbTen2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbTen2.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbTen2.setForeground(new java.awt.Color(255, 255, 255));
         lbTen2.setText("Họ tên");
 
@@ -177,7 +186,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbtTen.setForeground(new java.awt.Color(255, 255, 255));
         lbtTen.setText("AAAAAAAAAAAA");
 
-        lbNgaySinh.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbNgaySinh.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbNgaySinh.setForeground(new java.awt.Color(255, 255, 255));
         lbNgaySinh.setText("Ngày sinh");
 
@@ -185,7 +194,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbtNgaySinh.setForeground(new java.awt.Color(255, 255, 255));
         lbtNgaySinh.setText("AAAAAAAAAAAAAAA");
 
-        lbGioiTinh.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbGioiTinh.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbGioiTinh.setForeground(new java.awt.Color(255, 255, 255));
         lbGioiTinh.setText("Giới tính");
 
@@ -193,7 +202,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbtGioiTinh.setForeground(new java.awt.Color(255, 255, 255));
         lbtGioiTinh.setText("AAAAAAAAAAAAAAAAAA");
 
-        lbDiaChi.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbDiaChi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbDiaChi.setForeground(new java.awt.Color(255, 255, 255));
         lbDiaChi.setText("Địa chỉ");
 
@@ -201,7 +210,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbtDiaChi.setForeground(new java.awt.Color(255, 255, 255));
         lbtDiaChi.setText("AAAAAAAAAAAAAA");
 
-        lbEmail.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbEmail.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbEmail.setForeground(new java.awt.Color(255, 255, 255));
         lbEmail.setText("Email");
 
@@ -209,7 +218,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbtEmail.setForeground(new java.awt.Color(255, 255, 255));
         lbtEmail.setText("AAAAAAAAAAAAAAAAAA");
 
-        lbSDT.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbSDT.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbSDT.setForeground(new java.awt.Color(255, 255, 255));
         lbSDT.setText("Số điện thoại");
 
@@ -217,7 +226,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbtSDT.setForeground(new java.awt.Color(255, 255, 255));
         lbtSDT.setText("AAAAAAAAAAAAAAAAAA");
 
-        lbTrangThai.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbTrangThai.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbTrangThai.setForeground(new java.awt.Color(255, 255, 255));
         lbTrangThai.setText("Trạng thái");
 
@@ -320,7 +329,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btnTim.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        btnTim.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnTim.setText("Tìm");
         btnTim.setBorder(null);
         btnTim.setBorderPainted(false);
@@ -331,7 +340,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
             }
         });
 
-        btnThem.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        btnThem.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnThem.setText("Thêm");
         btnThem.setBorder(null);
         btnThem.setBorderPainted(false);
@@ -342,7 +351,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
             }
         });
 
-        btnCapNhat.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        btnCapNhat.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnCapNhat.setText("Cập nhật");
         btnCapNhat.setBorder(null);
         btnCapNhat.setBorderPainted(false);
@@ -363,8 +372,8 @@ public class FormTaiKhoan extends javax.swing.JPanel {
                         .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addComponent(fNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                        .addContainerGap(26, Short.MAX_VALUE))
+                    .addComponent(fNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                     .addComponent(fHienThi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
@@ -398,8 +407,8 @@ public class FormTaiKhoan extends javax.swing.JPanel {
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTim;
-    private form.FormThongTin fHienThi;
-    private form.FormThongTin fNhap;
+    private form.Form fHienThi;
+    private form.Form fNhap;
     private javax.swing.JTextField jbTK;
     private javax.swing.JTextField jtMK;
     private javax.swing.JTextField jtMa;

@@ -8,12 +8,12 @@ package form;
  *
  * @author HOANG
  */
-public class FormThongTin extends javax.swing.JPanel {
+public class Form extends javax.swing.JPanel {
 
     /**
      * Creates new form FormThongTin
      */
-    public FormThongTin() {
+    public Form() {
         initComponents();
     }
 

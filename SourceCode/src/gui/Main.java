@@ -1,4 +1,3 @@
-
 package gui;
 
 import component.Herder;
@@ -8,15 +7,13 @@ import form.MainForm;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 
-
 public class Main extends javax.swing.JFrame {
 
-    
     private MigLayout layout;
     private Menu menu;
     private Herder herder;
     private MainForm main;
-    
+
     public Main() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -24,9 +21,9 @@ public class Main extends javax.swing.JFrame {
         setResizable(false);
         init();
     }
-    
-    public void init(){
-        layout = new MigLayout("fill","0[]0[100%,fill]0","0[fill,top]0");
+
+    public void init() {
+        layout = new MigLayout("fill", "0[]0[100%,fill]0", "0[fill,top]0");
         bg.setLayout(layout);
         menu = new Menu();
         herder = new Herder();
@@ -34,8 +31,8 @@ public class Main extends javax.swing.JFrame {
         menu.addEvent(new EventMenuSelected() {
             @Override
             public void menuSelected(int menuIndex, int subMenuIndex) {
-                
-                switch(menuIndex){
+
+                switch (menuIndex) {
                     case 0:
                         switch (subMenuIndex) {
                             case 0:
@@ -44,10 +41,6 @@ public class Main extends javax.swing.JFrame {
                                 break;
                             case 1:
                                 main.showForm(new GD_DoiTra());
-                                menu.hideallMenu();
-                                break;
-                            case 2:
-                                main.showForm(new GD_XuLyDonTam());
                                 menu.hideallMenu();
                                 break;
                         }
@@ -70,7 +63,7 @@ public class Main extends javax.swing.JFrame {
                                 main.showForm(new GD_KhuyenMaiTrenVe());
                                 menu.hideallMenu();
                                 break;
-                            
+
                         }
                         break;
                     case 4:
@@ -123,15 +116,14 @@ public class Main extends javax.swing.JFrame {
             }
         });
         menu.initMenuItem();
-        bg.add(menu,"w 300!, spany 2");
-        bg.add(herder,"h 100!,wrap");
-        bg.add(main,"w 100%, h 100%");
-        
+        bg.add(menu, "w 300!, spany 2");
+        bg.add(herder, "h 100!,wrap");
+        bg.add(main, "w 100%, h 100%");
+
         main.add(new GD_Chinh());
     }
 
-    
-    
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

@@ -58,7 +58,7 @@ public class GD_QuanLyNhanVien extends javax.swing.JPanel {
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1600, 1100));
 
-        btnNhanVien.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        btnNhanVien.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnNhanVien.setText("Nhân viên");
         btnNhanVien.setBorderPainted(false);
         btnNhanVien.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -66,7 +66,7 @@ public class GD_QuanLyNhanVien extends javax.swing.JPanel {
         btnNhanVien.setMinimumSize(new java.awt.Dimension(120, 45));
         btnNhanVien.setPreferredSize(new java.awt.Dimension(120, 45));
 
-        btnTaiKhoan.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        btnTaiKhoan.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnTaiKhoan.setText("Tài khoản");
         btnTaiKhoan.setBorderPainted(false);
         btnTaiKhoan.setFocusTraversalPolicyProvider(true);

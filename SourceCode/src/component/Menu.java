@@ -60,7 +60,7 @@ public class Menu extends javax.swing.JPanel {
     }
 
     public void initMenuItem() {
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/ve.png")), "Quản lý vé", "Mua vé", "Đổi-Trả vé", "Xử lý đơn tạm"));
+        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/ve.png")), "Quản lý vé", "Mua vé", "Đổi-Trả vé"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khachhang.png")), "Khách Hàng"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khuyenmai.png")), "Khuyến Mãi", "Khuyến Mãi trên khách hàng", "Khuyến mãi trên vé"));

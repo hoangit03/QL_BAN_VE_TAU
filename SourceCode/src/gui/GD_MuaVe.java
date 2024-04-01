@@ -13,6 +13,7 @@ public class GD_MuaVe extends javax.swing.JPanel {
     /**
      * Creates new form GD_MuaVe
      */
+    
     public GD_MuaVe() {
         initComponents();
     }
