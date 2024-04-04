@@ -19,7 +19,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         table.setShowGrid(false);
         table.setShowHorizontalLines(false);
         table.setShowVerticalLines(false);
-        table.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 14));
+        table.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
         table.getTableHeader().setPreferredSize(new Dimension(30,30));
         ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
     }
@@ -67,6 +67,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1600, 950));
 
+        table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

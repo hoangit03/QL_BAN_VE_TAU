@@ -36,7 +36,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
         tableHD.setShowGrid(false);
         tableHD.setShowHorizontalLines(false);
         tableHD.setShowVerticalLines(false);
-        tableHD.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 14));
+        tableHD.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
         tableHD.getTableHeader().setPreferredSize(new Dimension(30,30));
         ((DefaultTableCellRenderer)tableHD.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         
@@ -95,6 +95,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1600, 950));
 
+        tableHD.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tableHD.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null},
@@ -120,6 +121,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
         );
 
+        tableVe.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tableVe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
@@ -568,7 +570,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnXoaTActionPerformed
 
-        protected void paintChildren(Graphics g) {
+    protected void paintChildren(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         GradientPaint g3 = new GradientPaint(0, 0, Color.decode("#2C5364"), 0, getHeight(), Color.decode("#2C5364"));

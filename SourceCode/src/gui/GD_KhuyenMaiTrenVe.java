@@ -4,6 +4,18 @@
  */
 package gui;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import static java.awt.image.ImageObserver.HEIGHT;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+
 /**
  *
  * @author HOANG
@@ -15,6 +27,14 @@ public class GD_KhuyenMaiTrenVe extends javax.swing.JPanel {
      */
     public GD_KhuyenMaiTrenVe() {
         initComponents();
+        formText.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Thông tin nhân viên", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
+        }, Color.WHITE));
+        table.setShowGrid(false);
+        table.setShowHorizontalLines(false);
+        table.setShowVerticalLines(false);
+        table.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
+        table.getTableHeader().setPreferredSize(new Dimension(30,30));
+        ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
     }
 
     /**
@@ -26,27 +46,308 @@ public class GD_KhuyenMaiTrenVe extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        form1 = new form.Form();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
+        formText = new form.Form();
+        lbMa = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        lbMa1 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        lbMa2 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        lbMa3 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        lbMa4 = new javax.swing.JLabel();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        lbMa5 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("GD_KhuyenMaiVe");
+        setPreferredSize(new java.awt.Dimension(1600, 1100));
+
+        table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Mã khuyến mãi", "Tên khuyến mãi", "Loại", "Thời gian áp dụng", "Thời gian kết thúc", "Chiết khấu"
+            }
+        ));
+        table.setRowHeight(30);
+        jScrollPane1.setViewportView(table);
+        if (table.getColumnModel().getColumnCount() > 0) {
+            table.getColumnModel().getColumn(0).setResizable(false);
+            table.getColumnModel().getColumn(1).setResizable(false);
+            table.getColumnModel().getColumn(2).setResizable(false);
+            table.getColumnModel().getColumn(3).setResizable(false);
+            table.getColumnModel().getColumn(4).setResizable(false);
+            table.getColumnModel().getColumn(5).setResizable(false);
+        }
+
+        javax.swing.GroupLayout form1Layout = new javax.swing.GroupLayout(form1);
+        form1.setLayout(form1Layout);
+        form1Layout.setHorizontalGroup(
+            form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, form1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        form1Layout.setVerticalGroup(
+            form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(form1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+        );
+
+        lbMa.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbMa.setForeground(new java.awt.Color(255, 255, 255));
+        lbMa.setText("Mã khuyến mãi");
+
+        jTextField1.setEditable(false);
+        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jTextField1.setBorder(null);
+        jTextField1.setMinimumSize(new java.awt.Dimension(64, 64));
+        jTextField1.setPreferredSize(new java.awt.Dimension(91, 40));
+
+        lbMa1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbMa1.setForeground(new java.awt.Color(255, 255, 255));
+        lbMa1.setText("Tên khuyến mãi");
+
+        jTextField2.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jTextField2.setBorder(null);
+        jTextField2.setMinimumSize(new java.awt.Dimension(64, 64));
+        jTextField2.setPreferredSize(new java.awt.Dimension(91, 40));
+
+        lbMa2.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbMa2.setForeground(new java.awt.Color(255, 255, 255));
+        lbMa2.setText("Loại");
+
+        jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setBorder(null);
+        jComboBox1.setPreferredSize(new java.awt.Dimension(81, 40));
+
+        lbMa3.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbMa3.setForeground(new java.awt.Color(255, 255, 255));
+        lbMa3.setText("Thời gian áp dụng");
+
+        jDateChooser1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jDateChooser1.setPreferredSize(new java.awt.Dimension(88, 40));
+
+        lbMa4.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbMa4.setForeground(new java.awt.Color(255, 255, 255));
+        lbMa4.setText("Thời gian kết thúc");
+
+        jDateChooser2.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jDateChooser2.setPreferredSize(new java.awt.Dimension(88, 40));
+
+        lbMa5.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbMa5.setForeground(new java.awt.Color(255, 255, 255));
+        lbMa5.setText("Chiết khấu");
+
+        jTextField3.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jTextField3.setBorder(null);
+        jTextField3.setMinimumSize(new java.awt.Dimension(64, 64));
+        jTextField3.setPreferredSize(new java.awt.Dimension(91, 40));
+
+        javax.swing.GroupLayout formTextLayout = new javax.swing.GroupLayout(formText);
+        formText.setLayout(formTextLayout);
+        formTextLayout.setHorizontalGroup(
+            formTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formTextLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(formTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formTextLayout.createSequentialGroup()
+                        .addGroup(formTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbMa2)
+                            .addComponent(lbMa3)
+                            .addComponent(lbMa4)
+                            .addComponent(lbMa5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(formTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lbMa1)
+                    .addComponent(lbMa))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        formTextLayout.setVerticalGroup(
+            formTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(formTextLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(formTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbMa)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(formTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbMa1))
+                .addGap(20, 20, 20)
+                .addGroup(formTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbMa2))
+                .addGroup(formTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formTextLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(lbMa3))
+                    .addGroup(formTextLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(formTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(formTextLayout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(lbMa4)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formTextLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(formTextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbMa5))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
+        lbMa.getAccessibleContext().setAccessibleName("lbMa");
+
+        jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton1.setText("Tìm");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setPreferredSize(new java.awt.Dimension(96, 55));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton2.setText("Thêm");
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setPreferredSize(new java.awt.Dimension(96, 55));
+
+        jButton3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton3.setText("Tạm ngưng");
+        jButton3.setBorder(null);
+        jButton3.setBorderPainted(false);
+        jButton3.setPreferredSize(new java.awt.Dimension(96, 55));
+
+        jButton4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton4.setText("Cập nhật");
+        jButton4.setBorder(null);
+        jButton4.setBorderPainted(false);
+        jButton4.setPreferredSize(new java.awt.Dimension(96, 55));
+
+        jButton5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton5.setText("Lọc");
+        jButton5.setBorder(null);
+        jButton5.setBorderPainted(false);
+        jButton5.setPreferredSize(new java.awt.Dimension(96, 55));
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(form1, javax.swing.GroupLayout.PREFERRED_SIZE, 1210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(formText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 20, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(form1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 246, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(formText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 564, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    
+    protected void paintChildren(Graphics g) {
+        Graphics2D g2 = (Graphics2D)g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        GradientPaint g3 = new GradientPaint(0, 0, Color.decode("#2C5364"), 0, getHeight(), Color.decode("#2C5364"));
+        g2.setPaint(g3);
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 0, 0);
+        super.paintChildren(g); 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private form.Form form1;
+    private form.Form formText;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lbMa;
+    private javax.swing.JLabel lbMa1;
+    private javax.swing.JLabel lbMa2;
+    private javax.swing.JLabel lbMa3;
+    private javax.swing.JLabel lbMa4;
+    private javax.swing.JLabel lbMa5;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
