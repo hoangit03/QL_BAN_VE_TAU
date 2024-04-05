@@ -63,7 +63,7 @@ public class Menu extends javax.swing.JPanel {
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/ve.png")), "Quản lý vé", "Mua vé", "Đổi-Trả vé"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khachhang.png")), "Khách Hàng"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên"));
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khuyenmai.png")), "Khuyến Mãi", "Khuyến Mãi trên khách hàng", "Khuyến mãi trên vé"));
+        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khuyenmai.png")), "Khuyến Mãi", "Khuyến mãi trên hóa đơn", "Khuyến mãi trên khách hàng"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Thống kê", "Thống kê doanh thu", "Thống kê lượt vé", "Thống kê đi lại", "Thống kê thông tin cá nhân", "Thống kê vé bán"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/tracuu.png")), "Tra cứu", "Tra cứu khách hàng", "Tra cứu nhân viên", "Tra cứu chuyến", "Tra cứu hóa đơn", "Tra cứu vé"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/help.png")), "Hỗ trợ"));

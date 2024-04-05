@@ -56,11 +56,11 @@ public class Main extends javax.swing.JFrame {
                     case 3:
                         switch (subMenuIndex) {
                             case 0:
-                                main.showForm(new GD_KhuyenMaiKhachHang());
+                                main.showForm(new GD_KhuyenMaiHoaDon());
                                 menu.hideallMenu();
                                 break;
                             case 1:
-                                main.showForm(new GD_KhuyenMaiTrenVe());
+                                main.showForm(new GD_KhuyenMaiTrenKhachHang());
                                 menu.hideallMenu();
                                 break;
 
