@@ -78,6 +78,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
                 "Mã nhân viên", "Họ tên", "Tên tài khoản", "Mật khẩu"
             }
         ));
+        table.setGridColor(new java.awt.Color(255, 255, 255));
         table.setPreferredSize(new java.awt.Dimension(675, 90));
         table.setRowHeight(30);
         sp.setViewportView(table);

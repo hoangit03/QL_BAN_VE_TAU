@@ -107,6 +107,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
         ));
         tableHD.setAlignmentX(0.0F);
         tableHD.setAlignmentY(0.0F);
+        tableHD.setGridColor(new java.awt.Color(255, 255, 255));
         tableHD.setRowHeight(30);
         jScrollPane1.setViewportView(tableHD);
 
@@ -135,6 +136,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
         ));
         tableVe.setAlignmentX(0.0F);
         tableVe.setAlignmentY(0.0F);
+        tableVe.setGridColor(new java.awt.Color(255, 255, 255));
         tableVe.setRowHeight(30);
         jScrollPane2.setViewportView(tableVe);
         if (tableVe.getColumnModel().getColumnCount() > 0) {
@@ -573,7 +575,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
     protected void paintChildren(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        GradientPaint g3 = new GradientPaint(0, 0, Color.decode("#2C5364"), 0, getHeight(), Color.decode("#2C5364"));
+        GradientPaint g3 = new GradientPaint(0, 0, Color.decode("#085d81"), 0, getHeight(), Color.decode("#085d81"));
         g2.setPaint(g3);
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 0, 0);
         super.paintChildren(g); 

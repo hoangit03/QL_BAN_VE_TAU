@@ -75,6 +75,7 @@ public class FormNhanVien extends javax.swing.JPanel {
                 "Mã nhân viên", "CCCD", "Họ tên", "Ngày sinh", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái"
             }
         ));
+        table.setGridColor(new java.awt.Color(255, 255, 255));
         table.setRowHeight(30);
         jScrollPane1.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
