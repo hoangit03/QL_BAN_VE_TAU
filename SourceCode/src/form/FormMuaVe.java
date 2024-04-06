@@ -268,8 +268,7 @@ public class FormMuaVe extends javax.swing.JPanel {
 
     private void btnTimChuyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimChuyenActionPerformed
         // TODO add your handling code here:
-         main.showForm(new FormChonTau(main));
-        
+        main.showForm(new FormChonTau(main));
     }//GEN-LAST:event_btnTimChuyenActionPerformed
 
 

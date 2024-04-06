@@ -88,8 +88,9 @@ public class FormChonTau extends javax.swing.JPanel {
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
+        lbTenToa = new javax.swing.JLabel();
         pnChoNgoi = new javax.swing.JPanel();
-        jPanel7 = new javax.swing.JPanel();
+        mainForm = new form.MainForm();
         pnBangKhachHang = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -111,7 +112,7 @@ public class FormChonTau extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(1600, 1000));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setPreferredSize(new java.awt.Dimension(1209, 1000));
 
@@ -224,7 +225,7 @@ public class FormChonTau extends javax.swing.JPanel {
             .addGroup(pnTau1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(pnTau1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTGDi1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(2, 2, 2)
                 .addGroup(pnTau1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -529,24 +530,74 @@ public class FormChonTau extends javax.swing.JPanel {
         jPanel4.setPreferredSize(new java.awt.Dimension(704, 64));
 
         lbToa10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/carriage.png"))); // NOI18N
+        lbToa10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbToa10MouseClicked(evt);
+            }
+        });
 
         lbToa9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/carriage.png"))); // NOI18N
+        lbToa9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbToa9MouseClicked(evt);
+            }
+        });
 
         lbToa8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/carriage.png"))); // NOI18N
+        lbToa8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbToa8MouseClicked(evt);
+            }
+        });
 
         lbToa7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/carriage.png"))); // NOI18N
+        lbToa7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbToa7MouseClicked(evt);
+            }
+        });
 
         lbToa6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/carriage.png"))); // NOI18N
+        lbToa6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbToa6MouseClicked(evt);
+            }
+        });
 
         lbToa5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/carriage.png"))); // NOI18N
+        lbToa5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbToa5MouseClicked(evt);
+            }
+        });
 
         lbToa4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/carriage.png"))); // NOI18N
+        lbToa4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbToa4MouseClicked(evt);
+            }
+        });
 
         lbToa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/carriage.png"))); // NOI18N
+        lbToa3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbToa3MouseClicked(evt);
+            }
+        });
 
         lbToa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/carriage.png"))); // NOI18N
+        lbToa2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbToa2MouseClicked(evt);
+            }
+        });
 
         lbToa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/carriage.png"))); // NOI18N
+        lbToa1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbToa1MouseClicked(evt);
+            }
+        });
 
         lbToaDau.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/head.png"))); // NOI18N
 
@@ -749,43 +800,41 @@ public class FormChonTau extends javax.swing.JPanel {
 
         jPanel6.setPreferredSize(new java.awt.Dimension(0, 32));
 
+        lbTenToa.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbTenToa.setForeground(new java.awt.Color(102, 102, 255));
+        lbTenToa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(348, 348, 348)
+                .addComponent(lbTenToa, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 44, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(lbTenToa, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jPanel7.setBackground(new java.awt.Color(102, 255, 255));
-        jPanel7.setPreferredSize(new java.awt.Dimension(600, 150));
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
+        pnChoNgoi.setBackground(new java.awt.Color(255, 255, 255));
+        pnChoNgoi.setPreferredSize(new java.awt.Dimension(830, 200));
 
         javax.swing.GroupLayout pnChoNgoiLayout = new javax.swing.GroupLayout(pnChoNgoi);
         pnChoNgoi.setLayout(pnChoNgoiLayout);
         pnChoNgoiLayout.setHorizontalGroup(
             pnChoNgoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnChoNgoiLayout.createSequentialGroup()
-                .addGap(264, 264, 264)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(253, 253, 253)
+                .addComponent(mainForm, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnChoNgoiLayout.setVerticalGroup(
             pnChoNgoiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainForm, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -819,9 +868,7 @@ public class FormChonTau extends javax.swing.JPanel {
         );
         pnBangKhachHangLayout.setVerticalGroup(
             pnBangKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnBangKhachHangLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -830,10 +877,8 @@ public class FormChonTau extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1209, Short.MAX_VALUE)
+            .addComponent(pnChoNgoi, javax.swing.GroupLayout.DEFAULT_SIZE, 1209, Short.MAX_VALUE)
             .addComponent(pnBangKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(pnChoNgoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -844,8 +889,7 @@ public class FormChonTau extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnChoNgoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnBangKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addComponent(pnBangKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -1029,9 +1073,9 @@ public class FormChonTau extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1085, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 996, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 996, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 999, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 86, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1053,6 +1097,7 @@ public class FormChonTau extends javax.swing.JPanel {
 
     private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
     private void txtMaTau1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaTau1ActionPerformed
@@ -1078,6 +1123,66 @@ public class FormChonTau extends javax.swing.JPanel {
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
         main.showForm(new FormXacNhanThongTin());
     }//GEN-LAST:event_btnXacNhanActionPerformed
+
+    private void lbToa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbToa1MouseClicked
+        // TODO add your handling code here:
+        mainForm.showForm(new FormToaNgoi());
+        lbTenToa.setText("Toa số 1: Ngồi mềm điều hòa");
+    }//GEN-LAST:event_lbToa1MouseClicked
+
+    private void lbToa2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbToa2MouseClicked
+        // TODO add your handling code here:
+        mainForm.showForm(new FormToaNgoi());
+        lbTenToa.setText("Toa số 2: Ngồi mềm điều hòa");
+    }//GEN-LAST:event_lbToa2MouseClicked
+
+    private void lbToa3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbToa3MouseClicked
+        // TODO add your handling code here:
+        mainForm.showForm(new FormToaNgoi());
+        lbTenToa.setText("Toa số 3: Ngồi mềm điều hòa");
+    }//GEN-LAST:event_lbToa3MouseClicked
+
+    private void lbToa4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbToa4MouseClicked
+        // TODO add your handling code here:
+        mainForm.showForm(new FormToaGiuong6());
+        lbTenToa.setText("Toa số 4: Giường nằm khoang 6 điều hòa");
+    }//GEN-LAST:event_lbToa4MouseClicked
+
+    private void lbToa5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbToa5MouseClicked
+        // TODO add your handling code here:
+        mainForm.showForm(new FormToaGiuong6());
+        lbTenToa.setText("Toa số 5: Giường nằm khoang 6 điều hòa");
+    }//GEN-LAST:event_lbToa5MouseClicked
+
+    private void lbToa6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbToa6MouseClicked
+        // TODO add your handling code here:
+        mainForm.showForm(new FormToaGiuong6());
+        lbTenToa.setText("Toa số 6: Giường nằm khoang 6 điều hòa");
+    }//GEN-LAST:event_lbToa6MouseClicked
+
+    private void lbToa7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbToa7MouseClicked
+        // TODO add your handling code here:
+        mainForm.showForm(new FormToaGiuong6());
+        lbTenToa.setText("Toa số 7: Giường nằm khoang 6 điều hòa");
+    }//GEN-LAST:event_lbToa7MouseClicked
+
+    private void lbToa8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbToa8MouseClicked
+        // TODO add your handling code here:
+        mainForm.showForm(new FormToaGiuong4());
+        lbTenToa.setText("Toa số 8: Giường nằm khoang 4 điều hòa");
+    }//GEN-LAST:event_lbToa8MouseClicked
+
+    private void lbToa9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbToa9MouseClicked
+        // TODO add your handling code here:
+        mainForm.showForm(new FormToaGiuong4());
+        lbTenToa.setText("Toa số 9: Giường nằm khoang 4 điều hòa");
+    }//GEN-LAST:event_lbToa9MouseClicked
+
+    private void lbToa10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbToa10MouseClicked
+        // TODO add your handling code here:
+        mainForm.showForm(new FormToaGiuong4());
+        lbTenToa.setText("Toa số 10: Giường nằm khoang 4 điều hòa");
+    }//GEN-LAST:event_lbToa10MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1119,9 +1224,9 @@ public class FormChonTau extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lbTenToa;
     private javax.swing.JLabel lbToa1;
     private javax.swing.JLabel lbToa10;
     private javax.swing.JLabel lbToa2;
@@ -1136,6 +1241,7 @@ public class FormChonTau extends javax.swing.JPanel {
     private javax.swing.JLabel lbTrain1;
     private javax.swing.JLabel lbTrain2;
     private javax.swing.JLabel lbTrain3;
+    private form.MainForm mainForm;
     private javax.swing.JPanel pnBangKhachHang;
     private javax.swing.JPanel pnChoNgoi;
     private javax.swing.JPanel pnTau1;
