@@ -4,6 +4,11 @@
  */
 package form;
 
+import java.awt.Dimension;
+import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
+
 /**
  *
  * @author Asus
@@ -17,6 +22,12 @@ public class FormChonTau extends javax.swing.JPanel {
     public FormChonTau(MainForm main) {
         initComponents();
         this.main = main;
+        table.setShowGrid(false);
+        table.setShowHorizontalLines(false);
+        table.setShowVerticalLines(false);
+        table.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
+        table.getTableHeader().setPreferredSize(new Dimension(30,30));
+        ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
     }
 
     /**
@@ -93,7 +104,7 @@ public class FormChonTau extends javax.swing.JPanel {
         mainForm = new form.MainForm();
         pnBangKhachHang = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -837,7 +848,7 @@ public class FormChonTau extends javax.swing.JPanel {
             .addComponent(mainForm, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null},
@@ -856,9 +867,14 @@ public class FormChonTau extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(jTable1);
-        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        table.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(table);
+        table.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        if (table.getColumnModel().getColumnCount() > 0) {
+            table.getColumnModel().getColumn(7).setMinWidth(100);
+            table.getColumnModel().getColumn(7).setPreferredWidth(100);
+            table.getColumnModel().getColumn(7).setMaxWidth(100);
+        }
 
         javax.swing.GroupLayout pnBangKhachHangLayout = new javax.swing.GroupLayout(pnBangKhachHang);
         pnBangKhachHang.setLayout(pnBangKhachHangLayout);
@@ -893,6 +909,7 @@ public class FormChonTau extends javax.swing.JPanel {
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 2));
         jPanel2.setPreferredSize(new java.awt.Dimension(385, 1000));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
@@ -1013,7 +1030,7 @@ public class FormChonTau extends javax.swing.JPanel {
                                         .addComponent(btnQuayLai)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel7)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1051,7 +1068,7 @@ public class FormChonTau extends javax.swing.JPanel {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(btnXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1225,7 +1242,6 @@ public class FormChonTau extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbTenToa;
     private javax.swing.JLabel lbToa1;
     private javax.swing.JLabel lbToa10;
@@ -1247,6 +1263,7 @@ public class FormChonTau extends javax.swing.JPanel {
     private javax.swing.JPanel pnTau1;
     private javax.swing.JPanel pnTau2;
     private javax.swing.JPanel pnTau3;
+    private javax.swing.JTable table;
     private javax.swing.JTextField txtCCCD;
     private javax.swing.JTextField txtCCCD1;
     private javax.swing.JTextField txtMaTau1;

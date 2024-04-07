@@ -90,6 +90,11 @@ public class FormMuaVe extends javax.swing.JPanel {
         buttonGroup1.add(radBtnMotChieu);
         radBtnMotChieu.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         radBtnMotChieu.setText("Một chiều");
+        radBtnMotChieu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radBtnMotChieuActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(radBtnKhuHoi);
         radBtnKhuHoi.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
@@ -250,6 +255,9 @@ public class FormMuaVe extends javax.swing.JPanel {
 
     private void radBtnKhuHoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnKhuHoiActionPerformed
         // TODO add your handling code here:
+        if (radBtnKhuHoi.isSelected()) {
+            ngayVe.setEnabled(true);
+        }
     }//GEN-LAST:event_radBtnKhuHoiActionPerformed
 
     private void cboGaDenFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboGaDenFocusGained
@@ -270,6 +278,13 @@ public class FormMuaVe extends javax.swing.JPanel {
         // TODO add your handling code here:
         main.showForm(new FormChonTau(main));
     }//GEN-LAST:event_btnTimChuyenActionPerformed
+
+    private void radBtnMotChieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnMotChieuActionPerformed
+        // TODO add your handling code here:
+        if (radBtnMotChieu.isSelected()) {
+            ngayVe.setEnabled(false);
+        }
+    }//GEN-LAST:event_radBtnMotChieuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

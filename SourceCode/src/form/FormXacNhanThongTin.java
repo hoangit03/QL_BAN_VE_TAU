@@ -58,13 +58,18 @@ public class FormXacNhanThongTin extends javax.swing.JPanel {
         txtCCCD = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnQuayLai = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnXemHDTreo = new javax.swing.JButton();
+        btnTreoHD = new javax.swing.JButton();
+        btnThanhToan = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1600, 1000));
 
-        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI Variable", 1, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Xác nhận thông tin mua vé tàu");
@@ -79,8 +84,8 @@ public class FormXacNhanThongTin extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 759, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -121,7 +126,7 @@ public class FormXacNhanThongTin extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1194, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,6 +134,7 @@ public class FormXacNhanThongTin extends javax.swing.JPanel {
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 255), 2));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -208,22 +214,53 @@ public class FormXacNhanThongTin extends javax.swing.JPanel {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
-        jButton1.setBackground(new java.awt.Color(242, 242, 242));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
-        jButton1.setBorder(null);
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnQuayLai.setBackground(new java.awt.Color(242, 242, 242));
+        btnQuayLai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/back.png"))); // NOI18N
+        btnQuayLai.setBorder(null);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
         jLabel8.setText("Quay lại");
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 255));
-        jButton2.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(102, 102, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/wallet.png"))); // NOI18N
-        jButton2.setText("Thanh toán");
-        jButton2.setMargin(new java.awt.Insets(2, 10, 3, 10));
+        btnXemHDTreo.setBackground(new java.awt.Color(204, 204, 255));
+        btnXemHDTreo.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        btnXemHDTreo.setForeground(new java.awt.Color(102, 102, 255));
+        btnXemHDTreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xemHoaDonTreo.png"))); // NOI18N
+        btnXemHDTreo.setText("Xem hóa đơn treo");
+        btnXemHDTreo.setMargin(new java.awt.Insets(2, 10, 2, 10));
+        btnXemHDTreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXemHDTreoActionPerformed(evt);
+            }
+        });
+
+        btnTreoHD.setBackground(new java.awt.Color(204, 204, 255));
+        btnTreoHD.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        btnTreoHD.setForeground(new java.awt.Color(102, 102, 255));
+        btnTreoHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/clock.png"))); // NOI18N
+        btnTreoHD.setText("Treo hóa đơn");
+        btnTreoHD.setMargin(new java.awt.Insets(2, 10, 2, 10));
+        btnTreoHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTreoHDActionPerformed(evt);
+            }
+        });
+
+        btnThanhToan.setBackground(new java.awt.Color(204, 204, 255));
+        btnThanhToan.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        btnThanhToan.setForeground(new java.awt.Color(102, 102, 255));
+        btnThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/wallet.png"))); // NOI18N
+        btnThanhToan.setText("Thanh toán");
+        btnThanhToan.setMargin(new java.awt.Insets(2, 10, 2, 10));
+        btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThanhToanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -231,28 +268,33 @@ public class FormXacNhanThongTin extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(jButton1)
+                .addComponent(btnQuayLai)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(34, 34, 34))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 627, Short.MAX_VALUE)
+                .addComponent(btnXemHDTreo)
+                .addGap(18, 18, 18)
+                .addComponent(btnTreoHD)
+                .addGap(18, 18, 18)
+                .addComponent(btnThanhToan)
+                .addGap(31, 31, 31))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(33, 33, 33))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton1))
-                        .addContainerGap())))
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnQuayLai)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnXemHDTreo)
+                                .addComponent(btnTreoHD)
+                                .addComponent(btnThanhToan)))))
+                .addGap(34, 34, 34))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -279,10 +321,24 @@ public class FormXacNhanThongTin extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnXemHDTreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemHDTreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnXemHDTreoActionPerformed
+
+    private void btnTreoHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTreoHDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTreoHDActionPerformed
+
+    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThanhToanActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnQuayLai;
+    private javax.swing.JButton btnThanhToan;
+    private javax.swing.JButton btnTreoHD;
+    private javax.swing.JButton btnXemHDTreo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
