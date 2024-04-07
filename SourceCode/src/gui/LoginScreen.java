@@ -19,11 +19,11 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtusername = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        underPass = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtpassword = new javax.swing.JPasswordField();
-        jLabel9 = new javax.swing.JLabel();
+        underUser = new javax.swing.JLabel();
         disable = new javax.swing.JLabel();
         show = new javax.swing.JLabel();
         btnDangNhap = new javax.swing.JButton();
@@ -54,7 +54,8 @@ public class LoginScreen extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 440));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -73,6 +74,7 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel5.setText("Tài khoản");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 70, 30));
 
+        txtusername.setBackground(new java.awt.Color(204, 204, 204));
         txtusername.setFont(txtusername.getFont().deriveFont(txtusername.getFont().getSize()+2f));
         txtusername.setBorder(null);
         txtusername.addActionListener(new java.awt.event.ActionListener() {
@@ -82,10 +84,9 @@ public class LoginScreen extends javax.swing.JFrame {
         });
         jPanel2.add(txtusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 230, 30));
 
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("___________________________________________");
-        jLabel6.setPreferredSize(new java.awt.Dimension(200, 15));
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 260, 30));
+        underPass.setText("_________________________________");
+        underPass.setPreferredSize(new java.awt.Dimension(200, 15));
+        jPanel2.add(underPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 260, 30));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -96,6 +97,7 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel8.setText("Mật khẩu");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 70, 30));
 
+        txtpassword.setBackground(new java.awt.Color(204, 204, 204));
         txtpassword.setFont(txtpassword.getFont().deriveFont(txtpassword.getFont().getSize()+2f));
         txtpassword.setBorder(null);
         txtpassword.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -106,10 +108,9 @@ public class LoginScreen extends javax.swing.JFrame {
         });
         jPanel2.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 230, 30));
 
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("___________________________________________");
-        jLabel9.setPreferredSize(new java.awt.Dimension(200, 15));
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 260, 30));
+        underUser.setText("_________________________________");
+        underUser.setPreferredSize(new java.awt.Dimension(200, 15));
+        jPanel2.add(underUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 260, 30));
 
         disable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         disable.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/disableIcon.png"))); // NOI18N
@@ -148,7 +149,7 @@ public class LoginScreen extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 370, 440));
 
-        setSize(new java.awt.Dimension(871, 438));
+        setSize(new java.awt.Dimension(871, 441));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -249,14 +250,14 @@ public class LoginScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel show;
     private javax.swing.JPasswordField txtpassword;
     private javax.swing.JTextField txtusername;
+    private javax.swing.JLabel underPass;
+    private javax.swing.JLabel underUser;
     // End of variables declaration//GEN-END:variables
 }
