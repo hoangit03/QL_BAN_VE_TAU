@@ -224,6 +224,14 @@ public class FormChonTau extends javax.swing.JPanel {
         dateVe = new com.toedter.calendar.JDateChooser();
         btnTimChuyen = new javax.swing.JButton();
         jpIfHanhKhach = new javax.swing.JPanel();
+        lbGaDi1 = new javax.swing.JLabel();
+        jtGaDi1 = new javax.swing.JTextField();
+        lbGaDi2 = new javax.swing.JLabel();
+        jtGaDi2 = new javax.swing.JTextField();
+        lbGaDi3 = new javax.swing.JLabel();
+        lbGaDi4 = new javax.swing.JLabel();
+        jtGaDi3 = new javax.swing.JTextField();
+        jtGaDi4 = new javax.swing.JTextField();
         jpChucNang = new javax.swing.JPanel();
         btnTreoDon = new javax.swing.JButton();
         btnXuLyTreo = new javax.swing.JButton();
@@ -420,15 +428,74 @@ public class FormChonTau extends javax.swing.JPanel {
                 .addGap(114, 114, 114))
         );
 
+        lbGaDi1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbGaDi1.setText("CCCD");
+
+        jtGaDi1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jtGaDi1.setMinimumSize(new java.awt.Dimension(64, 40));
+        jtGaDi1.setPreferredSize(new java.awt.Dimension(64, 40));
+
+        lbGaDi2.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbGaDi2.setText("Họ tên");
+
+        jtGaDi2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jtGaDi2.setMinimumSize(new java.awt.Dimension(64, 40));
+        jtGaDi2.setPreferredSize(new java.awt.Dimension(64, 40));
+
+        lbGaDi3.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbGaDi3.setText("Số điện thoại");
+
+        lbGaDi4.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbGaDi4.setText("Email");
+
+        jtGaDi3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jtGaDi3.setMinimumSize(new java.awt.Dimension(64, 40));
+        jtGaDi3.setPreferredSize(new java.awt.Dimension(64, 40));
+
+        jtGaDi4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jtGaDi4.setMinimumSize(new java.awt.Dimension(64, 40));
+        jtGaDi4.setPreferredSize(new java.awt.Dimension(64, 40));
+
         javax.swing.GroupLayout jpIfHanhKhachLayout = new javax.swing.GroupLayout(jpIfHanhKhach);
         jpIfHanhKhach.setLayout(jpIfHanhKhachLayout);
         jpIfHanhKhachLayout.setHorizontalGroup(
             jpIfHanhKhachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jpIfHanhKhachLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jpIfHanhKhachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtGaDi4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtGaDi3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtGaDi2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtGaDi1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpIfHanhKhachLayout.createSequentialGroup()
+                        .addGroup(jpIfHanhKhachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbGaDi4)
+                            .addComponent(lbGaDi3)
+                            .addComponent(lbGaDi2)
+                            .addComponent(lbGaDi1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jpIfHanhKhachLayout.setVerticalGroup(
             jpIfHanhKhachLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jpIfHanhKhachLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lbGaDi1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtGaDi1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(lbGaDi2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtGaDi2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(lbGaDi3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtGaDi3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(lbGaDi4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtGaDi4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnTreoDon.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -559,9 +626,17 @@ public class FormChonTau extends javax.swing.JPanel {
     private javax.swing.JPanel jpIfToa;
     private javax.swing.JTextField jtGaDen;
     private javax.swing.JTextField jtGaDi;
+    private javax.swing.JTextField jtGaDi1;
+    private javax.swing.JTextField jtGaDi2;
+    private javax.swing.JTextField jtGaDi3;
+    private javax.swing.JTextField jtGaDi4;
     private javax.swing.JLabel lbBack;
     private javax.swing.JLabel lbGaDen;
     private javax.swing.JLabel lbGaDi;
+    private javax.swing.JLabel lbGaDi1;
+    private javax.swing.JLabel lbGaDi2;
+    private javax.swing.JLabel lbGaDi3;
+    private javax.swing.JLabel lbGaDi4;
     private javax.swing.JLabel lbNext;
     private javax.swing.JLabel lbNgayDi;
     private javax.swing.JLabel lbVe;
