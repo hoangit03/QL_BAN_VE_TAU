@@ -3,13 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/PTUD/QL_BAN_VE_TAU/SourceCode/src/form/Form.java</file>
-            <file>file:/D:/PTUD/QL_BAN_VE_TAU/SourceCode/src/component/FormToaGhe.java</file>
-            <file>file:/D:/PTUD/QL_BAN_VE_TAU/SourceCode/src/component/FormIfToa.java</file>
-            <file>file:/D:/PTUD/QL_BAN_VE_TAU/SourceCode/src/form/FormIfVeDat.java</file>
-            <file>file:/D:/PTUD/QL_BAN_VE_TAU/SourceCode/src/component/listKhoangNam.java</file>
-            <file>file:/D:/PTUD/QL_BAN_VE_TAU/SourceCode/src/form/FormChonTau.java</file>
-            <file>file:/D:/PTUD/QL_BAN_VE_TAU/SourceCode/src/component/FormToaNam.java</file>
+            <file>file:/D:/Java/PTUD/QL_BAN_VE_TAU/SourceCode/src/connectDB/ConnectDB.java</file>
+            <file>file:/D:/Java/PTUD/QL_BAN_VE_TAU/SourceCode/src/dao/KhachHangDAO.java</file>
         </group>
     </open-files>
 </project-private>
