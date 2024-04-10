@@ -6,6 +6,7 @@ package entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 
 public class HoaDon {
@@ -15,18 +16,29 @@ public class HoaDon {
     private String trangThai;
     private NhanVien nhanVien;
     private KhachHang khachHang;
-
+    private List<Ve> listVes;
     public HoaDon() {
     }
 
-    public HoaDon(String maHoaDon, LocalTime gioTao, LocalDate ngayTao, String trangThai, NhanVien nhanVien, KhachHang khachHang) {
+    public HoaDon(String maHoaDon, LocalTime gioTao, LocalDate ngayTao, String trangThai, NhanVien nhanVien, KhachHang khachHang, List<Ve> listVes) {
         this.maHoaDon = maHoaDon;
         this.gioTao = gioTao;
         this.ngayTao = ngayTao;
         this.trangThai = trangThai;
         this.nhanVien = nhanVien;
         this.khachHang = khachHang;
+        this.listVes = listVes;
     }
+
+    public List<Ve> getListVes() {
+        return listVes;
+    }
+
+    public void setListVes(List<Ve> listVes) {
+        this.listVes = listVes;
+    }
+
+    
 
     public String getMaHoaDon() {
         return maHoaDon;

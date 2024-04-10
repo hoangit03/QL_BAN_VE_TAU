@@ -9,12 +9,22 @@ public class Toa {
     private String loaiToa;
     private int soDungTich;
     private int nganChua;
+    private int viTri;
 
-    public Toa(String maToa, String loaiToa, int soDungTich, int nganChua) {
+    public Toa(String maToa, String loaiToa, int soDungTich, int nganChua, int viTri) {
         this.maToa = maToa;
         this.loaiToa = loaiToa;
         this.soDungTich = soDungTich;
         this.nganChua = nganChua;
+        this.viTri = viTri;
+    }
+
+    public int getViTri() {
+        return viTri;
+    }
+
+    public void setViTri(int viTri) {
+        this.viTri = viTri;
     }
 
     public Toa() {

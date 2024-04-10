@@ -15,9 +15,8 @@ public class Ve {
     private Ga gaDen;
     private KhuyenMai khuyenMai;
     private KhachHang khachHang;
-    private HoaDon hoaDon;
 
-    public Ve(String maVe, LocalDateTime thoiGianLenTau, Chuyen chuyen, ChoNgoi choNgoi, Ga gaDi, Ga gaDen, KhuyenMai khuyenMai, KhachHang khachHang, HoaDon hoaDon) {
+    public Ve(String maVe, LocalDateTime thoiGianLenTau, Chuyen chuyen, ChoNgoi choNgoi, Ga gaDi, Ga gaDen, KhuyenMai khuyenMai, KhachHang khachHang) {
         this.maVe = maVe;
         this.thoiGianLenTau = thoiGianLenTau;
         this.chuyen = chuyen;
@@ -26,8 +25,10 @@ public class Ve {
         this.gaDen = gaDen;
         this.khuyenMai = khuyenMai;
         this.khachHang = khachHang;
-        this.hoaDon = hoaDon;
     }
+    
+
+    
 
     public Ve() {
     }
@@ -96,16 +97,9 @@ public class Ve {
         this.khachHang = khachHang;
     }
 
-    public HoaDon getHoaDon() {
-        return hoaDon;
-    }
-
-    public void setHoaDon(HoaDon hoaDon) {
-        this.hoaDon = hoaDon;
-    }
-
     @Override
     public String toString() {
-        return "Ve{" + "maVe=" + maVe + ", thoiGianLenTau=" + thoiGianLenTau + ", chuyen=" + chuyen + ", choNgoi=" + choNgoi + ", gaDi=" + gaDi + ", gaDen=" + gaDen + ", khuyenMai=" + khuyenMai + ", khachHang=" + khachHang + ", hoaDon=" + hoaDon + '}';
+        return "Ve{" + "maVe=" + maVe + ", thoiGianLenTau=" + thoiGianLenTau + ", chuyen=" + chuyen + ", choNgoi=" + choNgoi + ", gaDi=" + gaDi + ", gaDen=" + gaDen + ", khuyenMai=" + khuyenMai + ", khachHang=" + khachHang + '}';
     }
+
 }
