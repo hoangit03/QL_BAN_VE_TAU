@@ -93,19 +93,24 @@ public class Main extends javax.swing.JFrame {
                     case 5:
                         switch (subMenuIndex) {
                             case 0:
-                                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                                main.showForm(new GD_TraCuuKhachHang());
+                                menu.hideallMenu();
                                 break;
                             case 1:
-                                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                                main.showForm(new GD_TraCuuNhanVien());
+                                menu.hideallMenu();
                                 break;
                             case 2:
-                                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                                main.showForm(new GD_TraCuuKhuyenMai());
+                                menu.hideallMenu();
                                 break;
                             case 3:
-                                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                                main.showForm(new GD_TraCuuHoaDon());
+                                menu.hideallMenu();
                                 break;
                             case 4:
-                                System.out.println("Menu Index : " + menuIndex + " SubMenu Index " + subMenuIndex);
+                                main.showForm(new GD_TraCuuVe());
+                                menu.hideallMenu();
                                 break;
                         }
                         break;
