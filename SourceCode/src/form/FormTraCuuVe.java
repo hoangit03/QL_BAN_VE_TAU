@@ -35,18 +35,14 @@ public class FormTraCuuVe extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         formThongTin = new form.Form();
-        lbMaNV = new javax.swing.JLabel();
-        jtMaNV = new javax.swing.JTextField();
-        lbTenNV = new javax.swing.JLabel();
-        jtTenNV = new javax.swing.JTextField();
-        jButtonTraCuuNV = new javax.swing.JButton();
-        lbTenNV1 = new javax.swing.JLabel();
-        jtTenNV1 = new javax.swing.JTextField();
+        lbMaVe = new javax.swing.JLabel();
+        jtMaVe = new javax.swing.JTextField();
+        lbCCCD = new javax.swing.JLabel();
+        jtCCCD = new javax.swing.JTextField();
+        lbHoTen = new javax.swing.JLabel();
+        jtHoTen = new javax.swing.JTextField();
         btnXoaTrang = new javax.swing.JButton();
-        btnThem = new javax.swing.JButton();
-        btnCapNhat = new javax.swing.JButton();
-        btnTaoTaiKhoan = new javax.swing.JButton();
-        btnExcel = new javax.swing.JButton();
+        btnTraCuu = new javax.swing.JButton();
 
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1430, 968));
@@ -78,52 +74,63 @@ public class FormTraCuuVe extends javax.swing.JPanel {
             table.getColumnModel().getColumn(9).setResizable(false);
         }
 
-        lbMaNV.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        lbMaNV.setForeground(new java.awt.Color(255, 255, 255));
-        lbMaNV.setText("Mã vé");
+        lbMaVe.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbMaVe.setForeground(new java.awt.Color(255, 255, 255));
+        lbMaVe.setText("Mã vé");
 
-        jtMaNV.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jtMaNV.setBorder(null);
-        jtMaNV.setPreferredSize(new java.awt.Dimension(300, 40));
-        jtMaNV.addActionListener(new java.awt.event.ActionListener() {
+        jtMaVe.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jtMaVe.setBorder(null);
+        jtMaVe.setPreferredSize(new java.awt.Dimension(300, 40));
+        jtMaVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtMaNVActionPerformed(evt);
+                jtMaVeActionPerformed(evt);
             }
         });
 
-        lbTenNV.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        lbTenNV.setForeground(new java.awt.Color(255, 255, 255));
-        lbTenNV.setText("CCCD");
+        lbCCCD.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbCCCD.setForeground(new java.awt.Color(255, 255, 255));
+        lbCCCD.setText("CCCD");
 
-        jtTenNV.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jtTenNV.setBorder(null);
-        jtTenNV.setPreferredSize(new java.awt.Dimension(64, 40));
-        jtTenNV.addActionListener(new java.awt.event.ActionListener() {
+        jtCCCD.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jtCCCD.setBorder(null);
+        jtCCCD.setPreferredSize(new java.awt.Dimension(64, 40));
+        jtCCCD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtTenNVActionPerformed(evt);
+                jtCCCDActionPerformed(evt);
             }
         });
 
-        jButtonTraCuuNV.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jButtonTraCuuNV.setText("Tra Cứu");
-        jButtonTraCuuNV.addActionListener(new java.awt.event.ActionListener() {
+        lbHoTen.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        lbHoTen.setForeground(new java.awt.Color(255, 255, 255));
+        lbHoTen.setText("Họ tên ");
+
+        jtHoTen.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jtHoTen.setBorder(null);
+        jtHoTen.setPreferredSize(new java.awt.Dimension(64, 40));
+        jtHoTen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonTraCuuNVActionPerformed(evt);
+                jtHoTenActionPerformed(evt);
             }
         });
 
-        lbTenNV1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        lbTenNV1.setForeground(new java.awt.Color(255, 255, 255));
-        lbTenNV1.setText("Họ tên ");
-
-        jtTenNV1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jtTenNV1.setBorder(null);
-        jtTenNV1.setPreferredSize(new java.awt.Dimension(64, 40));
-        jtTenNV1.addActionListener(new java.awt.event.ActionListener() {
+        btnXoaTrang.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnXoaTrang.setText("Xóa Trắng");
+        btnXoaTrang.setBorder(null);
+        btnXoaTrang.setBorderPainted(false);
+        btnXoaTrang.setFocusPainted(false);
+        btnXoaTrang.setPreferredSize(new java.awt.Dimension(103, 55));
+        btnXoaTrang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtTenNV1ActionPerformed(evt);
+                btnXoaTrangActionPerformed(evt);
             }
         });
+
+        btnTraCuu.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTraCuu.setText("Tra Cứu");
+        btnTraCuu.setBorder(null);
+        btnTraCuu.setBorderPainted(false);
+        btnTraCuu.setFocusPainted(false);
+        btnTraCuu.setPreferredSize(new java.awt.Dimension(103, 55));
 
         javax.swing.GroupLayout formThongTinLayout = new javax.swing.GroupLayout(formThongTin);
         formThongTin.setLayout(formThongTinLayout);
@@ -133,81 +140,46 @@ public class FormTraCuuVe extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(formThongTinLayout.createSequentialGroup()
-                        .addComponent(lbTenNV1)
+                        .addComponent(lbHoTen)
                         .addGap(31, 31, 31)
-                        .addComponent(jtTenNV1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jtHoTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(formThongTinLayout.createSequentialGroup()
                         .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbMaNV)
-                            .addComponent(lbTenNV))
+                            .addComponent(lbMaVe)
+                            .addComponent(lbCCCD))
                         .addGap(37, 37, 37)
                         .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtTenNV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
+                            .addComponent(jtCCCD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtMaVe, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE))))
                 .addGap(23, 23, 23))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formThongTinLayout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
-                .addComponent(jButtonTraCuuNV, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(btnXoaTrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33))
         );
         formThongTinLayout.setVerticalGroup(
             formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formThongTinLayout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbMaNV)
-                    .addComponent(jtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbMaVe)
+                    .addComponent(jtMaVe, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbTenNV)
-                    .addComponent(jtTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbCCCD)
+                    .addComponent(jtCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtTenNV1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbTenNV1))
-                .addGap(29, 29, 29)
-                .addComponent(jButtonTraCuuNV, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                .addGap(338, 338, 338))
+                    .addComponent(jtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbHoTen))
+                .addGap(40, 40, 40)
+                .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnXoaTrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(307, Short.MAX_VALUE))
         );
-
-        btnXoaTrang.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnXoaTrang.setText("Xóa Trắng");
-        btnXoaTrang.setBorder(null);
-        btnXoaTrang.setBorderPainted(false);
-        btnXoaTrang.setFocusPainted(false);
-        btnXoaTrang.setPreferredSize(new java.awt.Dimension(103, 55));
-
-        btnThem.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnThem.setText("Thêm");
-        btnThem.setBorder(null);
-        btnThem.setBorderPainted(false);
-        btnThem.setFocusPainted(false);
-        btnThem.setPreferredSize(new java.awt.Dimension(105, 55));
-
-        btnCapNhat.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnCapNhat.setText("Cập nhật");
-        btnCapNhat.setBorder(null);
-        btnCapNhat.setBorderPainted(false);
-        btnCapNhat.setFocusable(false);
-        btnCapNhat.setPreferredSize(new java.awt.Dimension(100, 55));
-
-        btnTaoTaiKhoan.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnTaoTaiKhoan.setText("Tạo tài khoản");
-        btnTaoTaiKhoan.setBorder(null);
-        btnTaoTaiKhoan.setBorderPainted(false);
-        btnTaoTaiKhoan.setFocusPainted(false);
-        btnTaoTaiKhoan.setFocusable(false);
-
-        btnExcel.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnExcel.setText("Xuất Excel");
-        btnExcel.setBorder(null);
-        btnExcel.setBorderPainted(false);
-        btnExcel.setFocusPainted(false);
-        btnExcel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcelActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -216,75 +188,48 @@ public class FormTraCuuVe extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1057, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnTaoTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnXoaTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(formThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(formThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(formThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(170, 170, 170)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnXoaTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTaoTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExcel, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 111, Short.MAX_VALUE))
+                .addGap(0, 397, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelActionPerformed
+    private void jtCCCDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCCCDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnExcelActionPerformed
+    }//GEN-LAST:event_jtCCCDActionPerformed
 
-    private void jtTenNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTenNVActionPerformed
+    private void jtHoTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtHoTenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jtTenNVActionPerformed
+    }//GEN-LAST:event_jtHoTenActionPerformed
 
-    private void jButtonTraCuuNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTraCuuNVActionPerformed
+    private void jtMaVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtMaVeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonTraCuuNVActionPerformed
+    }//GEN-LAST:event_jtMaVeActionPerformed
 
-    private void jtTenNV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTenNV1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtTenNV1ActionPerformed
-
-    private void jtMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtMaNVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtMaNVActionPerformed
+    private void btnXoaTrangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTrangActionPerformed
+        jtMaVe.setText("");
+        jtCCCD.setText("");
+        jtHoTen.setText("");
+    }//GEN-LAST:event_btnXoaTrangActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCapNhat;
-    private javax.swing.JButton btnExcel;
-    private javax.swing.JButton btnTaoTaiKhoan;
-    private javax.swing.JButton btnThem;
+    private javax.swing.JButton btnTraCuu;
     private javax.swing.JButton btnXoaTrang;
     private form.Form formThongTin;
     private javax.swing.ButtonGroup groupRadio;
-    private javax.swing.JButton jButtonTraCuuNV;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jtMaNV;
-    private javax.swing.JTextField jtTenNV;
-    private javax.swing.JTextField jtTenNV1;
-    private javax.swing.JLabel lbMaNV;
-    private javax.swing.JLabel lbTenNV;
-    private javax.swing.JLabel lbTenNV1;
+    private javax.swing.JTextField jtCCCD;
+    private javax.swing.JTextField jtHoTen;
+    private javax.swing.JTextField jtMaVe;
+    private javax.swing.JLabel lbCCCD;
+    private javax.swing.JLabel lbHoTen;
+    private javax.swing.JLabel lbMaVe;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 

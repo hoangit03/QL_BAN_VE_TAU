@@ -8,26 +8,21 @@ import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 
-
-
-
 public class FormTraCuuHoaDon extends javax.swing.JPanel {
 
     public FormTraCuuHoaDon() {
-        initComponents();        
+        initComponents();
         formThongTin.setBorder(new EmptyBorder(0, 0, 0, 0));
-        formThongTin.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Thông tin hoá đơn", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
+        formThongTin.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Thông tin hoá đơn", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20) {
         }, Color.WHITE));
         tableTraCuuKM.setShowGrid(false);
         tableTraCuuKM.setShowHorizontalLines(false);
         tableTraCuuKM.setShowVerticalLines(false);
         tableTraCuuKM.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 14));
-        tableTraCuuKM.getTableHeader().setPreferredSize(new Dimension(30,30));
-        ((DefaultTableCellRenderer)tableTraCuuKM.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        
-        
-    }
+        tableTraCuuKM.getTableHeader().setPreferredSize(new Dimension(30, 30));
+        ((DefaultTableCellRenderer) tableTraCuuKM.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -41,8 +36,9 @@ public class FormTraCuuHoaDon extends javax.swing.JPanel {
         jtMaHD = new javax.swing.JTextField();
         lbThoiGian = new javax.swing.JLabel();
         jtThoiGian = new javax.swing.JTextField();
-        jTraCuuKhuyenMai = new javax.swing.JButton();
         jCBThoiGian = new javax.swing.JComboBox<>();
+        btnXoaTrang = new javax.swing.JButton();
+        btnTraCuu = new javax.swing.JButton();
 
         setOpaque(false);
         setPreferredSize(new java.awt.Dimension(1430, 968));
@@ -96,13 +92,6 @@ public class FormTraCuuHoaDon extends javax.swing.JPanel {
             }
         });
 
-        jTraCuuKhuyenMai.setText("Tra cứu");
-        jTraCuuKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTraCuuKhuyenMaiActionPerformed(evt);
-            }
-        });
-
         jCBThoiGian.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020-2021", "2021-2022", "2022-2023", "2023-2024" }));
         jCBThoiGian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,28 +99,48 @@ public class FormTraCuuHoaDon extends javax.swing.JPanel {
             }
         });
 
+        btnXoaTrang.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnXoaTrang.setText("Xóa Trắng");
+        btnXoaTrang.setBorder(null);
+        btnXoaTrang.setBorderPainted(false);
+        btnXoaTrang.setFocusPainted(false);
+        btnXoaTrang.setPreferredSize(new java.awt.Dimension(103, 55));
+        btnXoaTrang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaTrangActionPerformed(evt);
+            }
+        });
+
+        btnTraCuu.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTraCuu.setText("Tra Cứu");
+        btnTraCuu.setBorder(null);
+        btnTraCuu.setBorderPainted(false);
+        btnTraCuu.setFocusPainted(false);
+        btnTraCuu.setPreferredSize(new java.awt.Dimension(103, 55));
+
         javax.swing.GroupLayout formThongTinLayout = new javax.swing.GroupLayout(formThongTin);
         formThongTin.setLayout(formThongTinLayout);
         formThongTinLayout.setHorizontalGroup(
             formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(formThongTinLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbMaHD)
+                    .addComponent(lbThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(52, 52, 52)
                 .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(formThongTinLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbMaHD)
-                            .addComponent(lbThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(52, 52, 52)
-                        .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(formThongTinLayout.createSequentialGroup()
-                                .addComponent(jtThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCBThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(formThongTinLayout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(jTraCuuKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 20, Short.MAX_VALUE))
+                        .addComponent(jtThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCBThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formThongTinLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(btnXoaTrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
         formThongTinLayout.setVerticalGroup(
             formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,17 +149,20 @@ public class FormTraCuuHoaDon extends javax.swing.JPanel {
                 .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbMaHD)
                     .addComponent(jtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(1, 1, 1)
-                .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(formThongTinLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(21, 21, 21)
                         .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbThoiGian)))
-                    .addComponent(jCBThoiGian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(jTraCuuKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(394, Short.MAX_VALUE))
+                    .addGroup(formThongTinLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jCBThoiGian)))
+                .addGap(45, 45, 45)
+                .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnXoaTrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(363, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -158,7 +170,7 @@ public class FormTraCuuHoaDon extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1010, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(formThongTin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -176,14 +188,10 @@ public class FormTraCuuHoaDon extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtThoiGianActionPerformed
 
-    private void jTraCuuKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTraCuuKhuyenMaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTraCuuKhuyenMaiActionPerformed
-
     private void jCBThoiGianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBThoiGianActionPerformed
 
-         String selectedValue = (String) jCBThoiGian.getSelectedItem();
-         jtThoiGian.setText(selectedValue);
+        String selectedValue = (String) jCBThoiGian.getSelectedItem();
+        jtThoiGian.setText(selectedValue);
 
     }//GEN-LAST:event_jCBThoiGianActionPerformed
 
@@ -191,13 +199,20 @@ public class FormTraCuuHoaDon extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtMaHDActionPerformed
 
+    private void btnXoaTrangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTrangActionPerformed
+
+        jtMaHD.setText("");
+        jtThoiGian.setText("");
+    }//GEN-LAST:event_btnXoaTrangActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTraCuu;
+    private javax.swing.JButton btnXoaTrang;
     private form.Form formThongTin;
     private javax.swing.ButtonGroup groupRadio;
     private javax.swing.JComboBox<String> jCBThoiGian;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jTraCuuKhuyenMai;
     private javax.swing.JTextField jtMaHD;
     private javax.swing.JTextField jtThoiGian;
     private javax.swing.JLabel lbMaHD;
