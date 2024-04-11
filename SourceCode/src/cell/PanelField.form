@@ -24,9 +24,9 @@
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jcomBox1" pref="180" max="32767" attributes="0"/>
-                  <Component id="filedText2" max="32767" attributes="0"/>
-                  <Component id="filedText1" max="32767" attributes="0"/>
+                  <Component id="jcbDoiTuong" pref="180" max="32767" attributes="0"/>
+                  <Component id="jtGiayTo" max="32767" attributes="0"/>
+                  <Component id="jtTen" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -37,16 +37,16 @@
               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="filedText1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="jtTen" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jcomBox1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="jcbDoiTuong" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="filedText2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtGiayTo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -63,7 +63,7 @@
         <Property name="text" type="java.lang.String" value="H&#x1ecd; t&#xea;n"/>
       </Properties>
     </Component>
-    <Component class="cell.FiledText" name="filedText1">
+    <Component class="cell.FiledText" name="jtTen">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -82,7 +82,7 @@
         <Property name="text" type="java.lang.String" value="&#x110;&#x1ed1;i t&#x1b0;&#x1ee3;ng"/>
       </Properties>
     </Component>
-    <Component class="cell.JcomBox" name="jcomBox1">
+    <Component class="cell.JcomBox" name="jcbDoiTuong">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
@@ -103,7 +103,7 @@
         <Property name="text" type="java.lang.String" value="S&#x1ed1; gi&#x1ea5;y t&#x1edd;"/>
       </Properties>
     </Component>
-    <Component class="cell.FiledText" name="filedText2">
+    <Component class="cell.FiledText" name="jtGiayTo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="14" style="0"/>
@@ -113,7 +113,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="filedText2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtGiayToActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
