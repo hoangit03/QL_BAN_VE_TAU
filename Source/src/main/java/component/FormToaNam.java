@@ -40,13 +40,15 @@ public class FormToaNam extends javax.swing.JPanel {
 
         listKhoangNam = new component.listKhoangNam();
 
+        listKhoangNam.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(listKhoangNam, javax.swing.GroupLayout.PREFERRED_SIZE, 885, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 15, Short.MAX_VALUE))
+                .addComponent(listKhoangNam, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

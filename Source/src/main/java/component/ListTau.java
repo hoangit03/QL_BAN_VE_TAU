@@ -15,7 +15,7 @@ public class ListTau extends javax.swing.JPanel {
     public ListTau() {
         initComponents();
         setBackground(Color.white);
-        setLayout(new FlowLayout(HEIGHT, 20, 20));
+        setLayout(new FlowLayout(HEIGHT, 10, 10));
     }
 
    
@@ -33,11 +33,11 @@ public class ListTau extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 808, Short.MAX_VALUE)
+            .addGap(0, 39, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 347, Short.MAX_VALUE)
+            .addGap(0, 62, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

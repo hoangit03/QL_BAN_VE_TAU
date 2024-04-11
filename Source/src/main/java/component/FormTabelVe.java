@@ -12,7 +12,7 @@ public class FormTabelVe extends javax.swing.JPanel {
     public FormTabelVe() {
         initComponents();
         setBackground(Color.white);
-        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Thông tin vé chọn", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
+        setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Danh sách vé chọn", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
         }, Color.black));
     }
 

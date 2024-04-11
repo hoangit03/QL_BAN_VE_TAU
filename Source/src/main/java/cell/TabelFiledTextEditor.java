@@ -3,19 +3,28 @@ package cell;
 
 import java.awt.Component;
 import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 
 public class TabelFiledTextEditor extends DefaultCellEditor{
+    private PanelField field;
     public TabelFiledTextEditor(){
-        super(new JTextField());
+        super(new JCheckBox());
+        field = new PanelField();
+    }
+
+    
+    
+    @Override
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {    
+        return field;  
     }
 
     @Override
-    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        PanelField filed = new PanelField();
-        return filed;
-                
+    public Object getCellEditorValue() {
+//        field.UpdateData();
+//        System.out.println(field.getJtTen());
+        return field;
     }
     
 }
