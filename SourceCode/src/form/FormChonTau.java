@@ -23,6 +23,8 @@ import javax.swing.ImageIcon;
 
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.Model_Tau;
 import swing.ScrollBar;
@@ -71,6 +73,7 @@ public class FormChonTau extends javax.swing.JPanel {
         tbListVe.getColumnModel().getColumn(0).setCellRenderer(new TableFieldTextCellRender());
         tbListVe.getColumnModel().getColumn(0).setCellEditor(new TabelFiledTextEditor());
         tbListVe.getTableHeader().setPreferredSize(new Dimension(30,30));
+        
         ((DefaultTableCellRenderer)tbListVe.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         this.main = main;
         AddDataTau();
@@ -194,6 +197,8 @@ public class FormChonTau extends javax.swing.JPanel {
     
     
     
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -292,6 +297,8 @@ public class FormChonTau extends javax.swing.JPanel {
         tbListVe.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tbListVe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
             new String [] {
