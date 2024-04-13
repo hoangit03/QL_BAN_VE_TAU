@@ -21,7 +21,7 @@ public class NhanVien {
 	@Column(name = "MaNhanVien",unique = true, nullable = false)
     private String maNhanVien;
 	
-	@Column(name = "HoTen",nullable = false,columnDefinition = "nvarchar")
+	@Column(name = "HoTen",nullable = false,columnDefinition = "nvarchar(255)")
     private String hoTen;
 	
 	@Column(name="CCCD",nullable = false)
@@ -33,14 +33,14 @@ public class NhanVien {
 	@Column(name="Email")
     private String email;
 	
-	@Column(name = "DiaChi",columnDefinition = "nvarchar")
+	@Column(name = "DiaChi",columnDefinition = "nvarchar(255)")
     private String diaChi;
 	
 	@Column(name = "LoaiNV")
     private String loaiNV;
 	
 	@Column(name = "TrangThai")
-    private String trangThai;
+    private boolean trangThai;
 	
 	@Column(name = "NgaySinh")
     private LocalDate ngaySinh;
@@ -54,7 +54,7 @@ public class NhanVien {
 	@OneToMany(mappedBy = "nhanVien")
 	private Set<HoaDon> lisHoaDons;
 	
-    public NhanVien(String maNhanVien, String hoTen, String cccd, String sdt, String email, String diaChi, String loaiNV, String trangThai, LocalDate ngaySinh, LocalDate ngayVaoLam) {
+    public NhanVien(String maNhanVien, String hoTen, String cccd, String sdt, String email, String diaChi, String loaiNV, boolean trangThai, LocalDate ngaySinh, LocalDate ngayVaoLam) {
         this.maNhanVien = maNhanVien;
         this.hoTen = hoTen;
         this.cccd = cccd;
@@ -137,11 +137,11 @@ public class NhanVien {
         this.loaiNV = loaiNV;
     }
 
-    public String getTrangThai() {
+    public boolean getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
 

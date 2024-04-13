@@ -18,7 +18,7 @@ public class KhuyenMai {
 	@Column(name = "MaKhuyenMai",unique = true, nullable = false)
     private String maKhuyenMai;
 	
-	@Column(name = "TenKhuyenMai",nullable = false,columnDefinition = "nvarchar")
+	@Column(name = "TenKhuyenMai",nullable = false,columnDefinition = "nvarchar(255)")
     private String tenKhuyenMai;
 	
 	@Column(name = "LoaiKhuyenMai", nullable = false)

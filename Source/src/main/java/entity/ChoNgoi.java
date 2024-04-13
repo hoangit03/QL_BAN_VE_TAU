@@ -18,7 +18,7 @@ public class ChoNgoi {
 	@Column(name = "MaChoNgoi")
     private String maChoNgoi;
 	
-	@Column(name = "MoTa",columnDefinition = "nvarchar")
+	@Column(name = "MoTa",columnDefinition = "nvarchar(255)")
     private String moTa;
 	
 	@Column(name ="Gia")

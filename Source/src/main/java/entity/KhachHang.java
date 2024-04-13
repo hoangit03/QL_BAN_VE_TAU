@@ -19,7 +19,7 @@ public class KhachHang {
     @Column(name = "CCCD", unique = true, nullable = false)
     private String cccd;
 
-    @Column(name = "HoTen",nullable = false,columnDefinition = "nvarchar")
+    @Column(name = "HoTen",nullable = false,columnDefinition = "nvarchar(255)")
     private String hoTen;
 
     @Column(name = "Email")
@@ -28,7 +28,7 @@ public class KhachHang {
     @Column(name = "SDT")
     private String sdt;
 
-    @Column(name = "DoiTuong",nullable = false,columnDefinition = "nvarchar")
+    @Column(name = "DoiTuong",nullable = false,columnDefinition = "nvarchar(255)")
     private String doiTuong;
 
     @OneToMany(mappedBy = "khachHang")
