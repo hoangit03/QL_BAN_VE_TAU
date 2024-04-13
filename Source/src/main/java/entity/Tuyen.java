@@ -22,7 +22,7 @@ public class Tuyen {
 	@Column(name = "MaTuyen",nullable = false)
     private String maTuyen;
 	
-	@Column(name = "TenTuyen")
+	@Column(name = "TenTuyen",columnDefinition = "nvarchar")
     private String tenTuyen;
 	
 	@OneToMany(mappedBy = "tuyen")

@@ -22,7 +22,7 @@ public class Chuyen {
 	@Column(name = "MaChuyen")
     private String maChuyen;
 	
-	@Column(name = "TenChuyen")
+	@Column(name = "TenChuyen",columnDefinition = "nvarchar")
     private String tenCHuyen;
 	
 	@Column(name = "GioKhoiHanh")

@@ -22,13 +22,13 @@ import jakarta.persistence.OneToOne;
 public class Ga {
 	
 	@Id
-	@Column(name = "TenGa",unique = true,nullable = false)
+	@Column(name = "TenGa",unique = true,nullable = false,columnDefinition = "nvarchar")
     private String tenGa;
 	
 	@Column(name = "CuLy")
     private double cuLy;
 	
-	@Column(name = "DiaChi")
+	@Column(name = "DiaChi",columnDefinition = "nvarchar")
     private String diaChi;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

@@ -21,10 +21,10 @@ public class NhanVien {
 	@Column(name = "MaNhanVien",unique = true, nullable = false)
     private String maNhanVien;
 	
-	@Column(name = "HoTen")
+	@Column(name = "HoTen",nullable = false,columnDefinition = "nvarchar")
     private String hoTen;
 	
-	@Column(name="CCCD")
+	@Column(name="CCCD",nullable = false)
     private String cccd;
 	
 	@Column(name="SDT")
@@ -33,7 +33,7 @@ public class NhanVien {
 	@Column(name="Email")
     private String email;
 	
-	@Column(name = "DiaChi")
+	@Column(name = "DiaChi",columnDefinition = "nvarchar")
     private String diaChi;
 	
 	@Column(name = "LoaiNV")

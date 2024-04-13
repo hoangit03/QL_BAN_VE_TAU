@@ -14,28 +14,28 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class KhachHang {
-	@Id
-	@Column(name = "CCCD",unique = true, nullable = false)
+
+    @Id
+    @Column(name = "CCCD", unique = true, nullable = false)
     private String cccd;
-	
-	@Column(name = "HoTen")
+
+    @Column(name = "HoTen",nullable = false,columnDefinition = "nvarchar")
     private String hoTen;
-	
-	@Column(name = "Email")
+
+    @Column(name = "Email")
     private String email;
-	
-	@Column(name = "SDT")
+
+    @Column(name = "SDT")
     private String sdt;
-	
-	@Column(name = "DoiTuong")
+
+    @Column(name = "DoiTuong",nullable = false,columnDefinition = "nvarchar")
     private String doiTuong;
-	
-	
-	@OneToMany(mappedBy = "khachHang")
-	private Set<Ve> lisVes;
-	
-	@OneToMany(mappedBy = "khachHang")
-	private Set<HoaDon> lisHoaDons;
+
+    @OneToMany(mappedBy = "khachHang")
+    private Set<Ve> lisVes;
+
+    @OneToMany(mappedBy = "khachHang")
+    private Set<HoaDon> lisHoaDons;
 
     public KhachHang(String cccd, String hoTen, String email, String sdt, String doiTuong) {
         this.cccd = cccd;
