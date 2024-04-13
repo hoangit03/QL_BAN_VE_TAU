@@ -8,15 +8,51 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
+
+@Entity
 public class HoaDon {
+	
+	@Id
+	@Column(name = "MaHoaDon")
     private String maHoaDon;
+	
+	@Column(name = "GioTao")
     private LocalTime gioTao;
+	
+	@Column(name = "NgayTao")
     private LocalDate ngayTao;
+	
+	@Column( name = "TrangThai")
     private String trangThai;
+	
+	@ManyToOne
+	@JoinColumn(name = "MaNhanVien")
     private NhanVien nhanVien;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CCCD")
     private KhachHang khachHang;
+	
+	@OneToMany(mappedBy = "hoaDon")
     private List<Ve> listVes;
+	
+	@ManyToMany
+	@JoinTable(name = "ChiTietKhuyenMai",joinColumns = {@JoinColumn(name="MaHoaDon")},inverseJoinColumns = {@JoinColumn(name="MaKhuyenMai")})
+	private Set<KhuyenMai> lisKhuyenMais;
+	
     public HoaDon() {
     }
 

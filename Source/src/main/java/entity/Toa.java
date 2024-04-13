@@ -4,66 +4,94 @@
  */
 package entity;
 
+import java.util.List;
+import java.util.Set;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class Toa {
-    private String maToa;
-    private String loaiToa;
-    private int soDungTich;
-    private int nganChua;
-    private int viTri;
 
-    public Toa(String maToa, String loaiToa, int soDungTich, int nganChua, int viTri) {
-        this.maToa = maToa;
-        this.loaiToa = loaiToa;
-        this.soDungTich = soDungTich;
-        this.nganChua = nganChua;
-        this.viTri = viTri;
-    }
+	@Id
+	@Column(name = "MaToa")
+	private String maToa;
 
-    public int getViTri() {
-        return viTri;
-    }
+	@Column(name = "LoaiToa")
+	private String loaiToa;
 
-    public void setViTri(int viTri) {
-        this.viTri = viTri;
-    }
+	@Column(name = "SoDungTich")
+	private int soDungTich;
 
-    public Toa() {
-    }
+	@Column(name = "NganChua")
+	private int nganChua;
 
-    public String getMaToa() {
-        return maToa;
-    }
+	@Column(name = "ViTri")
+	private int viTri;
+	
+	@OneToMany(mappedBy = "toa")
+	private Set<ChoNgoi> lisChoNgois;
 
-    public void setMaToa(String maToa) {
-        this.maToa = maToa;
-    }
+	public Toa(String maToa, String loaiToa, int soDungTich, int nganChua, int viTri) {
+		this.maToa = maToa;
+		this.loaiToa = loaiToa;
+		this.soDungTich = soDungTich;
+		this.nganChua = nganChua;
+		this.viTri = viTri;
+	}
+	
+	
 
-    public String getLoaiToa() {
-        return loaiToa;
-    }
+	public int getViTri() {
+		return viTri;
+	}
 
-    public void setLoaiToa(String loaiToa) {
-        this.loaiToa = loaiToa;
-    }
+	public void setViTri(int viTri) {
+		this.viTri = viTri;
+	}
 
-    public int getSoDungTich() {
-        return soDungTich;
-    }
+	public Toa() {
+	}
 
-    public void setSoDungTich(int soDungTich) {
-        this.soDungTich = soDungTich;
-    }
+	public String getMaToa() {
+		return maToa;
+	}
 
-    public int getNganChua() {
-        return nganChua;
-    }
+	public void setMaToa(String maToa) {
+		this.maToa = maToa;
+	}
 
-    public void setNganChua(int nganChua) {
-        this.nganChua = nganChua;
-    }
+	public String getLoaiToa() {
+		return loaiToa;
+	}
 
-    @Override
-    public String toString() {
-        return "Toa{" + "maToa=" + maToa + ", loaiToa=" + loaiToa + ", soDungTich=" + soDungTich + ", nganChua=" + nganChua + '}';
-    }
+	public void setLoaiToa(String loaiToa) {
+		this.loaiToa = loaiToa;
+	}
+
+	public int getSoDungTich() {
+		return soDungTich;
+	}
+
+	public void setSoDungTich(int soDungTich) {
+		this.soDungTich = soDungTich;
+	}
+
+	public int getNganChua() {
+		return nganChua;
+	}
+
+	public void setNganChua(int nganChua) {
+		this.nganChua = nganChua;
+	}
+
+	@Override
+	public String toString() {
+		return "Toa{" + "maToa=" + maToa + ", loaiToa=" + loaiToa + ", soDungTich=" + soDungTich + ", nganChua="
+				+ nganChua + '}';
+	}
 }

@@ -4,10 +4,39 @@
  */
 package entity;
 
+import java.util.List;
+import java.util.Set;
+import java.util.jar.Attributes.Name;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
+
+@Entity
 public class Ga {
+	
+	@Id
+	@Column(name = "TenGa",unique = true,nullable = false)
     private String tenGa;
+	
+	@Column(name = "CuLy")
     private double cuLy;
+	
+	@Column(name = "DiaChi")
     private String diaChi;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MaTuyen")
+	private Tuyen tuyen;
+	
+	@OneToMany(mappedBy = "ga")
+	private Set<ChiTietVe> lisChiTietVes;
 
     public Ga() {
     }

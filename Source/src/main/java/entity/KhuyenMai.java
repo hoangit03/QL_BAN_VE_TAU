@@ -6,13 +6,37 @@ package entity;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class KhuyenMai {
+	
+	@Id
+	@Column(name = "MaKhuyenMai",unique = true, nullable = false)
     private String maKhuyenMai;
+	
+	@Column(name = "TenKhuyenMai",nullable = false)
     private String tenKhuyenMai;
+	
+	@Column(name = "LoaiKhuyenMai", nullable = false)
     private String loaiKhuyenMai;
+	
+	@Column(name = "ThoiGianBatDau", nullable = false)
     private LocalDate thoiGianBatDau;
+	
+	@Column(name = "ThoiGianKetThuc")
     private LocalDate thoiGianKetThuc;
+	
+	@Column(name = "ChietKhau")
     private double chietKhau;
+	
+	@OneToOne(mappedBy = "khuyenMai" )
+	private Ve ve;
+	
+	
 
     public KhuyenMai() {
     }

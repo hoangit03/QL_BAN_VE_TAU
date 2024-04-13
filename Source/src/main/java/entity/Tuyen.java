@@ -4,18 +4,40 @@
  */
 package entity;
 
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+
+
+@Entity
 public class Tuyen {
+	
+	@Id
+	@Column(name = "MaTuyen",nullable = false)
     private String maTuyen;
+	
+	@Column(name = "TenTuyen")
     private String tenTuyen;
-    private Ga ga;
+	
+	@OneToMany(mappedBy = "tuyen")
+	private List<Chuyen> listChuyens;
+	
+	@OneToMany(mappedBy = "tuyen")
+    private List<Ga> lisGas;
 
     public Tuyen() {
     }
 
-    public Tuyen(String maTuyen, String tenTuyen, Ga ga) {
+    public Tuyen(String maTuyen, String tenTuyen) {
         this.maTuyen = maTuyen;
         this.tenTuyen = tenTuyen;
-        this.ga = ga;
+       
     }
 
     public String getMaTuyen() {
@@ -34,16 +56,10 @@ public class Tuyen {
         this.tenTuyen = tenTuyen;
     }
 
-    public Ga getGa() {
-        return ga;
-    }
-
-    public void setGa(Ga ga) {
-        this.ga = ga;
-    }
+  
 
     @Override
     public String toString() {
-        return "Tuyen{" + "maTuyen=" + maTuyen + ", tenTuyen=" + tenTuyen + ", ga=" + ga + '}';
+        return "Tuyen{" + "maTuyen=" + maTuyen + ", tenTuyen=" + tenTuyen + '}';
     }
 }

@@ -6,19 +6,54 @@ package entity;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class NhanVien {
+	
+	@Id
+	@Column(name = "MaNhanVien",unique = true, nullable = false)
     private String maNhanVien;
+	
+	@Column(name = "HoTen")
     private String hoTen;
+	
+	@Column(name="CCCD")
     private String cccd;
+	
+	@Column(name="SDT")
     private String sdt;
+	
+	@Column(name="Email")
     private String email;
+	
+	@Column(name = "DiaChi")
     private String diaChi;
+	
+	@Column(name = "LoaiNV")
     private String loaiNV;
+	
+	@Column(name = "TrangThai")
     private String trangThai;
+	
+	@Column(name = "NgaySinh")
     private LocalDate ngaySinh;
+	
+	@Column(name = "NgayVaoLam 	")
     private LocalDate ngayVaoLam;
+	
+	@OneToOne(mappedBy = "nhanVien")
+	private TaiKhoan taiKhoan;
 
+	@OneToMany(mappedBy = "nhanVien")
+	private Set<HoaDon> lisHoaDons;
+	
     public NhanVien(String maNhanVien, String hoTen, String cccd, String sdt, String email, String diaChi, String loaiNV, String trangThai, LocalDate ngaySinh, LocalDate ngayVaoLam) {
         this.maNhanVien = maNhanVien;
         this.hoTen = hoTen;
@@ -35,7 +70,18 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public String getMaNhanVien() {
+    
+    
+    
+    public TaiKhoan getTaiKhoan() {
+		return taiKhoan;
+	}
+
+	public void setTaiKhoan(TaiKhoan taiKhoan) {
+		this.taiKhoan = taiKhoan;
+	}
+
+	public String getMaNhanVien() {
         return maNhanVien;
     }
 

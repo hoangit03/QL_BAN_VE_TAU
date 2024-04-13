@@ -6,14 +6,42 @@ package entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Set;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class Chuyen {
+	@Id
+	@Column(name = "MaChuyen")
     private String maChuyen;
+	
+	@Column(name = "TenChuyen")
     private String tenCHuyen;
+	
+	@Column(name = "GioKhoiHanh")
     private LocalTime gioKhoiHanh;
+	
+	@Column(name = "NgayKhoiHanh")
     private LocalDate ngayKhoiHanh;
+	
+	@OneToOne
+	@JoinColumn(name = "MaTau",unique = true,nullable = false)
     private Tau tau;
+	
+	@ManyToOne
+	@JoinColumn(name = "MaTuyen")
     private Tuyen tuyen;
+	
+	
+	@OneToMany(mappedBy = "chuyen")
+	private Set<Ve> lisVes;
 
     public Chuyen() {
     }

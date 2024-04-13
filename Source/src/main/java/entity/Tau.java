@@ -5,14 +5,34 @@
 package entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class Tau {
+	@Id
+	@Column(name = "MaTau",nullable = false)
     private String maTau;
+	
+	@Column(name = "LoaiTau")
     private String loaiTau;
+	
+	@Column(name="TenTau")
     private String tenTau;
+	
+	@Column(name="TocDo")
     private double tocDo;
+	
+	@Column(name = "NamSanXuat")
     private LocalDate namSX;
 
+	@OneToMany(mappedBy = "tau")
+	private List<ChoNgoi> lisChoNgois;
+	
     public Tau() {
     }
 

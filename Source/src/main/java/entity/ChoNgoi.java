@@ -4,13 +4,39 @@
  */
 package entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+
+@Entity
 public class ChoNgoi {
+	@Id
+	@Column(name = "MaChoNgoi")
     private String maChoNgoi;
+	
+	@Column(name = "MoTa")
     private String moTa;
+	
+	@Column(name ="Gia")
     private double gia;
+	
+	@Column(name = "ViTri")
     private int viTri;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MaTau")
     private Tau tau;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MaToa")
     private Toa toa;
+	
+	@OneToOne(mappedBy = "choNgoi")
+	private Ve ve;
 
     public ChoNgoi() {
     }

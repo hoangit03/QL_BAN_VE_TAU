@@ -5,13 +5,37 @@
 package entity;
 
 import java.util.Objects;
+import java.util.Set;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class KhachHang {
+	@Id
+	@Column(name = "CCCD",unique = true, nullable = false)
     private String cccd;
+	
+	@Column(name = "HoTen")
     private String hoTen;
+	
+	@Column(name = "Email")
     private String email;
+	
+	@Column(name = "SDT")
     private String sdt;
+	
+	@Column(name = "DoiTuong")
     private String doiTuong;
+	
+	
+	@OneToMany(mappedBy = "khachHang")
+	private Set<Ve> lisVes;
+	
+	@OneToMany(mappedBy = "khachHang")
+	private Set<HoaDon> lisHoaDons;
 
     public KhachHang(String cccd, String hoTen, String email, String sdt, String doiTuong) {
         this.cccd = cccd;

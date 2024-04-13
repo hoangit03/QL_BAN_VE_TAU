@@ -5,24 +5,58 @@
 package entity;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+
+
+@Entity
 public class Ve {
+	
+	@Id
+	@Column(name = "MaVe")
     private  String maVe;
+	
+	@Column(name = "ThoiGianLenTau")
     private LocalDateTime thoiGianLenTau;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MaChuyen")
     private Chuyen chuyen;
+	
+	@OneToOne
+	@JoinColumn(name = "MaChoNgoi")
     private ChoNgoi choNgoi;
-    private Ga gaDi;
-    private Ga gaDen;
+	
+	@OneToMany(mappedBy = "ve")
+	private Set<ChiTietVe> lisChiTietVes;
+	
+	@OneToOne
+	@JoinColumn(name = "MaKhuyenMai")
     private KhuyenMai khuyenMai;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CCCD")
     private KhachHang khachHang;
+    
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MaHoaDon")
+    private HoaDon hoaDon;
 
     public Ve(String maVe, LocalDateTime thoiGianLenTau, Chuyen chuyen, ChoNgoi choNgoi, Ga gaDi, Ga gaDen, KhuyenMai khuyenMai, KhachHang khachHang) {
         this.maVe = maVe;
         this.thoiGianLenTau = thoiGianLenTau;
         this.chuyen = chuyen;
         this.choNgoi = choNgoi;
-        this.gaDi = gaDi;
-        this.gaDen = gaDen;
         this.khuyenMai = khuyenMai;
         this.khachHang = khachHang;
     }
@@ -65,21 +99,6 @@ public class Ve {
         this.choNgoi = choNgoi;
     }
 
-    public Ga getGaDi() {
-        return gaDi;
-    }
-
-    public void setGaDi(Ga gaDi) {
-        this.gaDi = gaDi;
-    }
-
-    public Ga getGaDen() {
-        return gaDen;
-    }
-
-    public void setGaDen(Ga gaDen) {
-        this.gaDen = gaDen;
-    }
 
     public KhuyenMai getKhuyenMai() {
         return khuyenMai;
@@ -99,7 +118,7 @@ public class Ve {
 
     @Override
     public String toString() {
-        return "Ve{" + "maVe=" + maVe + ", thoiGianLenTau=" + thoiGianLenTau + ", chuyen=" + chuyen + ", choNgoi=" + choNgoi + ", gaDi=" + gaDi + ", gaDen=" + gaDen + ", khuyenMai=" + khuyenMai + ", khachHang=" + khachHang + '}';
+        return "Ve{" + "maVe=" + maVe + ", thoiGianLenTau=" + thoiGianLenTau + ", chuyen=" + chuyen + ", choNgoi=" + choNgoi +  ", khuyenMai=" + khuyenMai + ", khachHang=" + khachHang + '}';
     }
 
 }
