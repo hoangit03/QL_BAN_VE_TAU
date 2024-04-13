@@ -1,9 +1,13 @@
 
 package gui;
 
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+
 public class LoginScreen extends javax.swing.JFrame {
     public LoginScreen() {
         initComponents();
+        EntityManagerFactory a = Persistence.createEntityManagerFactory("SourceMSSQL");
         txtusername.setBackground(new java.awt.Color(0,0,0,1));
         txtpassword.setBackground(new java.awt.Color(0,0,0,1));
     }
