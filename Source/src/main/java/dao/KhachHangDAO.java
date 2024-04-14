@@ -7,7 +7,7 @@ import java.beans.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class KhachHangDAO {
+public class KhachHangDao {
     List<KhachHang> dsKhachHang = new ArrayList<>();
 
     public List<KhachHang> getAllKhachHang() {

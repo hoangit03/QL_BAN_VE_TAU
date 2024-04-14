@@ -10,33 +10,32 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import java.io.Serializable;
 
 @Entity
-public class KhuyenMai {
-	
-	@Id
-	@Column(name = "MaKhuyenMai",unique = true, nullable = false)
+public class KhuyenMai implements Serializable {
+
+    @Id
+    @Column(name = "MaKhuyenMai", unique = true, nullable = false)
     private String maKhuyenMai;
-	
-	@Column(name = "TenKhuyenMai",nullable = false,columnDefinition = "nvarchar(255)")
+
+    @Column(name = "TenKhuyenMai", nullable = false, columnDefinition = "nvarchar(255)")
     private String tenKhuyenMai;
-	
-	@Column(name = "LoaiKhuyenMai", nullable = false)
+
+    @Column(name = "LoaiKhuyenMai", nullable = false)
     private String loaiKhuyenMai;
-	
-	@Column(name = "ThoiGianBatDau", nullable = false)
+
+    @Column(name = "ThoiGianBatDau", nullable = false)
     private LocalDate thoiGianBatDau;
-	
-	@Column(name = "ThoiGianKetThuc")
+
+    @Column(name = "ThoiGianKetThuc")
     private LocalDate thoiGianKetThuc;
-	
-	@Column(name = "ChietKhau")
+
+    @Column(name = "ChietKhau")
     private double chietKhau;
-	
-	@OneToOne(mappedBy = "khuyenMai" )
-	private Ve ve;
-	
-	
+
+    @OneToOne(mappedBy = "khuyenMai")
+    private Ve ve;
 
     public KhuyenMai() {
     }
@@ -49,6 +48,16 @@ public class KhuyenMai {
         this.thoiGianKetThuc = thoiGianKetThuc;
         this.chietKhau = chietKhau;
     }
+
+    public Ve getVe() {
+        return ve;
+    }
+
+    public void setVe(Ve ve) {
+        this.ve = ve;
+    }
+    
+    
 
     public String getMaKhuyenMai() {
         return maKhuyenMai;

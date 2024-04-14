@@ -12,44 +12,42 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-
+import java.io.Serializable;
 
 @Entity
-public class Ve {
-	
-	@Id
-	@Column(name = "MaVe")
-    private  String maVe;
-	
-	@Column(name = "ThoiGianLenTau")
+public class Ve implements Serializable {
+
+    @Id
+    @Column(name = "MaVe")
+    private String maVe;
+
+    @Column(name = "ThoiGianLenTau")
     private LocalDateTime thoiGianLenTau;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MaChuyen")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MaChuyen")
     private Chuyen chuyen;
-	
-	@OneToOne
-	@JoinColumn(name = "MaChoNgoi")
+
+    @OneToOne
+    @JoinColumn(name = "MaChoNgoi")
     private ChoNgoi choNgoi;
-	
-	@OneToMany(mappedBy = "ve")
-	private Set<ChiTietVe> lisChiTietVes;
-	
-	@OneToOne
-	@JoinColumn(name = "MaKhuyenMai")
+
+    @OneToMany(mappedBy = "ve")
+    private Set<ChiTietVe> lisChiTietVes;
+
+    @OneToOne
+    @JoinColumn(name = "MaKhuyenMai")
     private KhuyenMai khuyenMai;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CCCD")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CCCD")
     private KhachHang khachHang;
-    
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MaHoaDon")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MaHoaDon")
     private HoaDon hoaDon;
 
     public Ve(String maVe, LocalDateTime thoiGianLenTau, Chuyen chuyen, ChoNgoi choNgoi, Ga gaDi, Ga gaDen, KhuyenMai khuyenMai, KhachHang khachHang) {
@@ -60,13 +58,28 @@ public class Ve {
         this.khuyenMai = khuyenMai;
         this.khachHang = khachHang;
     }
-    
-
-    
 
     public Ve() {
     }
 
+    public Set<ChiTietVe> getLisChiTietVes() {
+        return lisChiTietVes;
+    }
+
+    public void setLisChiTietVes(Set<ChiTietVe> lisChiTietVes) {
+        this.lisChiTietVes = lisChiTietVes;
+    }
+
+    public HoaDon getHoaDon() {
+        return hoaDon;
+    }
+
+    public void setHoaDon(HoaDon hoaDon) {
+        this.hoaDon = hoaDon;
+    }
+
+    
+    
     public String getMaVe() {
         return maVe;
     }
@@ -99,7 +112,6 @@ public class Ve {
         this.choNgoi = choNgoi;
     }
 
-
     public KhuyenMai getKhuyenMai() {
         return khuyenMai;
     }
@@ -118,7 +130,7 @@ public class Ve {
 
     @Override
     public String toString() {
-        return "Ve{" + "maVe=" + maVe + ", thoiGianLenTau=" + thoiGianLenTau + ", chuyen=" + chuyen + ", choNgoi=" + choNgoi +  ", khuyenMai=" + khuyenMai + ", khachHang=" + khachHang + '}';
+        return "Ve{" + "maVe=" + maVe + ", thoiGianLenTau=" + thoiGianLenTau + ", chuyen=" + chuyen + ", choNgoi=" + choNgoi + ", khuyenMai=" + khuyenMai + ", khachHang=" + khachHang + '}';
     }
 
 }

@@ -15,33 +15,34 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import java.io.Serializable;
 
 @Entity
-public class Chuyen {
-	@Id
-	@Column(name = "MaChuyen")
+public class Chuyen implements Serializable {
+
+    @Id
+    @Column(name = "MaChuyen")
     private String maChuyen;
-	
-	@Column(name = "TenChuyen",columnDefinition = "nvarchar(255)")
+
+    @Column(name = "TenChuyen", columnDefinition = "nvarchar(255)")
     private String tenCHuyen;
-	
-	@Column(name = "GioKhoiHanh")
+
+    @Column(name = "GioKhoiHanh")
     private LocalTime gioKhoiHanh;
-	
-	@Column(name = "NgayKhoiHanh")
+
+    @Column(name = "NgayKhoiHanh")
     private LocalDate ngayKhoiHanh;
-	
-	@OneToOne
-	@JoinColumn(name = "MaTau",unique = true,nullable = false)
+
+    @OneToOne
+    @JoinColumn(name = "MaTau", unique = true, nullable = false)
     private Tau tau;
-	
-	@ManyToOne
-	@JoinColumn(name = "MaTuyen")
+
+    @ManyToOne
+    @JoinColumn(name = "MaTuyen")
     private Tuyen tuyen;
-	
-	
-	@OneToMany(mappedBy = "chuyen")
-	private Set<Ve> lisVes;
+
+    @OneToMany(mappedBy = "chuyen")
+    private Set<Ve> lisVes;
 
     public Chuyen() {
     }
@@ -54,6 +55,16 @@ public class Chuyen {
         this.tau = tau;
         this.tuyen = tuyen;
     }
+
+    public Set<Ve> getLisVes() {
+        return lisVes;
+    }
+
+    public void setLisVes(Set<Ve> lisVes) {
+        this.lisVes = lisVes;
+    }
+    
+    
 
     public String getMaChuyen() {
         return maChuyen;

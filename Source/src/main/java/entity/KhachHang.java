@@ -11,9 +11,10 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import java.io.Serializable;
 
 @Entity
-public class KhachHang {
+public class KhachHang implements Serializable {
 
     @Id
     @Column(name = "CCCD", unique = true, nullable = false)
@@ -36,6 +37,24 @@ public class KhachHang {
 
     @OneToMany(mappedBy = "khachHang")
     private Set<HoaDon> lisHoaDons;
+
+    public Set<Ve> getLisVes() {
+        return lisVes;
+    }
+
+    public void setLisVes(Set<Ve> lisVes) {
+        this.lisVes = lisVes;
+    }
+
+    public Set<HoaDon> getLisHoaDons() {
+        return lisHoaDons;
+    }
+
+    public void setLisHoaDons(Set<HoaDon> lisHoaDons) {
+        this.lisHoaDons = lisHoaDons;
+    }
+    
+    
 
     public KhachHang(String cccd, String hoTen, String email, String sdt, String doiTuong) {
         this.cccd = cccd;

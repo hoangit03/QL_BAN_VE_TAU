@@ -11,19 +11,20 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import java.io.Serializable;
 
 @Entity
-public class TaiKhoan {
-	
-	@Id
-	@Column(name = "TenTaiKhoan")
+public class TaiKhoan implements Serializable {
+
+    @Id
+    @Column(name = "TenTaiKhoan")
     private String tenTaiKhoan;
-	
-	@Column(name = "MatKhau")
+
+    @Column(name = "MatKhau")
     private String matKhau;
-	
-	@OneToOne()
-	@JoinColumn(name = "MaNhanVien",unique = true,nullable = false)
+
+    @OneToOne()
+    @JoinColumn(name = "MaNhanVien", unique = true, nullable = false)
     private NhanVien nhanVien;
 
     public TaiKhoan(String tenTaiKhoan, String matKhau, NhanVien nhanVien) {
@@ -34,6 +35,8 @@ public class TaiKhoan {
 
     public TaiKhoan() {
     }
+    
+    
 
     public String getTenTaiKhoan() {
         return tenTaiKhoan;
@@ -84,5 +87,5 @@ public class TaiKhoan {
         }
         final TaiKhoan other = (TaiKhoan) obj;
         return Objects.equals(this.tenTaiKhoan, other.tenTaiKhoan);
-    }  
+    }
 }

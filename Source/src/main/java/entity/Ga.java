@@ -4,9 +4,7 @@
  */
 package entity;
 
-import java.util.List;
 import java.util.Set;
-import java.util.jar.Attributes.Name;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,28 +13,28 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 
+import java.io.Serializable;
 
 @Entity
-public class Ga {
-	
-	@Id
-	@Column(name = "TenGa",unique = true,nullable = false,columnDefinition = "nvarchar(255)")
+public class Ga implements Serializable {
+
+    @Id
+    @Column(name = "TenGa", unique = true, nullable = false, columnDefinition = "nvarchar(255)")
     private String tenGa;
-	
-	@Column(name = "CuLy")
+
+    @Column(name = "CuLy")
     private double cuLy;
-	
-	@Column(name = "DiaChi",columnDefinition = "nvarchar(255)")
+
+    @Column(name = "DiaChi", columnDefinition = "nvarchar(255)")
     private String diaChi;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MaTuyen")
-	private Tuyen tuyen;
-	
-	@OneToMany(mappedBy = "ga")
-	private Set<ChiTietVe> lisChiTietVes;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MaTuyen")
+    private Tuyen tuyen;
+
+    @OneToMany(mappedBy = "ga")
+    private Set<ChiTietVe> lisChiTietVes;
 
     public Ga() {
     }
@@ -70,6 +68,24 @@ public class Ga {
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
+
+    public Tuyen getTuyen() {
+        return tuyen;
+    }
+
+    public void setTuyen(Tuyen tuyen) {
+        this.tuyen = tuyen;
+    }
+
+    public Set<ChiTietVe> getLisChiTietVes() {
+        return lisChiTietVes;
+    }
+
+    public void setLisChiTietVes(Set<ChiTietVe> lisChiTietVes) {
+        this.lisChiTietVes = lisChiTietVes;
+    }
+    
+    
 
     @Override
     public String toString() {

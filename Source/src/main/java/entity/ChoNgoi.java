@@ -11,32 +11,34 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import java.io.Serializable;
 
 @Entity
-public class ChoNgoi {
-	@Id
-	@Column(name = "MaChoNgoi")
+public class ChoNgoi implements Serializable {
+
+    @Id
+    @Column(name = "MaChoNgoi")
     private String maChoNgoi;
-	
-	@Column(name = "MoTa",columnDefinition = "nvarchar(255)")
+
+    @Column(name = "MoTa", columnDefinition = "nvarchar(255)")
     private String moTa;
-	
-	@Column(name ="Gia")
+
+    @Column(name = "Gia")
     private double gia;
-	
-	@Column(name = "ViTri")
+
+    @Column(name = "ViTri")
     private int viTri;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MaTau")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MaTau")
     private Tau tau;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "MaToa")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MaToa")
     private Toa toa;
-	
-	@OneToOne(mappedBy = "choNgoi")
-	private Ve ve;
+
+    @OneToOne(mappedBy = "choNgoi")
+    private Ve ve;
 
     public ChoNgoi() {
     }

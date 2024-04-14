@@ -4,18 +4,15 @@
  */
 package entity;
 
-import java.util.List;
 import java.util.Set;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import java.io.Serializable;
 
 @Entity
-public class Toa {
+public class Toa implements Serializable {
 
 	@Id
 	@Column(name = "MaToa")
@@ -43,6 +40,14 @@ public class Toa {
 		this.nganChua = nganChua;
 		this.viTri = viTri;
 	}
+
+    public Set<ChoNgoi> getLisChoNgois() {
+        return lisChoNgois;
+    }
+
+    public void setLisChoNgois(Set<ChoNgoi> lisChoNgois) {
+        this.lisChoNgois = lisChoNgois;
+    }
 	
 	
 

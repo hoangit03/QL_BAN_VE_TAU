@@ -13,47 +13,48 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import java.io.Serializable;
 
 @Entity
-public class NhanVien {
-	
-	@Id
-	@Column(name = "MaNhanVien",unique = true, nullable = false)
-    private String maNhanVien;
-	
-	@Column(name = "HoTen",nullable = false,columnDefinition = "nvarchar(255)")
-    private String hoTen;
-	
-	@Column(name="CCCD",nullable = false)
-    private String cccd;
-	
-	@Column(name="SDT")
-    private String sdt;
-	
-	@Column(name="Email")
-    private String email;
-	
-	@Column(name = "DiaChi",columnDefinition = "nvarchar(255)")
-    private String diaChi;
-	
-	@Column(name = "LoaiNV")
-    private String loaiNV;
-	
-	@Column(name = "TrangThai")
-    private boolean trangThai;
-	
-	@Column(name = "NgaySinh")
-    private LocalDate ngaySinh;
-	
-	@Column(name = "NgayVaoLam 	")
-    private LocalDate ngayVaoLam;
-	
-	@OneToOne(mappedBy = "nhanVien")
-	private TaiKhoan taiKhoan;
+public class NhanVien implements Serializable {
 
-	@OneToMany(mappedBy = "nhanVien")
-	private Set<HoaDon> lisHoaDons;
-	
+    @Id
+    @Column(name = "MaNhanVien", unique = true, nullable = false)
+    private String maNhanVien;
+
+    @Column(name = "HoTen", nullable = false, columnDefinition = "nvarchar(255)")
+    private String hoTen;
+
+    @Column(name = "CCCD", nullable = false)
+    private String cccd;
+
+    @Column(name = "SDT")
+    private String sdt;
+
+    @Column(name = "Email")
+    private String email;
+
+    @Column(name = "DiaChi", columnDefinition = "nvarchar(255)")
+    private String diaChi;
+
+    @Column(name = "LoaiNV")
+    private String loaiNV;
+
+    @Column(name = "TrangThai")
+    private boolean trangThai;
+
+    @Column(name = "NgaySinh")
+    private LocalDate ngaySinh;
+
+    @Column(name = "NgayVaoLam 	")
+    private LocalDate ngayVaoLam;
+
+    @OneToOne(mappedBy = "nhanVien")
+    private TaiKhoan taiKhoan;
+
+    @OneToMany(mappedBy = "nhanVien")
+    private Set<HoaDon> lisHoaDons;
+
     public NhanVien(String maNhanVien, String hoTen, String cccd, String sdt, String email, String diaChi, String loaiNV, boolean trangThai, LocalDate ngaySinh, LocalDate ngayVaoLam) {
         this.maNhanVien = maNhanVien;
         this.hoTen = hoTen;
@@ -70,18 +71,25 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    
+    public Set<HoaDon> getLisHoaDons() {
+        return lisHoaDons;
+    }
+
+    public void setLisHoaDons(Set<HoaDon> lisHoaDons) {
+        this.lisHoaDons = lisHoaDons;
+    }
+
     
     
     public TaiKhoan getTaiKhoan() {
-		return taiKhoan;
-	}
+        return taiKhoan;
+    }
 
-	public void setTaiKhoan(TaiKhoan taiKhoan) {
-		this.taiKhoan = taiKhoan;
-	}
+    public void setTaiKhoan(TaiKhoan taiKhoan) {
+        this.taiKhoan = taiKhoan;
+    }
 
-	public String getMaNhanVien() {
+    public String getMaNhanVien() {
         return maNhanVien;
     }
 

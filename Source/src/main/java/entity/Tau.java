@@ -11,28 +11,30 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import java.io.Serializable;
 
 @Entity
-public class Tau {
-	@Id
-	@Column(name = "MaTau",nullable = false)
+public class Tau implements Serializable {
+
+    @Id
+    @Column(name = "MaTau", nullable = false)
     private String maTau;
-	
-	@Column(name = "LoaiTau")
+
+    @Column(name = "LoaiTau")
     private String loaiTau;
-	
-	@Column(name="TenTau")
+
+    @Column(name = "TenTau")
     private String tenTau;
-	
-	@Column(name="TocDo")
+
+    @Column(name = "TocDo")
     private double tocDo;
-	
-	@Column(name = "NamSanXuat")
+
+    @Column(name = "NamSanXuat")
     private LocalDate namSX;
 
-	@OneToMany(mappedBy = "tau")
-	private List<ChoNgoi> lisChoNgois;
-	
+    @OneToMany(mappedBy = "tau")
+    private List<ChoNgoi> lisChoNgois;
+
     public Tau() {
     }
 
@@ -43,6 +45,16 @@ public class Tau {
         this.tocDo = tocDo;
         this.namSX = namSX;
     }
+
+    public List<ChoNgoi> getLisChoNgois() {
+        return lisChoNgois;
+    }
+
+    public void setLisChoNgois(List<ChoNgoi> lisChoNgois) {
+        this.lisChoNgois = lisChoNgois;
+    }
+    
+    
 
     public String getMaTau() {
         return maTau;
@@ -87,5 +99,5 @@ public class Tau {
     @Override
     public String toString() {
         return "Tau{" + "maTau=" + maTau + ", loaiTau=" + loaiTau + ", tenTau=" + tenTau + ", tocDo=" + tocDo + ", namSX=" + namSX + '}';
-    }  
+    }
 }

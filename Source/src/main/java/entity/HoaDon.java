@@ -20,41 +20,53 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-
+import java.io.Serializable;
 
 @Entity
-public class HoaDon {
-	
-	@Id
-	@Column(name = "MaHoaDon")
+public class HoaDon implements Serializable {
+
+    @Id
+    @Column(name = "MaHoaDon")
     private String maHoaDon;
-	
-	@Column(name = "GioTao")
+
+    @Column(name = "GioTao")
     private LocalTime gioTao;
-	
-	@Column(name = "NgayTao")
+
+    @Column(name = "NgayTao")
     private LocalDate ngayTao;
-	
-	@Column( name = "TrangThai")
+
+    @Column(name = "TrangThai")
     private String trangThai;
-	
-	@ManyToOne
-	@JoinColumn(name = "MaNhanVien")
+
+    @ManyToOne
+    @JoinColumn(name = "MaNhanVien")
     private NhanVien nhanVien;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CCCD")
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CCCD")
     private KhachHang khachHang;
-	
-	@OneToMany(mappedBy = "hoaDon")
+
+    @OneToMany(mappedBy = "hoaDon")
     private List<Ve> listVes;
-	
-	@ManyToMany
-	@JoinTable(name = "ChiTietKhuyenMai",joinColumns = {@JoinColumn(name="MaHoaDon")},inverseJoinColumns = {@JoinColumn(name="MaKhuyenMai")})
-	private Set<KhuyenMai> lisKhuyenMais;
-	
+
+    @ManyToMany
+    @JoinTable(name = "ChiTietKhuyenMai", joinColumns = {
+        @JoinColumn(name = "MaHoaDon")}, inverseJoinColumns = {
+        @JoinColumn(name = "MaKhuyenMai")})
+    private Set<KhuyenMai> lisKhuyenMais;
+
     public HoaDon() {
     }
+
+    public Set<KhuyenMai> getLisKhuyenMais() {
+        return lisKhuyenMais;
+    }
+
+    public void setLisKhuyenMais(Set<KhuyenMai> lisKhuyenMais) {
+        this.lisKhuyenMais = lisKhuyenMais;
+    }
+    
+    
 
     public HoaDon(String maHoaDon, LocalTime gioTao, LocalDate ngayTao, String trangThai, NhanVien nhanVien, KhachHang khachHang, List<Ve> listVes) {
         this.maHoaDon = maHoaDon;
@@ -73,8 +85,6 @@ public class HoaDon {
     public void setListVes(List<Ve> listVes) {
         this.listVes = listVes;
     }
-
-    
 
     public String getMaHoaDon() {
         return maHoaDon;
@@ -149,5 +159,5 @@ public class HoaDon {
         }
         final HoaDon other = (HoaDon) obj;
         return Objects.equals(this.maHoaDon, other.maHoaDon);
-    } 
+    }
 }
