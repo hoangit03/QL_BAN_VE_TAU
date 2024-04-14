@@ -11,11 +11,17 @@ import java.util.Set;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "NhanVien.findAll",query = "select nv from NhanVien nv"),
+	@NamedQuery(name ="NhanVien.findSdt", query = "select nv from NhanVien nv where nv.sdt = :sdt")
+})
 public class NhanVien implements Serializable {
 
     @Id

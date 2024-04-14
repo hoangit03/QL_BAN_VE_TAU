@@ -1,4 +1,3 @@
-
 package dao;
 
 import java.util.List;
@@ -9,51 +8,48 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
 public class TaiKhoanDao {
-	
-	private EntityManager em;
+
+    private EntityManager em;
+
     public TaiKhoanDao(EntityManagerFactory emf) {
         em = emf.createEntityManager();
     }
-    
+
 //    Them tai khoan
-    public boolean addTaiKhoan(TaiKhoan taiKhoan){
+    public boolean addTaiKhoan(TaiKhoan taiKhoan) {
         EntityTransaction tx = em.getTransaction();
-        try{
+        try {
             tx.begin();
             em.persist(taiKhoan);
             tx.commit();
             return true;
-        }
-        catch(Exception e){
-        	tx.rollback();
+        } catch (Exception e) {
+            tx.rollback();
             e.printStackTrace();
         }
         return false;
     }
-    
-    
+
 //    UpDateTaiKhoan
     public boolean updateTaiKhoan(TaiKhoan taiKhoan) {
-    	EntityTransaction tx = em.getTransaction();
-        try{
+        EntityTransaction tx = em.getTransaction();
+        try {
             tx.begin();
             em.merge(taiKhoan);
             tx.commit();
             return true;
-        }
-        catch(Exception e){
-        	tx.rollback();
+        } catch (Exception e) {
+            tx.rollback();
             e.printStackTrace();
         }
         return false;
     }
-    
-    
+
     public TaiKhoan getTaiKhoanByUserName(String userName) {
-    	return em.find(TaiKhoan.class, userName);
+        return em.find(TaiKhoan.class, userName);
     }
-    
-    public List<TaiKhoan> getAllTaiKhoan(){
-    	return em.createNamedQuery("TaiKhoan.findAll",TaiKhoan.class).getResultList();
+
+    public List<TaiKhoan> getAllTaiKhoan() {
+        return em.createNamedQuery("TaiKhoan.findAll", TaiKhoan.class).getResultList();
     }
 }
