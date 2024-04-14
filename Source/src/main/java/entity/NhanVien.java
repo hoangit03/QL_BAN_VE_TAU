@@ -21,7 +21,8 @@ import java.io.Serializable;
 @NamedQueries({
 	@NamedQuery(name = "NhanVien.findAll",query = "select nv from NhanVien nv"),
 	@NamedQuery(name ="NhanVien.findSdt", query = "select nv from NhanVien nv where nv.sdt = :sdt"),
-	@NamedQuery(name ="NhanVien.findCccd", query = "select nv from NhanVien nv where nv.cccd = :cccd")
+	@NamedQuery(name ="NhanVien.findCccd", query = "select nv from NhanVien nv where nv.cccd = :cccd"),
+	@NamedQuery(name = "NhanVien.findAllByMa",query = "select nv from NhanVien nv where nv.maNhanVien like :ma")
 })
 public class NhanVien implements Serializable {
 
