@@ -9,8 +9,11 @@ import java.awt.RenderingHints;
 
 public class Herder extends javax.swing.JPanel {
 
-    public Herder() {
+    public Herder(String userName, String root) {
         initComponents();
+        lbName.setText(userName);
+        lbRoot.setText(root.equalsIgnoreCase("Admin") ? "Quản lý" : "Nhân viên");
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -18,9 +21,9 @@ public class Herder extends javax.swing.JPanel {
     private void initComponents() {
 
         title = new javax.swing.JLabel();
-        ibUser = new javax.swing.JLabel();
-        ibName = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lbIconUser = new javax.swing.JLabel();
+        lbName = new javax.swing.JLabel();
+        lbRoot = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
         setBackground(new java.awt.Color(60, 135, 210));
@@ -31,14 +34,14 @@ public class Herder extends javax.swing.JPanel {
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("ỨNG DỤNG BÁN VÉ TÀU TẠI ĐẠI LÝ APLUS");
 
-        ibUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/nhanvien.png"))); // NOI18N
+        lbIconUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/nhanvien.png"))); // NOI18N
 
-        ibName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ibName.setText("Tên Nhân viên");
+        lbName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbName.setText("Tên Nhân viên");
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Quản lý");
+        lbRoot.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbRoot.setForeground(new java.awt.Color(51, 51, 51));
+        lbRoot.setText("Quản lý");
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -52,10 +55,10 @@ public class Herder extends javax.swing.JPanel {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ibName)
-                    .addComponent(jLabel1))
+                    .addComponent(lbName)
+                    .addComponent(lbRoot))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ibUser)
+                .addComponent(lbIconUser)
                 .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
@@ -66,10 +69,10 @@ public class Herder extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ibName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel1))
-                    .addComponent(ibUser))
+                        .addComponent(lbRoot))
+                    .addComponent(lbIconUser))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -86,10 +89,10 @@ public class Herder extends javax.swing.JPanel {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ibName;
-    private javax.swing.JLabel ibUser;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbIconUser;
+    private javax.swing.JLabel lbName;
+    private javax.swing.JLabel lbRoot;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

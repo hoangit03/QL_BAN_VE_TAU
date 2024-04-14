@@ -1,15 +1,23 @@
-
 package gui;
 
+import dao.TaiKhoanDao;
+import entity.TaiKhoan;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class LoginScreen extends javax.swing.JFrame {
+
+    private TaiKhoanDao taiKhoanDao;
+    private EntityManagerFactory emf;
+    private TaiKhoan taiKhoan;
+
     public LoginScreen() {
         initComponents();
-        EntityManagerFactory a = Persistence.createEntityManagerFactory("SourceMSSQL");
-        txtusername.setBackground(new java.awt.Color(0,0,0,1));
-        txtpassword.setBackground(new java.awt.Color(0,0,0,1));
+
+        txtusername.setBackground(new java.awt.Color(0, 0, 0, 1));
+        txtpassword.setBackground(new java.awt.Color(0, 0, 0, 1));
+        emf = Persistence.createEntityManagerFactory("SourceMSSQL");
+        taiKhoanDao = new TaiKhoanDao(emf);
     }
 
     @SuppressWarnings("unchecked")
@@ -32,6 +40,7 @@ public class LoginScreen extends javax.swing.JFrame {
         show = new javax.swing.JLabel();
         btnDangNhap = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        error = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -81,6 +90,11 @@ public class LoginScreen extends javax.swing.JFrame {
         txtusername.setBackground(new java.awt.Color(204, 204, 204));
         txtusername.setFont(txtusername.getFont().deriveFont(txtusername.getFont().getSize()+2f));
         txtusername.setBorder(null);
+        txtusername.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtusernameMouseClicked(evt);
+            }
+        });
         txtusername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtusernameActionPerformed(evt);
@@ -105,6 +119,11 @@ public class LoginScreen extends javax.swing.JFrame {
         txtpassword.setFont(txtpassword.getFont().deriveFont(txtpassword.getFont().getSize()+2f));
         txtpassword.setBorder(null);
         txtpassword.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtpassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtpasswordMouseClicked(evt);
+            }
+        });
         txtpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtpasswordActionPerformed(evt);
@@ -151,6 +170,10 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel3.setText("jLabel3");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 200, 200));
 
+        error.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
+        error.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel2.add(error, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 370, 440));
 
         setSize(new java.awt.Dimension(871, 441));
@@ -162,7 +185,7 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel2MouseClicked
 
     private void disableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disableMouseClicked
-        txtpassword.setEchoChar((char)0);
+        txtpassword.setEchoChar((char) 0);
         disable.setVisible(false);
         disable.setEnabled(false);
         show.setEnabled(true);
@@ -170,7 +193,7 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_disableMouseClicked
 
     private void showMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showMouseClicked
-        txtpassword.setEchoChar((char)8226);
+        txtpassword.setEchoChar((char) 8226);
         disable.setVisible(true);
         disable.setEnabled(true);
         show.setEnabled(false);
@@ -178,35 +201,54 @@ public class LoginScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_showMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        for (double i = 0.0; i <=1.0; i = i+0.1){
-            String val = i+ "";
+        for (double i = 0.0; i <= 1.0; i = i + 0.1) {
+            String val = i + "";
             float f = Float.valueOf(val);
             this.setOpacity(f);
-            try{
+            try {
                 Thread.sleep(50);
-            }catch(Exception e){
-                
+            } catch (Exception e) {
+
             }
         }
     }//GEN-LAST:event_formWindowOpened
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Main().setVisible(true);
-                setVisible(false);
-            }
-        });
+
+        String userName = txtusername.getText();
+        String passWord = new String(txtpassword.getPassword());
+        taiKhoan = taiKhoanDao.getTaiKhoanByUserName(userName);
+        if (taiKhoan != null && taiKhoan.getMatKhau().equalsIgnoreCase(passWord)) {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new Main(emf,taiKhoan).setVisible(true);
+                    setVisible(false);
+                }
+            });
+        } else {
+            error.setText("Tên tài khoản hoặc mật khẩu không chính xác");
+        }
+
 
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
+    
+    
     private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpasswordActionPerformed
 
     private void txtusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusernameActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtusernameActionPerformed
+
+    private void txtusernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtusernameMouseClicked
+        error.setText("");
+    }//GEN-LAST:event_txtusernameMouseClicked
+
+    private void txtpasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtpasswordMouseClicked
+        error.setText("");
+    }//GEN-LAST:event_txtpasswordMouseClicked
 
     /**
      * @param args the command line arguments
@@ -249,6 +291,7 @@ public class LoginScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JLabel disable;
+    private javax.swing.JLabel error;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;

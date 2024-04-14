@@ -31,11 +31,11 @@
               <Component id="jSeparator1" min="-2" pref="0" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="ibName" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbName" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbRoot" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="ibUser" min="-2" max="-2" attributes="0"/>
+              <Component id="lbIconUser" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -48,11 +48,11 @@
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="ibName" min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="lbName" min="-2" pref="27" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="lbRoot" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="ibUser" min="-2" max="-2" attributes="0"/>
+                  <Component id="lbIconUser" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
@@ -69,14 +69,14 @@
         <Property name="text" type="java.lang.String" value="&#x1ee8;NG D&#x1ee4;NG B&#xc1;N V&#xc9; T&#xc0;U T&#x1ea0;I &#x110;&#x1ea0;I L&#xdd; APLUS"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="ibUser">
+    <Component class="javax.swing.JLabel" name="lbIconUser">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/icon/nhanvien.png"/>
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="ibName">
+    <Component class="javax.swing.JLabel" name="lbName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
@@ -84,7 +84,7 @@
         <Property name="text" type="java.lang.String" value="T&#xea;n Nh&#xe2;n vi&#xea;n"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lbRoot">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="0"/>

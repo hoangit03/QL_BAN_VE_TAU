@@ -182,16 +182,16 @@ SELECT * FROM KhachHang
 
 INSERT INTO NhanVien (MaNhanVien, CCCD, HoTen, SDT, Email, DiaChi, LoaiNV, TrangThai, NgaySinh, NgayVaoLam)
 VALUES 
-      ('NV21030001', '001012345678',  N'Lê Đình Nam',     '0937546286',  'ledinhnam@gmail.com',     N'Quận Hoàn Kiếm, Thành phố Hà Nội',       N'Nhân viên quản lý', 1, '2003-03-15', '2021-03-15'),
-      ('NV21020002', '079023456789',  N'Lê Đình Long',    '0937546236',  'ledinhlong@gmail.com',    N'Quận 1, Thành phố Hồ Chí Minh',          N'Nhân viên bán vé',  1, '2002-03-16', '2021-03-16'),
-      ('NV21010003', '001034567890',  N'Lê Đình Ho',      '0937546283',  'ledinhho@gmail.com',      N'Quận Ba Đình, Thành phố Hà Nội',         N'Nhân viên quản lý', 0, '2001-03-17', '2021-03-17'),
-      ('NV21000004', '079045678901',  N'Nguyễn Thị Hằng', '0937546290',  'nguyenthihang@gmail.com', N'Quận Tân Bình, Thành phố Hồ Chí Minh',   N'Nhân viên quản lý', 1, '2000-03-18', '2021-03-18'),
-      ('NV21990005', '001056789012',  N'Trần Văn Tùng',   '0937546291',  'tranvantung@gmail.com',   N'Quận Cầu Giấy, Thành phố Hà Nội',        N'Nhân viên bán vé',  1, '1999-03-19', '2021-03-19'),
-      ('NV21980006', '079067890123',  N'Lê Thị Hằng',     '0937546292',  'lethihang@gmail.com',     N'Quận Bình Thạnh, Thành phố Hồ Chí Minh', N'Nhân viên bán vé',  0, '1998-03-20', '2021-03-20'),
-      ('NV21970007', '048078901234',  N'Phạm Văn Phú',    '0937546293',  'phamvanphu@gmail.com',    N'Quận Hải Châu, Thành phố Đà Nẵng',       N'Nhân viên quản lý', 1, '1997-03-21', '2021-03-21'),
-      ('NV21960008', '079089012345',  N'Nguyễn Thị Thảo', '0937546294',  'nguyenthithao@gmail.com', N'Quận Thủ Đức, Thành phố Hồ Chí Minh',    N'Nhân viên bán vé',  1, '1996-03-22', '2021-03-22'),
-      ('NV21950009', '001090123456',  N'Trần Văn Đức',    '0937546295',  'tranvanduc@gmail.com',    N'Huyện Hoài Đức, Thành phố Hà Nội',       N'Nhân viên quản lý', 0, '1995-03-23', '2021-03-23'),
-      ('NV21940010', '079901234567',  N'Hoàng Minh Tuấn', '0937546296',  'hoangminhtuan@gmail.com', N'Huyện Củ Chi, Thành phố Hồ Chí Minh',    N'Nhân viên bán vé',  1, '1994-03-24', '2021-03-24');
+      ('NV21030001', '001012345678',  N'Lê Đình Nam',     '0937546286',  'ledinhnam@gmail.com',     N'Quận Hoàn Kiếm, Thành phố Hà Nội',       'User', 1, '2003-03-15', '2021-03-15'),
+      ('NV21020002', '079023456789',  N'Lê Đình Long',    '0937546236',  'ledinhlong@gmail.com',    N'Quận 1, Thành phố Hồ Chí Minh',          'User',  1, '2002-03-16', '2021-03-16'),
+      ('NV21010003', '001034567890',  N'Lê Đình Ho',      '0937546283',  'ledinhho@gmail.com',      N'Quận Ba Đình, Thành phố Hà Nội',         'User', 0, '2001-03-17', '2021-03-17'),
+      ('NV21000004', '079045678901',  N'Nguyễn Thị Hằng', '0937546290',  'nguyenthihang@gmail.com', N'Quận Tân Bình, Thành phố Hồ Chí Minh',   'User', 1, '2000-03-18', '2021-03-18'),
+      ('NV21990005', '001056789012',  N'Trần Văn Tùng',   '0937546291',  'tranvantung@gmail.com',   N'Quận Cầu Giấy, Thành phố Hà Nội',        'User',  1, '1999-03-19', '2021-03-19'),
+      ('NV21980006', '079067890123',  N'Lê Thị Hằng',     '0937546292',  'lethihang@gmail.com',     N'Quận Bình Thạnh, Thành phố Hồ Chí Minh', 'User',  0, '1998-03-20', '2021-03-20'),
+      ('NV21970007', '048078901234',  N'Phạm Văn Phú',    '0937546293',  'phamvanphu@gmail.com',    N'Quận Hải Châu, Thành phố Đà Nẵng',      'User', 1, '1997-03-21', '2021-03-21'),
+      ('NV21960008', '079089012345',  N'Nguyễn Thị Thảo', '0937546294',  'nguyenthithao@gmail.com', N'Quận Thủ Đức, Thành phố Hồ Chí Minh',   'User',  1, '1996-03-22', '2021-03-22'),
+      ('NV21950009', '001090123456',  N'Trần Văn Đức',    '0937546295',  'tranvanduc@gmail.com',    N'Huyện Hoài Đức, Thành phố Hà Nội',       'Admin', 0, '1995-03-23', '2021-03-23'),
+      ('NV21940010', '079901234567',  N'Hoàng Minh Tuấn', '0937546296',  'hoangminhtuan@gmail.com', N'Huyện Củ Chi, Thành phố Hồ Chí Minh',    'User',  1, '1994-03-24', '2021-03-24');
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------3
                                                                                 /*DỮ LIỆU TÀI KHOẢN*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------3

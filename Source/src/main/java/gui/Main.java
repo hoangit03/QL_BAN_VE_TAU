@@ -2,8 +2,11 @@ package gui;
 
 import component.Herder;
 import component.Menu;
+import entity.TaiKhoan;
 import event.EventMenuSelected;
 import form.MainForm;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 
@@ -13,20 +16,27 @@ public class Main extends javax.swing.JFrame {
     private Menu menu;
     private Herder herder;
     private MainForm main;
+    
+    private EntityManagerFactory emf;
+    private TaiKhoan taiKhoan;
 
-    public Main() {
+    public Main(EntityManagerFactory emf, TaiKhoan taiKhoan) {
+        this.emf = emf;
+        this.taiKhoan = taiKhoan;
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 //        setLocation(0, 0);
         setResizable(false);
         init();
+        
+        
     }
 
     public void init() {
         layout = new MigLayout("fill", "0[]0[100%,fill]0", "0[fill,top]0");
         bg.setLayout(layout);
         menu = new Menu();
-        herder = new Herder();
+        herder = new Herder(taiKhoan.getNhanVien().getHoTen(),taiKhoan.getNhanVien().getLoaiNV());
         main = new MainForm();
         menu.addEvent(new EventMenuSelected() {
             @Override

@@ -10,13 +10,23 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "TaiKhoan.findAll",query = "select tk from TaiKhoan tk")
+})
 public class TaiKhoan implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @Column(name = "TenTaiKhoan")
     private String tenTaiKhoan;
 
