@@ -2,6 +2,8 @@ package gui;
 
 import form.FormNhanVien;
 import form.FormTaiKhoan;
+import jakarta.persistence.EntityManagerFactory;
+
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -14,14 +16,15 @@ import javax.swing.border.EmptyBorder;
 
 public class GD_QuanLyNhanVien extends javax.swing.JPanel {
 
-    public GD_QuanLyNhanVien() {
+	private EntityManagerFactory emf;
+    public GD_QuanLyNhanVien(EntityManagerFactory emf) {
         initComponents();
         setBorder(new EmptyBorder(10,10,10,10));
         
         btnNhanVien.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainForm1.showForm(new FormNhanVien());
+                mainForm1.showForm(new FormNhanVien(emf));
             }
         });
         btnTaiKhoan.addActionListener(new ActionListener() {
@@ -31,7 +34,7 @@ public class GD_QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
         
-        mainForm1.showForm(new FormNhanVien());
+        mainForm1.showForm(new FormNhanVien(emf));
     }
 
 

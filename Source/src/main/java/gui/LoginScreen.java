@@ -16,6 +16,8 @@ public class LoginScreen extends javax.swing.JFrame {
 
         txtusername.setBackground(new java.awt.Color(0, 0, 0, 1));
         txtpassword.setBackground(new java.awt.Color(0, 0, 0, 1));
+        txtusername.setText("21030001");
+        txtpassword.setText("Passw0rd");
         emf = Persistence.createEntityManagerFactory("SourceMSSQL");
         taiKhoanDao = new TaiKhoanDao(emf);
     }
@@ -228,6 +230,7 @@ public class LoginScreen extends javax.swing.JFrame {
         } else {
             error.setText("Tên tài khoản hoặc mật khẩu không chính xác");
         }
+        
 
 
     }//GEN-LAST:event_btnDangNhapActionPerformed

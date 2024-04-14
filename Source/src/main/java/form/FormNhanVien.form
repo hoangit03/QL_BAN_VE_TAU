@@ -34,7 +34,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="btnThem1" pref="113" max="32767" attributes="0"/>
+                              <Component id="btnTim" pref="113" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnThem" min="-2" pref="109" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -62,7 +62,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnThem" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
                   <Component id="btnCapNhat" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-                  <Component id="btnThem1" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="btnTim" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -559,6 +559,9 @@
           <Dimension value="[103, 55]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaTrangActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnThem">
       <Properties>
@@ -575,6 +578,9 @@
           <Dimension value="[105, 55]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCapNhat">
       <Properties>
@@ -591,6 +597,9 @@
           <Dimension value="[100, 55]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnTaoTaiKhoan">
       <Properties>
@@ -605,6 +614,9 @@
         <Property name="focusPainted" type="boolean" value="false"/>
         <Property name="focusable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTaoTaiKhoanActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnExcel">
       <Properties>
@@ -622,7 +634,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcelActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnThem1">
+    <Component class="javax.swing.JButton" name="btnTim">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="SansSerif" size="18" style="0"/>
@@ -637,6 +649,9 @@
           <Dimension value="[105, 55]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -60,7 +60,7 @@ public class Main extends javax.swing.JFrame {
                         menu.hideallMenu();
                         break;
                     case 2:
-                        main.showForm(new GD_QuanLyNhanVien());
+                        main.showForm(new GD_QuanLyNhanVien(emf));
                         menu.hideallMenu();
                         break;
                     case 3:

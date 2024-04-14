@@ -48,9 +48,11 @@ public class Main {
 //	void TestNhanVien() {
 //		List<NhanVien> list = nhanVienDao.getAllNhanVien();
 //		assertEquals(list.size(), 10);
-//		list.forEach(System.out::println);
+//		list.forEach(x->{
+//			System.out.println(x.getTaiKhoan());
+//		});
 //	}
-	
+//	
 	void down() {
 		emf.close();
 	}

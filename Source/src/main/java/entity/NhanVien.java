@@ -20,7 +20,8 @@ import java.io.Serializable;
 @Entity
 @NamedQueries({
 	@NamedQuery(name = "NhanVien.findAll",query = "select nv from NhanVien nv"),
-	@NamedQuery(name ="NhanVien.findSdt", query = "select nv from NhanVien nv where nv.sdt = :sdt")
+	@NamedQuery(name ="NhanVien.findSdt", query = "select nv from NhanVien nv where nv.sdt = :sdt"),
+	@NamedQuery(name ="NhanVien.findCccd", query = "select nv from NhanVien nv where nv.cccd = :cccd")
 })
 public class NhanVien implements Serializable {
 
@@ -39,6 +40,9 @@ public class NhanVien implements Serializable {
 
     @Column(name = "Email")
     private String email;
+    
+    @Column(name = "GioiTinh")
+    private boolean gioiTinh;
 
     @Column(name = "DiaChi", columnDefinition = "nvarchar(255)")
     private String diaChi;
@@ -61,20 +65,41 @@ public class NhanVien implements Serializable {
     @OneToMany(mappedBy = "nhanVien")
     private Set<HoaDon> lisHoaDons;
 
-    public NhanVien(String maNhanVien, String hoTen, String cccd, String sdt, String email, String diaChi, String loaiNV, boolean trangThai, LocalDate ngaySinh, LocalDate ngayVaoLam) {
-        this.maNhanVien = maNhanVien;
-        this.hoTen = hoTen;
-        this.cccd = cccd;
-        this.sdt = sdt;
-        this.email = email;
-        this.diaChi = diaChi;
-        this.loaiNV = loaiNV;
-        this.trangThai = trangThai;
-        this.ngaySinh = ngaySinh;
-        this.ngayVaoLam = ngayVaoLam;
-    }
+    
+    
+    
 
-    public NhanVien() {
+    public NhanVien(String maNhanVien, String hoTen, String cccd, String sdt, String email, boolean gioiTinh,
+			String diaChi, String loaiNV, boolean trangThai, LocalDate ngaySinh, LocalDate ngayVaoLam) {
+		super();
+		this.maNhanVien = maNhanVien;
+		this.hoTen = hoTen;
+		this.cccd = cccd;
+		this.sdt = sdt;
+		this.email = email;
+		this.gioiTinh = gioiTinh;
+		this.diaChi = diaChi;
+		this.loaiNV = loaiNV;
+		this.trangThai = trangThai;
+		this.ngaySinh = ngaySinh;
+		this.ngayVaoLam = ngayVaoLam;
+	}
+
+
+
+	public boolean isGioiTinh() {
+		return gioiTinh;
+	}
+
+
+
+	public void setGioiTinh(boolean gioiTinh) {
+		this.gioiTinh = gioiTinh;
+	}
+
+
+
+	public NhanVien() {
     }
 
     public Set<HoaDon> getLisHoaDons() {

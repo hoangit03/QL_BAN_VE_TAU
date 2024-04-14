@@ -61,6 +61,10 @@ public class NhanVienDao {
     public NhanVien getNhanVienBySDT(String sdt) {
     	return em.createNamedQuery("NhanVien.findSdt", NhanVien.class).setParameter("sdt", sdt).getSingleResult();
     }
+//    Lấy nhân viên bằng căn cước công dân
+    public NhanVien getNhanVienByCCCD(String cccd) {
+    	return em.createNamedQuery("NhanVien.findCccd", NhanVien.class).setParameter("cccd", cccd).getSingleResult();
+    }
     
 //    lấy toàn bộ danh sách nhân viên
     public List<NhanVien> getAllNhanVien(){
