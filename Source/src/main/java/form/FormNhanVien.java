@@ -457,7 +457,7 @@ public class FormNhanVien extends javax.swing.JPanel {
 		jtDiaChi.setText(model.getValueAt(index, 5).toString());
 		jtEmail.setText(model.getValueAt(index, 6).toString());
 		jtSDT.setText(model.getValueAt(index, 7).toString());
-		jcbTrangThai.setSelectedItem(model.getValueAt(index, 4));
+		jcbTrangThai.setSelectedItem(model.getValueAt(index, 8));
 
 	}// GEN-LAST:event_tableMouseClicked
 
@@ -639,10 +639,12 @@ public class FormNhanVien extends javax.swing.JPanel {
 			JOptionPane.showMessageDialog(btnTaoTaiKhoan, "Chưa chọn nhân viên cần tạo tài khoản", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 		NhanVien nhanVien = nhanVienDao.getNhanVienByMa(jtMaNV.getText());
-		if (nhanVien.getTaiKhoan() != null)
+		if (nhanVien.getTaiKhoan() != null) {
 			JOptionPane.showMessageDialog(btnTaoTaiKhoan, "Nhân viên đã tạo tài khoản", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
-
+			return;
+		}
+		
 		mainForm.showForm(new FormTaiKhoan(emf, nhanVien));
 
 	}// GEN-LAST:event_btnTaoTaiKhoanActionPerformed

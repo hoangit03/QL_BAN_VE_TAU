@@ -30,6 +30,7 @@ public class Main extends javax.swing.JFrame {
         init();
         
         
+        
     }
 
     public void init() {
@@ -56,7 +57,7 @@ public class Main extends javax.swing.JFrame {
                         }
                         break;
                     case 1:
-                        main.showForm(new GD_QuanLyKhachHang());
+                        main.showForm(new GD_QuanLyKhachHang(emf));
                         menu.hideallMenu();
                         break;
                     case 2:

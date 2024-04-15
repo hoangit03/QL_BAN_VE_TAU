@@ -8,9 +8,11 @@ import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import dao.NhanVienDao;
 import dao.TaiKhoanDao;
 import entity.NhanVien;
 import entity.TaiKhoan;
@@ -19,11 +21,12 @@ import jakarta.persistence.EntityManagerFactory;
 public class FormTaiKhoan extends javax.swing.JPanel {
 	private EntityManagerFactory emf;
 	private TaiKhoanDao taiKhoanDao;
+	private NhanVienDao nhanVienDao;
 	private NhanVien nhanVien;
-	
 
 	public FormTaiKhoan(EntityManagerFactory emf, NhanVien nhanVien) {
 		this.emf = emf;
+		this.nhanVien = nhanVien;
 		initComponents();
 		fNhap.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE),
 				"Thông tin tài khoản", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20) {
@@ -38,10 +41,20 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 		table.getTableHeader().setPreferredSize(new Dimension(30, 30));
 		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 		taiKhoanDao = new TaiKhoanDao(emf);
+		nhanVienDao = new NhanVienDao(emf);
+		if (nhanVien != null) {
+			jtMa.setText(nhanVien.getMaNhanVien());
+			jtTen.setText(nhanVien.getHoTen());
+			jtMa.setFocusable(false);
+			jtTen.setFocusable(false);
+			addDataArea(nhanVien);
+		}
 		addDatatable();
 	}
 
 	@SuppressWarnings("unchecked")
+	// <editor-fold defaultstate="collapsed" desc="Generated
+	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -57,7 +70,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         jtMK = new javax.swing.JTextField();
         fHienThi = new form.Form();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jtaNV = new javax.swing.JTextArea();
         btnTim = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
@@ -151,12 +164,15 @@ public class FormTaiKhoan extends javax.swing.JPanel {
                 .addContainerGap(43, Short.MAX_VALUE))
         );
 
-        jTextArea1.setBackground(new java.awt.Color(102, 102, 255));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextArea1.setRows(9);
-        jTextArea1.setTabSize(14);
-        jScrollPane2.setViewportView(jTextArea1);
+        jtaNV.setEditable(false);
+        jtaNV.setBackground(new java.awt.Color(102, 102, 255));
+        jtaNV.setColumns(20);
+        jtaNV.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
+        jtaNV.setForeground(new java.awt.Color(255, 255, 255));
+        jtaNV.setRows(9);
+        jtaNV.setTabSize(14);
+        jtaNV.setSelectionColor(new java.awt.Color(0, 51, 204));
+        jScrollPane2.setViewportView(jtaNV);
 
         javax.swing.GroupLayout fHienThiLayout = new javax.swing.GroupLayout(fHienThi);
         fHienThi.setLayout(fHienThiLayout);
@@ -202,6 +218,11 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         btnCapNhat.setBorder(null);
         btnCapNhat.setBorderPainted(false);
         btnCapNhat.setPreferredSize(new java.awt.Dimension(86, 55));
+        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatActionPerformed(evt);
+            }
+        });
 
         btnXoaT.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnXoaT.setText("Xóa trắng");
@@ -232,6 +253,11 @@ public class FormTaiKhoan extends javax.swing.JPanel {
             }
         });
         table.setRowHeight(30);
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -284,23 +310,167 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+    	selectRowTable();
+    }//GEN-LAST:event_tableMouseClicked
+
+	private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCapNhatActionPerformed
+		String userName = jbTK.getText();
+		String password = jtMK.getText();
+		TaiKhoan taiKhoan = taiKhoanDao.getTaiKhoanByUserName(userName);
+		if(taiKhoan == null) {
+			JOptionPane.showMessageDialog(btnCapNhat, "Không tìm thấy tài khoản muốn cập nhật", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		taiKhoan.setTenTaiKhoan(userName);
+		taiKhoan.setMatKhau(password);
+		taiKhoanDao.updateTaiKhoan(taiKhoan);
+		updateTable(taiKhoan);
+		xoaTrang();
+		
+	}// GEN-LAST:event_btnCapNhatActionPerformed
+
 	private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTimActionPerformed
-		// TODO add your handling code here:
+		String ma = jtMa.getText();
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		for(int i = 0; i < table.getRowCount();i++) {
+			if(ma.equalsIgnoreCase(model.getValueAt(i, 0).toString())) {
+				table.setRowSelectionInterval(i, i);
+			}
+		}
+		selectRowTable();
+		
+		
 	}// GEN-LAST:event_btnTimActionPerformed
 
 	private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThemActionPerformed
-		// TODO add your handling code here:
+		String userName = jbTK.getText().trim();
+		String password = jtMK.getText();
+		TaiKhoan taiKhoan = new TaiKhoan(userName, password);
+		int check = checkValue(taiKhoan);
+		if(check > 0) {
+			showMessageValue(check);
+			return;
+		}
+		if(taiKhoanDao.getTaiKhoanByUserName(userName) != null) {
+			JOptionPane.showMessageDialog(btnCapNhat, "Tên tài khoản đã tồn tại", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		nhanVien = nhanVienDao.getNhanVienByMa(jtMa.getText());
+		if(nhanVien == null) {
+			JOptionPane.showMessageDialog(btnCapNhat, "Nhân viên không tồn tại", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		
+		taiKhoan.setNhanVien(nhanVien);
+		taiKhoanDao.addTaiKhoan(taiKhoan);
+		addRowTable(taiKhoan);
+		xoaTrang();
+		
 	}// GEN-LAST:event_btnThemActionPerformed
 
+	
+	private void showMessageValue(int check) {
+		switch (check) {
+		case 1:
+			JOptionPane.showMessageDialog(btnThem, "User không được chưa ký tự đặc biệt và khoảng trắng", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		case 2:
+			JOptionPane.showMessageDialog(btnThem, "Ký tự đầu tiên phải viết hoa, phải cả số và chữ, ít nhất 8 ký tự và không quá 20 ký tự", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			break;
+		}
+	}
+	
+	private int checkValue(TaiKhoan taiKhoan) {
+		if(!taiKhoan.getTenTaiKhoan().matches("^[a-zA-Z0-9]+$")) {
+			return 1;
+		}
+		if(!taiKhoan.getMatKhau().matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,20}$")) {
+			return 2;
+		}
+		return 0;
+	}
+	
+	private void addRowTable(TaiKhoan taiKhoan) {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.addRow(new Object[] {taiKhoan.getNhanVien().getMaNhanVien(), taiKhoan.getNhanVien().getHoTen(),
+					taiKhoan.getTenTaiKhoan(), taiKhoan.getMatKhau()});
+		model.fireTableDataChanged();
+	}
+	
+	private void updateTable(TaiKhoan taiKhoan) {
+		String ma = jtMa.getText();
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		for(int i = 0; i < table.getRowCount();i++) {
+			if(ma.equalsIgnoreCase(model.getValueAt(i, 0).toString())) {
+				model.setValueAt(taiKhoan.getTenTaiKhoan(), i, 2);
+				model.setValueAt(taiKhoan.getMatKhau(), i, 3);
+			}
+		}
+		model.fireTableDataChanged();
+		
+	}
+	private void addDataArea(NhanVien nhanVien) {
+		jtaNV.setText("");
+		String tbMa = 	"Mã nhân viên	: ";
+		String tbCccd = "\n\nCCCD	: ";
+		String tbTen =  "\n\nHọ tên	: ";
+		String tbNs= 	"\n\nNgày sinh	: ";
+		String tbGt = 	"\n\nGiới tính	: ";
+		String tbDc = 	"\n\nĐịa chỉ	: ";
+		String tbEm = 	"\n\nEmail	: ";
+		String tbSdt = 	"\n\nSố điện thoại	: ";
+		String tbTt= 	"\n\nTrạng thái	: ";
+		jtaNV.append(tbMa+nhanVien.getMaNhanVien());
+		jtaNV.append(tbCccd+nhanVien.getCccd());
+		jtaNV.append(tbTen+nhanVien.getHoTen());
+		jtaNV.append(tbNs+nhanVien.getNgaySinh().toString());
+		jtaNV.append(tbGt+(nhanVien.isGioiTinh() ? "Nam" : "Nữ"));
+		jtaNV.append(tbDc+nhanVien.getDiaChi());
+		jtaNV.append(tbEm+nhanVien.getEmail());
+		jtaNV.append(tbSdt+nhanVien.getSdt());
+		jtaNV.append(tbTt+(nhanVien.getTrangThai() ? "Đang làm" : "Nghỉ làm"));
+		
+	}
+	
 	private void btnXoaTActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnXoaTActionPerformed
-		// TODO add your handling code here:
+		xoaTrang();
 	}// GEN-LAST:event_btnXoaTActionPerformed
 
+	private void xoaTrang() {
+		jtMa.setText("");
+		jtMa.setFocusable(true); 
+		jtTen.setText("");
+		jtTen.setFocusable(true);
+		jbTK.setText("");
+		jtMK.setText("");
+	}
+	
+	private void selectRowTable() {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		int index = table.getSelectedRow();
+		if(index < 0) {
+			JOptionPane.showMessageDialog(btnTim, "Chưa chọn tài khoản", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		jtMa.setText(model.getValueAt(index, 0).toString());
+		jtMa.setFocusable(false);
+		jtTen.setText(model.getValueAt(index, 1).toString());
+		jtTen.setFocusable(false);
+		jbTK.setText(model.getValueAt(index, 2).toString());
+		jtMK.setText(model.getValueAt(index, 3).toString());
+		NhanVien nhanVien = nhanVienDao.getNhanVienByMa(jtMa.getText());
+		addDataArea(nhanVien);
+	}
+	
 	private void addDatatable() {
-		
-		List<TaiKhoan> list =taiKhoanDao.getAllTaiKhoan();
-		
-		list.forEach(System.out::println);
+
+		List<TaiKhoan> list = taiKhoanDao.getAllTaiKhoan();
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.setRowCount(0);
 		for (TaiKhoan taiKhoan : list) {
@@ -319,11 +489,11 @@ public class FormTaiKhoan extends javax.swing.JPanel {
     private form.Form fNhap;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jbTK;
     private javax.swing.JTextField jtMK;
     private javax.swing.JTextField jtMa;
     private javax.swing.JTextField jtTen;
+    private javax.swing.JTextArea jtaNV;
     private javax.swing.JLabel lbMK;
     private javax.swing.JLabel lbMa1;
     private javax.swing.JLabel lbTK;

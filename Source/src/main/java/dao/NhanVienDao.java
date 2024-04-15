@@ -76,8 +76,8 @@ public class NhanVienDao {
 	}
 
 
-	public List<NhanVien> getAllNhanVienByMa(String ma) {
-		return em.createNamedQuery("NhanVien.findAllByMa", NhanVien.class).setParameter("ma", "%" + ma + "%")
+	public List<NhanVien> getAllNhanVienByMa(String maloai) {
+		return em.createNamedQuery("NhanVien.findAllByMa", NhanVien.class).setParameter("ma", "%" + maloai + "%")
 				.getResultList();
 	}
 

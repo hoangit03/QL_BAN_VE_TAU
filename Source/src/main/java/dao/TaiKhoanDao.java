@@ -45,8 +45,10 @@ public class TaiKhoanDao {
         return false;
     }
 
+    
     public TaiKhoan getTaiKhoanByUserName(String userName) {
         return em.find(TaiKhoan.class, userName);
+    	
     }
 
     public List<TaiKhoan> getAllTaiKhoan() {

@@ -7,6 +7,9 @@ package entity;
 import java.util.Objects;
 import java.util.Set;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,6 +17,9 @@ import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "KhachHang.findAll", query = "select kh from KhachHang kh")
+})
 public class KhachHang implements Serializable {
 
     @Id
