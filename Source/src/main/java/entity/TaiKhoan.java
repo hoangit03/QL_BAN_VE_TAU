@@ -37,13 +37,17 @@ public class TaiKhoan implements Serializable {
     @JoinColumn(name = "MaNhanVien", unique = true, nullable = false)
     private NhanVien nhanVien;
 
-    public TaiKhoan(String tenTaiKhoan, String matKhau, NhanVien nhanVien) {
-        this.tenTaiKhoan = tenTaiKhoan;
-        this.matKhau = matKhau;
-        this.nhanVien = nhanVien;
-    }
+    
 
-    public TaiKhoan() {
+    public TaiKhoan(String tenTaiKhoan, String matKhau) {
+		super();
+		this.tenTaiKhoan = tenTaiKhoan;
+		this.matKhau = matKhau;
+	}
+
+
+
+	public TaiKhoan() {
     }
     
     
