@@ -296,6 +296,7 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case 4:
+			
 			JOptionPane.showMessageDialog(btnCN, "Số điện thoại không chính xác", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;

@@ -345,9 +345,62 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 	}// GEN-LAST:event_btnTimActionPerformed
 
 	private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThemActionPerformed
+		String userName = jbTK.getText().trim();
+		String password = jtMK.getText();
+		TaiKhoan taiKhoan = new TaiKhoan(userName, password);
+		int check = checkValue(taiKhoan);
+		if(check > 0) {
+			showMessageValue(check);
+			return;
+		}
+		if(taiKhoanDao.getTaiKhoanByUserName(userName) != null) {
+			JOptionPane.showMessageDialog(btnCapNhat, "Tên tài khoản đã tồn tại", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		nhanVien = nhanVienDao.getNhanVienByMa(jtMa.getText());
+		if(nhanVien == null) {
+			JOptionPane.showMessageDialog(btnCapNhat, "Nhân viên không tồn tại", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+		
+		taiKhoan.setNhanVien(nhanVien);
+		taiKhoanDao.addTaiKhoan(taiKhoan);
+		addRowTable(taiKhoan);
+		xoaTrang();
 		
 	}// GEN-LAST:event_btnThemActionPerformed
 
+	
+	private void showMessageValue(int check) {
+		switch (check) {
+		case 1:
+			JOptionPane.showMessageDialog(btnThem, "User không được chưa ký tự đặc biệt và khoảng trắng", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		case 2:
+			JOptionPane.showMessageDialog(btnThem, "Ký tự đầu tiên phải viết hoa, phải cả số và chữ, ít nhất 8 ký tự và không quá 20 ký tự", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			break;
+		}
+	}
+	
+	private int checkValue(TaiKhoan taiKhoan) {
+		if(!taiKhoan.getTenTaiKhoan().matches("^[a-zA-Z0-9]+$")) {
+			return 1;
+		}
+		if(!taiKhoan.getMatKhau().matches("^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d).{8,20}$")) {
+			return 2;
+		}
+		return 0;
+	}
+	
+	private void addRowTable(TaiKhoan taiKhoan) {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.addRow(new Object[] {taiKhoan.getNhanVien().getMaNhanVien(), taiKhoan.getNhanVien().getHoTen(),
+					taiKhoan.getTenTaiKhoan(), taiKhoan.getMatKhau()});
+		model.fireTableDataChanged();
+	}
 	
 	private void updateTable(TaiKhoan taiKhoan) {
 		String ma = jtMa.getText();
