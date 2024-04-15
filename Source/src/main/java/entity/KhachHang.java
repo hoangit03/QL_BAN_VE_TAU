@@ -18,7 +18,8 @@ import java.io.Serializable;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "KhachHang.findAll", query = "select kh from KhachHang kh")
+	@NamedQuery(name = "KhachHang.findAll", query = "select kh from KhachHang kh"),
+	@NamedQuery(name ="KhachHang.findSdt", query = "select kh from KhachHang kh where kh.sdt = :sdt")
 })
 public class KhachHang implements Serializable {
 

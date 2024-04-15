@@ -30,6 +30,16 @@ public class KhachHangDao {
 		return false;
 	}
     
+    // Find KhachHang by Phone number
+    public KhachHang getKhachHangByPhoneNumber(String sdt) {
+		try {
+			return em.createNamedQuery("KhachHang.findSdt", KhachHang.class).setParameter("sdt", sdt)
+					.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+    
 	//  Get list KhachHang
 	public List<KhachHang> getAllKhachHang() {
 		try {
