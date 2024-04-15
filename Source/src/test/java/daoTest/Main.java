@@ -46,9 +46,9 @@ public class Main {
 	
 	@Test
 	void TestNhanVien() {
-		NhanVien list = nhanVienDao.getNhanVienByMa("hahabbaha");
+		NhanVien list = nhanVienDao.getNhanVienByMa("NV21990005");
 //		assertEquals(list.getMaNhanVien(), "NV21990005");
-		System.err.println(list);
+		System.err.println(list.getTaiKhoan().getNhanVien());
 	}
 	
 	void down() {

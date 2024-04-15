@@ -24,17 +24,17 @@ public class GD_QuanLyNhanVien extends javax.swing.JPanel {
         btnNhanVien.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainForm1.showForm(new FormNhanVien(emf));
+                mainForm1.showForm(new FormNhanVien(emf,mainForm1));
             }
         });
         btnTaiKhoan.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainForm1.showForm(new FormTaiKhoan());
+                mainForm1.showForm(new FormTaiKhoan(emf,null));
             }
         });
         
-        mainForm1.showForm(new FormNhanVien(emf));
+        mainForm1.showForm(new FormNhanVien(emf,mainForm1));
     }
 
 
