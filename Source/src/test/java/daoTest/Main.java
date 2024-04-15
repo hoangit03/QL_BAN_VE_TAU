@@ -44,15 +44,13 @@ public class Main {
 //	}
 	
 	
-//	@Test
-//	void TestNhanVien() {
-//		List<NhanVien> list = nhanVienDao.getAllNhanVien();
-//		assertEquals(list.size(), 10);
-//		list.forEach(x->{
-//			System.out.println(x.getTaiKhoan());
-//		});
-//	}
-//	
+	@Test
+	void TestNhanVien() {
+		NhanVien list = nhanVienDao.getNhanVienByMa("hahabbaha");
+//		assertEquals(list.getMaNhanVien(), "NV21990005");
+		System.err.println(list);
+	}
+	
 	void down() {
 		emf.close();
 	}

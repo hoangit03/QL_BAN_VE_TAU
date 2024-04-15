@@ -434,7 +434,6 @@ public class FormNhanVien extends javax.swing.JPanel {
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tableMouseClicked
     	DefaultTableModel model = (DefaultTableModel) table.getModel();
     	int index = table.getSelectedRow();
-    	System.out.println(index);
     	if(index < 0)
     		return;
     
@@ -505,20 +504,27 @@ public class FormNhanVien extends javax.swing.JPanel {
         String email = jtEmail.getText();
         String sdt = jtSDT.getText();
         boolean trangThai = true;
-        NhanVien nhanVien = new NhanVien(CCCD, ten, CCCD, sdt, email, gioiTinh, diaChi, sdt, trangThai, ngaySinh,
+        NhanVien nhanVien = new NhanVien(CCCD, ten, CCCD, sdt, email, gioiTinh, diaChi, "User", trangThai, ngaySinh,
                 LocalDate.now());
         int check = checkData(nhanVien);
         if (check > 0) {
             showMessageValue(check);
         } else {
+        	NhanVien nhanVienCccd = nhanVienDao.getNhanVienByCCCD(nhanVien.getCccd());
+        	if(nhanVienCccd != null) {
+        		JOptionPane.showMessageDialog(btnCapNhat, "Căn cước đã tồn tại", "Thông báo",
+                        JOptionPane.INFORMATION_MESSAGE);
+        	}
+        	
             List<NhanVien> listMNV = nhanVienDao.getAllNhanVienByMa(
-                    "" + nhanVien.getNgayVaoLam().getYear() % 100 + "" + nhanVien.getNgayVaoLam().getYear() % 100);
+                    "" + nhanVien.getNgayVaoLam().getYear() % 100 + "" + nhanVien.getNgaySinh().getYear() % 100);
             String maTemp = "NV" + nhanVien.getNgayVaoLam().getYear() % 100 + ""
                     + nhanVien.getNgayVaoLam().getYear() % 100;
             String index = (listMNV.size() / 100 > 0) ? ("0" + listMNV.size())
                     : (listMNV.size() / 10 > 0) ? "00" + listMNV.size() : "000" + listMNV.size();
             nhanVien.setMaNhanVien(maTemp + index);
             nhanVienDao.addNhanVien(nhanVien);
+            addNhanVienTable(nhanVien);
             xoaTrang();
         }
     }// GEN-LAST:event_btnThemActionPerformed
@@ -543,7 +549,7 @@ public class FormNhanVien extends javax.swing.JPanel {
         String email = jtEmail.getText();
         String sdt = jtSDT.getText();
         boolean trangThai = jcbTrangThai.getSelectedItem().equals("Đang làm");
-        NhanVien nhanVien = new NhanVien(CCCD, ten, CCCD, sdt, email, gioiTinh, diaChi, sdt, trangThai, ngaySinh,
+        NhanVien nhanVien = new NhanVien(CCCD, ten, CCCD, sdt, email, gioiTinh, diaChi, "User", trangThai, ngaySinh,
                 LocalDate.now());
         int check = checkData(nhanVien);
         if (check > 0) {
@@ -551,6 +557,7 @@ public class FormNhanVien extends javax.swing.JPanel {
         } else {
             nhanVien.setMaNhanVien(jtMaNV.getText());
             nhanVienDao.updateNhanVien(nhanVien);
+            updateNhanVienTable(nhanVien);
             xoaTrang();
         }
     }// GEN-LAST:event_btnCapNhatActionPerformed
@@ -588,7 +595,7 @@ public class FormNhanVien extends javax.swing.JPanel {
         if (!nhanVien.getCccd().trim().matches("\\d{12}")) {
             return 1;
         }
-        if (!nhanVien.getHoTen().trim().matches("^[a-zA-Z\\s]+$")) {
+        if (!nhanVien.getHoTen().trim().matches("^[^!@#$%^&*()\\d]+$")) {
             return 2;
         }
         if (Period.between(nhanVien.getNgaySinh(), LocalDate.now()).getYears() <= 18) {
@@ -597,7 +604,7 @@ public class FormNhanVien extends javax.swing.JPanel {
         if (!nhanVien.getDiaChi().trim().matches("^[^!@#$%^&*()]+$")) {
             return 4;
         }
-        if (!nhanVien.getEmail().trim().matches("^[a-zA-Z0-9._%+-]+[@(gmail|email).com]$")) {
+        if (!nhanVien.getEmail().trim().matches("^[a-zA-Z0-9._%+-]+@(gmail|email)\\.com$")) {
             return 5;
         }
         if (!nhanVien.getSdt().trim().matches("^0\\d{9,10}$")) {
@@ -607,6 +614,7 @@ public class FormNhanVien extends javax.swing.JPanel {
     }
 
     private void xoaTrang() {
+    	jtMaNV.setText("");
         jtCCCD.setText("");
         jtTen.setText("");
         jtDiaChi.setText("");
@@ -626,6 +634,30 @@ public class FormNhanVien extends javax.swing.JPanel {
         // TODO add your handling code here:
     }// GEN-LAST:event_btnTaoTaiKhoanActionPerformed
 
+    private void addNhanVienTable(NhanVien nhanVien) {
+    	DefaultTableModel model = (DefaultTableModel) table.getModel();
+    	model.addRow(new Object[]{nhanVien.getMaNhanVien(), nhanVien.getCccd(), nhanVien.getHoTen(),
+            nhanVien.getNgaySinh().toString(), nhanVien.isGioiTinh() ? "Nam" : "Nữ", nhanVien.getDiaChi(),
+            nhanVien.getEmail(), nhanVien.getSdt(), nhanVien.getTrangThai() ? "Đang làm" : "Nghỉ làm"});
+    }
+    
+    private void updateNhanVienTable(NhanVien nhanVien) {
+    	DefaultTableModel model = (DefaultTableModel) table.getModel();
+    	for(int i = 0; i < table.getRowCount();i++) {
+    		String cellValue = table.getValueAt(i, 0).toString();
+    		if(nhanVien.getMaNhanVien().equalsIgnoreCase(cellValue)) {
+    			model.setValueAt(nhanVien.getCccd(), i, 1);
+    			model.setValueAt(nhanVien.getHoTen(), i, 2);
+    			model.setValueAt(nhanVien.getNgaySinh().toString(), i, 3);
+    			model.setValueAt(nhanVien.isGioiTinh() ? "Nam" : "Nữ", i, 4);
+    			model.setValueAt(nhanVien.getDiaChi(), i, 5);
+    			model.setValueAt(nhanVien.getEmail(), i, 6);
+    			model.setValueAt(nhanVien.getSdt(), i, 7);
+    			model.setValueAt(nhanVien.getTrangThai() ? "Đang làm" : "Nghỉ làm", i, 8);
+    		}
+    	}
+    }
+    
     private void addDataTable(List<NhanVien> list) {
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         model.setRowCount(0);
