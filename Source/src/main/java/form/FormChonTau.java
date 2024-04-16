@@ -247,6 +247,8 @@ public class FormChonTau extends javax.swing.JPanel {
 
         scp.setBorder(null);
         scp.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        listTau.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 20, 20));
         scp.setViewportView(listTau);
 
         jpIfToa.setOpaque(false);
@@ -419,8 +421,8 @@ public class FormChonTau extends javax.swing.JPanel {
                     .addComponent(jtGaDen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbGaDen))
                 .addGap(6, 6, 6)
-                .addGroup(jpIfHanhTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rdMotChieu)
+                .addGroup(jpIfHanhTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rdMotChieu, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(rdHoiKhu))
                 .addGroup(jpIfHanhTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpIfHanhTrinhLayout.createSequentialGroup()

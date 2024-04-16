@@ -39,7 +39,7 @@ public class GD_TraCuuNhanVien extends javax.swing.JPanel {
         btnTraCuuKhachHang.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainForm1.showForm(new FormTraCuuKhachHang());
+                mainForm1.showForm(new FormTraCuuKhachHang(emf));
             }
         });
         btnTraCuuKhuyenMai.addActionListener(new ActionListener() {

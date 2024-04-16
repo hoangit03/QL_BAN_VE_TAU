@@ -1,5 +1,7 @@
 package gui;
 
+import dao.KhachHangDao;
+import entity.KhachHang;
 import form.FormNhanVien;
 import form.FormTaiKhoan;
 import form.FormTraCuuHoaDon;
@@ -15,12 +17,17 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class GD_TraCuuKhachHang extends javax.swing.JPanel {
 
     private EntityManagerFactory emf;
+    private KhachHangDao khachHangDao;
+    
     public GD_TraCuuKhachHang(EntityManagerFactory emf) {
+        this.emf = emf;
         initComponents();
         setBorder(new EmptyBorder(10, 10, 10, 10));
         btnTraCuuHoaDon.addActionListener(new ActionListener() {
@@ -29,6 +36,9 @@ public class GD_TraCuuKhachHang extends javax.swing.JPanel {
                 mainForm1.showForm(new FormTraCuuHoaDon());
             }
         });
+        khachHangDao = new KhachHangDao(emf);
+		List<KhachHang> list = khachHangDao.getAllKhachHang();
+		//addDataTable(list);
         btnTraCuuVe.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -38,7 +48,7 @@ public class GD_TraCuuKhachHang extends javax.swing.JPanel {
         btnTraCuuKhachHang.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainForm1.showForm(new FormTraCuuKhachHang());
+                mainForm1.showForm(new FormTraCuuKhachHang(emf));
             }
         });
         btnTraCuuKhuyenMai.addActionListener(new ActionListener() {
@@ -53,9 +63,19 @@ public class GD_TraCuuKhachHang extends javax.swing.JPanel {
                 mainForm1.showForm(new FormTraCuuNhanVien());
             }
         });
-
-        mainForm1.showForm(new FormTraCuuKhachHang());
+            
+        mainForm1.showForm(new FormTraCuuKhachHang(emf));
     }
+//    private void addDataTable(List<KhachHang> list) {
+//		DefaultTableModel model = (DefaultTableModel) model.getModel();
+//		model.setRowCount(0);
+//		for (KhachHang khachHang : list) {
+//			Object[] row = { khachHang.getCccd(), khachHang.getHoTen(), khachHang.getEmail(), khachHang.getSdt(),
+//					khachHang.getDoiTuong() };
+//			model.addRow(row);
+//		}
+//		model.fireTableDataChanged();
+//	}
 
     @Override
     protected void paintChildren(Graphics g) {

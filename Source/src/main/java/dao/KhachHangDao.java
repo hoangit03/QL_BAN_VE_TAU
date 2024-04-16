@@ -49,4 +49,12 @@ public class KhachHangDao {
 			return null;
 		}
 	}
+    public KhachHang getKhachHangByCCCD(String cccd) {
+		try {
+			return em.createNamedQuery("KhachHang.findCccd", KhachHang.class).setParameter("cccd", cccd)
+					.getSingleResult();
+		} catch (Exception e) {
+			return null;
+		}
+	}    
 }
