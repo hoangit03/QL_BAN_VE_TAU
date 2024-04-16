@@ -5,14 +5,23 @@
 package entity;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "KhuyenMai.findAllKMKH",query = "select km from KhuyenMai km where km.loaiKhuyenMai != :loai"),
+	@NamedQuery(name = "KhuyenMai.findAllKMHD",query = "select km from KhuyenMai km where km.loaiKhuyenMai = :loai"),
+	@NamedQuery(name = "KhuyenMai.findAll",query = "select km from KhuyenMai km"),
+	@NamedQuery(name = "KhuyenMai.findAllKMNB",query = "select km from KhuyenMai km where km.maKhuyenMai like :ma")
+})
 public class KhuyenMai implements Serializable {
 
     @Id
@@ -22,15 +31,21 @@ public class KhuyenMai implements Serializable {
     @Column(name = "TenKhuyenMai", nullable = false, columnDefinition = "nvarchar(255)")
     private String tenKhuyenMai;
 
-    @Column(name = "LoaiKhuyenMai", nullable = false)
+    @Column(name = "LoaiKhuyenMai", nullable = false, columnDefinition = "nvarchar(255)")
     private String loaiKhuyenMai;
 
-    @Column(name = "ThoiGianBatDau", nullable = false)
-    private LocalDate thoiGianBatDau;
+    @Column(name = "ThoiGianBatDau", nullable = false,columnDefinition = "datetime")
+    private Date thoiGianBatDau;
 
-    @Column(name = "ThoiGianKetThuc")
-    private LocalDate thoiGianKetThuc;
+    @Column(name = "ThoiGianKetThuc", nullable = false,columnDefinition = "datetime")
+    private Date thoiGianKetThuc;
+    
+    @Column(name = "SoLuongVe")
+    private int soLuongVe;
 
+    @Column(name = "TrangThai")
+    private boolean trangThai;
+    
     @Column(name = "ChietKhau")
     private double chietKhau;
 
@@ -40,16 +55,46 @@ public class KhuyenMai implements Serializable {
     public KhuyenMai() {
     }
 
-    public KhuyenMai(String maKhuyenMai, String tenKhuyenMai, String loaiKhuyenMai, LocalDate thoiGianBatDau, LocalDate thoiGianKetThuc, double chietKhau) {
-        this.maKhuyenMai = maKhuyenMai;
-        this.tenKhuyenMai = tenKhuyenMai;
-        this.loaiKhuyenMai = loaiKhuyenMai;
-        this.thoiGianBatDau = thoiGianBatDau;
-        this.thoiGianKetThuc = thoiGianKetThuc;
-        this.chietKhau = chietKhau;
-    }
+    
 
-    public Ve getVe() {
+
+	public KhuyenMai(String maKhuyenMai, String tenKhuyenMai, String loaiKhuyenMai, Date thoiGianBatDau,
+			Date thoiGianKetThuc, int soLuongVe, boolean trangThai, double chietKhau) {
+		super();
+		this.maKhuyenMai = maKhuyenMai;
+		this.tenKhuyenMai = tenKhuyenMai;
+		this.loaiKhuyenMai = loaiKhuyenMai;
+		this.thoiGianBatDau = thoiGianBatDau;
+		this.thoiGianKetThuc = thoiGianKetThuc;
+		this.soLuongVe = soLuongVe;
+		this.trangThai = trangThai;
+		this.chietKhau = chietKhau;
+	}
+
+
+
+
+	public KhuyenMai(String maKhuyenMai, String tenKhuyenMai, String loaiKhuyenMai, Date thoiGianBatDau,
+			Date thoiGianKetThuc, boolean trangThai) {
+		super();
+		this.maKhuyenMai = maKhuyenMai;
+		this.tenKhuyenMai = tenKhuyenMai;
+		this.loaiKhuyenMai = loaiKhuyenMai;
+		this.thoiGianBatDau = thoiGianBatDau;
+		this.thoiGianKetThuc = thoiGianKetThuc;
+		this.trangThai = trangThai;
+	}
+
+
+	public int getSoLuongVe() {
+		return soLuongVe;
+	}
+
+	public void setSoLuongVe(int soLuongVe) {
+		this.soLuongVe = soLuongVe;
+	}
+
+	public Ve getVe() {
         return ve;
     }
 
@@ -83,23 +128,39 @@ public class KhuyenMai implements Serializable {
         this.loaiKhuyenMai = loaiKhuyenMai;
     }
 
-    public LocalDate getThoiGianBatDau() {
-        return thoiGianBatDau;
-    }
+    
 
-    public void setThoiGianBatDau(LocalDate thoiGianBatDau) {
-        this.thoiGianBatDau = thoiGianBatDau;
-    }
+    public Date getThoiGianBatDau() {
+		return thoiGianBatDau;
+	}
 
-    public LocalDate getThoiGianKetThuc() {
-        return thoiGianKetThuc;
-    }
 
-    public void setThoiGianKetThuc(LocalDate thoiGianKetThuc) {
-        this.thoiGianKetThuc = thoiGianKetThuc;
-    }
+	public void setThoiGianBatDau(Date thoiGianBatDau) {
+		this.thoiGianBatDau = thoiGianBatDau;
+	}
 
-    public double getChietKhau() {
+
+	public Date getThoiGianKetThuc() {
+		return thoiGianKetThuc;
+	}
+
+
+	public void setThoiGianKetThuc(Date thoiGianKetThuc) {
+		this.thoiGianKetThuc = thoiGianKetThuc;
+	}
+
+
+	public boolean isTrangThai() {
+		return trangThai;
+	}
+
+
+	public void setTrangThai(boolean trangThai) {
+		this.trangThai = trangThai;
+	}
+
+
+	public double getChietKhau() {
         return chietKhau;
     }
 

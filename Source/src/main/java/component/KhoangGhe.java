@@ -32,6 +32,7 @@ public class KhoangGhe extends javax.swing.JPanel {
         setEvent(new EventItemChoNgoi() {
             @Override
             public void itemClick(Component com, int vt) {
+//            	Click Ghế
                 System.out.println(vt);
                 setSeleted(com);
             }

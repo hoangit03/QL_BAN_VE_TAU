@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import static java.awt.image.ImageObserver.HEIGHT;
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 import swing.ScrollBar;
@@ -16,6 +17,7 @@ public class FormListDontreo extends javax.swing.JFrame {
 
     public FormListDontreo() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Thông tin đơn treo");
         setLocationRelativeTo(null);
         jpTraCuu.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Thông tin đơn đặt", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.PLAIN,17) {

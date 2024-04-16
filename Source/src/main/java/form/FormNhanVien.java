@@ -512,18 +512,20 @@ public class FormNhanVien extends javax.swing.JPanel {
 		int check = checkData(nhanVien);
 		if (check > 0) {
 			showMessageValue(check);
+			return;
 		} else {
 			NhanVien nhanVienCccd = nhanVienDao.getNhanVienByCCCD(nhanVien.getCccd());
 			if (nhanVienCccd != null) {
 				JOptionPane.showMessageDialog(btnCapNhat, "Căn cước đã tồn tại", "Thông báo",
 						JOptionPane.INFORMATION_MESSAGE);
+				return;
 			}
 
 			List<NhanVien> listMNV = nhanVienDao.getAllNhanVienByMa(
 					"" + nhanVien.getNgayVaoLam().getYear() % 100 + "" + nhanVien.getNgaySinh().getYear() % 100);
 			String maTemp = "NV" + nhanVien.getNgayVaoLam().getYear() % 100 + ""
 					+ nhanVien.getNgayVaoLam().getYear() % 100;
-			String index = (listMNV.size() / 100 > 0) ? ("0" + listMNV.size())
+			String index = (listMNV.size() / 1000 > 0) ? ""+listMNV.size() : (listMNV.size() / 100 > 0) ? ("0" + listMNV.size())
 					: (listMNV.size() / 10 > 0) ? "00" + listMNV.size() : "000" + listMNV.size();
 			nhanVien.setMaNhanVien(maTemp + index);
 			nhanVienDao.addNhanVien(nhanVien);
