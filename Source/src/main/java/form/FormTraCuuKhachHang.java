@@ -1,19 +1,29 @@
 package form;
 
+import dao.KhachHangDao;
+import entity.KhachHang;
+import jakarta.persistence.EntityManagerFactory;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 
 
 
 public class FormTraCuuKhachHang extends javax.swing.JPanel {
+    private EntityManagerFactory emf;
+    private KhachHangDao khachHangDao;
 
-    public FormTraCuuKhachHang() {
+    public FormTraCuuKhachHang(EntityManagerFactory emf) {
+        this.emf = emf;
         initComponents();
         formThongTin.setBorder(new EmptyBorder(0, 0, 0, 0));
         formThongTin.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Thông tin khách hàng", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
@@ -24,7 +34,31 @@ public class FormTraCuuKhachHang extends javax.swing.JPanel {
         table.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 14));
         table.getTableHeader().setPreferredSize(new Dimension(30,30));
         ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-    }
+        khachHangDao = new KhachHangDao(emf);
+		List<KhachHang> list = khachHangDao.getAllKhachHang();
+		addDataTable(list);
+  }
+        private void addDataTable(List<KhachHang> list) {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		model.setRowCount(0);
+                int i = 1;
+		for (KhachHang khachHang : list) {
+			Object[] row = { ""+i++, khachHang.getCccd(), khachHang.getHoTen(), khachHang.getEmail(), khachHang.getSdt(),
+					khachHang.getDoiTuong() };
+			model.addRow(row);
+		}
+		model.fireTableDataChanged();
+	}
+//    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {
+//		
+//	}
+    private void xoaTrang() {
+		jtMaKH.setText("");
+		jtTenKH.setText("");
+		table.clearSelection();
+		List<KhachHang> list = khachHangDao.getAllKhachHang();
+		addDataTable(list);
+	}
 
 
     @SuppressWarnings("unchecked")
@@ -107,6 +141,11 @@ public class FormTraCuuKhachHang extends javax.swing.JPanel {
         btnTraCuu.setBorderPainted(false);
         btnTraCuu.setFocusPainted(false);
         btnTraCuu.setPreferredSize(new java.awt.Dimension(103, 55));
+        btnTraCuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraCuuActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout formThongTinLayout = new javax.swing.GroupLayout(formThongTin);
         formThongTin.setLayout(formThongTinLayout);
@@ -173,9 +212,23 @@ public class FormTraCuuKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_jtTenKHActionPerformed
 
     private void btnXoaTrangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTrangActionPerformed
-        jtMaKH.setText("");
-        jtTenKH.setText("");
+        xoaTrang();
     }//GEN-LAST:event_btnXoaTrangActionPerformed
+
+    private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuActionPerformed
+        // TODO add your handling code here:
+        String tieuChi = "";
+		if (!jtMaKH.getText().trim().equalsIgnoreCase("")) {
+			tieuChi = jtMaKH.getText();
+			List<KhachHang> list = new ArrayList<KhachHang>();
+			KhachHang khachHang = khachHangDao.getKhachHangByCCCD(tieuChi);
+			list.add(khachHang);
+			addDataTable(list);
+		} else if (tieuChi.isEmpty()){
+			JOptionPane.showMessageDialog(btnTraCuu, "Chưa nhập tiêu chí tìm kiếm", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+		} 
+    }//GEN-LAST:event_btnTraCuuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
