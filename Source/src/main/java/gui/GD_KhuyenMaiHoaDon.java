@@ -414,7 +414,7 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
 		String numberMa = "KM" + dinhDangMa.format(timeStart).toString();
 		List<KhuyenMai> list = khuyenMaiDao.getAllKhuyenMaiByNumber(numberMa);
 
-		String index = (list.size() / 10 > 0) ? "" + list.size() : "0" + list.size();
+		String index = (list.size() / 10 > 0) ? "" + (list.size()+1) : "0" + (list.size()+1);
 		khuyenMai.setMaKhuyenMai(numberMa + index);
 		khuyenMai.setSoLuongVe(Integer.parseInt(soL));
 		khuyenMai.setChietKhau(Double.parseDouble(chietK));

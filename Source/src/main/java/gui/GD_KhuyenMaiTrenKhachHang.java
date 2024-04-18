@@ -407,7 +407,7 @@ public class GD_KhuyenMaiTrenKhachHang extends javax.swing.JPanel {
 		String numberMa = "KM" + dinhDangMa.format(timeStart).toString();
 		List<KhuyenMai> list = khuyenMaiDao.getAllKhuyenMaiByNumber(numberMa);
 
-		String index = (list.size() / 10 > 0) ? "" + list.size() : "0" + list.size();
+		String index = (list.size() / 10 > 0) ? "" + list.size()+1 : "0" + list.size()+1;
 		khuyenMai.setMaKhuyenMai(numberMa + index);
 		khuyenMai.setSoLuongVe(0);
 		khuyenMai.setChietKhau(Double.parseDouble(chietK));
@@ -489,7 +489,7 @@ public class GD_KhuyenMaiTrenKhachHang extends javax.swing.JPanel {
 		if (khuyenMai.getThoiGianKetThuc().before(khuyenMai.getThoiGianBatDau())) {
 			return 3;
 		}
-		if (!(Double.parseDouble(trietKhau) < 0 && Double.parseDouble(trietKhau) > 1)) {
+		if (!(Double.parseDouble(trietKhau) > 0 && Double.parseDouble(trietKhau) < 1)) {
 			return 4;
 		}
 		return 0;

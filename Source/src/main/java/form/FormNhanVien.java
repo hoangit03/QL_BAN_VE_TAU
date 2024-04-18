@@ -525,8 +525,8 @@ public class FormNhanVien extends javax.swing.JPanel {
 					"" + nhanVien.getNgayVaoLam().getYear() % 100 + "" + nhanVien.getNgaySinh().getYear() % 100);
 			String maTemp = "NV" + nhanVien.getNgayVaoLam().getYear() % 100 + ""
 					+ nhanVien.getNgayVaoLam().getYear() % 100;
-			String index = (listMNV.size() / 1000 > 0) ? ""+listMNV.size() : (listMNV.size() / 100 > 0) ? ("0" + listMNV.size())
-					: (listMNV.size() / 10 > 0) ? "00" + listMNV.size() : "000" + listMNV.size();
+			String index = (listMNV.size() / 1000 > 0) ? ""+listMNV.size()+1 : (listMNV.size() / 100 > 0) ? ("0" + listMNV.size()+1)
+					: (listMNV.size() / 10 > 0) ? "00" + listMNV.size()+1 : "000" + listMNV.size()+1;
 			nhanVien.setMaNhanVien(maTemp + index);
 			nhanVienDao.addNhanVien(nhanVien);
 			addNhanVienTable(nhanVien);

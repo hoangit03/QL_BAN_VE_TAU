@@ -21,11 +21,6 @@ public class Toa implements Serializable {
 	@Column(name = "LoaiToa")
 	private String loaiToa;
 
-	@Column(name = "SoDungTich")
-	private int soDungTich;
-
-	@Column(name = "NganChua")
-	private int nganChua;
 
 	@Column(name = "ViTri")
 	private int viTri;
@@ -33,15 +28,16 @@ public class Toa implements Serializable {
 	@OneToMany(mappedBy = "toa")
 	private Set<ChoNgoi> lisChoNgois;
 
-	public Toa(String maToa, String loaiToa, int soDungTich, int nganChua, int viTri) {
+	
+
+    public Toa(String maToa, String loaiToa, int viTri) {
+		super();
 		this.maToa = maToa;
 		this.loaiToa = loaiToa;
-		this.soDungTich = soDungTich;
-		this.nganChua = nganChua;
 		this.viTri = viTri;
 	}
 
-    public Set<ChoNgoi> getLisChoNgois() {
+	public Set<ChoNgoi> getLisChoNgois() {
         return lisChoNgois;
     }
 
@@ -78,25 +74,11 @@ public class Toa implements Serializable {
 		this.loaiToa = loaiToa;
 	}
 
-	public int getSoDungTich() {
-		return soDungTich;
-	}
-
-	public void setSoDungTich(int soDungTich) {
-		this.soDungTich = soDungTich;
-	}
-
-	public int getNganChua() {
-		return nganChua;
-	}
-
-	public void setNganChua(int nganChua) {
-		this.nganChua = nganChua;
-	}
-
 	@Override
 	public String toString() {
-		return "Toa{" + "maToa=" + maToa + ", loaiToa=" + loaiToa + ", soDungTich=" + soDungTich + ", nganChua="
-				+ nganChua + '}';
+		return "Toa [maToa=" + maToa + ", loaiToa=" + loaiToa + ", viTri=" + viTri + "]";
 	}
+
+
+	
 }

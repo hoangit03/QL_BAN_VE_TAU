@@ -30,7 +30,7 @@ public class Tau implements Serializable {
     private double tocDo;
 
     @Column(name = "NamSanXuat")
-    private LocalDate namSX;
+    private int namSX;
 
     @OneToMany(mappedBy = "tau")
     private List<ChoNgoi> lisChoNgois;
@@ -38,15 +38,20 @@ public class Tau implements Serializable {
     public Tau() {
     }
 
-    public Tau(String maTau, String loaiTau, String tenTau, double tocDo, LocalDate namSX) {
-        this.maTau = maTau;
-        this.loaiTau = loaiTau;
-        this.tenTau = tenTau;
-        this.tocDo = tocDo;
-        this.namSX = namSX;
-    }
+    
 
-    public List<ChoNgoi> getLisChoNgois() {
+    public Tau(String maTau, String loaiTau, String tenTau, double tocDo, int namSX) {
+		super();
+		this.maTau = maTau;
+		this.loaiTau = loaiTau;
+		this.tenTau = tenTau;
+		this.tocDo = tocDo;
+		this.namSX = namSX;
+	}
+
+
+
+	public List<ChoNgoi> getLisChoNgois() {
         return lisChoNgois;
     }
 
@@ -88,16 +93,27 @@ public class Tau implements Serializable {
         this.tocDo = tocDo;
     }
 
-    public LocalDate getNamSX() {
-        return namSX;
-    }
+    
 
-    public void setNamSX(LocalDate namSX) {
-        this.namSX = namSX;
-    }
+    public int getNamSX() {
+		return namSX;
+	}
 
-    @Override
-    public String toString() {
-        return "Tau{" + "maTau=" + maTau + ", loaiTau=" + loaiTau + ", tenTau=" + tenTau + ", tocDo=" + tocDo + ", namSX=" + namSX + '}';
-    }
+
+
+	public void setNamSX(int namSX) {
+		this.namSX = namSX;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Tau [maTau=" + maTau + ", loaiTau=" + loaiTau + ", tenTau=" + tenTau + ", tocDo=" + tocDo + ", namSX="
+				+ namSX + "]";
+	}
+
+
+
+	
 }
