@@ -33,8 +33,8 @@ public class Chuyen implements Serializable {
     @Column(name = "NgayKhoiHanh")
     private LocalDate ngayKhoiHanh;
 
-    @OneToOne
-    @JoinColumn(name = "MaTau", unique = true, nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "MaTau", nullable = false)
     private Tau tau;
 
     @ManyToOne

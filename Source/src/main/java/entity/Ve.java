@@ -31,14 +31,14 @@ public class Ve implements Serializable {
     @JoinColumn(name = "MaChuyen")
     private Chuyen chuyen;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "MaChoNgoi")
     private ChoNgoi choNgoi;
 
     @OneToMany(mappedBy = "ve")
     private Set<ChiTietVe> lisChiTietVes;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "MaKhuyenMai")
     private KhuyenMai khuyenMai;
 

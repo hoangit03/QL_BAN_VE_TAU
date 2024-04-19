@@ -6,6 +6,7 @@ package entity;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,6 +35,9 @@ public class Tau implements Serializable {
 
     @OneToMany(mappedBy = "tau")
     private List<ChoNgoi> lisChoNgois;
+    
+    @OneToMany(mappedBy = "tau")
+    private List<Chuyen> lisChuyens;
 
     public Tau() {
     }
@@ -47,6 +51,20 @@ public class Tau implements Serializable {
 		this.tenTau = tenTau;
 		this.tocDo = tocDo;
 		this.namSX = namSX;
+	}
+
+    
+    
+
+
+	public List<Chuyen> getLisChuyens() {
+		return lisChuyens;
+	}
+
+
+
+	public void setLisChuyens(List<Chuyen> lisChuyens) {
+		this.lisChuyens = lisChuyens;
 	}
 
 

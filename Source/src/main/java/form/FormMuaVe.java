@@ -2,16 +2,24 @@
 package form;
 
 import form.MainForm;
+import jakarta.persistence.EntityManagerFactory;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import dao.ChoNgoiDao;
+
 public class FormMuaVe extends javax.swing.JPanel {
 
+	private EntityManagerFactory emf;
+	private ChoNgoiDao choNgoiDao;
     private MainForm main;
-    public FormMuaVe(MainForm main) {
+    public FormMuaVe(MainForm main,EntityManagerFactory emf) {
+    	this.emf = emf;
         initComponents();
         this.main = main;
-        
+        choNgoiDao = new ChoNgoiDao(emf);
+        System.out.println(choNgoiDao.getAllChoNgoiTrong(3, 6, true).size());
     }
     
 

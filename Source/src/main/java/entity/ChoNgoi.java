@@ -10,8 +10,10 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 public class ChoNgoi implements Serializable {
@@ -37,8 +39,8 @@ public class ChoNgoi implements Serializable {
     @JoinColumn(name = "MaToa")
     private Toa toa;
 
-    @OneToOne(mappedBy = "choNgoi")
-    private Ve ve;
+    @OneToMany(mappedBy = "choNgoi")
+    private List<Ve> listVes;
 
     public ChoNgoi() {
     }

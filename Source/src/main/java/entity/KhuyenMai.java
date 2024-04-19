@@ -6,12 +6,14 @@ package entity;
 
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 
@@ -49,8 +51,8 @@ public class KhuyenMai implements Serializable {
     @Column(name = "ChietKhau")
     private double chietKhau;
 
-    @OneToOne(mappedBy = "khuyenMai")
-    private Ve ve;
+    @OneToMany(mappedBy = "khuyenMai")
+    private List<Ve> listVes;
 
     public KhuyenMai() {
     }
@@ -94,17 +96,25 @@ public class KhuyenMai implements Serializable {
 		this.soLuongVe = soLuongVe;
 	}
 
-	public Ve getVe() {
-        return ve;
-    }
-
-    public void setVe(Ve ve) {
-        this.ve = ve;
-    }
+	
     
     
 
-    public String getMaKhuyenMai() {
+    public List<Ve> getListVes() {
+		return listVes;
+	}
+
+
+
+
+	public void setListVes(List<Ve> listVes) {
+		this.listVes = listVes;
+	}
+
+
+
+
+	public String getMaKhuyenMai() {
         return maKhuyenMai;
     }
 

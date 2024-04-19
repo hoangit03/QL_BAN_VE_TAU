@@ -20,7 +20,10 @@ import java.io.Serializable;
 public class Ga implements Serializable {
 
     @Id
-    @Column(name = "TenGa", unique = true, nullable = false, columnDefinition = "nvarchar(255)")
+    @Column(name = "ID")
+    private int id;
+    
+    @Column(name = "TenGa", nullable = false, columnDefinition = "nvarchar(255)")
     private String tenGa;
 
     @Column(name = "CuLy")

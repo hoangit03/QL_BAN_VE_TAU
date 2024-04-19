@@ -60,6 +60,9 @@ public class FormChonTau extends javax.swing.JPanel {
         jpIfHanhTrinh.setBackground(Color.white);
         jpIfHanhKhach.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Thông tin khách hàng", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
         }, Color.black));
+        jpChieu.setBackground(Color.white);
+        jpChieu.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Chiều mua vé", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
+        }, Color.black));
         jpIfHanhKhach.setBackground(Color.white);
         jpIfve.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Thông tin vé", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
         }, Color.black));
@@ -202,6 +205,7 @@ public class FormChonTau extends javax.swing.JPanel {
     private void initComponents() {
 
         btnGroup = new javax.swing.ButtonGroup();
+        groupDiVe = new javax.swing.ButtonGroup();
         scp = new javax.swing.JScrollPane();
         listTau = new component.ListTau();
         listIconTau = new component.ListIconTau();
@@ -244,6 +248,9 @@ public class FormChonTau extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jpChieu = new javax.swing.JPanel();
+        jrDi = new javax.swing.JRadioButton();
+        jrVe = new javax.swing.JRadioButton();
 
         scp.setBorder(null);
         scp.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
@@ -329,7 +336,7 @@ public class FormChonTau extends javax.swing.JPanel {
         );
         formTabelVeLayout.setVerticalGroup(
             formTabelVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scpTbVe, javax.swing.GroupLayout.DEFAULT_SIZE, 635, Short.MAX_VALUE)
+            .addComponent(scpTbVe, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
 
         lbGaDi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -609,20 +616,43 @@ public class FormChonTau extends javax.swing.JPanel {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
+        groupDiVe.add(jrDi);
+        jrDi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jrDi.setText("Chiều đi");
+
+        groupDiVe.add(jrVe);
+        jrVe.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jrVe.setText("Chiều về");
+
+        javax.swing.GroupLayout jpChieuLayout = new javax.swing.GroupLayout(jpChieu);
+        jpChieu.setLayout(jpChieuLayout);
+        jpChieuLayout.setHorizontalGroup(
+            jpChieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpChieuLayout.createSequentialGroup()
+                .addGap(275, 275, 275)
+                .addComponent(jrDi)
+                .addGap(163, 163, 163)
+                .addComponent(jrVe)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jpChieuLayout.setVerticalGroup(
+            jpChieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpChieuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpChieuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jrVe)
+                    .addComponent(jrDi))
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(formIfToa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jpChucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formTabelVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 6, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(listIconTau, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 964, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(scp, javax.swing.GroupLayout.PREFERRED_SIZE, 964, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -631,7 +661,14 @@ public class FormChonTau extends javax.swing.JPanel {
                             .addComponent(jpIfve, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jpIfHanhKhach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpIfHanhTrinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jpIfHanhTrinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(formIfToa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jpChucNang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jpChieu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(formTabelVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -651,7 +688,9 @@ public class FormChonTau extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(formIfToa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpChieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jpChucNang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(formTabelVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -687,15 +726,19 @@ public class FormChonTau extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser dateVe;
     private component.FormIfToa formIfToa1;
     private component.FormTabelVe formTabelVe;
+    private javax.swing.ButtonGroup groupDiVe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jpChieu;
     private javax.swing.JPanel jpChucNang;
     private javax.swing.JPanel jpIfHanhKhach;
     private javax.swing.JPanel jpIfHanhTrinh;
     private javax.swing.JPanel jpIfToa;
     private javax.swing.JPanel jpIfve;
+    private javax.swing.JRadioButton jrDi;
+    private javax.swing.JRadioButton jrVe;
     private javax.swing.JTextField jtGaDen;
     private javax.swing.JTextField jtGaDi;
     private javax.swing.JTextField jtGaDi1;

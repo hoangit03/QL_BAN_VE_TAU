@@ -5,13 +5,18 @@
 package gui;
 
 import form.FormMuaVe;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+
 import java.awt.event.ActionListener;
 
 public class GD_MuaVe extends javax.swing.JPanel {
 
-    public GD_MuaVe() {
+	private EntityManagerFactory emf;
+    public GD_MuaVe(EntityManagerFactory emf) {
+    	this.emf = emf;
         initComponents();
-        mainForm1.showForm(new FormMuaVe(mainForm1));
+        mainForm1.showForm(new FormMuaVe(mainForm1,emf));
     }
 
 

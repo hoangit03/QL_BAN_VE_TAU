@@ -152,10 +152,10 @@ CREATE TABLE ChiTietKhuyenMai (
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------1
                                                                           /*DỮ LIỆU KHÁCH HÀNG*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------1
-INSERT INTO KhachHang (CCCD, HoTen, Email, SDT, DoiTuong)
+INSERT INTO KhachHang(CCCD, HoTen, Email, SDT, DoiTuong)
 VALUES 
       ('038203000233', N'Lê Đình Nam',     'fsfsnam7@gmail.com',   '0937546286', N'Sinh viên'),
-	  ('038203000232', N'Lê Đình Long',    'fsfsnam9@gmail.com',   '0937546236', N'Trẻ em'),
+	  ('110620150000', N'Lê Đình Long',    'fsfsnam9@gmail.com',   '0937546236', N'Trẻ em'),
 	  ('038203000231', N'Lê Đình Ho',      'fsfsnam11@gmail.com',  '0937542863',  N'Người lớn'),
 	  ('038203000234', N'Nguyễn Thị Hằng', 'nguyenhang@gmail.com', '0937546290', N'Sinh viên'),
 	  ('038203000235', N'Trần Văn Tùng',   'vantung@gmail.com',    '0937546291', N'Sinh viên'),
@@ -164,16 +164,16 @@ VALUES
 	  ('038203000238', N'Nguyễn Thị Thảo', 'thao@gmail.com',       '0937546294', N'Người lớn'),
 	  ('038203000239', N'Trần Văn Đức',    'vanduc@gmail.com',     '0937546295', N'Người lớn'),
 	  ('038203000240', N'Hoàng Minh Tuấn', 'minhtuan@gmail.com',   '0937546296', N'Người lớn'),
-	  ('038203000241', N'Lê Thị Hồng',     'lehong@gmail.com',     '0937546297', N'Trẻ em'),
+	  ('111120170000', N'Lê Thị Hồng',     'lehong@gmail.com',     '0937546297', N'Trẻ em'),
 	  ('038203000242', N'Nguyễn Văn Hùng', 'vanhung@gmail.com',    '0937546298', N'Sinh viên'),
 	  ('038203000243', N'Trần Thị Mai',    'thimai@gmail.com',     '0937546299', N'Người lớn'),
 	  ('038203000244', N'Lê Văn Sơn',      'vanson@gmail.com',     '0937546300', N'Sinh viên'),
 	  ('038203000245', N'Nguyễn Thị Anh',  'thianh@gmail.com',     '0937546301', N'Người lớn'),
-	  ('038203000246', N'Trần Minh Tuấn',  'minhtuan2@gmail.com',  '0937546302', N'Trẻ em'),
+	  ('061220180000', N'Trần Minh Tuấn',  'minhtuan2@gmail.com',  '0937546302', N'Trẻ em'),
 	  ('038203000247', N'Phạm Thị Hà',     'thiha@gmail.com',      '0937546303', N'Sinh viên'),
 	  ('038203000248', N'Nguyễn Văn Hùng', 'vanhung2@gmail.com',   '0937546304', N'Sinh viên'),
 	  ('038203000249', N'Hoàng Thị Hồng',  'thihong@gmail.com',    '0937546305', N'Người lớn'),
-	  ('038203000250', N'Lê Văn Nam',      'vannam@gmail.com',     '0937546306', N'Trẻ em')
+	  ('210120180000', N'Lê Văn Nam',      'vannam@gmail.com',     '0937546306', N'Trẻ em')
 
 SELECT * FROM KhachHang
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------2
@@ -209,22 +209,7 @@ INSERT INTO TaiKhoan (TenTaiKhoan, MatKhau, MaNhanVien) VALUES
       ('21960008', 'VeryStrongPassword', 'NV21960008'),
       ('21950009', 'Password123',        'NV21950009'),
       ('21940010', 'P@ssw0rd!2024',      'NV21940010');
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------4
-                                                                                /*DỮ LIỆU HOÁ ĐƠN*/
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------4
 
-INSERT INTO HoaDon (MaHoaDon, GioTao, NgayTao, TrangThai, MaNhanVien, CCCD)
-VALUES 
-    ('HD12022300023', '2023-02-12 12:30:45', '2023-02-12 12:30:45', 1, 'NV21020002', '038203000233'),
-    ('HD12022300024', '2023-02-12 13:45:22', '2023-02-12 13:45:22', 0, 'NV21020002', '038203000232'),
-    ('HD12022300025', '2023-02-12 15:20:10', '2023-02-12 15:20:10', 1, 'NV21990005', '038203000231'),
-    ('HD12022300026', '2023-02-12 16:10:55', '2023-02-12 16:10:55', 0, 'NV21020002', '038203000234'),
-    ('HD12022300027', '2023-02-12 17:55:30', '2023-02-12 17:55:30', 1, 'NV21990005', '038203000235'),
-    ('HD12022300028', '2023-02-12 18:40:15', '2023-02-12 18:40:15', 0, 'NV21950009', '038203000245'),
-    ('HD12022300029', '2023-02-12 19:25:00', '2023-02-12 19:25:00', 1, 'NV21020002', '038203000245'),
-    ('HD12022300030', '2023-02-12 20:10:45', '2023-02-12 20:10:45', 0, 'NV21950009', '038203000246'),
-    ('HD12022300031', '2023-02-12 21:30:30', '2023-02-12 21:30:30', 1, 'NV21940010', '038203000248'),
-    ('HD12022300032', '2023-02-12 22:15:15', '2023-02-12 22:15:15', 0, 'NV21940010', '038203000250');
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------5
                                                                                 /*DỮ LIỆU TÀU*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------5
@@ -237,22 +222,26 @@ VALUES
       ('SE04', N'SE', N'Super Express 01', 80, 2015),
       ('TN01', N'TN', N'Tàu thống nhất sô 1', 65, 2003),
       ('TN02', N'TN', N'Tàu thống nhất số 2', 65, 2003);
+
+Select * from Tau
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------6
                                                                                /*DỮ LIỆU TOA*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------6
 	
 INSERT INTO Toa (MaToa, LoaiToa, ViTri)
 VALUES 
-    ('TNMSE101', N'Ngồi mềm điều hoà',  1),
-    ('TNMSE102', N'Ngồi mềm điều hoà',  2),
-	('TNMSE103', N'Ngồi mềm điều hoà',  3),
-    ('TNMSE104', N'Ngồi mềm điều hoà',  4),
-    ('TG6SE105', N'Giường nằm khoang 6', 5),
-    ('TG6SE106', N'Giường nằm khoang 6', 6),
-	('TG6SE107', N'Giường nằm khoang 6', 7),
-    ('TG4SE108', N'Giường nằm khoang 4', 8),
-	('TG4SE109', N'Giường nằm khoang 4', 9),
-    ('TG4SE110', N'Giường nằm khoang 4', 10)
+    ('TNMSE101', 'NM',  1),
+    ('TNMSE102', 'NM',  2),
+	('TNMSE103', 'NM',  3),
+    ('TNMSE104', 'NM',  4),
+    ('TG6SE105', 'G6', 5),
+    ('TG6SE106', 'G6', 6),
+	('TG6SE107', 'G6', 7),
+    ('TG4SE108', 'G4', 8),
+	('TG4SE109', 'G4', 9),
+    ('TG4SE110', 'G4', 10)
+
+select * from Toa
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
                                                                                /*DỮ LIỆU CHONGOI*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
@@ -715,28 +704,28 @@ VALUES
                                                                                /*DỮ LIỆU GA*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
 
-INSERT INTO Ga (TenGa, CuLy, DiaChi,MaTuyen)
+INSERT INTO Ga (ID,TenGa, CuLy, DiaChi,MaTuyen)
 VALUES
-    (N'Sài Gòn', 1726.2,   N'1 Nguyễn Thông, phường 9, quận 3, Thành phố Hồ Chí Minh','B-N'),
-	(N'Gò Vấp', 1722.13, N'Số 1, đường Lê Lai, phường 3, quận Gò Vấp, Thành phố Hồ Chí Minh','B-N'),
-	(N'Bình Triệu', 1718.34, N'Kha Vạn Cân, phường Hiệp Bình Chánh, thành phố Thủ Đức, Thành phố Hồ Chí Minh','B-N'),
-	(N'Sóng Thần', 1710.56, N'Đại lộ Độc Lập, phường An Bình, thành phố Dĩ An, Bình Dương','B-N'),
-	(N'Dĩ An', 1706.71, N'Đường Nguyễn An Ninh, phường Dĩ An, thành phố Dĩ An, Bình Dương','B-N'),
-	(N'Biên Hòa', 1697.48, N'Đường Hưng Đạo Vương, phường Trung Dũng, thành phố Biên Hoà, Đồng Nai','B-N'),
-	(N'Hố Nai', 1688.04, N'Điểu Xiển, phường Tân Hòa, thành phố Biên Hoà, Đồng Nai','B-N'),
-	(N'Trảng Bom', 1677.51, N'Xã Quảng Tiến, huyện Trảng Bom, Đồng Nai','B-N'),
-	(N'Trung Hòa', 1669.75,   N'Xã Trung Hòa, huyện Trảng Bom, Đồng Nai','B-N'),
-	(N'Dầu Giây', 1661.32, N'Thị trấn Dầu Giây, huyện Thống Nhất, Đồng Nai','B-N'),
-	(N'Long Khánh', 1649.36, N'Số 23, đường Trần Phú, phường Xuân An, thành phố Long Khánh, Đồng Nai','B-N'),
-	(N'Bảo Chánh', 1639.83, N'Xã Xuân Thọ, huyện Xuân Lộc, Đồng Nai','B-N'),
-	(N'Gia Ray', 1630.87, N'Xã Xuân Trường, huyện Xuân Lộc, Đồng Nai','B-N'),
-	(N'Trản Táo', 	1619.9, N'Xã Xuân Tâm, huyện Xuân Lộc, Đồng Nai','B-N'),
-	(N'Gia Huynh', 1613.51, N'Xã Gia Huynh, huyện Tánh Linh, Bình Thuận','B-N'),
-	(N'Suối Kiết', 1603.1, N'Xã Suối Kiết, huyện Tánh Linh, Bình Thuận','B-N'),
-	(N'Sông Dinh', 1595.93, N'Xã Suối Kiết, huyện Tánh Linh, Bình Thuận','B-N'),
-	(N'Sông Phan', 	1582.86, N'Xã Sông Phan, huyện Hàm Tân, Bình Thuận','B-N'),
-	(N'Suối Vận', 1567.72, N'Xã Hàm Cường, huyện Hàm Thuận Nam, Bình Thuận','B-N'),
-	(N'Hàm Cường Tây', 	1559.11, N'Xã Hàm Cường, huyện Hàm Thuận Nam, Bình Thuận','B-N');
+    (1,N'Sài Gòn', 1726.2,   N'1 Nguyễn Thông, phường 9, quận 3, Thành phố Hồ Chí Minh','B-N'),
+	(2,N'Gò Vấp', 1722.13, N'Số 1, đường Lê Lai, phường 3, quận Gò Vấp, Thành phố Hồ Chí Minh','B-N'),
+	(3,N'Bình Triệu', 1718.34, N'Kha Vạn Cân, phường Hiệp Bình Chánh, thành phố Thủ Đức, Thành phố Hồ Chí Minh','B-N'),
+	(4,N'Sóng Thần', 1710.56, N'Đại lộ Độc Lập, phường An Bình, thành phố Dĩ An, Bình Dương','B-N'),
+	(5,N'Dĩ An', 1706.71, N'Đường Nguyễn An Ninh, phường Dĩ An, thành phố Dĩ An, Bình Dương','B-N'),
+	(6,N'Biên Hòa', 1697.48, N'Đường Hưng Đạo Vương, phường Trung Dũng, thành phố Biên Hoà, Đồng Nai','B-N'),
+	(7,N'Hố Nai', 1688.04, N'Điểu Xiển, phường Tân Hòa, thành phố Biên Hoà, Đồng Nai','B-N'),
+	(8,N'Trảng Bom', 1677.51, N'Xã Quảng Tiến, huyện Trảng Bom, Đồng Nai','B-N'),
+	(9,N'Trung Hòa', 1669.75,   N'Xã Trung Hòa, huyện Trảng Bom, Đồng Nai','B-N'),
+	(10,N'Dầu Giây', 1661.32, N'Thị trấn Dầu Giây, huyện Thống Nhất, Đồng Nai','B-N'),
+	(11,N'Long Khánh', 1649.36, N'Số 23, đường Trần Phú, phường Xuân An, thành phố Long Khánh, Đồng Nai','B-N'),
+	(12,N'Bảo Chánh', 1639.83, N'Xã Xuân Thọ, huyện Xuân Lộc, Đồng Nai','B-N'),
+	(13,N'Gia Ray', 1630.87, N'Xã Xuân Trường, huyện Xuân Lộc, Đồng Nai','B-N'),
+	(14,N'Trản Táo', 	1619.9, N'Xã Xuân Tâm, huyện Xuân Lộc, Đồng Nai','B-N'),
+	(15,N'Gia Huynh', 1613.51, N'Xã Gia Huynh, huyện Tánh Linh, Bình Thuận','B-N'),
+	(16,N'Suối Kiết', 1603.1, N'Xã Suối Kiết, huyện Tánh Linh, Bình Thuận','B-N'),
+	(17,N'Sông Dinh', 1595.93, N'Xã Suối Kiết, huyện Tánh Linh, Bình Thuận','B-N'),
+	(18,N'Sông Phan', 	1582.86, N'Xã Sông Phan, huyện Hàm Tân, Bình Thuận','B-N'),
+	(19,N'Suối Vận', 1567.72, N'Xã Hàm Cường, huyện Hàm Thuận Nam, Bình Thuận','B-N'),
+	(20,N'Hàm Cường Tây', 	1559.11, N'Xã Hàm Cường, huyện Hàm Thuận Nam, Bình Thuận','B-N');
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
                                                                                /*DỮ LIỆU CHUYEN*/
@@ -744,12 +733,9 @@ VALUES
 
 INSERT INTO Chuyen (MaChuyen, TenChuyen, GioKhoiHanh, NgayKhoiHanh, MaTau, MaTuyen)
 VALUES
-    ('SGNT001', N'Sài Gòn - Nha Trang',  '2023-02-12 12:30:00',  '2023-02-12 12:30:00', 'SE02', 'SG-NT'),
-	('SGNT002', N'Sài Gòn - Nha Trang',  '2023-02-13 06:30:00',  '2023-02-13 06:30:00', 'SE04', 'SG-NT'),
-	('SGNT003', N'Sài Gòn - Nha Trang',  '2023-02-15 09:30:00',  '2023-02-15 09:30:00', 'SE03', 'SG-NT'),
-	('SGDN001', N'Sài Gòn - Đà Nẵng',    '2023-02-13 06:00:00',  '2023-02-13 06:00:00', 'SE01', 'SG-DN'),
-	('SGDN002', N'Sài Gòn - Đà Nẵng',    '2023-02-13 09:00:00',  '2023-02-13 09:00:00', 'SE04', 'SG-DN'),
-	('SGDN003', N'Sài Gòn - Đà Nẵng',    '2023-02-13 12:00:00',  '2023-02-13 12:00:00', 'SE02', 'SG-DN');
+    ('SE01123012052024BN', N'Sài Gòn - Bình Thuận',  '2024-05-12 12:30:00',  '2024-05-12', 'SE01', 'B-N'),
+	('SE01123012052024NB', N'Bình Thuận - Sài Gòn',  '2024-05-12 12:30:00',  '2024-05-12', 'SE01', 'B-N')
+	
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
                                                                                /*DỮ LIỆU KHUYENMAI*/
@@ -771,6 +757,7 @@ SELECT * FROM KhuyenMai;
                                                                                /*DỮ LIỆU CHITIETKHUYENMAI*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
 
+/*
 INSERT INTO ChiTietKhuyenMai(MaHoaDon, MaKhuyenMai)
 VALUES
     ('HD12022300023', 'KM0609202304'),
@@ -778,19 +765,63 @@ VALUES
 	('HD12022300023', 'KM0609202302'),
 	('HD12022300023', 'KM0609202301'),
 	('HD12022300030', 'KM0609202304');
+*/
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------4
+                                                                                /*DỮ LIỆU HOÁ ĐƠN*/
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------4
+
+INSERT INTO HoaDon (MaHoaDon, GioTao, NgayTao, TrangThai, MaNhanVien, CCCD)
+VALUES 
+    ('HD2004240815', '2024-04-20 08:15:00', '2024-04-20', 1, 'NV21020002', '038203000233'),
+	('HD2004240940', '2024-04-20 09:40:00', '2024-04-20', 1, 'NV21020002', '038203000231'),
+	('HD2004241240', '2024-04-20 12:40:00', '2024-04-20', 1, 'NV21020002', '038203000235')
+    
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
                                                                                /*DỮ LIỆU VE*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
 
-INSERT INTO Ve (MaVe, ThoiGianLenTau, MaChuyen, MaChoNgoi, GaDi, GaDen, MaKhuyenMai, CCCD, MaHoaDon)
+INSERT INTO Ve (MaVe, ThoiGianLenTau, MaChuyen, MaChoNgoi, MaKhuyenMai, CCCD, MaHoaDon)
 VALUES
-    ('1230120223001Aplus', '2023-02-12 12:30:00', 'SGNT001', '0621', N'Sài Gòn', N'Nha Trang', 'KM0609202304', '038203000233', 'HD12022300023'),
-	('1230150223001Aplus', '2023-02-15 12:30:00', 'SGDN001', '0202', N'Sài Gòn', N'Đà Nẵng', 'KM0609202303', '038203000246', 'HD12022300030'),
-	('1200170223001Aplus', '2023-02-17 12:00:00', 'SGNT001', '0621', N'Sài Gòn', N'Nha Trang', 'KM0609202304', '038203000233', 'HD12022300023'),
-	('1230120523001Aplus', '2023-05-12 12:30:00', 'SGNT001', '0621', N'Sài Gòn', N'Nha Trang', 'KM0609202304', '038203000233', 'HD12022300023');
+    ('12301205240000Aplus', '2024-05-12 12:30:00', 'SE01123012052024BN', 'SE1G60632',null, '038203000236', 'HD2004240815'),
+	('12301205240001Aplus', '2024-05-12 12:30:00', 'SE01123012052024BN', 'SE1NM0353', 'KM1302202002', '111120170000', 'HD2004240815'),
+	('12301205240002Aplus', '2024-05-12 12:30:00', 'SE01123012052024BN', 'SE1NM0219', null, '038203000238', 'HD2004240940'),
+	('12301205240003Aplus', '2024-05-12 12:30:00', 'SE01123012052024BN', 'SE1G60521', null, '038203000249', 'HD2004240940'),
+	('12301205240004Aplus', '2024-05-12 12:30:00', 'SE01123012052024BN', 'SE1G60522', null, '038203000244', 'HD2004240940'),
+	('12301205240005Aplus', '2024-05-12 12:30:00', 'SE01123012052024BN', 'SE1G60624',null, '038203000236', 'HD2004241240'),
+	('12301205240006Aplus', '2024-05-12 12:30:00', 'SE01123012052024BN', 'SE1NM0354', 'KM1302202002', '111120170000', 'HD2004241240'),
+	('12301205240007Aplus', '2024-05-12 12:30:00', 'SE01123012052024BN', 'SE1NM0218', null, '038203000238', 'HD2004241240'),
+	('12301205240008Aplus', '2024-05-12 12:30:00', 'SE01123012052024BN', 'SE1G60502', null, '038203000249', 'HD2004241240'),
+	('12301205240009Aplus', '2024-05-12 12:30:00', 'SE01123012052024BN', 'SE1G60512', null, '038203000244', 'HD2004241240');
 
 
+
+
+INSERT INTO ChiTietVe (MaVe,ID,Chieu)
+VALUES
+	('12301205240000Aplus',2,1),
+	('12301205240000Aplus',5,0),
+	('12301205240001Aplus',2,1),
+	('12301205240001Aplus',5,0),
+	('12301205240002Aplus',2,1),
+	('12301205240002Aplus',7,0),
+	('12301205240003Aplus',2,1),
+	('12301205240003Aplus',7,0),
+	('12301205240004Aplus',2,1),
+	('12301205240004Aplus',7,0),
+	('12301205240005Aplus',1,1),
+	('12301205240005Aplus',3,0),
+	('12301205240006Aplus',3,1),
+	('12301205240006Aplus',6,0),
+	('12301205240007Aplus',4,1),
+	('12301205240007Aplus',5,0),
+	('12301205240008Aplus',4,1),
+	('12301205240008Aplus',8,0),
+	('12301205240009Aplus',6,1),
+	('12301205240009Aplus',8,0)
 
 
 
@@ -825,6 +856,50 @@ SELECT * FROM ChoNgoi;          --7
 SELECT * FROM Chuyen;           --8
 SELECT * FROM Tuyen;            --9
 SELECT * FROM Ga;               --10
-SELECT * FROM Ve;               --11
+SELECT * FROM Ve;  
+SELECT * FROM ChiTietVe order by MaVe
+--11
         --12
 SELECT * FROM ChiTietKhuyenMai; --13
+
+
+
+--------------Lấy danh sách ghế còn trống tại ga
+SELECT Ve.MaVe, MaChoNgoi, 
+  MAX(CASE WHEN Chieu = 1 THEN ID END) AS ID1, 
+  MAX(CASE WHEN Chieu = 0 THEN ID END) AS ID2
+FROM Ve 
+JOIN ChiTietVe ON Ve.MaVe = ChiTietVe.MaVe 
+WHERE Ve.MaChuyen = 'SE01123012052024BN'
+GROUP BY Ve.MaVe, MaChoNgoi
+
+
+SELECT Ve.MaVe, MaChoNgoi,
+MAX(CASE WHEN Chieu = 1 THEN ID END) AS ID1, 
+MAX(CASE WHEN Chieu = 0 THEN ID END) AS ID2
+FROM Ve 
+JOIN ChiTietVe ON Ve.MaVe = ChiTietVe.MaVe 
+WHERE Ve.MaChuyen = 'SE01123012052024BN'
+GROUP BY Ve.MaVe, MaChoNgoi
+HAVING MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) = 3 
+	OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) < 3 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) > 3) 
+		OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) < 6 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) > 6)
+			OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) > 3 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) < 6)
+
+
+----- Lấy danh sách chổ ngồi chưa đặt chổ
+SELECT * from ChoNgoi
+WHERE MaChoNgoi NOT IN (
+	SELECT MaChoNgoi
+	FROM Ve 
+	JOIN ChiTietVe ON Ve.MaVe = ChiTietVe.MaVe 
+	WHERE Ve.MaChuyen = 'SE01123012052024BN'
+	GROUP BY MaChoNgoi
+	HAVING MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) = 3 
+		OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) < 3 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) > 3) 
+			OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) < 6 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) > 6)
+				OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) > 3 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) < 6))
+
+----- 
+
+SELECT * FROM ChoNgoi

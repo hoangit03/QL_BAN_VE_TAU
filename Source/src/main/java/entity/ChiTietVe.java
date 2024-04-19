@@ -18,7 +18,7 @@ public class ChiTietVe implements Serializable {
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TenGa")
+    @JoinColumn(name = "ID")
     private Ga ga;
 
     @Column(name = "Chieu")

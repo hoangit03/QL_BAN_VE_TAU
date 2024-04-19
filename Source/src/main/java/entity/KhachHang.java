@@ -27,6 +27,9 @@ public class KhachHang implements Serializable {
     @Id
     @Column(name = "CCCD", unique = true, nullable = false)
     private String cccd;
+    
+    @Column(name = "SDT")
+    private String sdt;
 
     @Column(name = "HoTen",nullable = false,columnDefinition = "nvarchar(255)")
     private String hoTen;
@@ -34,8 +37,6 @@ public class KhachHang implements Serializable {
     @Column(name = "Email")
     private String email;
 
-    @Column(name = "SDT")
-    private String sdt;
 
     @Column(name = "DoiTuong",nullable = false,columnDefinition = "nvarchar(255)")
     private String doiTuong;
