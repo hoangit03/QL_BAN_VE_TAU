@@ -429,7 +429,8 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
 
             // Gọi hàm writeToExcel với đường dẫn đã chọn
             khachHangDao.writeToExcel(selectedFilePath+".xls");
-
+            JOptionPane.showMessageDialog(btnXuatEX, "Lưu thành công", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
             System.out.println("File Excel đã được lưu thành công.");
         } else if (returnValue == JFileChooser.CANCEL_OPTION) {
             System.out.println("Người dùng đã hủy lựa chọn.");
