@@ -1,27 +1,46 @@
-
 package form;
 
-import form.MainForm;
+import component.DataSearch;
+import component.PanelSearch;
+import dao.ChuyenDao;
+import dao.GaDao;
+import entity.Chuyen;
+import entity.Ga;
+import event.EvenItemGaClick;
 import jakarta.persistence.EntityManagerFactory;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import dao.ChoNgoiDao;
+import java.awt.Color;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 
 public class FormMuaVe extends javax.swing.JPanel {
 
-	private EntityManagerFactory emf;
-	private ChoNgoiDao choNgoiDao;
+    private EntityManagerFactory emf;
+    private GaDao gaDao;
     private MainForm main;
-    public FormMuaVe(MainForm main,EntityManagerFactory emf) {
-    	this.emf = emf;
+    private JPopupMenu menu;
+    private PanelSearch search;
+    private List<Ga> listGas;
+
+    public FormMuaVe(MainForm main, EntityManagerFactory emf) {
+        this.emf = emf;
+        gaDao = new GaDao(emf);
+        this.listGas = gaDao.getAllGa();
         initComponents();
         this.main = main;
-        choNgoiDao = new ChoNgoiDao(emf);
-        System.out.println(choNgoiDao.getAllChoNgoiTrong(3, 6, true).size());
+        menu = new JPopupMenu();
+        search = new PanelSearch();
+        menu.setBorder(BorderFactory.createLineBorder(new Color(176, 176, 176)));
+        menu.add(search);
+        menu.setFocusable(false);
+        radBtnMotChieu.setSelected(true);
+        ngayVe.setEnabled(false);
+        
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,8 +57,6 @@ public class FormMuaVe extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        cboGaDi = new javax.swing.JComboBox<>();
-        cboGaDen = new javax.swing.JComboBox<>();
         radBtnMotChieu = new javax.swing.JRadioButton();
         radBtnKhuHoi = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
@@ -48,6 +65,8 @@ public class FormMuaVe extends javax.swing.JPanel {
         ngayVe = new com.toedter.calendar.JDateChooser();
         btnTimChuyen = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        txtGaDi = new javax.swing.JTextField();
+        txtGaDen = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(1600, 1000));
 
@@ -56,46 +75,18 @@ public class FormMuaVe extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Ga đi");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ga đến");
 
-        cboGaDi.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        cboGaDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboGaDi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
-        cboGaDi.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                cboGaDiFocusGained(evt);
-            }
-        });
-        cboGaDi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboGaDiActionPerformed(evt);
-            }
-        });
-
-        cboGaDen.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        cboGaDen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cboGaDen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
-        cboGaDen.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                cboGaDenFocusGained(evt);
-            }
-        });
-        cboGaDen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboGaDenActionPerformed(evt);
-            }
-        });
-
         buttonGroup1.add(radBtnMotChieu);
-        radBtnMotChieu.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        radBtnMotChieu.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         radBtnMotChieu.setText("Một chiều");
         radBtnMotChieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +95,7 @@ public class FormMuaVe extends javax.swing.JPanel {
         });
 
         buttonGroup1.add(radBtnKhuHoi);
-        radBtnKhuHoi.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        radBtnKhuHoi.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         radBtnKhuHoi.setText("Khứ hồi");
         radBtnKhuHoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,12 +103,12 @@ public class FormMuaVe extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Ngày đi");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 102, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Ngày về");
@@ -138,7 +129,7 @@ public class FormMuaVe extends javax.swing.JPanel {
         ngayVe.setMaxSelectableDate(new java.util.Date(253370743311000L));
 
         btnTimChuyen.setBackground(new java.awt.Color(204, 204, 255));
-        btnTimChuyen.setFont(new java.awt.Font("Segoe UI Variable", 1, 24)); // NOI18N
+        btnTimChuyen.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         btnTimChuyen.setForeground(new java.awt.Color(102, 102, 255));
         btnTimChuyen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search.png"))); // NOI18N
         btnTimChuyen.setText("Tìm kiếm");
@@ -149,14 +140,39 @@ public class FormMuaVe extends javax.swing.JPanel {
         });
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Thông tin hành trình");
+
+        txtGaDi.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtGaDi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtGaDiMouseClicked(evt);
+            }
+        });
+        txtGaDi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtGaDiKeyReleased(evt);
+            }
+        });
+
+        txtGaDen.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtGaDen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtGaDenMouseClicked(evt);
+            }
+        });
+        txtGaDen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtGaDenKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -171,11 +187,6 @@ public class FormMuaVe extends javax.swing.JPanel {
                         .addGap(141, 141, 141)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboGaDen, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboGaDi, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(149, 149, 149)
                         .addComponent(jLabel4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -187,10 +198,14 @@ public class FormMuaVe extends javax.swing.JPanel {
                             .addComponent(ngayVe, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ngayDi, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtGaDen, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtGaDi, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
-                        .addComponent(btnTimChuyen, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnTimChuyen)))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,13 +213,13 @@ public class FormMuaVe extends javax.swing.JPanel {
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(cboGaDi, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtGaDi, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cboGaDen, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addComponent(txtGaDen, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radBtnKhuHoi)
                     .addComponent(radBtnMotChieu))
@@ -217,7 +232,7 @@ public class FormMuaVe extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ngayVe, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93)
-                .addComponent(btnTimChuyen)
+                .addComponent(btnTimChuyen, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -250,15 +265,6 @@ public class FormMuaVe extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    private void cboGaDenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboGaDenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboGaDenActionPerformed
-
-    private void cboGaDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboGaDiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboGaDiActionPerformed
 
     private void radBtnKhuHoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnKhuHoiActionPerformed
         // TODO add your handling code here:
@@ -267,23 +273,52 @@ public class FormMuaVe extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_radBtnKhuHoiActionPerformed
 
-    private void cboGaDenFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboGaDenFocusGained
-        // TODO add your handling code here:
-        cboGaDen.setSelectedItem(null);
-    }//GEN-LAST:event_cboGaDenFocusGained
-
-    private void cboGaDiFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cboGaDiFocusGained
-        // TODO add your handling code here:
-        cboGaDi.setSelectedItem(null);
-    }//GEN-LAST:event_cboGaDiFocusGained
-
     private void ngayDiFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ngayDiFocusGained
 
     }//GEN-LAST:event_ngayDiFocusGained
 
     private void btnTimChuyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimChuyenActionPerformed
-        // TODO add your handling code here:
-        main.showForm(new FormChonTau(main));
+        String gaDi = txtGaDi.getText();
+        String gaDen = txtGaDen.getText();
+        Ga ga1 = gaDao.getGaByTen(gaDi);
+        Ga ga2 = gaDao.getGaByTen(gaDen);
+        if(ga1 == null) {
+        	JOptionPane.showMessageDialog(btnTimChuyen, "Ga không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        	return;
+        }
+        if(ga2 == null) {
+        	JOptionPane.showMessageDialog(btnTimChuyen, "Ga không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        	return;
+        }
+        if (ngayDi.getDate() == null) {
+			JOptionPane.showMessageDialog(btnTimChuyen, "Chưa chọn ngày đi", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+        if (ngayVe.getDate() == null && radBtnKhuHoi.isSelected()) {
+			JOptionPane.showMessageDialog(btnTimChuyen, "Chưa chọn ngày về", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+        LocalDate ngDi = ngayDi.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate ngVe = null;
+        if(radBtnKhuHoi.isSelected()) {
+        	ngVe = ngayVe.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        	if(ngVe.isAfter(ngDi)) {
+        		JOptionPane.showMessageDialog(btnTimChuyen, "Ngày về phải sau ngày đi", "Thông báo",
+    					JOptionPane.INFORMATION_MESSAGE);
+    			return;
+        	}
+        }
+        
+        List<Chuyen> listChuyens = new ChuyenDao(emf).getAllChuyenByNgay(ngDi, ga1.getId() < ga2.getId());
+        if(listChuyens.size() == 0) {
+        	JOptionPane.showMessageDialog(btnTimChuyen, "Không tìm thấy chuyến phù hợp", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+        }
+        
+        main.showForm(new FormChonTau(emf,main,listChuyens,ga1,ga2,ngDi,ngVe,radBtnMotChieu.isSelected()));
     }//GEN-LAST:event_btnTimChuyenActionPerformed
 
     private void radBtnMotChieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnMotChieuActionPerformed
@@ -293,12 +328,74 @@ public class FormMuaVe extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_radBtnMotChieuActionPerformed
 
+    private void txtGaDiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtGaDiMouseClicked
+    	String text = txtGaDi.getText().toLowerCase();
+        search.setData(search(text));
+        if(search.getItemSize() > 0){
+            menu.show(txtGaDi, 0, txtGaDi.getHeight());
+            menu.setPopupSize(252, (search.getItemSize() * 45));
+        }
+    }//GEN-LAST:event_txtGaDiMouseClicked
+
+    private void txtGaDenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtGaDenMouseClicked
+    	String text = txtGaDen.getText().toLowerCase();
+        search.setData(search(text));
+        if(search.getItemSize() > 0){
+            menu.show(txtGaDen, 0, txtGaDen.getHeight());
+            menu.setPopupSize(252, (search.getItemSize() * 45));
+        }
+    }//GEN-LAST:event_txtGaDenMouseClicked
+
+    private void txtGaDiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGaDiKeyReleased
+        search.addEventClick(new EvenItemGaClick() {
+            public void itemClick(DataSearch data) {
+            	menu.setVisible(false);
+                txtGaDi.setText(data.getText());
+            }
+        });
+        String text = txtGaDi.getText().toLowerCase();
+        search.setData(search(text));
+        if (search.getItemSize() >= 0) {
+            menu.show(txtGaDi, 0, txtGaDi.getHeight());
+            menu.setPopupSize(252, (search.getItemSize() * 45));
+        }
+    }//GEN-LAST:event_txtGaDiKeyReleased
+
+    private void txtGaDenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtGaDenKeyReleased
+        search.addEventClick(new EvenItemGaClick() {
+            public void itemClick(DataSearch data) {
+            	menu.setVisible(false);
+                txtGaDen.setText(data.getText());
+            }
+        });
+        String text = txtGaDen.getText().toLowerCase();
+        search.setData(search(text));
+        if (search.getItemSize() >= 0) {
+            menu.show(txtGaDen, 0, txtGaDen.getHeight());
+            menu.setPopupSize(252, (search.getItemSize() * 45));
+        }
+    }//GEN-LAST:event_txtGaDenKeyReleased
+
+    private List<DataSearch> search(String text) {
+        int limitData = 5;
+        List<DataSearch> list = new ArrayList<DataSearch>();
+        if (text.equalsIgnoreCase("")) {
+            return list;
+        }
+        for (Ga a : listGas) {
+            if (a.getTenGa().toLowerCase().contains(text)) {
+                list.add(new DataSearch(a.getTenGa()));
+                if (list.size() == limitData) {
+                    break;
+                }
+            }
+        }
+        return list;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTimChuyen;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cboGaDen;
-    private javax.swing.JComboBox<String> cboGaDi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -311,5 +408,7 @@ public class FormMuaVe extends javax.swing.JPanel {
     private com.toedter.calendar.JDateChooser ngayVe;
     private javax.swing.JRadioButton radBtnKhuHoi;
     private javax.swing.JRadioButton radBtnMotChieu;
+    private javax.swing.JTextField txtGaDen;
+    private javax.swing.JTextField txtGaDi;
     // End of variables declaration//GEN-END:variables
 }

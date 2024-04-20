@@ -42,13 +42,32 @@ public class Ga implements Serializable {
     public Ga() {
     }
 
-    public Ga(String tenGa, double cuLy, String diaChi) {
-        this.tenGa = tenGa;
-        this.cuLy = cuLy;
-        this.diaChi = diaChi;
-    }
+    
 
-    public String getTenGa() {
+    public Ga(int id, String tenGa, double cuLy, String diaChi) {
+		super();
+		this.id = id;
+		this.tenGa = tenGa;
+		this.cuLy = cuLy;
+		this.diaChi = diaChi;
+	}
+
+    
+
+
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+	public String getTenGa() {
         return tenGa;
     }
 

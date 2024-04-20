@@ -29,6 +29,9 @@ public class Chuyen implements Serializable {
 
     @Column(name = "GioKhoiHanh")
     private LocalTime gioKhoiHanh;
+    
+    @Column(name = "Chieu")
+    private boolean chieu;
 
     @Column(name = "NgayKhoiHanh")
     private LocalDate ngayKhoiHanh;
@@ -47,16 +50,33 @@ public class Chuyen implements Serializable {
     public Chuyen() {
     }
 
-    public Chuyen(String maChuyen, String tenCHuyen, LocalTime gioKhoiHanh, LocalDate ngayKhoiHanh, Tau tau, Tuyen tuyen) {
-        this.maChuyen = maChuyen;
-        this.tenCHuyen = tenCHuyen;
-        this.gioKhoiHanh = gioKhoiHanh;
-        this.ngayKhoiHanh = ngayKhoiHanh;
-        this.tau = tau;
-        this.tuyen = tuyen;
-    }
+    
 
-    public Set<Ve> getLisVes() {
+    public Chuyen(String maChuyen, String tenCHuyen, LocalTime gioKhoiHanh, boolean chieu, LocalDate ngayKhoiHanh) {
+		super();
+		this.maChuyen = maChuyen;
+		this.tenCHuyen = tenCHuyen;
+		this.gioKhoiHanh = gioKhoiHanh;
+		this.chieu = chieu;
+		this.ngayKhoiHanh = ngayKhoiHanh;
+	}
+
+    
+
+
+	public boolean isChieu() {
+		return chieu;
+	}
+
+
+
+	public void setChieu(boolean chieu) {
+		this.chieu = chieu;
+	}
+
+
+
+	public Set<Ve> getLisVes() {
         return lisVes;
     }
 

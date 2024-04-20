@@ -731,10 +731,10 @@ VALUES
                                                                                /*DỮ LIỆU CHUYEN*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
 
-INSERT INTO Chuyen (MaChuyen, TenChuyen, GioKhoiHanh, NgayKhoiHanh, MaTau, MaTuyen)
+INSERT INTO Chuyen (MaChuyen,Chieu, TenChuyen, GioKhoiHanh, NgayKhoiHanh, MaTau, MaTuyen)
 VALUES
-    ('SE01123012052024BN', N'Sài Gòn - Bình Thuận',  '2024-05-12 12:30:00',  '2024-05-12', 'SE01', 'B-N'),
-	('SE01123012052024NB', N'Bình Thuận - Sài Gòn',  '2024-05-12 12:30:00',  '2024-05-12', 'SE01', 'B-N')
+    ('SE01123012052024BN',1, N'Sài Gòn - Bình Thuận',  '2024-05-12 12:30:00',  '2024-05-12', 'SE01', 'B-N'),
+	('SE01123012052024NB',0, N'Bình Thuận - Sài Gòn',  '2024-05-12 12:30:00',  '2024-05-12', 'SE01', 'B-N')
 	
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
@@ -903,3 +903,13 @@ WHERE MaChoNgoi NOT IN (
 ----- 
 
 SELECT * FROM ChoNgoi
+
+
+SELECT * FROM Chuyen WHERE 
+
+
+SELECT * 
+FROM Toa 
+WHERE MaToa IN(
+	SELECT MaToa from Chuyen join Tau on Chuyen.MaTau = Tau.MaTau 
+		join ChoNgoi on ChoNgoi.MaTau = Tau.MaTau WHERE MaChuyen = 'SE01123012052024BN' GROUP BY MaToa)

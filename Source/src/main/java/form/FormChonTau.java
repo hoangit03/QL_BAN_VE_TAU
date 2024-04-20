@@ -8,8 +8,12 @@ import component.FormToaGhe;
 import component.FormToaNam;
 import component.IconToa;
 import component.TauItem;
+import entity.Chuyen;
+import entity.Ga;
 import event.EvenItemTau;
 import event.EventItemToa;
+import jakarta.persistence.EntityManagerFactory;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -17,6 +21,9 @@ import java.awt.Font;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.util.List;
+
 import static java.awt.image.ImageObserver.HEIGHT;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -52,8 +59,23 @@ public class FormChonTau extends javax.swing.JPanel {
     private FormToaGhe formGhe;
     private FormToaNam formNam;
     private FormListDontreo formDonTreo;
+    private EntityManagerFactory emf;
+    private List<Chuyen> listChuyens;
+    private Ga gaDi;
+    private Ga gaDen;
+    private LocalDate ngayDi;
+    private LocalDate ngayVe;
+    private boolean isMotChieu;
 
-    public FormChonTau(MainForm main) {
+    public FormChonTau(EntityManagerFactory emf,MainForm main,List<Chuyen> listChuyens, Ga gaDi, Ga gaDen, LocalDate ngayDi, LocalDate ngayVe,boolean isMotChieu) {
+    	this.emf = emf;
+    	this.main = main;
+    	this.listChuyens = listChuyens;
+    	this.gaDi = gaDi;
+    	this.gaDen = gaDen;
+    	this.ngayDi = ngayDi;
+    	this.ngayVe = ngayVe;
+    	this.isMotChieu = isMotChieu;
         initComponents();
         jpIfHanhTrinh.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Thông tin hành trình", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
         }, Color.black));
@@ -78,7 +100,7 @@ public class FormChonTau extends javax.swing.JPanel {
 //        tbListVe.getColumnModel().getColumn(0).setCellEditor(new TabelFiledTextEditor());
         tbListVe.getTableHeader().setPreferredSize(new Dimension(30,30));
         ((DefaultTableCellRenderer)tbListVe.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        this.main = main;
+        
         AddDataTau();
         AddDataTableVe();
     }
