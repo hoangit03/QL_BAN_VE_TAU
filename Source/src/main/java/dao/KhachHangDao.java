@@ -6,7 +6,17 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class KhachHangDao {
     private EntityManager em;
@@ -57,4 +67,62 @@ public class KhachHangDao {
 			return null;
 		}
 	}    
+    
+    public void writeToExcel(String filePath) {
+		String[] rowHead = {"CCCD", "Họ và tên", "Số điện thoại", "Email", "Đối tượng"};
+		
+		List<KhachHang> khachHang = getAllKhachHang();
+		
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFSheet spreadSheet = workbook.createSheet("Khách hàng");
+		Row headerRow = spreadSheet.createRow(0);
+		
+		//Creating header
+		for (int i = 0; i < rowHead.length; i++) {
+			Cell cell = headerRow.createCell(i);
+			cell.setCellValue(rowHead[i]);
+		}
+		
+		//Creating data rows 
+		for (int i = 0; i < khachHang.size(); i++) {
+			Row dataRow = spreadSheet.createRow(i+1);
+			dataRow.createCell(0).setCellValue(khachHang.get(i).getCccd());
+			dataRow.createCell(1).setCellValue(khachHang.get(i).getHoTen());
+			dataRow.createCell(2).setCellValue(khachHang.get(i).getSdt());
+			dataRow.createCell(3).setCellValue(khachHang.get(i).getEmail());
+			dataRow.createCell(4).setCellValue(khachHang.get(i).getDoiTuong());			
+		}
+		
+		//Write the workbook in file
+		FileOutputStream outputStream;
+		try {
+			outputStream = new FileOutputStream(new File(filePath));
+			
+			workbook.write(outputStream);
+			outputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    
+		System.out.println("Write to excel done...");
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

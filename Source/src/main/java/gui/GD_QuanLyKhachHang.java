@@ -6,14 +6,17 @@ package gui;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.io.File;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -165,6 +168,11 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
 
         btnXuatEX.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnXuatEX.setText("Xuất Excel");
+        btnXuatEX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatEXActionPerformed(evt);
+            }
+        });
 
         btnXT.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnXT.setText("Xóa Trắng");
@@ -405,6 +413,28 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
 			model.addRow(row);
 		}
 		model.fireTableDataChanged();
+	}
+	
+	private void  btnXuatEXActionPerformed(java.awt.event.ActionEvent evt) {
+		// Mở dialog cho phép người dùng chọn đường dẫn
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel files", "xls", "xlsx");
+        fileChooser.setFileFilter(filter);
+        int returnValue = fileChooser.showSaveDialog(null);
+
+        // Xử lý kết quả trả về từ dialog
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            // Lấy đường dẫn được chọn
+            String selectedFilePath = fileChooser.getSelectedFile().getAbsolutePath();
+
+            // Gọi hàm writeToExcel với đường dẫn đã chọn
+            khachHangDao.writeToExcel(selectedFilePath+".xls");
+            JOptionPane.showMessageDialog(btnXuatEX, "Lưu thành công", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("File Excel đã được lưu thành công.");
+        } else if (returnValue == JFileChooser.CANCEL_OPTION) {
+            System.out.println("Người dùng đã hủy lựa chọn.");
+        }
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

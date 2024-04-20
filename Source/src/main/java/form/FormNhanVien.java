@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -462,7 +464,25 @@ public class FormNhanVien extends javax.swing.JPanel {
 	}// GEN-LAST:event_tableMouseClicked
 
 	private void btnExcelActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnExcelActionPerformed
+		// Mở dialog cho phép người dùng chọn đường dẫn
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel files", "xls", "xlsx");
+        fileChooser.setFileFilter(filter);
+        int returnValue = fileChooser.showSaveDialog(null);
 
+        // Xử lý kết quả trả về từ dialog
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            // Lấy đường dẫn được chọn
+            String selectedFilePath = fileChooser.getSelectedFile().getAbsolutePath();
+
+            // Gọi hàm writeToExcel với đường dẫn đã chọn
+            nhanVienDao.writeToExcel(selectedFilePath+".xls");
+            JOptionPane.showMessageDialog(btnExcel, "Lưu thành công", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("File Excel đã được lưu thành công.");
+        } else if (returnValue == JFileChooser.CANCEL_OPTION) {
+            System.out.println("Người dùng đã hủy lựa chọn.");
+        }
 	}// GEN-LAST:event_btnExcelActionPerformed
 
 //	Tìm Nhân viên bằng CCCD hoặc số điện thoại

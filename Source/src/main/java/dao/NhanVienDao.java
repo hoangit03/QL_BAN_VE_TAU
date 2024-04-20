@@ -1,8 +1,18 @@
 
 package dao;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import entity.KhachHang;
 import entity.NhanVien;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -81,4 +91,48 @@ public class NhanVienDao {
 				.getResultList();
 	}
 
+	public void writeToExcel(String filePath) {
+		String[] rowHead = {"Mã nhân viên", "CCCD", "Họ và tên", "Ngày sinh", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái"};
+		
+		List<NhanVien> nhanVien = getAllNhanVien();
+		
+		XSSFWorkbook workbook = new XSSFWorkbook();
+		XSSFSheet spreadSheet = workbook.createSheet("Nhân viên");
+		Row headerRow = spreadSheet.createRow(0);
+		
+		//Creating header
+		for (int i = 0; i < rowHead.length; i++) {
+			Cell cell = headerRow.createCell(i);
+			cell.setCellValue(rowHead[i]);
+		}
+		
+		//Creating data rows 
+		for (int i = 0; i < nhanVien.size(); i++) {
+			Row dataRow = spreadSheet.createRow(i+1);
+			dataRow.createCell(0).setCellValue(nhanVien.get(i).getMaNhanVien());
+			dataRow.createCell(1).setCellValue(nhanVien.get(i).getCccd());
+			dataRow.createCell(2).setCellValue(nhanVien.get(i).getHoTen());
+			dataRow.createCell(3).setCellValue(nhanVien.get(i).getNgaySinh());
+			dataRow.createCell(4).setCellValue(nhanVien.get(i).isGioiTinh()?"Nam":"Nữ");	
+			dataRow.createCell(5).setCellValue(nhanVien.get(i).getDiaChi());
+			dataRow.createCell(6).setCellValue(nhanVien.get(i).getEmail());
+			dataRow.createCell(7).setCellValue(nhanVien.get(i).getSdt());
+			dataRow.createCell(8).setCellValue(nhanVien.get(i).getTrangThai()?"Đang làm":"Nghỉ");
+		}
+		
+		//Write the workbook in file
+		FileOutputStream outputStream;
+		try {
+			outputStream = new FileOutputStream(new File(filePath));
+			
+			workbook.write(outputStream);
+			outputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    
+		System.out.println("Write to excel done...");
+    }
 }
