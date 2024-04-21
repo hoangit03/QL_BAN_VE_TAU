@@ -214,14 +214,14 @@ INSERT INTO TaiKhoan (TenTaiKhoan, MatKhau, MaNhanVien) VALUES
                                                                                 /*DỮ LIỆU TÀU*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------5
 
-INSERT INTO Tau (MaTau, LoaiTau, TenTau, TocDo, NamSanXuat) 
+INSERT INTO Tau (MaTau, LoaiTau, TenTau, TocDo) 
 VALUES
-      ('SE01', N'SE', N'Super Express 01', 80, 2015),
-      ('SE02', N'SE', N'Super Express 01', 80, 2015),
-      ('SE03', N'SE', N'Super Express 01', 80, 2015),
-      ('SE04', N'SE', N'Super Express 01', 80, 2015),
-      ('TN01', N'TN', N'Tàu thống nhất sô 1', 65, 2003),
-      ('TN02', N'TN', N'Tàu thống nhất số 2', 65, 2003);
+      ('SE01', N'SE', N'Super Express 01', 80),
+      ('SE02', N'SE', N'Super Express 01', 80),
+      ('SE03', N'SE', N'Super Express 01', 80),
+      ('SE04', N'SE', N'Super Express 01', 80),
+      ('TN01', N'TN', N'Tàu thống nhất sô 1', 65),
+      ('TN02', N'TN', N'Tàu thống nhất số 2', 65);
 
 Select * from Tau
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------6
@@ -698,42 +698,87 @@ select * from ChoNgoi order by MaChoNgoi
 
 INSERT INTO Tuyen (MaTuyen, TenTuyen)
 VALUES 
-    ('B-N', N'Sài Gòn - Bình Thuận')
+    ('B-N', N'Bình Thuận - Sài Gòn'),
+	('N-B', N'Sài Gòn - Bình Thuận')
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
                                                                                /*DỮ LIỆU GA*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
 
-INSERT INTO Ga (ID,TenGa, CuLy, DiaChi,MaTuyen)
+INSERT INTO Ga (ID,TenGa, CuLy, DiaChi)
 VALUES
-    (1,N'Sài Gòn', 1726.2,   N'1 Nguyễn Thông, phường 9, quận 3, Thành phố Hồ Chí Minh','B-N'),
-	(2,N'Gò Vấp', 1722.13, N'Số 1, đường Lê Lai, phường 3, quận Gò Vấp, Thành phố Hồ Chí Minh','B-N'),
-	(3,N'Bình Triệu', 1718.34, N'Kha Vạn Cân, phường Hiệp Bình Chánh, thành phố Thủ Đức, Thành phố Hồ Chí Minh','B-N'),
-	(4,N'Sóng Thần', 1710.56, N'Đại lộ Độc Lập, phường An Bình, thành phố Dĩ An, Bình Dương','B-N'),
-	(5,N'Dĩ An', 1706.71, N'Đường Nguyễn An Ninh, phường Dĩ An, thành phố Dĩ An, Bình Dương','B-N'),
-	(6,N'Biên Hòa', 1697.48, N'Đường Hưng Đạo Vương, phường Trung Dũng, thành phố Biên Hoà, Đồng Nai','B-N'),
-	(7,N'Hố Nai', 1688.04, N'Điểu Xiển, phường Tân Hòa, thành phố Biên Hoà, Đồng Nai','B-N'),
-	(8,N'Trảng Bom', 1677.51, N'Xã Quảng Tiến, huyện Trảng Bom, Đồng Nai','B-N'),
-	(9,N'Trung Hòa', 1669.75,   N'Xã Trung Hòa, huyện Trảng Bom, Đồng Nai','B-N'),
-	(10,N'Dầu Giây', 1661.32, N'Thị trấn Dầu Giây, huyện Thống Nhất, Đồng Nai','B-N'),
-	(11,N'Long Khánh', 1649.36, N'Số 23, đường Trần Phú, phường Xuân An, thành phố Long Khánh, Đồng Nai','B-N'),
-	(12,N'Bảo Chánh', 1639.83, N'Xã Xuân Thọ, huyện Xuân Lộc, Đồng Nai','B-N'),
-	(13,N'Gia Ray', 1630.87, N'Xã Xuân Trường, huyện Xuân Lộc, Đồng Nai','B-N'),
-	(14,N'Trản Táo', 	1619.9, N'Xã Xuân Tâm, huyện Xuân Lộc, Đồng Nai','B-N'),
-	(15,N'Gia Huynh', 1613.51, N'Xã Gia Huynh, huyện Tánh Linh, Bình Thuận','B-N'),
-	(16,N'Suối Kiết', 1603.1, N'Xã Suối Kiết, huyện Tánh Linh, Bình Thuận','B-N'),
-	(17,N'Sông Dinh', 1595.93, N'Xã Suối Kiết, huyện Tánh Linh, Bình Thuận','B-N'),
-	(18,N'Sông Phan', 	1582.86, N'Xã Sông Phan, huyện Hàm Tân, Bình Thuận','B-N'),
-	(19,N'Suối Vận', 1567.72, N'Xã Hàm Cường, huyện Hàm Thuận Nam, Bình Thuận','B-N'),
-	(20,N'Hàm Cường Tây', 	1559.11, N'Xã Hàm Cường, huyện Hàm Thuận Nam, Bình Thuận','B-N');
+    (1,N'Sài Gòn', 1726.2,   N'1 Nguyễn Thông, phường 9, quận 3, Thành phố Hồ Chí Minh'),
+	(2,N'Gò Vấp', 1722.13, N'Số 1, đường Lê Lai, phường 3, quận Gò Vấp, Thành phố Hồ Chí Minh'),
+	(3,N'Bình Triệu', 1718.34, N'Kha Vạn Cân, phường Hiệp Bình Chánh, thành phố Thủ Đức, Thành phố Hồ Chí Minh'),
+	(4,N'Sóng Thần', 1710.56, N'Đại lộ Độc Lập, phường An Bình, thành phố Dĩ An, Bình Dương'),
+	(5,N'Dĩ An', 1706.71, N'Đường Nguyễn An Ninh, phường Dĩ An, thành phố Dĩ An, Bình Dương'),
+	(6,N'Biên Hòa', 1697.48, N'Đường Hưng Đạo Vương, phường Trung Dũng, thành phố Biên Hoà, Đồng Nai'),
+	(7,N'Hố Nai', 1688.04, N'Điểu Xiển, phường Tân Hòa, thành phố Biên Hoà, Đồng Nai'),
+	(8,N'Trảng Bom', 1677.51, N'Xã Quảng Tiến, huyện Trảng Bom, Đồng Nai'),
+	(9,N'Trung Hòa', 1669.75,   N'Xã Trung Hòa, huyện Trảng Bom, Đồng Nai'),
+	(10,N'Dầu Giây', 1661.32, N'Thị trấn Dầu Giây, huyện Thống Nhất, Đồng Nai'),
+	(11,N'Long Khánh', 1649.36, N'Số 23, đường Trần Phú, phường Xuân An, thành phố Long Khánh, Đồng Nai'),
+	(12,N'Bảo Chánh', 1639.83, N'Xã Xuân Thọ, huyện Xuân Lộc, Đồng Nai'),
+	(13,N'Gia Ray', 1630.87, N'Xã Xuân Trường, huyện Xuân Lộc, Đồng Nai'),
+	(14,N'Trản Táo', 	1619.9, N'Xã Xuân Tâm, huyện Xuân Lộc, Đồng Nai'),
+	(15,N'Gia Huynh', 1613.51, N'Xã Gia Huynh, huyện Tánh Linh, Bình Thuận'),
+	(16,N'Suối Kiết', 1603.1, N'Xã Suối Kiết, huyện Tánh Linh, Bình Thuận'),
+	(17,N'Sông Dinh', 1595.93, N'Xã Suối Kiết, huyện Tánh Linh, Bình Thuận'),
+	(18,N'Sông Phan', 	1582.86, N'Xã Sông Phan, huyện Hàm Tân, Bình Thuận'),
+	(19,N'Suối Vận', 1567.72, N'Xã Hàm Cường, huyện Hàm Thuận Nam, Bình Thuận'),
+	(20,N'Hàm Cường Tây', 	1559.11, N'Xã Hàm Cường, huyện Hàm Thuận Nam, Bình Thuận');
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
                                                                                /*DỮ LIỆU CHUYEN*/
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------7
 
+
+INSERT INTO ChiTietTuyen (MaTuyen,ID)
+VALUES
+	('B-N',1),
+	('B-N',2),
+	('B-N',3),
+	('B-N',4),
+	('B-N',5),
+	('B-N',6),
+	('B-N',7),
+	('B-N',8),
+	('B-N',9),
+	('B-N',10),
+	('B-N',11),
+	('B-N',12),
+	('B-N',13),
+	('B-N',14),
+	('B-N',15),
+	('B-N',16),
+	('B-N',17),
+	('B-N',18),
+	('B-N',19),
+	('B-N',20),
+	('N-B',1),
+	('N-B',2),
+	('N-B',3),
+	('N-B',4),
+	('N-B',5),
+	('N-B',6),
+	('N-B',7),
+	('N-B',8),
+	('N-B',9),
+	('N-B',10),
+	('N-B',11),
+	('N-B',12),
+	('N-B',13),
+	('N-B',14),
+	('N-B',15),
+	('N-B',16),
+	('N-B',17),
+	('N-B',18),
+	('N-B',19),
+	('N-B',20)
+
 INSERT INTO Chuyen (MaChuyen,Chieu, TenChuyen, GioKhoiHanh, NgayKhoiHanh, MaTau, MaTuyen)
 VALUES
-    ('SE01123012052024BN',1, N'Sài Gòn - Bình Thuận',  '2024-05-12 12:30:00',  '2024-05-12', 'SE01', 'B-N'),
+    ('SE01123012052024BN',1, N'Sài Gòn - Bình Thuận',  '2024-05-12 12:30:00',  '2024-05-12', 'SE01', 'N-B'),
 	('SE01123012052024NB',0, N'Bình Thuận - Sài Gòn',  '2024-05-12 12:30:00',  '2024-05-12', 'SE01', 'B-N')
 	
 

@@ -27,7 +27,7 @@ public class Chuyen implements Serializable {
     @Column(name = "TenChuyen", columnDefinition = "nvarchar(255)")
     private String tenCHuyen;
 
-    @Column(name = "GioKhoiHanh")
+    @Column(name = "GioKhoiHanh",columnDefinition = "datetime")
     private LocalTime gioKhoiHanh;
     
     @Column(name = "Chieu")

@@ -35,7 +35,7 @@ public class HoaDon implements Serializable {
     private LocalDate ngayTao;
 
     @Column(name = "TrangThai")
-    private String trangThai;
+    private boolean trangThai;
 
     @ManyToOne
     @JoinColumn(name = "MaNhanVien")
@@ -67,17 +67,17 @@ public class HoaDon implements Serializable {
     
     
 
-    public HoaDon(String maHoaDon, LocalTime gioTao, LocalDate ngayTao, String trangThai, NhanVien nhanVien, KhachHang khachHang, List<Ve> listVes) {
-        this.maHoaDon = maHoaDon;
-        this.gioTao = gioTao;
-        this.ngayTao = ngayTao;
-        this.trangThai = trangThai;
-        this.nhanVien = nhanVien;
-        this.khachHang = khachHang;
-        this.listVes = listVes;
-    }
+   
 
-    public List<Ve> getListVes() {
+    public HoaDon(String maHoaDon, LocalTime gioTao, LocalDate ngayTao, boolean trangThai) {
+		super();
+		this.maHoaDon = maHoaDon;
+		this.gioTao = gioTao;
+		this.ngayTao = ngayTao;
+		this.trangThai = trangThai;
+	}
+
+	public List<Ve> getListVes() {
         return listVes;
     }
 
@@ -109,15 +109,17 @@ public class HoaDon implements Serializable {
         this.ngayTao = ngayTao;
     }
 
-    public String getTrangThai() {
-        return trangThai;
-    }
+    
 
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
-    }
+    public boolean isTrangThai() {
+		return trangThai;
+	}
 
-    public NhanVien getNhanVien() {
+	public void setTrangThai(boolean trangThai) {
+		this.trangThai = trangThai;
+	}
+
+	public NhanVien getNhanVien() {
         return nhanVien;
     }
 
