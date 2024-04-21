@@ -32,9 +32,6 @@ public class Ga implements Serializable {
     @Column(name = "DiaChi", columnDefinition = "nvarchar(255)")
     private String diaChi;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MaTuyen")
-    private Tuyen tuyen;
 
     @OneToMany(mappedBy = "ga")
     private Set<ChiTietVe> lisChiTietVes;
@@ -91,13 +88,6 @@ public class Ga implements Serializable {
         this.diaChi = diaChi;
     }
 
-    public Tuyen getTuyen() {
-        return tuyen;
-    }
-
-    public void setTuyen(Tuyen tuyen) {
-        this.tuyen = tuyen;
-    }
 
     public Set<ChiTietVe> getLisChiTietVes() {
         return lisChiTietVes;

@@ -5,74 +5,74 @@
 package entity;
 
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 
 @Entity
 public class Tuyen implements Serializable {
 
-    @Id
-    @Column(name = "MaTuyen", nullable = false)
-    private String maTuyen;
+	@Id
+	@Column(name = "MaTuyen", nullable = false)
+	private String maTuyen;
 
-    @Column(name = "TenTuyen", columnDefinition = "nvarchar(255)")
-    private String tenTuyen;
+	@Column(name = "TenTuyen", columnDefinition = "nvarchar(255)")
+	private String tenTuyen;
 
-    @OneToMany(mappedBy = "tuyen")
-    private List<Chuyen> listChuyens;
+	@OneToMany(mappedBy = "tuyen")
+	private List<Chuyen> listChuyens;
 
-    @OneToMany(mappedBy = "tuyen")
-    private List<Ga> lisGas;
+	@ManyToMany
+	@JoinTable(name = "ChiTietTuyen", joinColumns = { 
+			@JoinColumn(name = "MaTuyen") }, inverseJoinColumns = {
+			@JoinColumn(name = "ID") })
+	private Set<Ga> listGas;
 
-    public Tuyen() {
-    }
+	public Tuyen() {
+	}
 
-    public Tuyen(String maTuyen, String tenTuyen) {
-        this.maTuyen = maTuyen;
-        this.tenTuyen = tenTuyen;
+	public Tuyen(String maTuyen, String tenTuyen) {
+		this.maTuyen = maTuyen;
+		this.tenTuyen = tenTuyen;
 
-    }
+	}
 
-    public List<Chuyen> getListChuyens() {
-        return listChuyens;
-    }
+	public List<Chuyen> getListChuyens() {
+		return listChuyens;
+	}
 
-    public void setListChuyens(List<Chuyen> listChuyens) {
-        this.listChuyens = listChuyens;
-    }
+	public void setListChuyens(List<Chuyen> listChuyens) {
+		this.listChuyens = listChuyens;
+	}
 
-    public List<Ga> getLisGas() {
-        return lisGas;
-    }
+	
 
-    public void setLisGas(List<Ga> lisGas) {
-        this.lisGas = lisGas;
-    }
-    
-    
+	public String getMaTuyen() {
+		return maTuyen;
+	}
 
-    public String getMaTuyen() {
-        return maTuyen;
-    }
+	public void setMaTuyen(String maTuyen) {
+		this.maTuyen = maTuyen;
+	}
 
-    public void setMaTuyen(String maTuyen) {
-        this.maTuyen = maTuyen;
-    }
+	public String getTenTuyen() {
+		return tenTuyen;
+	}
 
-    public String getTenTuyen() {
-        return tenTuyen;
-    }
+	public void setTenTuyen(String tenTuyen) {
+		this.tenTuyen = tenTuyen;
+	}
 
-    public void setTenTuyen(String tenTuyen) {
-        this.tenTuyen = tenTuyen;
-    }
-
-    @Override
-    public String toString() {
-        return "Tuyen{" + "maTuyen=" + maTuyen + ", tenTuyen=" + tenTuyen + '}';
-    }
+	@Override
+	public String toString() {
+		return "Tuyen{" + "maTuyen=" + maTuyen + ", tenTuyen=" + tenTuyen + '}';
+	}
 }
