@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.util.List;
 
+import javax.swing.table.DefaultTableModel;
+
 import entity.ChoNgoi;
 
 
@@ -14,8 +16,12 @@ import entity.ChoNgoi;
 public class FormToaGhe extends javax.swing.JPanel {
 
 	private List<ChoNgoi> list;
-    public FormToaGhe(List<ChoNgoi> list) {
+	private List<ChoNgoi> listChon;
+	private DefaultTableModel model;
+	
+    public FormToaGhe(List<ChoNgoi> list,List<ChoNgoi> listChon,DefaultTableModel model) {
     	this.list = list;
+    	this.model = model;
         initComponents();
         setOpaque(false);
         addDataKhoangGhe();
@@ -32,7 +38,7 @@ public class FormToaGhe extends javax.swing.JPanel {
     }
 
     public void addItemKhoang(int from, int to){
-        KhoangGhe item = new KhoangGhe(list,from,to);
+        KhoangGhe item = new KhoangGhe(list,model,from,to);
         listKhoangGhe.add(item);
         listKhoangGhe.repaint();
         listKhoangGhe.revalidate();

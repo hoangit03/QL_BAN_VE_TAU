@@ -42,6 +42,8 @@ import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+
 import model.Model_Tau;
 import swing.ScrollBar;
 import swing.ScrollBar2;
@@ -85,6 +87,8 @@ public class FormChonTau extends javax.swing.JPanel {
     private List<Ga> listGas;
     private ToaDao toaDao;
     private ChoNgoiDao choNgoiDao;
+    private List<ChoNgoi> listChoChon;
+    DefaultTableModel model;
 
     public FormChonTau(EntityManagerFactory emf,MainForm main,List<Chuyen> listChuyens, Ga gaDi, Ga gaDen, LocalDate ngayDi, LocalDate ngayVe,boolean isMotChieu) {
     	this.emf = emf;
@@ -101,7 +105,9 @@ public class FormChonTau extends javax.swing.JPanel {
         this.listGas = gaDao.getAllGa();
         this.gaDau = gaDao.layGaDau();
         this.gaCuoi = gaDao.layGaCuoi();
+        this.listChoChon = new ArrayList<ChoNgoi>(); 
         initComponents();
+        model = (DefaultTableModel) tbListVe.getModel();
         jpIfHanhTrinh.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Thông tin hành trình", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
         }, Color.black));
         jpIfHanhTrinh.setBackground(Color.white);
@@ -127,13 +133,13 @@ public class FormChonTau extends javax.swing.JPanel {
         ((DefaultTableCellRenderer)tbListVe.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         AddDataTau();
         AddDataTableVe();
-        
         menu = new JPopupMenu();
         search = new PanelSearch();
         menu.setBorder(BorderFactory.createLineBorder(new Color(176, 176, 176)));
         menu.add(search);
         menu.setFocusable(false);
         updateDataChuyen();
+        
     }
 
 //    Du lieu toa
@@ -185,17 +191,18 @@ public class FormChonTau extends javax.swing.JPanel {
         }
         ((IconToa) item).setSeleted(true);
         int index = toa.getViTri();
+        
         if (index < 5) {
         	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), maChuyen, index);
-            spListKhoang.setViewportView(formGhe = new FormToaGhe(lisNgois));
+            spListKhoang.setViewportView(formGhe = new FormToaGhe(lisNgois,listChoChon,model));
             lbifToa.setText("Toa " + index + ": Ngồi mền điều hòa");
         } else if (index < 8) {
         	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), maChuyen, index);
-            spListKhoang.setViewportView(formNam = new FormToaNam(6,lisNgois));
+            spListKhoang.setViewportView(formNam = new FormToaNam(6,lisNgois,listChoChon,model));
             lbifToa.setText("Toa " + index + ": Giường nằm khoang 6 điều hòa");
         } else {
         	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), maChuyen, index);
-            spListKhoang.setViewportView(formNam = new FormToaNam(4,lisNgois));
+            spListKhoang.setViewportView(formNam = new FormToaNam(4,lisNgois,listChoChon,model));
             lbifToa.setText("Toa " + index + ": Giường nằm khoang 4 điều hòa");
         }
     }
@@ -402,10 +409,7 @@ public class FormChonTau extends javax.swing.JPanel {
         tbListVe.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tbListVe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "CCCD", "Họ tên", "Đối tượng", "Thông tin vé", "Giá vé", "Giảm đối tương", "Thành tiền"

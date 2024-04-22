@@ -7,6 +7,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.table.DefaultTableModel;
+
 import entity.ChoNgoi;
 
 public class KhoangGhe extends javax.swing.JPanel {
@@ -23,9 +25,11 @@ public class KhoangGhe extends javax.swing.JPanel {
     
     private EventItemChoNgoi event;
     private List<ChoNgoi> list;
+    private DefaultTableModel model;
 
-    public KhoangGhe(List<ChoNgoi> list,int from, int to) {
+    public KhoangGhe(List<ChoNgoi> list, DefaultTableModel model,int from, int to) {
     	this.list = list;
+    	this.model = model;
         initComponents();
         setOpaque(false);
         addDataGhe(from,to);
@@ -35,22 +39,43 @@ public class KhoangGhe extends javax.swing.JPanel {
     private void addDataGhe(int from, int to){
         setEvent(new EventItemChoNgoi() {
             @Override
-            public void itemClick(Component com, int vt) {
+            public void itemClick(Component com, ChoNgoi choNgoi) {
 //            	Click Ghế
-                System.out.println(vt);
+                System.out.println(choNgoi);
                 setSeleted(com);
             }
-        });     
-        System.out.println(list);
+        }); 
+        int temp;
+        for(int i = from; i <= to;i++) {
+        	temp = getIndexChoNgoiTrong(i);
+        	if(temp >= 0)
+        		addItemGhe(i, list.get(temp), false);
+        	else
+        		addItemGhe(i, null, true);
+        }
+        
     }
-    public void addItemGhe(int vt,ChoNgoi choNgoi){
+    
+    private int getIndexChoNgoiTrong(int vt) {
+    	int count = 0;
+    	for(ChoNgoi choNgoi : list) {
+    		if(choNgoi.getViTri()==vt)
+    			return count;
+    		count++;
+    			
+    	}
+    	return -1;
+    }
+    
+    public void addItemGhe(int vt,ChoNgoi choNgoi,boolean select){
         ChoNgoiItem item = new ChoNgoiItem();
         item.setChoNgoi(vt);
         item.setChoNgoi(choNgoi);
+        item.setSelected(select);
         item.addMouseListener(new MouseAdapter(){
             @Override
             public void mousePressed(MouseEvent e) {
-                event.itemClick(item, vt);
+                event.itemClick(item,choNgoi);
             }
             
         });

@@ -5,13 +5,20 @@ import event.EventItemChoNgoi;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+
+import javax.swing.table.DefaultTableModel;
+
+import entity.ChoNgoi;
 
 
 public class KhoangNam extends javax.swing.JPanel {
 
     
-    private int vtToa;
+    private int vtKhoang;
     private int soLuong;
+    private List<ChoNgoi> list;
+    private DefaultTableModel model;
 
     public int getSoLuong() {
         return soLuong;
@@ -22,19 +29,22 @@ public class KhoangNam extends javax.swing.JPanel {
     }
     
 
-    public int getVtToa() {
-        return vtToa;
+    public int getVtKhoang() {
+        return vtKhoang;
     }
 
-    public void setVtToa(int vtToa) {
-        this.vtToa = vtToa;
-        lbVT.setText("Khoang "+vtToa);
+    public void setVtKhoang(int vtKhoang) {
+        this.vtKhoang = vtKhoang;
+        lbVT.setText("Khoang "+vtKhoang);
     }
     
     
-    public KhoangNam(int soLuong) {
+    public KhoangNam(int vtKhoang,int soLuong,List<ChoNgoi> list, DefaultTableModel model) {
         initComponents();
         this.soLuong = soLuong;
+        this.list = list;
+        this.vtKhoang = vtKhoang;
+        this.model = model;
         setOpaque(false);
         addDataGhe();
     }
@@ -51,22 +61,42 @@ public class KhoangNam extends javax.swing.JPanel {
     private void addDataGhe(){
         setEvent(new EventItemChoNgoi() {
             @Override
-            public void itemClick(Component com, int vt) {
-                System.out.println(vt);
+            public void itemClick(Component com, ChoNgoi choNgoi) {
+                System.out.println(choNgoi);
                 setSeleted(com);
             }
         });     
-        for(int i = 0; i < soLuong; i++){
-            addItemGhe(i+1);
+        int temp = 0;
+        for(int i = 1; i <= soLuong; i++){
+        	temp = getIndexChoNgoiTrong(i);
+            if(temp >= 0) {
+            	addItemGhe(i, list.get(temp), false);
+            }
+            else
+            	addItemGhe(i, null, true);
         }
     }
-    public void addItemGhe(int vt){
+    
+    private int getIndexChoNgoiTrong(int vt) {
+    	int count = 0;
+    	for(ChoNgoi choNgoi : list) {
+    		if(choNgoi.getViTri()==vt && choNgoi.getMoTa().equals("Khoang "+vtKhoang))
+    			return count;
+    		count++;
+    			
+    	}
+    	return -1;
+    }
+    
+    public void addItemGhe(int vt,ChoNgoi choNgoi,boolean select){
         ChoNgoiItem item = new ChoNgoiItem();
+        item.setChoNgoi(choNgoi);
         item.setChoNgoi(vt);
+        item.setSelected(select);
         item.addMouseListener(new MouseAdapter(){
             @Override
             public void mousePressed(MouseEvent e) {
-                event.itemClick(item, vt);
+                event.itemClick(item, choNgoi);
             }
             
         });

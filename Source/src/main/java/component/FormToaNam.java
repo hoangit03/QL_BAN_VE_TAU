@@ -3,32 +3,35 @@ package component;
 
 import java.util.List;
 
+import javax.swing.table.DefaultTableModel;
+
 import entity.ChoNgoi;
 
 public class FormToaNam extends javax.swing.JPanel {
 
     private int soLuong;
     private List<ChoNgoi> list;
-    public FormToaNam(int soluong,List<ChoNgoi> list) {
+    private List<ChoNgoi> listChon;
+    private DefaultTableModel model;
+    public FormToaNam(int soluong,List<ChoNgoi> list,List<ChoNgoi> listChon,DefaultTableModel model) {
         initComponents();
         setOpaque(false);
         this.list = list;
         this.soLuong = soluong;
+        this.model = model;
         addDataKhoangGhe();
         repaint();
         revalidate();
     }
     
     private void addDataKhoangGhe(){
-        for(int i=0; i< 6; i++){
-            addItemKhoang(i+1,soLuong);
+        for(int i=1; i<= 6; i++){
+            addItemKhoang(i,soLuong);
         }
     }
 
     public void addItemKhoang(int i,int soLuong){
-//        nằm 6
-        KhoangNam item = new KhoangNam(soLuong);
-        item.setVtToa(i);
+        KhoangNam item = new KhoangNam(i,soLuong,list,model);
         listKhoangNam.add(item);
         listKhoangNam.repaint();
         listKhoangNam.revalidate();

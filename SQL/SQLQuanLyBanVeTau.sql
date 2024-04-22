@@ -936,7 +936,22 @@ HAVING MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) = 3
 ----- Lấy danh sách chổ ngồi chưa đặt chổ vị trí toa
 SELECT * 
 from ChoNgoi join Toa on ChoNgoi.MaToa = Toa.MaToa
-WHERE Toa.ViTri = 3 AND MaChoNgoi NOT IN (
+WHERE Toa.ViTri = 5 AND MaChoNgoi  IN (
+	SELECT MaChoNgoi
+	FROM Ve 
+	JOIN ChiTietVe ON Ve.MaVe = ChiTietVe.MaVe
+	WHERE Ve.MaChuyen = 'SE01123012052024BN' 
+	GROUP BY MaChoNgoi
+	HAVING MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) = 1 
+		OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) < 1 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) > 1) 
+			OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) < 11 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) > 11)
+				OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) > 1 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) < 11))
+
+----- 
+
+SELECT * 
+from ChoNgoi join Toa on ChoNgoi.MaToa = Toa.MaToa
+WHERE MaChoNgoi IN (
 	SELECT MaChoNgoi
 	FROM Ve 
 	JOIN ChiTietVe ON Ve.MaVe = ChiTietVe.MaVe
@@ -946,10 +961,6 @@ WHERE Toa.ViTri = 3 AND MaChoNgoi NOT IN (
 		OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) < 3 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) > 3) 
 			OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) < 6 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) > 6)
 				OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) > 3 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) < 6))
-
------ 
-
-SELECT * FROM ChoNgoi
 
 
 

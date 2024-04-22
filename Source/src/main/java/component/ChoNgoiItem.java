@@ -60,7 +60,6 @@ public class ChoNgoiItem extends javax.swing.JPanel {
     
     public void setChoNgoi(int viTri){
         this.viTri = viTri;
-        this.choNgoi = choNgoi;
         lbVT.setText(viTri+"");
     }
     
@@ -97,8 +96,12 @@ public class ChoNgoiItem extends javax.swing.JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(new Color(255, 255, 255));
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
-        if (selected) {
+        if (selected && choNgoi != null) {
             g2.setColor(new Color(53, 120, 189));
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+        }
+        if(choNgoi == null) {
+        	g2.setColor(new Color(229, 8, 8));
             g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
         }
         g2.dispose();

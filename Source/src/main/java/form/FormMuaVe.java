@@ -7,7 +7,6 @@ import dao.GaDao;
 import dao.TuyenDao;
 import entity.Chuyen;
 import entity.Ga;
-import entity.Tuyen;
 import event.EvenItemGaClick;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.Color;
