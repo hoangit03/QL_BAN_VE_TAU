@@ -2,14 +2,22 @@ package form;
 
 import cell.TabelFiledTextEditor;
 import cell.TableFieldTextCellRender;
+import component.DataSearch;
 import component.FormListDontreo;
 import component.FormTabelVe;
 import component.FormToaGhe;
 import component.FormToaNam;
 import component.IconToa;
+import component.PanelSearch;
 import component.TauItem;
+import dao.ChoNgoiDao;
+import dao.GaDao;
+import dao.ToaDao;
+import entity.ChoNgoi;
 import entity.Chuyen;
 import entity.Ga;
+import entity.Toa;
+import event.EvenItemGaClick;
 import event.EvenItemTau;
 import event.EventItemToa;
 import jakarta.persistence.EntityManagerFactory;
@@ -22,13 +30,16 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import static java.awt.image.ImageObserver.HEIGHT;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 
 import javax.swing.JLabel;
+import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import model.Model_Tau;
@@ -53,19 +64,27 @@ public class FormChonTau extends javax.swing.JPanel {
         return eventToa;
     }
 
+    private Ga gaDau;
+    private Ga gaCuoi;
+    private EntityManagerFactory emf;
     private EventItemToa eventToa;
     private EvenItemTau eventTau;
     private MainForm main;
     private FormToaGhe formGhe;
     private FormToaNam formNam;
     private FormListDontreo formDonTreo;
-    private EntityManagerFactory emf;
     private List<Chuyen> listChuyens;
     private Ga gaDi;
     private Ga gaDen;
     private LocalDate ngayDi;
     private LocalDate ngayVe;
     private boolean isMotChieu;
+    private GaDao gaDao;
+    private JPopupMenu menu;
+    private PanelSearch search;
+    private List<Ga> listGas;
+    private ToaDao toaDao;
+    private ChoNgoiDao choNgoiDao;
 
     public FormChonTau(EntityManagerFactory emf,MainForm main,List<Chuyen> listChuyens, Ga gaDi, Ga gaDen, LocalDate ngayDi, LocalDate ngayVe,boolean isMotChieu) {
     	this.emf = emf;
@@ -76,6 +95,12 @@ public class FormChonTau extends javax.swing.JPanel {
     	this.ngayDi = ngayDi;
     	this.ngayVe = ngayVe;
     	this.isMotChieu = isMotChieu;
+    	this.toaDao = new ToaDao(emf);
+    	this.gaDao = new GaDao(emf);
+    	this.choNgoiDao = new ChoNgoiDao(emf);
+        this.listGas = gaDao.getAllGa();
+        this.gaDau = gaDao.layGaDau();
+        this.gaCuoi = gaDao.layGaCuoi();
         initComponents();
         jpIfHanhTrinh.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Thông tin hành trình", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
         }, Color.black));
@@ -100,54 +125,58 @@ public class FormChonTau extends javax.swing.JPanel {
 //        tbListVe.getColumnModel().getColumn(0).setCellEditor(new TabelFiledTextEditor());
         tbListVe.getTableHeader().setPreferredSize(new Dimension(30,30));
         ((DefaultTableCellRenderer)tbListVe.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        
         AddDataTau();
         AddDataTableVe();
+        
+        menu = new JPopupMenu();
+        search = new PanelSearch();
+        menu.setBorder(BorderFactory.createLineBorder(new Color(176, 176, 176)));
+        menu.add(search);
+        menu.setFocusable(false);
+        updateDataChuyen();
     }
 
 //    Du lieu toa
-    private void AddDataToa(String name) {
+    private void AddDataToa(Chuyen chuyen) {
         listIconTau.removeAll();
         setEventToa(new EventItemToa() {
             @Override
-            public void itemClick(Component com, int vt) {
-                setSelectedToa(com);
-
+            public void itemClick(Component com, Toa toa) {
+                setSelectedToa(com,toa,chuyen.getMaChuyen());
             }
 
         });
         IconToa dau = new IconToa();
-        dau.setData(new ImageIcon(getClass().getResource("/icon/trainHead.png")), name);
+        dau.setData(new ImageIcon(getClass().getResource("/icon/trainHead.png")), chuyen.getTau().getMaTau());
         listIconTau.add(dau);
-        listIconTau.repaint();
-        listIconTau.revalidate();
-        for (int j = 0; j <= 9; j++) {
-            addItemToa(j + 1);
+        List<Toa> listToas = toaDao.getAllToaByMaChuyen(chuyen.getTau().getMaTau());
+        for(Toa toa : listToas) {
+        	addItemToa(toa);
         }
-        Component com = listIconTau.getComponent(1);
-        setSelectedToa(com);
-        spListKhoang.setViewportView(formGhe = new FormToaGhe());
+        Component com = listIconTau.getComponent(listToas.get(0).getViTri());
+        setSelectedToa(com,listToas.get(0),chuyen.getMaChuyen());
     }
 
-    public void addItemToa(int vt) {
-        IconToa toa = new IconToa();
-        toa.setData(vt);
-        toa.addMouseListener(new MouseAdapter() {
+    public void addItemToa(Toa toa) {
+        IconToa icontoa = new IconToa();
+        icontoa.setData(toa.getViTri());
+        icontoa.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 if (SwingUtilities.isLeftMouseButton(e)) {
-                    eventToa.itemClick(toa, vt);
-
+                    eventToa.itemClick(icontoa, toa);
                 }
             }
 
         });
-        listIconTau.add(toa);
+        listIconTau.add(icontoa);
         listIconTau.repaint();
         listIconTau.revalidate();
     }
 
-    public void setSelectedToa(Component item) {
+    public void setSelectedToa(Component item,Toa toa,String maChuyen) {
+    	if(((IconToa) item).isSeleted())
+    		return;
         for (Component com : listIconTau.getComponents()) {
             IconToa i = (IconToa) com;
             if (i.isSeleted()) {
@@ -155,16 +184,19 @@ public class FormChonTau extends javax.swing.JPanel {
             }
         }
         ((IconToa) item).setSeleted(true);
-        int vt = ((IconToa) item).getVitri();
-        if (vt < 5) {
-            spListKhoang.setViewportView(formGhe = new FormToaGhe());
-            lbifToa.setText("Toa " + vt + ": Ngồi mền điều hòa");
-        } else if (vt < 8) {
-            spListKhoang.setViewportView(formNam = new FormToaNam(6));
-            lbifToa.setText("Toa " + vt + ": Giường nằm khoang 6 điều hòa");
+        int index = toa.getViTri();
+        if (index < 5) {
+        	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), maChuyen, index);
+            spListKhoang.setViewportView(formGhe = new FormToaGhe(lisNgois));
+            lbifToa.setText("Toa " + index + ": Ngồi mền điều hòa");
+        } else if (index < 8) {
+        	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), maChuyen, index);
+            spListKhoang.setViewportView(formNam = new FormToaNam(6,lisNgois));
+            lbifToa.setText("Toa " + index + ": Giường nằm khoang 6 điều hòa");
         } else {
-            spListKhoang.setViewportView(formNam = new FormToaNam(4));
-            lbifToa.setText("Toa " + vt + ": Giường nằm khoang 4 điều hòa");
+        	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), maChuyen, index);
+            spListKhoang.setViewportView(formNam = new FormToaNam(4,lisNgois));
+            lbifToa.setText("Toa " + index + ": Giường nằm khoang 4 điều hòa");
         }
     }
 
@@ -173,18 +205,20 @@ public class FormChonTau extends javax.swing.JPanel {
         setEvent(new EvenItemTau() {
             @Override
             public void itemClick(Component com, Model_Tau item) {
-                setSelectedTau(com);
-                AddDataToa(item.getTenTau());
+                if(setSelectedTau(com)) 
+                	AddDataToa(item.getChuyen());
             }
 
         });
-        int i = 0;
-        for (int j = 0; j <= 5; j++) {
-            addItemTau(new Model_Tau("SE0" + i++, "11/04/2024 09;40", "11/04/2024 10;45"));
+        for (Chuyen chuyen : listChuyens) {
+            if(isMotChieu)
+            	addItemTau(new Model_Tau(chuyen,gaDi,gaDen,gaDau));
+            else
+            	addItemTau(new Model_Tau(chuyen,gaDi,gaDen,gaCuoi));
         }
         Component com = listTau.getComponent(0);
         ((TauItem) com).setSeleted(true);
-        AddDataToa(((TauItem) com).getData().getTenTau());
+        AddDataToa(((TauItem) com).getData().getChuyen());
 
     }
 
@@ -205,14 +239,17 @@ public class FormChonTau extends javax.swing.JPanel {
         listTau.revalidate();
     }
 
-    public void setSelectedTau(Component item) {
+    public boolean setSelectedTau(Component item) {
+    	if(((TauItem) item).isSeleted())
+    		return false;
         for (Component com : listTau.getComponents()) {
             TauItem i = (TauItem) com;
-            if (i.isSeleted()) {
+            if(i.isSeleted())
                 i.setSeleted(false);
-            }
+            
         }
         ((TauItem) item).setSeleted(true);
+        return true;
     }
 
     
@@ -220,6 +257,42 @@ public class FormChonTau extends javax.swing.JPanel {
         
     }
     
+    private void updateDataChuyen() {
+    	jtGaDi.setText(gaDi.getTenGa());
+    	jtGaDen.setText(gaDen.getTenGa());
+    	if(isMotChieu) {
+    		rdMotChieu.setSelected(true);
+    		jrVe.setEnabled(false);
+            jrDi.setSelected(true);
+            dateVe.setEnabled(false);
+    	}
+    	else {
+			rdHoiKhu.setSelected(true);
+			jrVe.setEnabled(true);
+			dateVe.setEnabled(true);
+		}
+    	dateDi.setDate(Date.from(ngayDi.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+    	if(ngayVe!= null) 
+    		dateVe.setDate(Date.from(ngayVe.atStartOfDay(ZoneId.systemDefault()).toInstant()));
+    	
+    }
+    
+    private List<DataSearch> search(String text) {
+        int limitData = 5;
+        List<DataSearch> list = new ArrayList<DataSearch>();
+        if (text.equalsIgnoreCase("")) {
+            return list;
+        }
+        for (Ga a : listGas) {
+            if (a.getTenGa().toLowerCase().contains(text)) {
+                list.add(new DataSearch(a.getTenGa()));
+                if (list.size() == limitData) {
+                    break;
+                }
+            }
+        }
+        return list;
+    }
     
     
     @SuppressWarnings("unchecked")
@@ -240,6 +313,7 @@ public class FormChonTau extends javax.swing.JPanel {
         formTabelVe = new component.FormTabelVe();
         scpTbVe = new javax.swing.JScrollPane();
         tbListVe = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
         jpIfHanhTrinh = new javax.swing.JPanel();
         lbGaDi = new javax.swing.JLabel();
         lbGaDen = new javax.swing.JLabel();
@@ -266,10 +340,10 @@ public class FormChonTau extends javax.swing.JPanel {
         btnXuLyTreo = new javax.swing.JButton();
         btnXacNhan = new javax.swing.JButton();
         jpIfve = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbTauChuyen = new javax.swing.JLabel();
+        lbThoiGianLen = new javax.swing.JLabel();
+        lbToaCho = new javax.swing.JLabel();
+        lbMoTaVe = new javax.swing.JLabel();
         jpChieu = new javax.swing.JPanel();
         jrDi = new javax.swing.JRadioButton();
         jrVe = new javax.swing.JRadioButton();
@@ -350,15 +424,27 @@ public class FormChonTau extends javax.swing.JPanel {
         tbListVe.setSelectionBackground(new java.awt.Color(204, 204, 204));
         scpTbVe.setViewportView(tbListVe);
 
+        jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton1.setText("Hủy chổ");
+        jButton1.setPreferredSize(new java.awt.Dimension(96, 55));
+
         javax.swing.GroupLayout formTabelVeLayout = new javax.swing.GroupLayout(formTabelVe);
         formTabelVe.setLayout(formTabelVeLayout);
         formTabelVeLayout.setHorizontalGroup(
             formTabelVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scpTbVe)
+            .addComponent(scpTbVe, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, formTabelVeLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(273, 273, 273))
         );
         formTabelVeLayout.setVerticalGroup(
             formTabelVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scpTbVe, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+            .addGroup(formTabelVeLayout.createSequentialGroup()
+                .addComponent(scpTbVe, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         lbGaDi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -370,6 +456,11 @@ public class FormChonTau extends javax.swing.JPanel {
         btnGroup.add(rdMotChieu);
         rdMotChieu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         rdMotChieu.setText("Một chiều");
+        rdMotChieu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdMotChieuMouseClicked(evt);
+            }
+        });
         rdMotChieu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdMotChieuActionPerformed(evt);
@@ -379,14 +470,39 @@ public class FormChonTau extends javax.swing.JPanel {
         btnGroup.add(rdHoiKhu);
         rdHoiKhu.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         rdHoiKhu.setText("Khứ hồi");
+        rdHoiKhu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rdHoiKhuMouseClicked(evt);
+            }
+        });
 
         jtGaDi.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jtGaDi.setMinimumSize(new java.awt.Dimension(64, 40));
         jtGaDi.setPreferredSize(new java.awt.Dimension(64, 40));
+        jtGaDi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtGaDiMouseClicked(evt);
+            }
+        });
+        jtGaDi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtGaDiKeyReleased(evt);
+            }
+        });
 
         jtGaDen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jtGaDen.setMinimumSize(new java.awt.Dimension(64, 40));
         jtGaDen.setPreferredSize(new java.awt.Dimension(64, 40));
+        jtGaDen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtGaDenMouseClicked(evt);
+            }
+        });
+        jtGaDen.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtGaDenKeyReleased(evt);
+            }
+        });
 
         lbNgayDi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbNgayDi.setText("Ngày đi");
@@ -599,17 +715,17 @@ public class FormChonTau extends javax.swing.JPanel {
         jpIfve.setToolTipText("SE1 Long Khánh-Sài Gòn");
         jpIfve.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel1.setText("SE1 Long Khánh-Sài Gòn");
+        lbTauChuyen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbTauChuyen.setText("SE1 Long Khánh-Sài Gòn");
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel2.setText("03/04/2024 09:30");
+        lbThoiGianLen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbThoiGianLen.setText("03/04/2024 09:30");
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel3.setText("Toa 2 chổ 29");
+        lbToaCho.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbToaCho.setText("Toa 2 chổ 29");
 
-        jLabel4.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jLabel4.setText("Nằm khoang 4 điều hòa Tầng 2");
+        lbMoTaVe.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        lbMoTaVe.setText("Nằm khoang 4 điều hòa Tầng 2");
 
         javax.swing.GroupLayout jpIfveLayout = new javax.swing.GroupLayout(jpIfve);
         jpIfve.setLayout(jpIfveLayout);
@@ -618,23 +734,23 @@ public class FormChonTau extends javax.swing.JPanel {
             .addGroup(jpIfveLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jpIfveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(lbThoiGianLen, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbToaCho, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbMoTaVe, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbTauChuyen, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpIfveLayout.setVerticalGroup(
             jpIfveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpIfveLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jLabel1)
+                .addComponent(lbTauChuyen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
+                .addComponent(lbThoiGianLen)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(lbToaCho)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(lbMoTaVe)
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -645,6 +761,11 @@ public class FormChonTau extends javax.swing.JPanel {
         groupDiVe.add(jrVe);
         jrVe.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jrVe.setText("Chiều về");
+        jrVe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrVeMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpChieuLayout = new javax.swing.GroupLayout(jpChieu);
         jpChieu.setLayout(jpChieuLayout);
@@ -737,6 +858,70 @@ public class FormChonTau extends javax.swing.JPanel {
         });
     }//GEN-LAST:event_btnXuLyTreoActionPerformed
 
+    private void jrVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrVeMouseClicked
+    }//GEN-LAST:event_jrVeMouseClicked
+
+    private void rdHoiKhuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdHoiKhuMouseClicked
+        jrVe.setEnabled(true);
+        isMotChieu = false;
+        dateVe.setEnabled(true);
+    }//GEN-LAST:event_rdHoiKhuMouseClicked
+        
+    private void rdMotChieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdMotChieuMouseClicked
+        jrVe.setEnabled(false);
+        isMotChieu = true;
+        jrDi.setSelected(true);
+    }//GEN-LAST:event_rdMotChieuMouseClicked
+
+    private void jtGaDiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtGaDiMouseClicked
+    	String text = jtGaDi.getText().toLowerCase();
+        search.setData(search(text));
+   
+        if(search.getItemSize() > 0){
+            menu.show(jtGaDi, 0, jtGaDi.getHeight());
+            menu.setPopupSize(jtGaDi.getWidth(), (search.getItemSize() * 45));
+        }
+    }//GEN-LAST:event_jtGaDiMouseClicked
+
+    private void jtGaDenKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtGaDenKeyReleased
+    	search.addEventClick(new EvenItemGaClick() {
+            public void itemClick(DataSearch data) {
+            	menu.setVisible(false);
+                jtGaDen.setText(data.getText());
+            }
+        });
+        String text = jtGaDen.getText().toLowerCase();
+        search.setData(search(text));
+        if (search.getItemSize() >= 0) {
+            menu.show(jtGaDen, 0, jtGaDen.getHeight());
+            menu.setPopupSize(jtGaDen.getWidth(), (search.getItemSize() * 45));
+        }
+    }//GEN-LAST:event_jtGaDenKeyReleased
+
+    private void jtGaDenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtGaDenMouseClicked
+    	String text = jtGaDen.getText().toLowerCase();
+        search.setData(search(text));
+        if(search.getItemSize() > 0){
+            menu.show(jtGaDen, 0, jtGaDen.getHeight());
+            menu.setPopupSize(jtGaDen.getWidth(), (search.getItemSize() * 45));
+        }
+    }//GEN-LAST:event_jtGaDenMouseClicked
+
+    private void jtGaDiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtGaDiKeyReleased
+    	search.addEventClick(new EvenItemGaClick() {
+            public void itemClick(DataSearch data) {
+            	menu.setVisible(false);
+                jtGaDi.setText(data.getText());
+            }
+        });
+        String text = jtGaDi.getText().toLowerCase();
+        search.setData(search(text));
+        if (search.getItemSize() >= 0) {
+            menu.show(jtGaDi, 0, jtGaDi.getHeight());
+            menu.setPopupSize(jtGaDi.getWidth(), (search.getItemSize() * 45));
+        }
+    }//GEN-LAST:event_jtGaDiKeyReleased
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGroup;
@@ -749,10 +934,7 @@ public class FormChonTau extends javax.swing.JPanel {
     private component.FormIfToa formIfToa1;
     private component.FormTabelVe formTabelVe;
     private javax.swing.ButtonGroup groupDiVe;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jpChieu;
     private javax.swing.JPanel jpChucNang;
     private javax.swing.JPanel jpIfHanhKhach;
@@ -774,8 +956,12 @@ public class FormChonTau extends javax.swing.JPanel {
     private javax.swing.JLabel lbGaDi2;
     private javax.swing.JLabel lbGaDi3;
     private javax.swing.JLabel lbGaDi4;
+    private javax.swing.JLabel lbMoTaVe;
     private javax.swing.JLabel lbNext;
     private javax.swing.JLabel lbNgayDi;
+    private javax.swing.JLabel lbTauChuyen;
+    private javax.swing.JLabel lbThoiGianLen;
+    private javax.swing.JLabel lbToaCho;
     private javax.swing.JLabel lbVe;
     private javax.swing.JLabel lbifToa;
     private component.ListIconTau listIconTau;

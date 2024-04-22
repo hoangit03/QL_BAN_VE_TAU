@@ -45,16 +45,19 @@ public class ChoNgoi implements Serializable {
     public ChoNgoi() {
     }
 
-    public ChoNgoi(String maChoNgoi, String moTa, double gia, int viTri, Tau tau, Toa toa) {
-        this.maChoNgoi = maChoNgoi;
-        this.moTa = moTa;
-        this.gia = gia;
-        this.viTri = viTri;
-        this.tau = tau;
-        this.toa = toa;
-    }
+    
 
-    public String getMaChoNgoi() {
+    public ChoNgoi(String maChoNgoi, String moTa, double gia, int viTri) {
+		super();
+		this.maChoNgoi = maChoNgoi;
+		this.moTa = moTa;
+		this.gia = gia;
+		this.viTri = viTri;
+	}
+
+
+
+	public String getMaChoNgoi() {
         return maChoNgoi;
     }
 
@@ -102,8 +105,12 @@ public class ChoNgoi implements Serializable {
         this.toa = toa;
     }
 
-    @Override
-    public String toString() {
-        return "ChoNgoi{" + "maChoNgoi=" + maChoNgoi + ", moTa=" + moTa + ", gia=" + gia + ", viTri=" + viTri + ", tau=" + tau + ", toa=" + toa + '}';
-    }
+
+
+	@Override
+	public String toString() {
+		return "ChoNgoi [maChoNgoi=" + maChoNgoi + ", moTa=" + moTa + ", gia=" + gia + ", viTri=" + viTri + "]";
+	}
+
+    
 }

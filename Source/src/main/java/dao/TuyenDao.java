@@ -20,4 +20,10 @@ public class TuyenDao {
 	    public List<Tuyen> getAllTuyen(){
 	    	return em.createNamedQuery("Tuyen.findAll", Tuyen.class).getResultList();
 	    }
+	    
+	    public List<String> layTuyenChuaGa(int id1, int id2){
+	    	return em.createQuery("SELECT t.maTuyen FROM Tuyen t JOIN t.listGas ctt WHERE ctt.id = :id1 OR ctt.id = :id2 GROUP BY t.maTuyen", String.class)
+	    			.setParameter("id1", id1)
+	    			.setParameter("id2", id2).getResultList();
+	    }
 }

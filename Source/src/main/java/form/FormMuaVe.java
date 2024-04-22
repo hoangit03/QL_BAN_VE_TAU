@@ -4,8 +4,10 @@ import component.DataSearch;
 import component.PanelSearch;
 import dao.ChuyenDao;
 import dao.GaDao;
+import dao.TuyenDao;
 import entity.Chuyen;
 import entity.Ga;
+import entity.Tuyen;
 import event.EvenItemGaClick;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.Color;
@@ -20,8 +22,8 @@ import javax.swing.JPopupMenu;
 public class FormMuaVe extends javax.swing.JPanel {
 
     private EntityManagerFactory emf;
-    private GaDao gaDao;
     private MainForm main;
+    private GaDao gaDao;
     private JPopupMenu menu;
     private PanelSearch search;
     private List<Ga> listGas;
@@ -283,37 +285,48 @@ public class FormMuaVe extends javax.swing.JPanel {
         Ga ga1 = gaDao.getGaByTen(gaDi);
         Ga ga2 = gaDao.getGaByTen(gaDen);
         if(ga1 == null) {
-        	JOptionPane.showMessageDialog(btnTimChuyen, "Ga không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        	JOptionPane.showMessageDialog(null, "Ga không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         	return;
         }
         if(ga2 == null) {
-        	JOptionPane.showMessageDialog(btnTimChuyen, "Ga không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        	JOptionPane.showMessageDialog(null, "Ga không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         	return;
         }
         if (ngayDi.getDate() == null) {
-			JOptionPane.showMessageDialog(btnTimChuyen, "Chưa chọn ngày đi", "Thông báo",
+			JOptionPane.showMessageDialog(null, "Chưa chọn ngày đi", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
         if (ngayVe.getDate() == null && radBtnKhuHoi.isSelected()) {
-			JOptionPane.showMessageDialog(btnTimChuyen, "Chưa chọn ngày về", "Thông báo",
+			JOptionPane.showMessageDialog(null, "Chưa chọn ngày về", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
+        
+        List<String> listTuyens = new TuyenDao(emf).layTuyenChuaGa(ga1.getId(), ga2.getId());
+        if(listTuyens.size() == 0) {
+        	JOptionPane.showMessageDialog(null, "Không có tàu đi tuyến của bạn", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+        }
+        
         LocalDate ngDi = ngayDi.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate ngVe = null;
         if(radBtnKhuHoi.isSelected()) {
         	ngVe = ngayVe.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        	if(ngVe.isAfter(ngDi)) {
-        		JOptionPane.showMessageDialog(btnTimChuyen, "Ngày về phải sau ngày đi", "Thông báo",
+        	if(!ngVe.isAfter(ngDi)) {
+        		JOptionPane.showMessageDialog(null, "Ngày về phải sau ngày đi", "Thông báo",
     					JOptionPane.INFORMATION_MESSAGE);
     			return;
         	}
         }
-        
-        List<Chuyen> listChuyens = new ChuyenDao(emf).getAllChuyenByNgay(ngDi, ga1.getId() < ga2.getId());
+        List<Chuyen> listChuyens = new ArrayList<Chuyen>();
+        for(String maTuyen:listTuyens) {
+        	List<Chuyen> listtam = new ChuyenDao(emf).getAllChuyenByNgay(ngDi, ga1.getId() < ga2.getId(),maTuyen); 	
+        	listChuyens.addAll(listtam);
+        }
         if(listChuyens.size() == 0) {
-        	JOptionPane.showMessageDialog(btnTimChuyen, "Không tìm thấy chuyến phù hợp", "Thông báo",
+        	JOptionPane.showMessageDialog(null, "Không tìm thấy chuyến phù hợp", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 			return;
         }

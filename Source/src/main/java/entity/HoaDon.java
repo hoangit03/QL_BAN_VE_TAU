@@ -28,7 +28,7 @@ public class HoaDon implements Serializable {
     @Column(name = "MaHoaDon")
     private String maHoaDon;
 
-    @Column(name = "GioTao")
+    @Column(name = "GioTao",columnDefinition = "datetime")
     private LocalTime gioTao;
 
     @Column(name = "NgayTao")

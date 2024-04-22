@@ -491,9 +491,6 @@
               <Dimension value="[64, 40]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtTenKHHDActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbSDT">
           <Properties>
@@ -519,9 +516,6 @@
               <Dimension value="[64, 40]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtSDTActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbTongT">
           <Properties>
@@ -547,9 +541,6 @@
               <Dimension value="[64, 40]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtTongTActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -663,9 +654,6 @@
               <Dimension value="[64, 40]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtMVActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbCCCDV">
           <Properties>
@@ -691,9 +679,6 @@
               <Dimension value="[64, 40]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtCCCDVActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbLoaiCho">
           <Properties>
@@ -866,9 +851,6 @@
               <Dimension value="[64, 40]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtGiaActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -910,6 +892,9 @@
           <Dimension value="[75, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTimHDMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnTimV">
       <Properties>
@@ -928,6 +913,9 @@
           <Dimension value="[75, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTimVMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDoi">
       <Properties>
@@ -946,6 +934,9 @@
           <Dimension value="[75, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnDoiMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnTra">
       <Properties>
@@ -964,6 +955,9 @@
           <Dimension value="[75, 50]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTraMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

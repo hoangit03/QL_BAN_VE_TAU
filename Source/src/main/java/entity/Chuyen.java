@@ -52,7 +52,8 @@ public class Chuyen implements Serializable {
 
     
 
-    public Chuyen(String maChuyen, String tenCHuyen, LocalTime gioKhoiHanh, boolean chieu, LocalDate ngayKhoiHanh) {
+
+	public Chuyen(String maChuyen, String tenCHuyen, LocalTime gioKhoiHanh, boolean chieu, LocalDate ngayKhoiHanh) {
 		super();
 		this.maChuyen = maChuyen;
 		this.tenCHuyen = tenCHuyen;
@@ -61,7 +62,7 @@ public class Chuyen implements Serializable {
 		this.ngayKhoiHanh = ngayKhoiHanh;
 	}
 
-    
+
 
 
 	public boolean isChieu() {
@@ -102,15 +103,18 @@ public class Chuyen implements Serializable {
         this.tenCHuyen = tenCHuyen;
     }
 
-    public LocalTime getGioKhoiHanh() {
-        return gioKhoiHanh;
-    }
+	public LocalTime getGioKhoiHanh() {
+		return gioKhoiHanh;
+	}
 
-    public void setGioKhoiHanh(LocalTime gioKhoiHanh) {
-        this.gioKhoiHanh = gioKhoiHanh;
-    }
+	public void setGioKhoiHanh(LocalTime gioKhoiHanh) {
+		this.gioKhoiHanh = gioKhoiHanh;
+	}
 
-    public LocalDate getNgayKhoiHanh() {
+
+
+
+	public LocalDate getNgayKhoiHanh() {
         return ngayKhoiHanh;
     }
 
@@ -134,8 +138,13 @@ public class Chuyen implements Serializable {
         this.tuyen = tuyen;
     }
 
-    @Override
-    public String toString() {
-        return "Chuyen{" + "maChuyen=" + maChuyen + ", tenCHuyen=" + tenCHuyen + ", gioKhoiHanh=" + gioKhoiHanh + ", ngayKhoiHanh=" + ngayKhoiHanh + ", tau=" + tau + ", tuyen=" + tuyen + '}';
-    }
+
+
+	@Override
+	public String toString() {
+		return "Chuyen [maChuyen=" + maChuyen + ", tenCHuyen=" + tenCHuyen + ", gioKhoiHanh=" + gioKhoiHanh + ", chieu="
+				+ chieu + ", ngayKhoiHanh=" + ngayKhoiHanh + "]";
+	}
+
+    
 }

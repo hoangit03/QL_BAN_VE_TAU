@@ -5,6 +5,9 @@ import event.EventItemChoNgoi;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
+
+import entity.ChoNgoi;
 
 public class KhoangGhe extends javax.swing.JPanel {
 
@@ -19,16 +22,17 @@ public class KhoangGhe extends javax.swing.JPanel {
     
     
     private EventItemChoNgoi event;
-    
+    private List<ChoNgoi> list;
 
-    public KhoangGhe() {
+    public KhoangGhe(List<ChoNgoi> list,int from, int to) {
+    	this.list = list;
         initComponents();
         setOpaque(false);
-        addDataGhe();
+        addDataGhe(from,to);
     }
 
     
-    private void addDataGhe(){
+    private void addDataGhe(int from, int to){
         setEvent(new EventItemChoNgoi() {
             @Override
             public void itemClick(Component com, int vt) {
@@ -37,13 +41,12 @@ public class KhoangGhe extends javax.swing.JPanel {
                 setSeleted(com);
             }
         });     
-        for(int i = 0; i < 16; i++){
-            addItemGhe(i+1);
-        }
+        System.out.println(list);
     }
-    public void addItemGhe(int vt){
+    public void addItemGhe(int vt,ChoNgoi choNgoi){
         ChoNgoiItem item = new ChoNgoiItem();
         item.setChoNgoi(vt);
+        item.setChoNgoi(choNgoi);
         item.addMouseListener(new MouseAdapter(){
             @Override
             public void mousePressed(MouseEvent e) {

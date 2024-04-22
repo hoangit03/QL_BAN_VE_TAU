@@ -204,11 +204,6 @@ public class GD_DoiTra extends javax.swing.JPanel {
         jtTenKHHD.setToolTipText("");
         jtTenKHHD.setBorder(null);
         jtTenKHHD.setPreferredSize(new java.awt.Dimension(64, 40));
-        jtTenKHHD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtTenKHHDActionPerformed(evt);
-            }
-        });
 
         lbSDT.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbSDT.setForeground(new java.awt.Color(255, 255, 255));
@@ -218,11 +213,6 @@ public class GD_DoiTra extends javax.swing.JPanel {
         jtSDT.setToolTipText("");
         jtSDT.setBorder(null);
         jtSDT.setPreferredSize(new java.awt.Dimension(64, 40));
-        jtSDT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtSDTActionPerformed(evt);
-            }
-        });
 
         lbTongT.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbTongT.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,11 +222,6 @@ public class GD_DoiTra extends javax.swing.JPanel {
         jtTongT.setToolTipText("");
         jtTongT.setBorder(null);
         jtTongT.setPreferredSize(new java.awt.Dimension(64, 40));
-        jtTongT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtTongTActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout form1Layout = new javax.swing.GroupLayout(form1);
         form1.setLayout(form1Layout);
@@ -304,11 +289,6 @@ public class GD_DoiTra extends javax.swing.JPanel {
         jtMV.setToolTipText("");
         jtMV.setBorder(null);
         jtMV.setPreferredSize(new java.awt.Dimension(64, 40));
-        jtMV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtMVActionPerformed(evt);
-            }
-        });
 
         lbCCCDV.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lbCCCDV.setForeground(new java.awt.Color(255, 255, 255));
@@ -318,11 +298,6 @@ public class GD_DoiTra extends javax.swing.JPanel {
         jtCCCDV.setToolTipText("");
         jtCCCDV.setBorder(null);
         jtCCCDV.setPreferredSize(new java.awt.Dimension(64, 40));
-        jtCCCDV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtCCCDVActionPerformed(evt);
-            }
-        });
 
         lbLoaiCho.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lbLoaiCho.setForeground(new java.awt.Color(255, 255, 255));
@@ -373,11 +348,6 @@ public class GD_DoiTra extends javax.swing.JPanel {
         jtGia.setToolTipText("");
         jtGia.setBorder(null);
         jtGia.setPreferredSize(new java.awt.Dimension(64, 40));
-        jtGia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtGiaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout form2Layout = new javax.swing.GroupLayout(form2);
         form2.setLayout(form2Layout);
@@ -463,6 +433,11 @@ public class GD_DoiTra extends javax.swing.JPanel {
         btnTimHD.setBorderPainted(false);
         btnTimHD.setMaximumSize(new java.awt.Dimension(75, 60));
         btnTimHD.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnTimHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTimHDMouseClicked(evt);
+            }
+        });
 
         btnTimV.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnTimV.setText("Tìm Vé");
@@ -470,6 +445,11 @@ public class GD_DoiTra extends javax.swing.JPanel {
         btnTimV.setFocusPainted(false);
         btnTimV.setMaximumSize(new java.awt.Dimension(75, 60));
         btnTimV.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnTimV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTimVMouseClicked(evt);
+            }
+        });
 
         btnDoi.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnDoi.setText("Đổi vé");
@@ -477,6 +457,11 @@ public class GD_DoiTra extends javax.swing.JPanel {
         btnDoi.setBorderPainted(false);
         btnDoi.setMaximumSize(new java.awt.Dimension(75, 60));
         btnDoi.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnDoi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDoiMouseClicked(evt);
+            }
+        });
 
         btnTra.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnTra.setText("Trả vé");
@@ -484,6 +469,11 @@ public class GD_DoiTra extends javax.swing.JPanel {
         btnTra.setBorderPainted(false);
         btnTra.setMaximumSize(new java.awt.Dimension(75, 60));
         btnTra.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnTra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTraMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -540,37 +530,29 @@ public class GD_DoiTra extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtSDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtSDTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtSDTActionPerformed
-
-    private void jtTenKHHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTenKHHDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtTenKHHDActionPerformed
-
-    private void jtMVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtMVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtMVActionPerformed
-
-    private void jtCCCDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCCCDVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtCCCDVActionPerformed
-
-    private void jtGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtGiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtGiaActionPerformed
-
     private void jcbSoToaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbSoToaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbSoToaActionPerformed
 
-    private void jtTongTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtTongTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtTongTActionPerformed
-
     private void btnXoaTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaTActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnXoaTActionPerformed
+
+    private void btnTimHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimHDMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTimHDMouseClicked
+
+    private void btnTimVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimVMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTimVMouseClicked
+
+    private void btnDoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDoiMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDoiMouseClicked
+
+    private void btnTraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTraMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTraMouseClicked
 
     protected void paintChildren(Graphics g) {
         Graphics2D g2 = (Graphics2D)g;

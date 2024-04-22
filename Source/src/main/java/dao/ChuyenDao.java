@@ -26,11 +26,14 @@ public class ChuyenDao {
 	}
 
 	// lấy toàn bộ danh sách Chuyến
-	public List<Chuyen> getAllChuyenByNgay(LocalDate ngay,boolean chieu) {
-		return em.createQuery("SELECT c FROM Chuyen c WHERE c.ngayKhoiHanh = :ngay AND c.chieu = :chieu",Chuyen.class)
+	public List<Chuyen> getAllChuyenByNgay(LocalDate ngay,boolean chieu,String maTuyen) {
+		return em.createQuery("SELECT c FROM Chuyen c WHERE c.ngayKhoiHanh = :ngay AND c.chieu = :chieu AND c.tuyen.maTuyen = :maTuyen",Chuyen.class)
 				.setParameter("ngay", ngay)
 				.setParameter("chieu", chieu)
+				.setParameter("maTuyen", maTuyen)
 				.getResultList();
 	}
+	
+	
 
 }

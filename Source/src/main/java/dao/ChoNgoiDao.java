@@ -54,4 +54,34 @@ public class ChoNgoiDao {
 	    return results;
 	}
 	
+	public List<ChoNgoi> getAllChoNgoiTrongVTToa(int id1, int id2,String maChuyen,int viTri) {
+	    String jpql = "SELECT c FROM ChoNgoi c JOIN c.toa t" +
+	                  " WHERE t.viTri = :viTri AND c.maChoNgoi NOT IN (" +
+	                  "    SELECT v.choNgoi.maChoNgoi " +
+	                  "    FROM Ve v " +
+	                  "    JOIN v.lisChiTietVes ctv " +
+	                  "    WHERE v.chuyen.maChuyen = :maChuyen " +
+	                  "    GROUP BY v.choNgoi.maChoNgoi " +
+	                  "    HAVING " +
+	                  "    MAX(CASE WHEN ctv.chieu = true THEN ctv.ga.id END) = :id1Param " +
+	                  "    OR " +
+	                  "    (MAX(CASE WHEN ctv.chieu = true THEN ctv.ga.id END)" + (id1 < id2 ? " < ":" > ") + ":id1Param " + 
+	                  "    AND MAX(CASE WHEN ctv.chieu = false THEN ctv.ga.id END)"+ (id1 < id2 ? " > ": " < ")+":id1Param) " +
+	                  "    OR " +
+	                  "    (MAX(CASE WHEN ctv.chieu = true THEN ctv.ga.id END)"+ (id1 < id2 ? " < " : " > ")+":id2Param " +
+	                  "    AND MAX(CASE WHEN ctv.chieu = false THEN ctv.ga.id END)"+ (id1 < id2 ? " > " : " < ")+":id2Param) " +
+	                  "    OR " +
+	                  "    (MAX(CASE WHEN ctv.chieu = true THEN ctv.ga.id END)"+ (id1 < id2 ? " > " : " < ")+":id1Param " +
+	                  "    AND MAX(CASE WHEN ctv.chieu = false THEN ctv.ga.id END)"+ (id1 < id2 ? " < ": " > ") +":id2Param)" +
+	                  ")";
+
+	    List<ChoNgoi> results = em.createQuery(jpql, ChoNgoi.class)
+	    		.setParameter("viTri", viTri)
+	            .setParameter("maChuyen", maChuyen)
+	            .setParameter("id1Param", id1)
+	            .setParameter("id2Param", id2)
+	            .getResultList();
+
+	    return results;
+	}
 }

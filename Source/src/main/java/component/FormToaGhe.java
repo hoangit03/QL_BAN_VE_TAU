@@ -5,12 +5,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.List;
+
+import entity.ChoNgoi;
 
 
 
 public class FormToaGhe extends javax.swing.JPanel {
 
-    public FormToaGhe() {
+	private List<ChoNgoi> list;
+    public FormToaGhe(List<ChoNgoi> list) {
+    	this.list = list;
         initComponents();
         setOpaque(false);
         addDataKhoangGhe();
@@ -19,13 +24,15 @@ public class FormToaGhe extends javax.swing.JPanel {
     }
     
     private void addDataKhoangGhe(){
+    	int count = 1;
         for(int i=0; i< 4; i++){
-            addItemKhoang();
+            addItemKhoang(count,count+15);
+            count += 16;
         }
     }
 
-    public void addItemKhoang(){
-        KhoangGhe item = new KhoangGhe();
+    public void addItemKhoang(int from, int to){
+        KhoangGhe item = new KhoangGhe(list,from,to);
         listKhoangGhe.add(item);
         listKhoangGhe.repaint();
         listKhoangGhe.revalidate();

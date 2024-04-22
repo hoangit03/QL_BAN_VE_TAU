@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
+import entity.ChoNgoi;
+
 
 public class ChoNgoiItem extends javax.swing.JPanel {
 
@@ -20,12 +22,34 @@ public class ChoNgoiItem extends javax.swing.JPanel {
     private int viTri;
     
     private boolean selected;
+    
+    private ChoNgoi choNgoi;
+    private boolean busy;
 
     public boolean isSelected() {
         return selected;
     }
+    
+    
+    
 
-    public void setSelected(boolean selected) {
+    public ChoNgoi getChoNgoi() {
+		return choNgoi;
+	}
+
+	public void setChoNgoi(ChoNgoi choNgoi) {
+		this.choNgoi = choNgoi;
+	}
+
+	public boolean isBusy() {
+		return busy;
+	}
+
+	public void setBusy(boolean busy) {
+		this.busy = busy;
+	}
+
+	public void setSelected(boolean selected) {
         this.selected = selected;
         repaint();
     }
@@ -36,8 +60,10 @@ public class ChoNgoiItem extends javax.swing.JPanel {
     
     public void setChoNgoi(int viTri){
         this.viTri = viTri;
+        this.choNgoi = choNgoi;
         lbVT.setText(viTri+"");
     }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

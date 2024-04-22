@@ -28,4 +28,10 @@ public class GaDao {
 			return null;
 		}
 	}
+	public Ga layGaDau() {
+		return em.createQuery("SELECT g FROM Ga g WHERE g.id = :id",Ga.class).setParameter("id", 1).getSingleResult();
+	}
+	public Ga layGaCuoi() {
+		return em.createQuery("SELECT g FROM Ga g WHERE g.id = :id",Ga.class).setParameter("id", 20).getSingleResult();
+	}
 }

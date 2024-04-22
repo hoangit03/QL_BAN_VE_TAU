@@ -1,15 +1,18 @@
 
 package component;
 
+import java.util.List;
 
-
+import entity.ChoNgoi;
 
 public class FormToaNam extends javax.swing.JPanel {
 
     private int soLuong;
-    public FormToaNam(int soluong) {
+    private List<ChoNgoi> list;
+    public FormToaNam(int soluong,List<ChoNgoi> list) {
         initComponents();
         setOpaque(false);
+        this.list = list;
         this.soLuong = soluong;
         addDataKhoangGhe();
         repaint();
@@ -25,8 +28,6 @@ public class FormToaNam extends javax.swing.JPanel {
     public void addItemKhoang(int i,int soLuong){
 //        nằm 6
         KhoangNam item = new KhoangNam(soLuong);
-//        nằm 4
-//        KhoangNam item = new KhoangNam(4);
         item.setVtToa(i);
         listKhoangNam.add(item);
         listKhoangNam.repaint();
