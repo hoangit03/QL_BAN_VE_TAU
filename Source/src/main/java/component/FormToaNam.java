@@ -2,23 +2,30 @@
 package component;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.table.DefaultTableModel;
 
 import entity.ChoNgoi;
+import entity.Chuyen;
+import model.Model_Tau;
 
 public class FormToaNam extends javax.swing.JPanel {
 
     private int soLuong;
     private List<ChoNgoi> list;
-    private List<ChoNgoi> listChon;
+    private Map<String, Set<ChoNgoi>> listChon;
     private DefaultTableModel model;
-    public FormToaNam(int soluong,List<ChoNgoi> list,List<ChoNgoi> listChon,DefaultTableModel model) {
+    private Model_Tau chuyen;
+    public FormToaNam(int soluong,Model_Tau chuyen2,List<ChoNgoi> list,Map<String, Set<ChoNgoi>> listChoChon,DefaultTableModel model) {
         initComponents();
         setOpaque(false);
         this.list = list;
         this.soLuong = soluong;
         this.model = model;
+        this.listChon = listChoChon;
+        this.chuyen = chuyen2;
         addDataKhoangGhe();
         repaint();
         revalidate();
@@ -31,7 +38,7 @@ public class FormToaNam extends javax.swing.JPanel {
     }
 
     public void addItemKhoang(int i,int soLuong){
-        KhoangNam item = new KhoangNam(i,soLuong,list,model);
+        KhoangNam item = new KhoangNam(i,soLuong,list,model,listChon,chuyen);
         listKhoangNam.add(item);
         listKhoangNam.repaint();
         listKhoangNam.revalidate();

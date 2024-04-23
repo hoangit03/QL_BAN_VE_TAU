@@ -33,7 +33,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -87,7 +90,7 @@ public class FormChonTau extends javax.swing.JPanel {
     private List<Ga> listGas;
     private ToaDao toaDao;
     private ChoNgoiDao choNgoiDao;
-    private List<ChoNgoi> listChoChon;
+    private Map<String,Set<ChoNgoi>> listChoChon;
     DefaultTableModel model;
 
     public FormChonTau(EntityManagerFactory emf,MainForm main,List<Chuyen> listChuyens, Ga gaDi, Ga gaDen, LocalDate ngayDi, LocalDate ngayVe,boolean isMotChieu) {
@@ -105,7 +108,7 @@ public class FormChonTau extends javax.swing.JPanel {
         this.listGas = gaDao.getAllGa();
         this.gaDau = gaDao.layGaDau();
         this.gaCuoi = gaDao.layGaCuoi();
-        this.listChoChon = new ArrayList<ChoNgoi>(); 
+        this.listChoChon = new HashMap<String, Set<ChoNgoi>>(); 
         initComponents();
         model = (DefaultTableModel) tbListVe.getModel();
         jpIfHanhTrinh.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Thông tin hành trình", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
@@ -143,24 +146,24 @@ public class FormChonTau extends javax.swing.JPanel {
     }
 
 //    Du lieu toa
-    private void AddDataToa(Chuyen chuyen) {
+    private void AddDataToa(Model_Tau chuyen) {
         listIconTau.removeAll();
         setEventToa(new EventItemToa() {
             @Override
             public void itemClick(Component com, Toa toa) {
-                setSelectedToa(com,toa,chuyen.getMaChuyen());
+                setSelectedToa(com,toa,chuyen);
             }
 
         });
         IconToa dau = new IconToa();
-        dau.setData(new ImageIcon(getClass().getResource("/icon/trainHead.png")), chuyen.getTau().getMaTau());
+        dau.setData(new ImageIcon(getClass().getResource("/icon/trainHead.png")), chuyen.getMaTau());
         listIconTau.add(dau);
-        List<Toa> listToas = toaDao.getAllToaByMaChuyen(chuyen.getTau().getMaTau());
+        List<Toa> listToas = toaDao.getAllToaByMaChuyen(chuyen.getMaTau());
         for(Toa toa : listToas) {
         	addItemToa(toa);
         }
         Component com = listIconTau.getComponent(listToas.get(0).getViTri());
-        setSelectedToa(com,listToas.get(0),chuyen.getMaChuyen());
+        setSelectedToa(com,listToas.get(0),chuyen);
     }
 
     public void addItemToa(Toa toa) {
@@ -180,7 +183,7 @@ public class FormChonTau extends javax.swing.JPanel {
         listIconTau.revalidate();
     }
 
-    public void setSelectedToa(Component item,Toa toa,String maChuyen) {
+    public void setSelectedToa(Component item,Toa toa,Model_Tau chuyen) {
     	if(((IconToa) item).isSeleted())
     		return;
         for (Component com : listIconTau.getComponents()) {
@@ -193,16 +196,16 @@ public class FormChonTau extends javax.swing.JPanel {
         int index = toa.getViTri();
         
         if (index < 5) {
-        	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), maChuyen, index);
-            spListKhoang.setViewportView(formGhe = new FormToaGhe(lisNgois,listChoChon,model));
+        	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), chuyen.getChuyen().getMaChuyen(), index, true);
+            spListKhoang.setViewportView(formGhe = new FormToaGhe(chuyen,lisNgois,listChoChon,model));
             lbifToa.setText("Toa " + index + ": Ngồi mền điều hòa");
         } else if (index < 8) {
-        	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), maChuyen, index);
-            spListKhoang.setViewportView(formNam = new FormToaNam(6,lisNgois,listChoChon,model));
+        	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), chuyen.getChuyen().getMaChuyen(), index, true);
+            spListKhoang.setViewportView(formNam = new FormToaNam(6,chuyen,lisNgois,listChoChon,model));
             lbifToa.setText("Toa " + index + ": Giường nằm khoang 6 điều hòa");
         } else {
-        	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), maChuyen, index);
-            spListKhoang.setViewportView(formNam = new FormToaNam(4,lisNgois,listChoChon,model));
+        	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), chuyen.getChuyen().getMaChuyen(), index, true);
+            spListKhoang.setViewportView(formNam = new FormToaNam(4,chuyen,lisNgois,listChoChon,model));
             lbifToa.setText("Toa " + index + ": Giường nằm khoang 4 điều hòa");
         }
     }
@@ -213,7 +216,7 @@ public class FormChonTau extends javax.swing.JPanel {
             @Override
             public void itemClick(Component com, Model_Tau item) {
                 if(setSelectedTau(com)) 
-                	AddDataToa(item.getChuyen());
+                	AddDataToa(item);
             }
 
         });
@@ -225,7 +228,7 @@ public class FormChonTau extends javax.swing.JPanel {
         }
         Component com = listTau.getComponent(0);
         ((TauItem) com).setSeleted(true);
-        AddDataToa(((TauItem) com).getData().getChuyen());
+        AddDataToa(((TauItem) com).getData());
 
     }
 
@@ -691,6 +694,11 @@ public class FormChonTau extends javax.swing.JPanel {
         btnXacNhan.setBorder(null);
         btnXacNhan.setMinimumSize(new java.awt.Dimension(66, 55));
         btnXacNhan.setPreferredSize(new java.awt.Dimension(66, 55));
+        btnXacNhan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnXacNhanMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpChucNangLayout = new javax.swing.GroupLayout(jpChucNang);
         jpChucNang.setLayout(jpChucNangLayout);
@@ -925,6 +933,10 @@ public class FormChonTau extends javax.swing.JPanel {
             menu.setPopupSize(jtGaDi.getWidth(), (search.getItemSize() * 45));
         }
     }//GEN-LAST:event_jtGaDiKeyReleased
+
+    private void btnXacNhanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXacNhanMouseClicked
+        System.out.println(listChoChon);
+    }//GEN-LAST:event_btnXacNhanMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

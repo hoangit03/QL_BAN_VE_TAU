@@ -36,14 +36,14 @@ public class ToaDao {
 	    	return result;
 	    }
 	    
-	    public Toa layToaCoChoNgoiTrong(int id1, int id2,String maChuyen){
+	    public Toa layToaCoChoNgoiTrong(int id1, int id2,String maChuyen, boolean trangThai){
 	    	String jpql ="SELECT TOP 1 t FROM Toa t WHERE t.maToa IN (" 
 	    			+"SELECT c.toa.maToa FROM ChoNgoi c " +
 	                  "WHERE c.maChoNgoi NOT IN (" +
 	                  "    SELECT v.choNgoi.maChoNgoi " +
 	                  "    FROM Ve v " +
 	                  "    JOIN v.lisChiTietVes ctv " +
-	                  "    WHERE v.chuyen.maChuyen = :maChuyen " +
+	                  "    WHERE v.chuyen.maChuyen = :maChuyen AND ve.trangThai = :trangThai " +
 	                  "    GROUP BY v.choNgoi.maChoNgoi " +
 	                  "    HAVING " +
 	                  "    MAX(CASE WHEN ctv.chieu = true THEN ctv.ga.id END) = :id1Param " +
@@ -60,6 +60,7 @@ public class ToaDao {
 	    	try {
 	    	Toa results = em.createQuery(jpql, Toa.class)
 	            .setParameter("maChuyen", maChuyen)
+	            .setParameter("trangThai", trangThai)
 	            .setParameter("id1Param", id1)
 	            .setParameter("id2Param", id2)
 	            .getSingleResult();

@@ -26,6 +26,9 @@ public class Ve implements Serializable {
 
     @Column(name = "ThoiGianLenTau")
     private LocalDateTime thoiGianLenTau;
+    
+    @Column(name = "TrangThai")
+    private boolean trangThai;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MaChuyen")
@@ -50,16 +53,16 @@ public class Ve implements Serializable {
     @JoinColumn(name = "MaHoaDon")
     private HoaDon hoaDon;
 
-    public Ve(String maVe, LocalDateTime thoiGianLenTau, Chuyen chuyen, ChoNgoi choNgoi, Ga gaDi, Ga gaDen, KhuyenMai khuyenMai, KhachHang khachHang) {
-        this.maVe = maVe;
-        this.thoiGianLenTau = thoiGianLenTau;
-        this.chuyen = chuyen;
-        this.choNgoi = choNgoi;
-        this.khuyenMai = khuyenMai;
-        this.khachHang = khachHang;
-    }
+    
 
-    public Ve() {
+    public Ve(String maVe, LocalDateTime thoiGianLenTau, boolean trangThai) {
+		super();
+		this.maVe = maVe;
+		this.thoiGianLenTau = thoiGianLenTau;
+		this.trangThai = trangThai;
+	}
+
+	public Ve() {
     }
 
     public Set<ChiTietVe> getLisChiTietVes() {
@@ -127,10 +130,22 @@ public class Ve implements Serializable {
     public void setKhachHang(KhachHang khachHang) {
         this.khachHang = khachHang;
     }
+    
+    
 
-    @Override
-    public String toString() {
-        return "Ve{" + "maVe=" + maVe + ", thoiGianLenTau=" + thoiGianLenTau + ", chuyen=" + chuyen + ", choNgoi=" + choNgoi + ", khuyenMai=" + khuyenMai + ", khachHang=" + khachHang + '}';
-    }
+    public boolean isTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(boolean trangThai) {
+		this.trangThai = trangThai;
+	}
+
+	@Override
+	public String toString() {
+		return "Ve [maVe=" + maVe + ", thoiGianLenTau=" + thoiGianLenTau + ", trangThai=" + trangThai + "]";
+	}
+
+	
 
 }

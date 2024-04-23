@@ -2,14 +2,20 @@
 package component;
 
 import event.EventItemChoNgoi;
+import model.Model_Tau;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.swing.table.DefaultTableModel;
 
 import entity.ChoNgoi;
+import entity.Chuyen;
 
 
 public class KhoangNam extends javax.swing.JPanel {
@@ -19,6 +25,8 @@ public class KhoangNam extends javax.swing.JPanel {
     private int soLuong;
     private List<ChoNgoi> list;
     private DefaultTableModel model;
+    private Map<String, Set<ChoNgoi>> listChon;
+    private Model_Tau chuyen;
 
     public int getSoLuong() {
         return soLuong;
@@ -39,12 +47,14 @@ public class KhoangNam extends javax.swing.JPanel {
     }
     
     
-    public KhoangNam(int vtKhoang,int soLuong,List<ChoNgoi> list, DefaultTableModel model) {
+    public KhoangNam(int vtKhoang,int soLuong,List<ChoNgoi> list, DefaultTableModel model,Map<String, Set<ChoNgoi>> listChon2,Model_Tau chuyen2) {
         initComponents();
         this.soLuong = soLuong;
         this.list = list;
         this.vtKhoang = vtKhoang;
         this.model = model;
+        this.listChon = listChon2;
+        this.chuyen = chuyen2;
         setOpaque(false);
         addDataGhe();
     }
@@ -62,15 +72,17 @@ public class KhoangNam extends javax.swing.JPanel {
         setEvent(new EventItemChoNgoi() {
             @Override
             public void itemClick(Component com, ChoNgoi choNgoi) {
-                System.out.println(choNgoi);
-                setSeleted(com);
+                setSeleted(com,choNgoi);
             }
         });     
         int temp = 0;
         for(int i = 1; i <= soLuong; i++){
         	temp = getIndexChoNgoiTrong(i);
             if(temp >= 0) {
-            	addItemGhe(i, list.get(temp), false);
+            	if(checkDataSelect(list.get(temp)))
+            		addItemGhe(i, list.get(temp), true);
+            	else
+            		addItemGhe(i, list.get(temp), false);
             }
             else
             	addItemGhe(i, null, true);
@@ -86,6 +98,19 @@ public class KhoangNam extends javax.swing.JPanel {
     			
     	}
     	return -1;
+    }
+    
+    private boolean checkDataSelect(ChoNgoi choNgoi) {
+        for (Map.Entry<String, Set<ChoNgoi>> entry : listChon.entrySet()) {
+            String maChuyen = entry.getKey();
+            Set<ChoNgoi> danhSachChoNgoi = entry.getValue();
+            for (ChoNgoi cn : danhSachChoNgoi) {
+                if (cn.equals(choNgoi) && maChuyen.equalsIgnoreCase(chuyen.getChuyen().getMaChuyen())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
     public void addItemGhe(int vt,ChoNgoi choNgoi,boolean select){
@@ -106,15 +131,30 @@ public class KhoangNam extends javax.swing.JPanel {
     }
     
     
-    public void setSeleted(Component item){
+    public void setSeleted(Component item,ChoNgoi choNgoi){
+    	String keyName = chuyen.getChuyen().getMaChuyen();
         for(Component com : listChoNgoi.getComponents()){
             ChoNgoiItem i = (ChoNgoiItem) com;
             if(i.getViTri() == ((ChoNgoiItem)item).getViTri() && i.isSelected()){
                 i.setSelected(false);
+                if(listChon.containsKey(keyName)) {
+                	Set<ChoNgoi> list = listChon.get(keyName);
+                	list.remove(choNgoi);
+                	
+                }
+                	
                 return;
             }
         }
         ((ChoNgoiItem)item).setSelected(true);
+        if(!listChon.containsKey(keyName)) {
+        	Set<ChoNgoi> newCN = new HashSet<ChoNgoi>();
+        	newCN.add(choNgoi);
+        	listChon.put(keyName, newCN);
+        }
+        else {
+        	listChon.get(keyName).add(choNgoi);
+        }
     }
 
 
