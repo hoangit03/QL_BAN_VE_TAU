@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Component;
 import java.util.Objects;
 
 import entity.ChoNgoi;
@@ -7,11 +8,13 @@ import entity.ChoNgoi;
 public class Model_InfoVe {
 	private Model_Tau chuyen;
 	private ChoNgoi choNgoi;
+	private Component item;
 
-	public Model_InfoVe(Model_Tau chuyen, ChoNgoi choNgoi) {
+	public Model_InfoVe(Model_Tau chuyen, ChoNgoi choNgoi, Component item) {
 		super();
 		this.chuyen = chuyen;
 		this.choNgoi = choNgoi;
+		this.item = item;
 	}
 
 	public Model_Tau getChuyen() {
@@ -28,6 +31,16 @@ public class Model_InfoVe {
 
 	public void setChoNgoi(ChoNgoi choNgoi) {
 		this.choNgoi = choNgoi;
+	}
+	
+	
+
+	public Component getItem() {
+		return item;
+	}
+
+	public void setItem(Component item) {
+		this.item = item;
 	}
 
 	private int tangVt(int vt) {

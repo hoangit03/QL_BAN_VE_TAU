@@ -138,7 +138,7 @@ public class KhoangNam extends javax.swing.JPanel {
     
     public void setSeleted(Component item,ChoNgoi choNgoi){
     	String keyName = chuyen.getChuyen().getMaChuyen();
-    	Model_InfoVe veInfo = new Model_InfoVe(chuyen, choNgoi);
+    	Model_InfoVe veInfo = new Model_InfoVe(chuyen, choNgoi,item);
     	int temp = 0;
         for(Component com : listChoNgoi.getComponents()){
             ChoNgoiItem i = (ChoNgoiItem) com;

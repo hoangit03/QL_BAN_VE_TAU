@@ -778,6 +778,7 @@ VALUES
 
 INSERT INTO Chuyen (MaChuyen,Chieu, TenChuyen, GioKhoiHanh, NgayKhoiHanh, MaTau, MaTuyen)
 VALUES
+	('SE01083020052024NB',0, N'Bình Thuận - Sài Gòn',  '2024-05-20 08:30:00',  '2024-05-20', 'SE01', 'B-N'),
 	('SE01164012052024BN',1, N'Sài Gòn - Bình Thuận',  '2024-05-12 16:40:00',  '2024-05-12', 'SE01', 'N-B'),
 	('SE01123012052024BN',1, N'Sài Gòn - Bình Thuận',  '2024-05-12 12:30:00',  '2024-05-12', 'SE01', 'N-B'),
 	('SE01123012052024NB',0, N'Bình Thuận - Sài Gòn',  '2024-05-12 12:30:00',  '2024-05-12', 'SE01', 'B-N')
