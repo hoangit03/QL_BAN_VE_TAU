@@ -2,6 +2,7 @@
 package component;
 
 import event.EventItemChoNgoi;
+import model.Model_InfoVe;
 import model.Model_Tau;
 
 import java.awt.Component;
@@ -27,6 +28,7 @@ public class KhoangNam extends javax.swing.JPanel {
     private DefaultTableModel model;
     private Map<String, Set<ChoNgoi>> listChon;
     private Model_Tau chuyen;
+    private List<Model_InfoVe> listInfoVes;
 
     public int getSoLuong() {
         return soLuong;
@@ -43,11 +45,11 @@ public class KhoangNam extends javax.swing.JPanel {
 
     public void setVtKhoang(int vtKhoang) {
         this.vtKhoang = vtKhoang;
-        lbVT.setText("Khoang "+vtKhoang);
+        
     }
     
     
-    public KhoangNam(int vtKhoang,int soLuong,List<ChoNgoi> list, DefaultTableModel model,Map<String, Set<ChoNgoi>> listChon2,Model_Tau chuyen2) {
+    public KhoangNam(int vtKhoang,int soLuong,List<ChoNgoi> list, DefaultTableModel model,Map<String, Set<ChoNgoi>> listChon2,Model_Tau chuyen2, List<Model_InfoVe> listInfoVes) {
         initComponents();
         this.soLuong = soLuong;
         this.list = list;
@@ -55,6 +57,8 @@ public class KhoangNam extends javax.swing.JPanel {
         this.model = model;
         this.listChon = listChon2;
         this.chuyen = chuyen2;
+        this.listInfoVes = listInfoVes;
+        lbVT.setText("Khoang "+vtKhoang);
         setOpaque(false);
         addDataGhe();
     }
@@ -72,7 +76,8 @@ public class KhoangNam extends javax.swing.JPanel {
         setEvent(new EventItemChoNgoi() {
             @Override
             public void itemClick(Component com, ChoNgoi choNgoi) {
-                setSeleted(com,choNgoi);
+            	if(choNgoi != null)
+            		setSeleted(com,choNgoi);
             }
         });     
         int temp = 0;
@@ -133,6 +138,8 @@ public class KhoangNam extends javax.swing.JPanel {
     
     public void setSeleted(Component item,ChoNgoi choNgoi){
     	String keyName = chuyen.getChuyen().getMaChuyen();
+    	Model_InfoVe veInfo = new Model_InfoVe(chuyen, choNgoi);
+    	int temp = 0;
         for(Component com : listChoNgoi.getComponents()){
             ChoNgoiItem i = (ChoNgoiItem) com;
             if(i.getViTri() == ((ChoNgoiItem)item).getViTri() && i.isSelected()){
@@ -140,7 +147,10 @@ public class KhoangNam extends javax.swing.JPanel {
                 if(listChon.containsKey(keyName)) {
                 	Set<ChoNgoi> list = listChon.get(keyName);
                 	list.remove(choNgoi);
-                	
+                	temp = listInfoVes.indexOf(veInfo);
+                	listInfoVes.remove(temp);
+                	model.removeRow(temp);
+                	model.fireTableDataChanged();
                 }
                 	
                 return;
@@ -155,6 +165,11 @@ public class KhoangNam extends javax.swing.JPanel {
         else {
         	listChon.get(keyName).add(choNgoi);
         }
+        listInfoVes.add(veInfo);
+        int gia = (int) Math.round(veInfo.getChoNgoi().getGia() * Math.abs(veInfo.getChuyen().getGaDi().getId()-veInfo.getChuyen().getGaDen().getId()));
+        model.addRow(new Object[] {
+        		"","","Người lớn",veInfo.toString(),gia,0,gia
+        });
     }
 
 

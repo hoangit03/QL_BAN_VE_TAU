@@ -319,18 +319,30 @@ public class FormMuaVe extends javax.swing.JPanel {
     			return;
         	}
         }
-        List<Chuyen> listChuyens = new ArrayList<Chuyen>();
+        List<Chuyen> listChuyenDis = new ArrayList<Chuyen>();
         for(String maTuyen:listTuyens) {
         	List<Chuyen> listtam = new ChuyenDao(emf).getAllChuyenByNgay(ngDi, ga1.getId() < ga2.getId(),maTuyen); 	
-        	listChuyens.addAll(listtam);
+        	listChuyenDis.addAll(listtam);
         }
-        if(listChuyens.size() == 0) {
-        	JOptionPane.showMessageDialog(null, "Không tìm thấy chuyến phù hợp", "Thông báo",
+        if(listChuyenDis.size() == 0) {
+        	JOptionPane.showMessageDialog(null, "Không tìm thấy chuyến phù hợp!", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 			return;
         }
+        List<Chuyen> listChuyenVes = new ArrayList<Chuyen>();
+        if(ngVe != null) {
+        	for(String maTuyen:listTuyens) {
+            	List<Chuyen> listtam = new ChuyenDao(emf).getAllChuyenByNgay(ngVe, ga1.getId() > ga2.getId(),maTuyen); 	
+            	listChuyenVes.addAll(listtam);
+            }
+        	if(listChuyenVes.size() == 0) {
+            	JOptionPane.showMessageDialog(null, "Không tìm thấy chuyến về!", "Thông báo",
+    					JOptionPane.INFORMATION_MESSAGE);
+    			return;
+            }
+        }
         
-        main.showForm(new FormChonTau(emf,main,listChuyens,ga1,ga2,ngDi,ngVe,radBtnMotChieu.isSelected()));
+        main.showForm(new FormChonTau(emf,main,listChuyenDis,ga1,ga2,ngDi,ngVe,radBtnMotChieu.isSelected()));
     }//GEN-LAST:event_btnTimChuyenActionPerformed
 
     private void radBtnMotChieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnMotChieuActionPerformed

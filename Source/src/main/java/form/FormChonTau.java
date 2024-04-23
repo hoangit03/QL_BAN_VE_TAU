@@ -39,14 +39,17 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultCellEditor;
 import javax.swing.ImageIcon;
-
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
+import model.Model_InfoVe;
 import model.Model_Tau;
 import swing.ScrollBar;
 import swing.ScrollBar2;
@@ -91,6 +94,7 @@ public class FormChonTau extends javax.swing.JPanel {
     private ToaDao toaDao;
     private ChoNgoiDao choNgoiDao;
     private Map<String,Set<ChoNgoi>> listChoChon;
+    private List<Model_InfoVe> listInfoVes;
     DefaultTableModel model;
 
     public FormChonTau(EntityManagerFactory emf,MainForm main,List<Chuyen> listChuyens, Ga gaDi, Ga gaDen, LocalDate ngayDi, LocalDate ngayVe,boolean isMotChieu) {
@@ -109,8 +113,15 @@ public class FormChonTau extends javax.swing.JPanel {
         this.gaDau = gaDao.layGaDau();
         this.gaCuoi = gaDao.layGaCuoi();
         this.listChoChon = new HashMap<String, Set<ChoNgoi>>(); 
+        this.listInfoVes = new ArrayList<Model_InfoVe>();
         initComponents();
         model = (DefaultTableModel) tbListVe.getModel();
+        JComboBox<String> cbDT = new JComboBox<String>();
+        cbDT.addItem("Người lớn");
+        cbDT.addItem("Trẻ em");
+        cbDT.addItem("Sinh viên");
+        TableColumn col = tbListVe.getColumnModel().getColumn(2);
+        col.setCellEditor(new DefaultCellEditor(cbDT));
         jpIfHanhTrinh.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Thông tin hành trình", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.BOLD,20) {
         }, Color.black));
         jpIfHanhTrinh.setBackground(Color.white);
@@ -197,15 +208,15 @@ public class FormChonTau extends javax.swing.JPanel {
         
         if (index < 5) {
         	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), chuyen.getChuyen().getMaChuyen(), index, true);
-            spListKhoang.setViewportView(formGhe = new FormToaGhe(chuyen,lisNgois,listChoChon,model));
+            spListKhoang.setViewportView(formGhe = new FormToaGhe(chuyen,lisNgois,listChoChon,model,listInfoVes));
             lbifToa.setText("Toa " + index + ": Ngồi mền điều hòa");
         } else if (index < 8) {
         	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), chuyen.getChuyen().getMaChuyen(), index, true);
-            spListKhoang.setViewportView(formNam = new FormToaNam(6,chuyen,lisNgois,listChoChon,model));
+            spListKhoang.setViewportView(formNam = new FormToaNam(6,chuyen,lisNgois,listChoChon,model,listInfoVes));
             lbifToa.setText("Toa " + index + ": Giường nằm khoang 6 điều hòa");
         } else {
         	List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(), chuyen.getChuyen().getMaChuyen(), index, true);
-            spListKhoang.setViewportView(formNam = new FormToaNam(4,chuyen,lisNgois,listChoChon,model));
+            spListKhoang.setViewportView(formNam = new FormToaNam(4,chuyen,lisNgois,listChoChon,model,listInfoVes));
             lbifToa.setText("Toa " + index + ": Giường nằm khoang 4 điều hòa");
         }
     }
@@ -221,7 +232,7 @@ public class FormChonTau extends javax.swing.JPanel {
 
         });
         for (Chuyen chuyen : listChuyens) {
-            if(isMotChieu)
+            if(gaDi.getId() < gaDen.getId())
             	addItemTau(new Model_Tau(chuyen,gaDi,gaDen,gaDau));
             else
             	addItemTau(new Model_Tau(chuyen,gaDi,gaDen,gaCuoi));
@@ -429,11 +440,21 @@ public class FormChonTau extends javax.swing.JPanel {
         tbListVe.setOpaque(false);
         tbListVe.setRowHeight(30);
         tbListVe.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        tbListVe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbListVeMouseClicked(evt);
+            }
+        });
         scpTbVe.setViewportView(tbListVe);
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton1.setText("Hủy chổ");
         jButton1.setPreferredSize(new java.awt.Dimension(96, 55));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout formTabelVeLayout = new javax.swing.GroupLayout(formTabelVe);
         formTabelVe.setLayout(formTabelVeLayout);
@@ -527,6 +548,11 @@ public class FormChonTau extends javax.swing.JPanel {
         btnTimChuyen.setText("Tìm");
         btnTimChuyen.setBorder(null);
         btnTimChuyen.setPreferredSize(new java.awt.Dimension(75, 55));
+        btnTimChuyen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTimChuyenMouseClicked(evt);
+            }
+        });
         btnTimChuyen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimChuyenActionPerformed(evt);
@@ -676,6 +702,11 @@ public class FormChonTau extends javax.swing.JPanel {
         btnTreoDon.setBorder(null);
         btnTreoDon.setMinimumSize(new java.awt.Dimension(66, 55));
         btnTreoDon.setPreferredSize(new java.awt.Dimension(66, 55));
+        btnTreoDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTreoDonMouseClicked(evt);
+            }
+        });
 
         btnXuLyTreo.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnXuLyTreo.setText("Xử lý đơn tạm");
@@ -728,16 +759,16 @@ public class FormChonTau extends javax.swing.JPanel {
         jpIfve.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         lbTauChuyen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        lbTauChuyen.setText("SE1 Long Khánh-Sài Gòn");
+        lbTauChuyen.setText(" ");
 
         lbThoiGianLen.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        lbThoiGianLen.setText("03/04/2024 09:30");
+        lbThoiGianLen.setText(" ");
 
         lbToaCho.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        lbToaCho.setText("Toa 2 chổ 29");
+        lbToaCho.setText(" ");
 
         lbMoTaVe.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        lbMoTaVe.setText("Nằm khoang 4 điều hòa Tầng 2");
+        lbMoTaVe.setText(" ");
 
         javax.swing.GroupLayout jpIfveLayout = new javax.swing.GroupLayout(jpIfve);
         jpIfve.setLayout(jpIfveLayout);
@@ -937,6 +968,27 @@ public class FormChonTau extends javax.swing.JPanel {
     private void btnXacNhanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXacNhanMouseClicked
         System.out.println(listChoChon);
     }//GEN-LAST:event_btnXacNhanMouseClicked
+
+    private void tbListVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListVeMouseClicked
+        int index = tbListVe.getSelectedRow();
+        Model_InfoVe info = listInfoVes.get(index);
+        lbTauChuyen.setText(info.getThongTinChuyen());
+        lbThoiGianLen.setText(info.getChuyen().getTGDi());
+        lbToaCho.setText(info.getInfoCho());
+        lbMoTaVe.setText(info.getcheckCho(info.getChoNgoi().getMoTa(), info.getChoNgoi().getViTri()));
+    }//GEN-LAST:event_tbListVeMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        
+    }//GEN-LAST:event_jButton1MouseClicked
+
+    private void btnTimChuyenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimChuyenMouseClicked
+        
+    }//GEN-LAST:event_btnTimChuyenMouseClicked
+
+    private void btnTreoDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTreoDonMouseClicked
+        
+    }//GEN-LAST:event_btnTreoDonMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -13,6 +13,8 @@ public class Model_Tau {
 	private String TGDen;
 	private Chuyen chuyen;
 	private String maTau;
+	private Ga gaDi;
+	private Ga gaDen;
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	public Model_Tau() {
@@ -21,12 +23,14 @@ public class Model_Tau {
 	public Model_Tau(Chuyen chuyen, Ga gaDi, Ga gaDen, Ga gaXP) {
 		this.maTau = chuyen.getTau().getMaTau();
 		this.tenTau = chuyen.getTau().getMaTau();
+		this.gaDi = gaDi;
+		this.gaDen = gaDen;
 		double time1 = Math.abs(gaXP.getCuLy() - gaDi.getCuLy()) / chuyen.getTau().getTocDo();
 		this.TGDi = chuyen.getNgayKhoiHanh().format(formatter) + " " + chuyen.getGioKhoiHanh()
 				.plus(Duration.ofMinutes((long) (time1 * 60 + 10 * Math.abs(gaXP.getId() - gaDi.getId())))).toString();
-		double time2 = Math.abs(gaDen.getCuLy() - gaDi.getCuLy()) / chuyen.getTau().getTocDo();
+		double time2 = Math.abs(gaDen.getCuLy() - gaXP.getCuLy()) / chuyen.getTau().getTocDo();
 		this.TGDen = chuyen.getNgayKhoiHanh().format(formatter) + " "
-				+ chuyen.getGioKhoiHanh().plus(Duration.ofMinutes((long) ((time2 + time1) * 60  + 10 * (Math.abs(gaDi.getId() - gaDen.getId())-1)))).toString();
+				+ chuyen.getGioKhoiHanh().plus(Duration.ofMinutes((long) ((time2) * 60  + 10 * (Math.abs(gaXP.getId() - gaDen.getId()))))).toString();
 		this.chuyen = chuyen;
 	}
 
@@ -68,6 +72,22 @@ public class Model_Tau {
 
 	public void setMaTau(String maTau) {
 		this.maTau = maTau;
+	}
+
+	public Ga getGaDi() {
+		return gaDi;
+	}
+
+	public void setGaDi(Ga gaDi) {
+		this.gaDi = gaDi;
+	}
+
+	public Ga getGaDen() {
+		return gaDen;
+	}
+
+	public void setGaDen(Ga gaDen) {
+		this.gaDen = gaDen;
 	}
 
 	

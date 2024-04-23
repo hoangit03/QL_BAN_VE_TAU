@@ -2,6 +2,7 @@
 package component;
 
 import event.EventItemChoNgoi;
+import model.Model_InfoVe;
 import model.Model_Tau;
 
 import java.awt.Component;
@@ -34,12 +35,14 @@ public class KhoangGhe extends javax.swing.JPanel {
     private DefaultTableModel model;
     private Map<String, Set<ChoNgoi>> listChon;
     private Model_Tau chuyen;
+    private List<Model_InfoVe> listInfoVes;
 
-    public KhoangGhe(List<ChoNgoi> list,Map<String, Set<ChoNgoi>> listChon2, DefaultTableModel model,Model_Tau chuyen2,int from, int to) {
+    public KhoangGhe(List<ChoNgoi> list,Map<String, Set<ChoNgoi>> listChon2, List<Model_InfoVe> listInfoVes, DefaultTableModel model,Model_Tau chuyen2,int from, int to) {
     	this.list = list;
     	this.model = model;
     	this.listChon = listChon2;
     	this.chuyen = chuyen2; 
+    	this.listInfoVes = listInfoVes;
         initComponents();
         setOpaque(false);
         addDataGhe(from,to);
@@ -50,7 +53,8 @@ public class KhoangGhe extends javax.swing.JPanel {
         setEvent(new EventItemChoNgoi() {
             @Override
             public void itemClick(Component com, ChoNgoi choNgoi) {
-                setSeleted(com,choNgoi);
+            	if(choNgoi != null)
+            		setSeleted(com,choNgoi);
             }
         }); 
         int temp;
@@ -111,6 +115,8 @@ public class KhoangGhe extends javax.swing.JPanel {
     
     public void setSeleted(Component item,ChoNgoi choNgoi){
     	String keyName = chuyen.getChuyen().getMaChuyen();
+    	Model_InfoVe veInfo = new Model_InfoVe(chuyen, choNgoi);
+    	int temp = 0;
         for(Component com : listGhe.getComponents()){
             ChoNgoiItem i = (ChoNgoiItem) com;
             if(i.getViTri() == ((ChoNgoiItem)item).getViTri() && i.isSelected()){
@@ -118,6 +124,10 @@ public class KhoangGhe extends javax.swing.JPanel {
                 if(listChon.containsKey(keyName)) {
                 	Set<ChoNgoi> list = listChon.get(keyName);
                 	list.remove(choNgoi);
+                	temp = listInfoVes.indexOf(veInfo);
+                	listInfoVes.remove(temp);
+                	model.removeRow(temp);
+                	model.fireTableDataChanged();
                 }
                 	
                 return;
@@ -132,6 +142,11 @@ public class KhoangGhe extends javax.swing.JPanel {
         else {
         	listChon.get(keyName).add(choNgoi);
         }
+        listInfoVes.add(veInfo);
+        int gia = (int) Math.round(veInfo.getChoNgoi().getGia() * Math.abs(veInfo.getChuyen().getGaDi().getId()-veInfo.getChuyen().getGaDen().getId()));
+        model.addRow(new Object[] {
+        		"","","Người lớn",veInfo.toString(),gia,0,gia
+        });
     }
     
     

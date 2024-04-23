@@ -54,14 +54,15 @@ public class GD_KhuyenMaiTrenKhachHang extends javax.swing.JPanel {
         table.getTableHeader().setPreferredSize(new Dimension(30,30));
         ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
         khuyenMaiDao = new KhuyenMaiDao(emf);
-		List<KhuyenMai> list = khuyenMaiDao.getAllKhuyenMaiKH();
+		List<String> list = khuyenMaiDao.getAllKhuyenMaiKHLoai();
+		List<KhuyenMai> listKM = khuyenMaiDao.getAllKhuyenMaiKH();
 		DefaultComboBoxModel<String> model = (DefaultComboBoxModel<String>) jcbDoiT.getModel();
 		model.addElement("");
 		list.stream().forEach(km->{
-			model.addElement(km.getLoaiKhuyenMai());
+			model.addElement(km);
 		});
 		jcbDoiT.setModel(model);
-		addDataTable(list);
+		addDataTable(listKM);
     }
 
     @SuppressWarnings("unchecked")

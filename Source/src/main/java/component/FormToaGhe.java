@@ -13,6 +13,7 @@ import javax.swing.table.DefaultTableModel;
 
 import entity.ChoNgoi;
 import entity.Chuyen;
+import model.Model_InfoVe;
 import model.Model_Tau;
 
 
@@ -23,12 +24,14 @@ public class FormToaGhe extends javax.swing.JPanel {
 	private Map<String, Set<ChoNgoi>> listChon;
 	private DefaultTableModel model;
 	private Model_Tau chuyen;
+	private List<Model_InfoVe> listInfoVes;
 	
-    public FormToaGhe(Model_Tau chuyen2,List<ChoNgoi> list,Map<String, Set<ChoNgoi>> listChoChon,DefaultTableModel model) {
+    public FormToaGhe(Model_Tau chuyen2,List<ChoNgoi> list,Map<String, Set<ChoNgoi>> listChoChon,DefaultTableModel model, List<Model_InfoVe> listInfoVes) {
     	this.list = list;
     	this.model = model;
     	this.listChon = listChoChon;
     	this.chuyen = chuyen2;
+    	this.listInfoVes = listInfoVes;
         initComponents();
         setOpaque(false);
         addDataKhoangGhe();
@@ -45,7 +48,7 @@ public class FormToaGhe extends javax.swing.JPanel {
     }
 
     public void addItemKhoang(int from, int to){
-        KhoangGhe item = new KhoangGhe(list,listChon,model,chuyen,from,to);
+        KhoangGhe item = new KhoangGhe(list,listChon,listInfoVes,model,chuyen,from,to);
         listKhoangGhe.add(item);
         listKhoangGhe.repaint();
         listKhoangGhe.revalidate();
