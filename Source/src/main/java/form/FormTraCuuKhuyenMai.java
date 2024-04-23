@@ -49,7 +49,7 @@ public class FormTraCuuKhuyenMai extends javax.swing.JPanel {
 		for (KhuyenMai khuyenMai : list) {
 			Object[] row = { "" + i++, khuyenMai.getMaKhuyenMai(), khuyenMai.getTenKhuyenMai(),
 					khuyenMai.getLoaiKhuyenMai(), khuyenMai.getSoLuongVe(), khuyenMai.getThoiGianBatDau(),
-					khuyenMai.getThoiGianKetThuc(), khuyenMai.getChietKhau(), khuyenMai.isTrangThai() };
+					khuyenMai.getThoiGianKetThuc(), khuyenMai.getChietKhau(), khuyenMai.isTrangThai() ? "Đang áp dụng" : "Tạm ngưng" };
 			model.addRow(row);
 		}
 		model.fireTableDataChanged();

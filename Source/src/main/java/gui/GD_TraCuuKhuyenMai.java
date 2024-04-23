@@ -33,7 +33,7 @@ public class GD_TraCuuKhuyenMai extends javax.swing.JPanel {
         btnTraCuuNhanVien.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainForm1.showForm(new FormTraCuuNhanVien());
+                mainForm1.showForm(new FormTraCuuNhanVien(emf));
             }
         });
 
