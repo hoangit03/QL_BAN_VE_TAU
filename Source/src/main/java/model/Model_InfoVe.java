@@ -89,5 +89,6 @@ public class Model_InfoVe {
 		Model_InfoVe other = (Model_InfoVe) obj;
 		return Objects.equals(choNgoi, other.choNgoi) && Objects.equals(chuyen, other.chuyen);
 	}
+	
 
 }

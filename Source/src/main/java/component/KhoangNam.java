@@ -135,6 +135,18 @@ public class KhoangNam extends javax.swing.JPanel {
         listChoNgoi.revalidate();
     }
     
+    public int removeVes(List<Model_InfoVe> list, Model_InfoVe ve) {
+		int count = 0;
+		for (Model_InfoVe veinfo : list) {
+			if (veinfo.getChuyen().getChuyen().getMaChuyen().equalsIgnoreCase(ve.getChuyen().getChuyen().getMaChuyen())
+					&& veinfo.getChoNgoi().getMaChoNgoi().equalsIgnoreCase(ve.getChoNgoi().getMaChoNgoi()))
+				return count;
+			count++;
+		}
+		return -1;
+	}
+
+    
     
     public void setSeleted(Component item,ChoNgoi choNgoi){
     	String keyName = chuyen.getChuyen().getMaChuyen();
@@ -147,7 +159,7 @@ public class KhoangNam extends javax.swing.JPanel {
                 if(listChon.containsKey(keyName)) {
                 	Set<ChoNgoi> list = listChon.get(keyName);
                 	list.remove(choNgoi);
-                	temp = listInfoVes.indexOf(veInfo);
+                	temp = removeVes(listInfoVes, veInfo);
                 	listInfoVes.remove(temp);
                 	model.removeRow(temp);
                 	model.fireTableDataChanged();

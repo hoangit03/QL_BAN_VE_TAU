@@ -524,7 +524,6 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTimChuyenMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimChuyenActionPerformed"/>
           </Events>
         </Component>
@@ -892,6 +891,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Chi&#x1ec1;u &#x111;i"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jrDiMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jrVe">
           <Properties>
@@ -904,7 +906,7 @@
             <Property name="text" type="java.lang.String" value="Chi&#x1ec1;u v&#x1ec1;"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jrVeMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrVeActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

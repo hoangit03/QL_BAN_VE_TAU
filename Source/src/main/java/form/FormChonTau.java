@@ -100,6 +100,8 @@ public class FormChonTau extends javax.swing.JPanel {
     private Map<String,Set<ChoNgoi>> listChoChon;
     private List<Model_InfoVe> listInfoVes;
     DefaultTableModel model;
+    private boolean isJrVe = false;
+    private boolean isJrDi = true;
 
     public FormChonTau(EntityManagerFactory emf,MainForm main,List<Chuyen> listChuyens, Ga gaDi, Ga gaDen, LocalDate ngayDi, LocalDate ngayVe,boolean isMotChieu) {
     	this.emf = emf;
@@ -155,6 +157,7 @@ public class FormChonTau extends javax.swing.JPanel {
         menu.setBorder(BorderFactory.createLineBorder(new Color(176, 176, 176)));
         menu.add(search);
         menu.setFocusable(false);
+        jrDi.setSelected(true);
         updateDataChuyen();
         
     }
@@ -299,7 +302,7 @@ public class FormChonTau extends javax.swing.JPanel {
     }
     
     private List<DataSearch> search(String text) {
-        int limitData = 5;
+        int limitData = 4;
         List<DataSearch> list = new ArrayList<DataSearch>();
         if (text.equalsIgnoreCase("")) {
             return list;
@@ -548,11 +551,6 @@ public class FormChonTau extends javax.swing.JPanel {
         btnTimChuyen.setText("Tìm");
         btnTimChuyen.setBorder(null);
         btnTimChuyen.setPreferredSize(new java.awt.Dimension(75, 55));
-        btnTimChuyen.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnTimChuyenMouseClicked(evt);
-            }
-        });
         btnTimChuyen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimChuyenActionPerformed(evt);
@@ -800,13 +798,18 @@ public class FormChonTau extends javax.swing.JPanel {
         groupDiVe.add(jrDi);
         jrDi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jrDi.setText("Chiều đi");
+        jrDi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jrDiMouseClicked(evt);
+            }
+        });
 
         groupDiVe.add(jrVe);
         jrVe.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jrVe.setText("Chiều về");
-        jrVe.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jrVeMouseClicked(evt);
+        jrVe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrVeActionPerformed(evt);
             }
         });
 
@@ -885,11 +888,83 @@ public class FormChonTau extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rdMotChieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdMotChieuActionPerformed
-        // TODO add your handling code here:
+        dateVe.setEnabled(false);
     }//GEN-LAST:event_rdMotChieuActionPerformed
 
     private void btnTimChuyenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimChuyenActionPerformed
-        // TODO add your handling code here:
+    	String gaDi = jtGaDi.getText();
+        String gaDen = jtGaDen.getText();
+        Ga ga1 = gaDao.getGaByTen(gaDi);
+        Ga ga2 = gaDao.getGaByTen(gaDen);
+        if(ga1 == null) {
+        	JOptionPane.showMessageDialog(null, "Ga không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        	return;
+        }
+        if(ga2 == null) {
+        	JOptionPane.showMessageDialog(null, "Ga không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+        	return;
+        }
+        if (dateDi.getDate() == null) {
+			JOptionPane.showMessageDialog(null, "Chưa chọn ngày đi", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+        if (dateVe.getDate() == null && rdHoiKhu.isSelected()) {
+			JOptionPane.showMessageDialog(null, "Chưa chọn ngày về", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
+        
+        List<String> listTuyens = new TuyenDao(emf).layTuyenChuaGa(ga1.getId(), ga2.getId());
+        if(listTuyens.size() == 0) {
+        	JOptionPane.showMessageDialog(null, "Không có tàu đi tuyến của bạn", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+        }
+        
+        LocalDate ngDi = dateDi.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate ngVe = null;
+        if(rdHoiKhu.isSelected()) {
+        	ngVe = dateVe.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        	if(!ngVe.isAfter(ngDi)) {
+        		JOptionPane.showMessageDialog(null, "Ngày về phải sau ngày đi", "Thông báo",
+    					JOptionPane.INFORMATION_MESSAGE);
+    			return;
+        	}
+        }
+        List<Chuyen> listChuyenDis = new ArrayList<Chuyen>();
+        for(String maTuyen:listTuyens) {
+        	List<Chuyen> listtam = new ChuyenDao(emf).getAllChuyenByNgay(ngDi, ga1.getId() < ga2.getId(),maTuyen); 	
+        	listChuyenDis.addAll(listtam);
+        }
+        if(listChuyenDis.size() == 0) {
+        	JOptionPane.showMessageDialog(null, "Không tìm thấy chuyến phù hợp!", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+        }
+        List<Chuyen> listChuyenVes = new ArrayList<Chuyen>();
+        if(ngVe != null) {
+        	for(String maTuyen:listTuyens) {
+            	List<Chuyen> listtam = new ChuyenDao(emf).getAllChuyenByNgay(ngVe, ga1.getId() > ga2.getId(),maTuyen); 	
+            	listChuyenVes.addAll(listtam);
+            }
+        	if(listChuyenVes.size() == 0) {
+            	JOptionPane.showMessageDialog(null, "Không tìm thấy chuyến về!", "Thông báo",
+    					JOptionPane.INFORMATION_MESSAGE);
+    			return;
+            }
+        }
+        
+        listTau.removeAll();
+    	this.gaDi = ga1;
+    	this.gaDen = ga2;
+    	this.listChuyens = listChuyenDis;
+    	this.ngayDi = ngDi;
+    	this.ngayVe = ngVe;
+    	this.isMotChieu = rdMotChieu.isSelected();
+    	AddDataTau();
+    	updateDataChuyen();
+        
     }//GEN-LAST:event_btnTimChuyenActionPerformed
 
     private void btnXuLyTreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuLyTreoActionPerformed
@@ -900,26 +975,9 @@ public class FormChonTau extends javax.swing.JPanel {
             }
         });
     }//GEN-LAST:event_btnXuLyTreoActionPerformed
-
-    private void jrVeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrVeMouseClicked
-    	List<String> listTuyens = new TuyenDao(emf).layTuyenChuaGa(gaDi.getId(), gaDen.getId());
-    	List<Chuyen> listChuyenVes = new ArrayList<Chuyen>();
-    	for(String maTuyen:listTuyens) {
-        	List<Chuyen> listtam = new ChuyenDao(emf).getAllChuyenByNgay(ngayVe, gaDi.getId() > gaDen.getId(),maTuyen); 	
-        	listChuyenVes.addAll(listtam);
-        }
-    	Ga gatam1 = gaDi;
-    	Ga gatam2 = gaDen;
-    	this.gaDi = gatam2;
-    	this.gaDen = gatam1;
-    	this.listChuyens = listChuyenVes;
-    	this.isMotChieu = false;
-    	AddDataTau();
-    	updateDataChuyen();
-    }//GEN-LAST:event_jrVeMouseClicked
     	
     private void rdHoiKhuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdHoiKhuMouseClicked
-    	
+    	dateVe.setEnabled(true);
     }//GEN-LAST:event_rdHoiKhuMouseClicked
         
     private void rdMotChieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rdMotChieuMouseClicked
@@ -931,7 +989,12 @@ public class FormChonTau extends javax.swing.JPanel {
     private void jtGaDiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtGaDiMouseClicked
     	String text = jtGaDi.getText().toLowerCase();
         search.setData(search(text));
-   
+        search.addEventClick(new EvenItemGaClick() {
+            public void itemClick(DataSearch data) {
+            	menu.setVisible(false);
+                jtGaDi.setText(data.getText());
+            }
+        });
         if(search.getItemSize() > 0){
             menu.show(jtGaDi, 0, jtGaDi.getHeight());
             menu.setPopupSize(jtGaDi.getWidth(), (search.getItemSize() * 45));
@@ -956,6 +1019,12 @@ public class FormChonTau extends javax.swing.JPanel {
     private void jtGaDenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtGaDenMouseClicked
     	String text = jtGaDen.getText().toLowerCase();
         search.setData(search(text));
+        search.addEventClick(new EvenItemGaClick() {
+            public void itemClick(DataSearch data) {
+            	menu.setVisible(false);
+                jtGaDen.setText(data.getText());
+            }
+        });
         if(search.getItemSize() > 0){
             menu.show(jtGaDen, 0, jtGaDen.getHeight());
             menu.setPopupSize(jtGaDen.getWidth(), (search.getItemSize() * 45));
@@ -1013,13 +1082,51 @@ public class FormChonTau extends javax.swing.JPanel {
         lbMoTaVe.setText(" ");
     }//GEN-LAST:event_btnHuyChoMouseClicked
 
-    private void btnTimChuyenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimChuyenMouseClicked
-        
-    }//GEN-LAST:event_btnTimChuyenMouseClicked
-
     private void btnTreoDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTreoDonMouseClicked
         
     }//GEN-LAST:event_btnTreoDonMouseClicked
+
+    private void jrDiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jrDiMouseClicked
+    	if(isJrDi)
+    		return;
+    	isJrVe = !isJrVe;
+    	isJrDi = !isJrDi;
+    	List<String> listTuyens = new TuyenDao(emf).layTuyenChuaGa(gaDi.getId(), gaDen.getId());
+    	List<Chuyen> listChuyenVes = new ArrayList<Chuyen>();
+    	for(String maTuyen:listTuyens) {
+        	List<Chuyen> listtam = new ChuyenDao(emf).getAllChuyenByNgay(ngayDi, gaDi.getId() >	 gaDen.getId(),maTuyen); 	
+        	listChuyenVes.addAll(listtam);
+        }
+    	listTau.removeAll();
+    	Ga gatam1 = gaDi;
+    	Ga gatam2 = gaDen;
+    	this.gaDi = gatam2;
+    	this.gaDen = gatam1;
+    	this.listChuyens = listChuyenVes;
+    	AddDataTau();
+    	updateDataChuyen();
+    }//GEN-LAST:event_jrDiMouseClicked
+
+    private void jrVeActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    	if(isJrVe)
+    		return;
+    	isJrVe = !isJrVe;
+    	isJrDi = !isJrDi;
+    	List<String> listTuyens = new TuyenDao(emf).layTuyenChuaGa(gaDi.getId(), gaDen.getId());
+    	List<Chuyen> listChuyenVes = new ArrayList<Chuyen>();
+    	for(String maTuyen:listTuyens) {
+        	List<Chuyen> listtam = new ChuyenDao(emf).getAllChuyenByNgay(ngayVe, gaDi.getId() > gaDen.getId(),maTuyen); 	
+        	listChuyenVes.addAll(listtam);
+        }
+    	listTau.removeAll();
+    	Ga gatam1 = gaDi;
+    	Ga gatam2 = gaDen;
+    	this.gaDi = gatam2;
+    	this.gaDen = gatam1;
+    	this.listChuyens = listChuyenVes;
+    	AddDataTau();
+    	updateDataChuyen();
+    }                                    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
