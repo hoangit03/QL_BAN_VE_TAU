@@ -27,17 +27,17 @@ public class GD_TraCuuNhanVien extends javax.swing.JPanel {
         btnTraCuuKhuyenMai.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainForm1.showForm(new FormTraCuuKhuyenMai());
+                mainForm1.showForm(new FormTraCuuKhuyenMai(emf));
             }
         });
         btnTraCuuNhanVien.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                mainForm1.showForm(new FormTraCuuNhanVien());
+                mainForm1.showForm(new FormTraCuuNhanVien(emf));
             }
         });
 
-        mainForm1.showForm(new FormTraCuuNhanVien());
+        mainForm1.showForm(new FormTraCuuNhanVien(emf));
     }
 
     @Override

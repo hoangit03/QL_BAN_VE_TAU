@@ -50,6 +50,7 @@ public class KhuyenMai implements Serializable {
     
     @Column(name = "ChietKhau")
     private double chietKhau;
+    
 
     @OneToMany(mappedBy = "khuyenMai")
     private List<Ve> listVes;
