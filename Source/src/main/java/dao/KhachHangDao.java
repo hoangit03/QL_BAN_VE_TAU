@@ -68,6 +68,14 @@ public class KhachHangDao {
 		}
 	}    
     
+    public List<KhachHang> layKhachHangBanDoiTuong(String doiTuong){
+    	return em.createQuery("SELECT kh FROM KhachHang kh WHERE kh.doiTuong = :doiTuong", KhachHang.class).setParameter("doiTuong", doiTuong).getResultList();
+    }
+    
+    public List<KhachHang> layKhachHangThuocMa(String ma){
+    	return em.createQuery("SELECT kh FROM KhachHang kh WHERE kh.cccd like :ma", KhachHang.class).setParameter("ma","%"+ma+"%").getResultList();
+    }
+    
     public void writeToExcel(String filePath) {
 		String[] rowHead = {"CCCD", "Họ và tên", "Số điện thoại", "Email", "Đối tượng"};
 		

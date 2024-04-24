@@ -24,7 +24,7 @@ public class Ve implements Serializable {
     @Column(name = "MaVe")
     private String maVe;
 
-    @Column(name = "ThoiGianLenTau")
+    @Column(name = "ThoiGianLenTau",columnDefinition = "datetime")
     private LocalDateTime thoiGianLenTau;
     
     @Column(name = "TrangThai")

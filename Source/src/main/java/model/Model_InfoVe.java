@@ -59,7 +59,7 @@ public class Model_InfoVe {
 	}
 
 	public String getThongTinChuyen() {
-		return chuyen.getMaTau() + " " + chuyen.getChuyen().getTenCHuyen();
+		return chuyen.getMaTau() + " " + chuyen.getGaDi().getTenGa() + " - " +chuyen.getGaDen().getTenGa();
 	}
 
 	public String getInfoCho() {

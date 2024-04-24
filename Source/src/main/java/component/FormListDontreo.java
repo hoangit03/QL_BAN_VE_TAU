@@ -9,13 +9,19 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
+
+import jakarta.persistence.EntityManagerFactory;
 import swing.ScrollBar;
 
 
 public class FormListDontreo extends javax.swing.JFrame {
 
 
-    public FormListDontreo() {
+	private EntityManagerFactory emf;
+	private boolean isClick;
+    public FormListDontreo(boolean isClick, EntityManagerFactory emf) {
+    	this.emf = emf;
+    	this.isClick = isClick;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Thông tin đơn treo");
@@ -39,20 +45,17 @@ public class FormListDontreo extends javax.swing.JFrame {
         jpTraCuu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jtCCCD = new javax.swing.JTextField();
+        jtSĐT = new javax.swing.JTextField();
+        btnTim = new javax.swing.JButton();
+        btnXuLy = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "CCCD", "Họ tên", "Số điện thoại", "Ngày lập", "Giờ lập", "Số lượng vé"
@@ -68,20 +71,20 @@ public class FormListDontreo extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel2.setText("Sô điện thoại");
 
-        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTextField1.setPreferredSize(new java.awt.Dimension(64, 35));
+        jtCCCD.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jtCCCD.setPreferredSize(new java.awt.Dimension(64, 35));
 
-        jTextField2.setPreferredSize(new java.awt.Dimension(64, 35));
+        jtSĐT.setPreferredSize(new java.awt.Dimension(64, 35));
 
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jButton1.setText("Tìm");
-        jButton1.setBorder(null);
-        jButton1.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnTim.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTim.setText("Tìm");
+        btnTim.setBorder(null);
+        btnTim.setPreferredSize(new java.awt.Dimension(75, 50));
 
-        jButton2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jButton2.setText("Xử lý");
-        jButton2.setBorder(null);
-        jButton2.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnXuLy.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnXuLy.setText("Xử lý");
+        btnXuLy.setBorder(null);
+        btnXuLy.setPreferredSize(new java.awt.Dimension(75, 50));
 
         javax.swing.GroupLayout jpTraCuuLayout = new javax.swing.GroupLayout(jpTraCuu);
         jpTraCuu.setLayout(jpTraCuuLayout);
@@ -94,12 +97,12 @@ public class FormListDontreo extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(32, 32, 32)
                 .addGroup(jpTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jtSĐT, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
+                    .addComponent(jtCCCD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(96, 96, 96)
                 .addGroup(jpTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXuLy, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpTraCuuLayout.setVerticalGroup(
@@ -108,17 +111,17 @@ public class FormListDontreo extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(jpTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtCCCD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jpTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpTraCuuLayout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jpTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtSĐT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)))
                     .addGroup(jpTraCuuLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnXuLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -143,13 +146,13 @@ public class FormListDontreo extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnTim;
+    private javax.swing.JButton btnXuLy;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JPanel jpTraCuu;
+    private javax.swing.JTextField jtCCCD;
+    private javax.swing.JTextField jtSĐT;
     private javax.swing.JScrollPane scpTable;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables

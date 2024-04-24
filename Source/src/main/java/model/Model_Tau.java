@@ -2,6 +2,7 @@
 package model;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import entity.Chuyen;
@@ -15,6 +16,8 @@ public class Model_Tau {
 	private String maTau;
 	private Ga gaDi;
 	private Ga gaDen;
+	private LocalDateTime dateLenTau;
+	private DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 	public Model_Tau() {
@@ -26,8 +29,10 @@ public class Model_Tau {
 		this.gaDi = gaDi;
 		this.gaDen = gaDen;
 		double time1 = Math.abs(gaXP.getCuLy() - gaDi.getCuLy()) / chuyen.getTau().getTocDo();
+		
 		this.TGDi = chuyen.getNgayKhoiHanh().format(formatter) + " " + chuyen.getGioKhoiHanh()
 				.plus(Duration.ofMinutes((long) (time1 * 60 + 10 * Math.abs(gaXP.getId() - gaDi.getId())))).toString();
+		this.dateLenTau =  LocalDateTime.parse(TGDi, formatterTime);
 		double time2 = Math.abs(gaDen.getCuLy() - gaXP.getCuLy()) / chuyen.getTau().getTocDo();
 		this.TGDen = chuyen.getNgayKhoiHanh().format(formatter) + " "
 				+ chuyen.getGioKhoiHanh().plus(Duration.ofMinutes((long) ((time2) * 60  + 10 * (Math.abs(gaXP.getId() - gaDen.getId()))))).toString();
@@ -90,5 +95,16 @@ public class Model_Tau {
 		this.gaDen = gaDen;
 	}
 
+	public LocalDateTime getDateLenTau() {
+		return dateLenTau;
+	}
+
+	public void setDateLenTau(LocalDateTime dateLenTau) {
+		this.dateLenTau = dateLenTau;
+	}
+
+	public int getKhoangCachGa() {
+		return Math.abs(gaDi.getId() - gaDen.getId());
+	}
 	
 }
