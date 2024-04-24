@@ -34,4 +34,7 @@ public class GaDao {
 	public Ga layGaCuoi() {
 		return em.createQuery("SELECT g FROM Ga g WHERE g.id = :id",Ga.class).setParameter("id", 20).getSingleResult();
 	}
+
+	
+	
 }

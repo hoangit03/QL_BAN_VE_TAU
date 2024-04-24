@@ -20,6 +20,7 @@ public class HoaDonDao {
       try{
           tx.begin();
           em.persist(hoaDon);
+        
           tx.commit();
           return true;
       }

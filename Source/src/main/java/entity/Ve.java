@@ -7,6 +7,9 @@ package entity;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,6 +21,13 @@ import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Ve.FindByMaHd", query = "select v from Ve v where v.hoaDon.maHoaDon = :mhd and v.trangThai = true "),
+	@NamedQuery(name="Ve.FindByMaVe", query = "select v from Ve v where v.maVe = :mv and v.trangThai = true "),
+	@NamedQuery(
+		    name = "Ve.updateDoiTra", 
+				query = "UPDATE Ve v SET v.thoiGianLenTau = :newThoiGianLenTau , v.trangThai = :newTrangThai WHERE v.maVe = :maVe"		)
+})
 public class Ve implements Serializable {
 
     @Id
