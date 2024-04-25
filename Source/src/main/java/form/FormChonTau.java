@@ -1265,6 +1265,23 @@ public class FormChonTau extends javax.swing.JPanel {
 			hd.setListVes(listVe);
 			if(frameMuaVe == null) {
 				frameMuaVe = new jFrameMuaVe(emf,hd);
+				frameMuaVe.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowDeactivated(WindowEvent e) {
+						System.out.println(frameMuaVe.isAddHoaDon());
+						if(frameMuaVe.isAddHoaDon()) {
+							listInfoVes.clear();
+							listChoChon.clear();
+							liscccd.clear();
+							DefaultTableModel md = (DefaultTableModel) tbListVe.getModel();
+							md.setRowCount(0);
+							listTau.removeAll();
+							AddDataTau();
+							
+						}
+						
+					}
+				});
 				frameMuaVe.setVisible(true);
 			}
 			else {
@@ -1326,6 +1343,8 @@ public class FormChonTau extends javax.swing.JPanel {
 
 	private void tbListVeMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tbListVeMouseClicked
 		int index = tbListVe.getSelectedRow();
+		if(index == -1)
+			return;
 		Model_InfoVe info = listInfoVes.get(index);
 		lbTauChuyen.setText(info.getThongTinChuyen());
 		lbThoiGianLen.setText(info.getChuyen().getTGDi());

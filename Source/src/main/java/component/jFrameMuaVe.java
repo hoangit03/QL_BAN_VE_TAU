@@ -28,6 +28,8 @@ public class jFrameMuaVe extends javax.swing.JFrame {
 	private VeDao veDao;
 	private ChiTietVeDao chiTietVeDao;
 	private EntityManagerFactory emf;
+	private boolean isAddHoaDon;
+	
     public jFrameMuaVe(EntityManagerFactory emf, HoaDon hd) {
     	this.hoadon = hd;
     	this.emf = emf;
@@ -35,6 +37,7 @@ public class jFrameMuaVe extends javax.swing.JFrame {
     	this.veDao = new VeDao(emf);
     	this.chiTietVeDao = new ChiTietVeDao(emf);
     	this.hoaDonDao = new HoaDonDao(emf);
+    	this.isAddHoaDon = false;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -43,14 +46,30 @@ public class jFrameMuaVe extends javax.swing.JFrame {
     }
     
     
+    
+    
+    public boolean isAddHoaDon() {
+		return isAddHoaDon;
+	}
 
-    public HoaDon getHoadon() {
+
+
+
+	public void setAddHoaDon(boolean isAddHoaDon) {
+		this.isAddHoaDon = isAddHoaDon;
+	}
+
+
+
+
+	public HoaDon getHoadon() {
 		return hoadon;
 	}
 
 
 
 	public void setHoadon(HoaDon hoadon) {
+		this.isAddHoaDon = false;
 		this.hoadon = hoadon;
 	}
 
@@ -294,6 +313,7 @@ public class jFrameMuaVe extends javax.swing.JFrame {
     					chiTietVeDao.addChiTietVe(ctv);
     				}
     			}
+    			this.isAddHoaDon = true;
     			setVisible(false);
     		}
     		else {
