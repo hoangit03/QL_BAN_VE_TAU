@@ -237,8 +237,8 @@ public class jFrameMuaVe extends javax.swing.JFrame {
     	try {
     		double tienNhap = Double.parseDouble(jtGia.getText());
     		double tongTien = Double.parseDouble(ifTongT.getText().substring(0, ifTongT.getText().length()-4));
-    		if(tienNhap - tongTien >= 0) {
-    			ifTienThoi.setText((tongTien-tienNhap)+"");
+    		if(tienNhap - tongTien >= 1000) {
+    			ifTienThoi.setText((tienNhap-tongTien)+"");
     		}
     		else {
 				ifTienThoi.setText(" ");
