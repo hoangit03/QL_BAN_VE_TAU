@@ -72,10 +72,6 @@ public class HoaDon implements Serializable {
         this.lisKhuyenMais = lisKhuyenMais;
     }
     
-    
-
-   
-
     public HoaDon(String maHoaDon, LocalTime gioTao, LocalDate ngayTao, boolean trangThai) {
 		super();
 		this.maHoaDon = maHoaDon;

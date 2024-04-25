@@ -66,7 +66,10 @@ public class VeDao {
 	            e.printStackTrace();
 	        }
 	    }
-	
 
+	    
+	    public List<Ve> layVeThuocMa(String ma){
+	    	return em.createQuery("SELECT v FROM Ve v WHERE v.maVe like :maVe", Ve.class).setParameter("maVe","%"+ ma+"%").getResultList();
+	    }
 
 }

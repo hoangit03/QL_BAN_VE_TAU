@@ -176,10 +176,10 @@ public class GD_DoiTra extends javax.swing.JPanel {
 				HoaDon hd = hoaDonDao.getHoaDonByMa(maHD);
 				hienHoaDon(hd);
 				hienBangVe(maHD, "");
-				 if(tableVe.getRowCount()>0 )
-					 tableVe.setRowSelectionInterval(0, 0);
-				tableVe.clearSelection();			
-				}
+				if (tableVe.getRowCount() > 0)
+					tableVe.setRowSelectionInterval(0, 0);
+				tableVe.clearSelection();
+			}
 		});
 		javax.swing.GroupLayout formHoaDonLayout = new javax.swing.GroupLayout(formHoaDon);
 		formHoaDon.setLayout(formHoaDonLayout);
@@ -191,8 +191,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 						.addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE));
 
 		tableVe.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-		tableVe.setModel(new javax.swing.table.DefaultTableModel(
-				new Object[][] {},
+		tableVe.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {},
 				new String[] { "Mã vé", "CCCD", "Tên khách hàng", "Đối tượng", "Ga đi", "Ga đến", "Mã tàu", "Số toa",
 						"Vị trí Chổ", "Giờ lên tàu", "Giá" }));
 		tableVe.setAlignmentX(0.0F);
@@ -711,7 +710,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 					kh.getSdt(), km, hoaDon.getNgayTao(), hoaDon.getGioTao(), tongTien };
 			model.addRow(row);
 		}
-		tableHD.setModel(model);
+		model.fireTableDataChanged();
 	}
 
 	private void hienHoaDon(HoaDon hd) {
@@ -774,10 +773,10 @@ public class GD_DoiTra extends javax.swing.JPanel {
 				Object[] row = { hoaDon.getMaHoaDon(), hoaDon.getNhanVien().getMaNhanVien(), kh.getCccd(),
 						kh.getHoTen(), kh.getSdt(), km, hoaDon.getNgayTao(), hoaDon.getGioTao(), tongTien };
 				model.addRow(row);
-				tableHD.setModel(model);
+				model.fireTableDataChanged();
 				hienBangVe(maHD, "");
 			} else {
-				JOptionPane.showMessageDialog(null, "Mã hóa đơn nhập chưa đúng", "Thông báo",
+				JOptionPane.showMessageDialog(null, "Mã hóa đơn nhập không có trong hệ thống", "Thông báo",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
@@ -806,20 +805,21 @@ public class GD_DoiTra extends javax.swing.JPanel {
 							* (ve.getKhuyenMai() == null ? 1 : ve.getKhuyenMai().getChietKhau()) };
 			model.addRow(row);
 		}
-		tableVe.setModel(model);
+		model.fireTableDataChanged();
 	}
 
 	private void timVe() {
 		String maVe = jtMV.getText();
 		if (maVe.equals("")) {
-			JOptionPane.showMessageDialog(null, "Chưa nhập mã hoá đơn", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Chưa nhập mã vé", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+			jtMV.requestFocus();
 		} else {
 			Ve ve = veDao.getVeByMa(maVe);
 			if (ve != null) {
 				hienBangVe("", maVe);
 				tableVe.setRowSelectionInterval(0, 0);
 			} else {
-				JOptionPane.showMessageDialog(null, "Mã ve nhập chưa đúng", "Thông báo",
+				JOptionPane.showMessageDialog(null, "Mã vé nhập không có trong hệ thống", "Thông báo",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
@@ -850,7 +850,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 							gaChieuDen = ctv.getGa();
 					}
 //					chi dc tra 70%
-					double soTienDuocTra = ve.getChoNgoi().getGia() * Math.abs(gaChieuDen.getId() - gaChieuDi.getId())
+					double soTienDuocTra = ve.getChoNgoi().getGia() * Math.abs(gaChieuDen.getId() - gaChieuDi.getId())*0.7
 							* (ve.getKhuyenMai() == null ? 1 : ve.getKhuyenMai().getChietKhau());
 					veDao.updateDoiVe(maVe, LocalDateTime.now());
 

@@ -63,9 +63,25 @@ public class KhachHang implements Serializable {
         this.lisHoaDons = lisHoaDons;
     }
     
+
+    public KhachHang(String cccd, String hoTen, String doiTuong) {
+		super();
+		this.cccd = cccd;
+		this.hoTen = hoTen;
+		this.doiTuong = doiTuong;
+	}
+    
     
 
-    public KhachHang(String cccd, String hoTen, String email, String sdt, String doiTuong) {
+	public KhachHang(String cccd, String sdt, String hoTen, String email) {
+		super();
+		this.cccd = cccd;
+		this.sdt = sdt;
+		this.hoTen = hoTen;
+		this.email = email;
+	}
+
+	public KhachHang(String cccd, String hoTen, String email, String sdt, String doiTuong) {
         this.cccd = cccd;
         this.hoTen = hoTen;
         this.email = email;

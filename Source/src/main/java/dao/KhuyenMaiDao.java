@@ -1,5 +1,7 @@
 package dao;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 import entity.KhuyenMai;
@@ -62,8 +64,8 @@ public class KhuyenMaiDao {
 	}
 
 	public List<KhuyenMai> getAllKhuyenMaiKH() {
-		return em.createNamedQuery("KhuyenMai.findAllKMKH", KhuyenMai.class)
-				.setParameter("loai", "KMHD").getResultList();
+		return em.createNamedQuery("KhuyenMai.findAllKMKH", KhuyenMai.class).setParameter("loai", "KMHD")
+				.getResultList();
 	}
 
 	// lấy toàn bộ danh sách khuyến mãi tren hoa don
@@ -81,5 +83,27 @@ public class KhuyenMaiDao {
 		return em.createQuery("SELECT km FROM KhuyenMai km WHERE km.loaiKhuyenMai = :loai", KhuyenMai.class)
 				.setParameter("loai", loai).getResultList();
 
+	}
+	
+	public KhuyenMai layKhuyenMaiTotNhatBangLoai(int soLuong) {
+		try {
+			return em.createQuery(
+					"SELECT km FROM KhuyenMai km WHERE AND km.soLuongVe <= :soLuong km.loaiKhuyenMai = :loai AND km.trangThai = :trangThai AND km.thoiGianKetThuc > :date ORDER BY km.soLuongVe DESC",
+					KhuyenMai.class).setParameter("soLuong", soLuong).setParameter("loai", "KMKH").setParameter("trangThai", true).setParameter("date", Date.from(Instant.now())).setMaxResults(1).getSingleResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
+	}
+
+	public KhuyenMai layKhuyenMaiTotNhatBangLoai(String loai) {
+		try {
+			return em.createQuery(
+					"SELECT km FROM KhuyenMai km WHERE km.loaiKhuyenMai = :loai AND km.trangThai = :trangThai AND km.thoiGianKetThuc > :date ORDER BY km.chietKhau DESC",
+					KhuyenMai.class).setParameter("loai", loai).setParameter("trangThai", true).setParameter("date", Date.from(Instant.now())).setMaxResults(1).getSingleResult();
+		} catch (Exception e) {
+			// TODO: handle exception
+			return null;
+		}
 	}
 }
