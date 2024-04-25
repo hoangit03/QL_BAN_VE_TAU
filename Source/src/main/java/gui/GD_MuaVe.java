@@ -6,13 +6,17 @@ import jakarta.persistence.EntityManagerFactory;
 
 import java.awt.event.ActionListener;
 
+import entity.TaiKhoan;
+
 public class GD_MuaVe extends javax.swing.JPanel {
 
 	private EntityManagerFactory emf;
-    public GD_MuaVe(EntityManagerFactory emf) {
+	private TaiKhoan taiKhoan;
+    public GD_MuaVe(EntityManagerFactory emf, TaiKhoan taiKhoan) {
     	this.emf = emf;
+    	this.taiKhoan = taiKhoan;
         initComponents();
-        mainForm1.showForm(new FormMuaVe(mainForm1,emf));
+        mainForm1.showForm(new FormMuaVe(mainForm1,emf,taiKhoan));
     }
 
 

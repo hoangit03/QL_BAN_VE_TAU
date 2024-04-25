@@ -7,6 +7,7 @@ import dao.GaDao;
 import dao.TuyenDao;
 import entity.Chuyen;
 import entity.Ga;
+import entity.TaiKhoan;
 import event.EvenItemGaClick;
 import jakarta.persistence.EntityManagerFactory;
 import java.awt.Color;
@@ -26,11 +27,13 @@ public class FormMuaVe extends javax.swing.JPanel {
     private JPopupMenu menu;
     private PanelSearch search;
     private List<Ga> listGas;
+    private TaiKhoan taiKhoan;
 
-    public FormMuaVe(MainForm main, EntityManagerFactory emf) {
+    public FormMuaVe(MainForm main, EntityManagerFactory emf, TaiKhoan taiKhoan) {
         this.emf = emf;
         gaDao = new GaDao(emf);
         this.listGas = gaDao.getAllGa();
+        this.taiKhoan = taiKhoan;
         initComponents();
         this.main = main;
         menu = new JPopupMenu();
@@ -342,7 +345,7 @@ public class FormMuaVe extends javax.swing.JPanel {
             }
         }
         
-        main.showForm(new FormChonTau(emf,main,listChuyenDis,ga1,ga2,ngDi,ngVe,radBtnMotChieu.isSelected()));
+        main.showForm(new FormChonTau(emf,main,listChuyenDis,ga1,ga2,ngDi,ngVe,radBtnMotChieu.isSelected(),taiKhoan));
     }//GEN-LAST:event_btnTimChuyenActionPerformed
 
     private void radBtnMotChieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radBtnMotChieuActionPerformed

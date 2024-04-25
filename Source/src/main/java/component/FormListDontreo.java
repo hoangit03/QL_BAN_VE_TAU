@@ -4,6 +4,10 @@ package component;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import static java.awt.image.ImageObserver.HEIGHT;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -18,14 +22,13 @@ public class FormListDontreo extends javax.swing.JFrame {
 
 
 	private EntityManagerFactory emf;
-	private boolean isClick;
-    public FormListDontreo(boolean isClick, EntityManagerFactory emf) {
+    public FormListDontreo(EntityManagerFactory emf) {
     	this.emf = emf;
-    	this.isClick = isClick;
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Thông tin đơn treo");
         setLocationRelativeTo(null);
+        setResizable(false);
         jpTraCuu.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black), "Thông tin đơn đặt", 0, HEIGHT, new Font(Font.SANS_SERIF,Font.PLAIN,17) {
         }, Color.black));
         jpTraCuu.setBackground(Color.white);
@@ -33,6 +36,7 @@ public class FormListDontreo extends javax.swing.JFrame {
         table.getTableHeader().setPreferredSize(new Dimension(30,30));
         scpTable.setVerticalScrollBar(new ScrollBar());
         ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+        setAlwaysOnTop(true);
     }
 
 
@@ -80,11 +84,21 @@ public class FormListDontreo extends javax.swing.JFrame {
         btnTim.setText("Tìm");
         btnTim.setBorder(null);
         btnTim.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnTim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimActionPerformed(evt);
+            }
+        });
 
         btnXuLy.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnXuLy.setText("Xử lý");
         btnXuLy.setBorder(null);
         btnXuLy.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnXuLy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuLyActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpTraCuuLayout = new javax.swing.GroupLayout(jpTraCuu);
         jpTraCuu.setLayout(jpTraCuuLayout);
@@ -143,6 +157,14 @@ public class FormListDontreo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
+       
+    }//GEN-LAST:event_btnTimActionPerformed
+
+    private void btnXuLyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuLyActionPerformed
+       
+    }//GEN-LAST:event_btnXuLyActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -122,7 +122,7 @@ public class HoaDon implements Serializable {
     public void setNhanVien(NhanVien nhanVien) {
         this.nhanVien = nhanVien;
     }
-
+    
     public KhachHang getKhachHang() {
         return khachHang;
     }

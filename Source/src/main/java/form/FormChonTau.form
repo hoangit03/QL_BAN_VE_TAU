@@ -408,6 +408,9 @@
               <Dimension value="[64, 40]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jtCccdKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lbGaDi2">
           <Properties>

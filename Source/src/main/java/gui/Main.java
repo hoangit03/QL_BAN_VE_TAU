@@ -45,7 +45,7 @@ public class Main extends javax.swing.JFrame {
 				case 0:
 					switch (subMenuIndex) {
 					case 0:
-						main.showForm(new GD_MuaVe(emf));
+						main.showForm(new GD_MuaVe(emf,taiKhoan));
 						menu.hideallMenu();
 						break;
 					case 1:

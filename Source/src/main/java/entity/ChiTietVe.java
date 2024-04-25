@@ -27,8 +27,27 @@ public class ChiTietVe implements Serializable {
     public ChiTietVe(boolean chieu) {
         this.chieu = chieu;
     }
+    
+    
 
-    public ChiTietVe() {
+    public ChiTietVe( Ga ga, boolean chieu) {
+		super();
+		this.ga = ga;
+		this.chieu = chieu;
+	}
+
+
+
+	public ChiTietVe(Ve ve, Ga ga, boolean chieu) {
+		super();
+		this.ve = ve;
+		this.ga = ga;
+		this.chieu = chieu;
+	}
+
+
+
+	public ChiTietVe() {
     }
 
     public Ve getVe() {

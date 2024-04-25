@@ -921,6 +921,8 @@ WHERE Ve.MaChuyen = 'SE01123012052024BN'
 GROUP BY Ve.MaVe, MaChoNgoi
 
 
+SELECT * From Ve 
+
 SELECT Ve.MaVe, MaChoNgoi,
 MAX(CASE WHEN Chieu = 1 THEN ID END) AS ID1, 
 MAX(CASE WHEN Chieu = 0 THEN ID END) AS ID2
@@ -947,6 +949,7 @@ WHERE Toa.ViTri = 5 AND MaChoNgoi  IN (
 		OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) < 1 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) > 1) 
 			OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) < 11 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) > 11)
 				OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) > 1 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) < 11))
+ORDER BY MaChoNgoi DESC
 
 ----- 
 
@@ -992,3 +995,7 @@ WHERE MaChoNgoi NOT IN (
 				OR (MAX(CASE WHEN ChiTietVe.Chieu = 1 THEN ID END) > 3 AND MAX(CASE WHEN ChiTietVe.Chieu = 0 THEN ID END) < 6))
 GROUP BY Toa.MaToa, LoaiToa, Toa.ViTri
 ORDER BY Toa.ViTri
+
+
+SELECT * FROM HoaDon JOIN Ve on HoaDon.MaHoaDon = Ve.MaHoaDon 
+

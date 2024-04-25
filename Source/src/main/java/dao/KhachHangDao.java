@@ -40,6 +40,20 @@ public class KhachHangDao {
 		return false;
 	}
     
+    public boolean addKhachHang(KhachHang kh) {
+    	EntityTransaction tx = em.getTransaction();
+		try {
+			tx.begin();
+			em.persist(kh);
+			tx.commit();
+			return true;
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		}
+		return false;
+    }
+    
     // Find KhachHang by Phone number
     public KhachHang getKhachHangByPhoneNumber(String sdt) {
 		try {
@@ -73,7 +87,7 @@ public class KhachHangDao {
     }
     
     public List<KhachHang> layKhachHangThuocMa(String ma){
-    	return em.createQuery("SELECT kh FROM KhachHang kh WHERE kh.cccd like :ma", KhachHang.class).setParameter("ma","%"+ma+"%").getResultList();
+    	return em.createQuery("SELECT kh FROM KhachHang kh WHERE kh.cccd like :ma ORDER BY kh.cccd DESC", KhachHang.class).setParameter("ma","%"+ma+"%").getResultList();
     }
     
     public void writeToExcel(String filePath) {
