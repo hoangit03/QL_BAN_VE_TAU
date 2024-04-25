@@ -289,7 +289,36 @@ public class jFrameMuaVe extends javax.swing.JFrame {
     }//GEN-LAST:event_jtGiaKeyReleased
 
     private void btnTreoDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTreoDMouseClicked
-        
+    	String tien = jtGia.getText();
+    	if(tien.equals(""))
+    		JOptionPane.showConfirmDialog(null, "Chưa nhập số tiền thanh toán", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    	try {
+    		double tienNhap = Double.parseDouble(tien);
+    		double tongTien = Double.parseDouble(ifTongT.getText().substring(0, ifTongT.getText().length()-4));
+    		if(tienNhap - tongTien >= 0) {
+    			if(khachHangDao.getKhachHangByCCCD(hoadon.getKhachHang().getCccd()) == null)
+    				khachHangDao.addKhachHang(hoadon.getKhachHang());
+    			hoaDonDao.addHoaDon(hoadon);
+    			for(Ve v: hoadon.getListVes()) {
+    				if(khachHangDao.getKhachHangByCCCD(v.getKhachHang().getCccd()) == null)
+    					khachHangDao.addKhachHang(v.getKhachHang());
+    				else
+    					khachHangDao.updateKhachHang(v.getKhachHang());
+    				veDao.addVe(v);
+    				for(ChiTietVe ctv : v.getLisChiTietVes()) {
+    					chiTietVeDao.addChiTietVe(ctv);
+    				}
+    			}
+    			this.isAddHoaDon = true;
+    			setVisible(false);
+    		}
+    		else {
+    			JOptionPane.showConfirmDialog(null, "Chưa đủ số tiền", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    		}
+		} catch (Exception e) {
+			JOptionPane.showConfirmDialog(null, "Ô nhập tiền thanh toán không đưuọc nhập dữu liệu gì ngoài số", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+			e.printStackTrace();
+		}
     }//GEN-LAST:event_btnTreoDMouseClicked
 
     private void btnThanhToanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToanMouseClicked
@@ -299,7 +328,7 @@ public class jFrameMuaVe extends javax.swing.JFrame {
     	try {
     		double tienNhap = Double.parseDouble(tien);
     		double tongTien = Double.parseDouble(ifTongT.getText().substring(0, ifTongT.getText().length()-4));
-    		if(tienNhap - tongTien > 0) {
+    		if(tienNhap - tongTien >= 0) {
     			if(khachHangDao.getKhachHangByCCCD(hoadon.getKhachHang().getCccd()) == null)
     				khachHangDao.addKhachHang(hoadon.getKhachHang());
     			hoaDonDao.addHoaDon(hoadon);

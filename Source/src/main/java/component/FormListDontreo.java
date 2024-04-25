@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.awt.image.ImageObserver.HEIGHT;
 import javax.swing.BorderFactory;
@@ -14,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import dao.HoaDonDao;
+import entity.HoaDon;
 import jakarta.persistence.EntityManagerFactory;
 import swing.ScrollBar;
 
@@ -22,8 +26,13 @@ public class FormListDontreo extends javax.swing.JFrame {
 
 
 	private EntityManagerFactory emf;
+	private HoaDonDao hoaDonDao;
+	private HoaDon hoaDon;
+	private List<HoaDon> list;
     public FormListDontreo(EntityManagerFactory emf) {
     	this.emf = emf;
+    	this.list = new ArrayList<HoaDon>();
+    	this.hoaDonDao = new HoaDonDao(emf);
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Thông tin đơn treo");
@@ -167,6 +176,10 @@ public class FormListDontreo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXuLyActionPerformed
 
 
+    public void SetDataListHoaDon() {
+    	
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTim;
     private javax.swing.JButton btnXuLy;

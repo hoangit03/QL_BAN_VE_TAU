@@ -1,5 +1,6 @@
 package dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import entity.HoaDon;
@@ -41,13 +42,15 @@ public class HoaDonDao {
 		return em.createNamedQuery("HoaDon.findAll", HoaDon.class).getResultList();
 	}
 
-	
-	public List<HoaDon> layHoaDonTam(){
-		return em.createQuery("SELECT hd FROM HoaDon hd WHERE hd.trangThai = false", HoaDon.class).getResultList();
+	public List<HoaDon> layHoaDonTam() {
+		LocalDate ngayHienTai = LocalDate.now();
+		return em.createQuery("SELECT hd FROM HoaDon hd WHERE hd.trangThai = false AND hd.ngayTao = :ngayTao",
+				HoaDon.class).setParameter("ngayTao", ngayHienTai).getResultList();
 	}
-	
-	public List<HoaDon> layHoaDonThuocMa(String ma){
-		return em.createQuery("SELECT hd FROM HoaDon hd WHERE hd.maHoaDon like :ma", HoaDon.class).setParameter("ma","%"+ ma+"%").getResultList();
+
+	public List<HoaDon> layHoaDonThuocMa(String ma) {
+		return em.createQuery("SELECT hd FROM HoaDon hd WHERE hd.maHoaDon like :ma", HoaDon.class)
+				.setParameter("ma", "%" + ma + "%").getResultList();
 	}
 
 }

@@ -1017,5 +1017,8 @@ GROUP BY Toa.MaToa, LoaiToa, Toa.ViTri
 ORDER BY Toa.ViTri
 
 
-SELECT * FROM HoaDon JOIN Ve on HoaDon.MaHoaDon = Ve.MaHoaDon 
+SELECT * FROM Ve Join ChiTietVe on ve.MaVe = ChiTietVe.MaVe
+
+
+SELECT * From HoaDon
 
