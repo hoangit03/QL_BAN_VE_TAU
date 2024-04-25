@@ -49,7 +49,7 @@ public class Main extends javax.swing.JFrame {
 						menu.hideallMenu();
 						break;
 					case 1:
-						main.showForm(new GD_DoiTra());
+						main.showForm(new GD_DoiTra(emf));
 						menu.hideallMenu();
 						break;
 					}

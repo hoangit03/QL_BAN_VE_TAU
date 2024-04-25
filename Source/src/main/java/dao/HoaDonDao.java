@@ -15,6 +15,7 @@ public class HoaDonDao {
 	}
 
 //  Thêm Hóa Đơn
+
 	public boolean addHoaDon(HoaDon hoaDon) {
 		EntityTransaction tx = em.getTransaction();
 		try {
@@ -24,6 +25,7 @@ public class HoaDonDao {
 			return true;
 		} catch (Exception e) {
 			tx.rollback();
+
 			e.printStackTrace();
 		}
 		return false;

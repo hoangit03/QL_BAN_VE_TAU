@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import org.hibernate.annotations.NamedQueries;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,10 +20,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+
+
 import jakarta.persistence.OneToMany;
 import java.io.Serializable;
 
 @Entity
+@NamedQueries({
+	@org.hibernate.annotations.NamedQuery(name = "HoaDon.findAll",query = "select hd from HoaDon hd")
+})
 public class HoaDon implements Serializable {
 
     @Id
