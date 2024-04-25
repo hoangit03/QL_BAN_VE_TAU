@@ -9,7 +9,10 @@ import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import dao.ChiTietVeDao;
 import dao.HoaDonDao;
+import dao.KhachHangDao;
+import dao.VeDao;
 import entity.ChiTietVe;
 import entity.Ga;
 import entity.HoaDon;
@@ -21,10 +24,17 @@ public class jFrameMuaVe extends javax.swing.JFrame {
 
 	private HoaDon hoadon;
 	private HoaDonDao hoaDonDao;
+	private KhachHangDao khachHangDao;
+	private VeDao veDao;
+	private ChiTietVeDao chiTietVeDao;
 	private EntityManagerFactory emf;
     public jFrameMuaVe(EntityManagerFactory emf, HoaDon hd) {
     	this.hoadon = hd;
     	this.emf = emf;
+    	this.khachHangDao = new KhachHangDao(emf);
+    	this.veDao = new VeDao(emf);
+    	this.chiTietVeDao = new ChiTietVeDao(emf);
+    	this.hoaDonDao = new HoaDonDao(emf);
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -105,9 +115,19 @@ public class jFrameMuaVe extends javax.swing.JFrame {
 
         btnTreoD.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnTreoD.setText("Treo đơn");
+        btnTreoD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTreoDMouseClicked(evt);
+            }
+        });
 
         btnThanhToan.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnThanhToan.setText("Thanh toán");
+        btnThanhToan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnThanhToanMouseClicked(evt);
+            }
+        });
 
         title.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         title.setForeground(new java.awt.Color(0, 51, 255));
@@ -246,10 +266,45 @@ public class jFrameMuaVe extends javax.swing.JFrame {
     	}
     	catch (Exception e) {
 			JOptionPane.showConfirmDialog(null, "Chỉ được nhập số", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-		}{
-    		
-    	}
+		}
     }//GEN-LAST:event_jtGiaKeyReleased
+
+    private void btnTreoDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTreoDMouseClicked
+        
+    }//GEN-LAST:event_btnTreoDMouseClicked
+
+    private void btnThanhToanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToanMouseClicked
+    	String tien = jtGia.getText();
+    	if(tien.equals(""))
+    		JOptionPane.showConfirmDialog(null, "Chưa nhập số tiền thanh toán", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    	try {
+    		double tienNhap = Double.parseDouble(tien);
+    		double tongTien = Double.parseDouble(ifTongT.getText().substring(0, ifTongT.getText().length()-4));
+    		if(tienNhap - tongTien > 0) {
+    			if(khachHangDao.getKhachHangByCCCD(hoadon.getKhachHang().getCccd()) == null)
+    				khachHangDao.addKhachHang(hoadon.getKhachHang());
+    			hoaDonDao.addHoaDon(hoadon);
+    			for(Ve v: hoadon.getListVes()) {
+    				if(khachHangDao.getKhachHangByCCCD(v.getKhachHang().getCccd()) == null)
+    					khachHangDao.addKhachHang(v.getKhachHang());
+    				else
+    					khachHangDao.updateKhachHang(v.getKhachHang());
+    				veDao.addVe(v);
+    				for(ChiTietVe ctv : v.getLisChiTietVes()) {
+    					chiTietVeDao.addChiTietVe(ctv);
+    				}
+    			}
+    			setVisible(false);
+    		}
+    		else {
+    			JOptionPane.showConfirmDialog(null, "Chưa đủ số tiền", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+    		}
+		} catch (Exception e) {
+			JOptionPane.showConfirmDialog(null, "Ô nhập tiền thanh toán không đưuọc nhập dữu liệu gì ngoài số", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+			e.printStackTrace();
+		}
+    	
+    }//GEN-LAST:event_btnThanhToanMouseClicked
 
    
     private void addLable() {

@@ -171,7 +171,6 @@ public class FormChonTau extends javax.swing.JPanel {
 		cbDT.addItem("Người già");
 		TableColumn col = tbListVe.getColumnModel().getColumn(2);
 		cbDT.addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -1273,19 +1272,6 @@ public class FormChonTau extends javax.swing.JPanel {
 				frameMuaVe.setVisible(true);
 			}
 			
-	//		if(khachHangDao.getKhachHangByCCCD(hd.getKhachHang().getCccd()) == null)
-	//			khachHangDao.addKhachHang(hd.getKhachHang());
-	//		hoaDonDao.addHoaDon(hd);
-	//		for(Ve v: hd.getListVes()) {
-	//			if(khachHangDao.getKhachHangByCCCD(v.getKhachHang().getCccd()) == null)
-	//				khachHangDao.addKhachHang(v.getKhachHang());
-	//			else
-	//				khachHangDao.updateKhachHang(kh);
-	//			veDao.addVe(v);
-	//			for(ChiTietVe ctv : v.getLisChiTietVes()) {
-	//				chiTietVeDao.addChiTietVe(ctv);
-	//			}
-	//		}
 		}
 
 	}// GEN-LAST:event_btnXacNhanMouseClicked

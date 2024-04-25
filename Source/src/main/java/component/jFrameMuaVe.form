@@ -209,6 +209,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Treo &#x111;&#x1a1;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTreoDMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnThanhToan">
           <Properties>
@@ -217,6 +220,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Thanh to&#xe1;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnThanhToanMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="title">
           <Properties>
