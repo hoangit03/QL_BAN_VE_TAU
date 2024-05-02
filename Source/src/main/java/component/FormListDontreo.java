@@ -14,7 +14,9 @@ import static java.awt.image.ImageObserver.HEIGHT;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 import dao.HoaDonDao;
 import entity.HoaDon;
@@ -29,10 +31,12 @@ public class FormListDontreo extends javax.swing.JFrame {
 	private HoaDonDao hoaDonDao;
 	private HoaDon hoaDon;
 	private List<HoaDon> list;
+	private boolean isClick;
+	private DefaultTableModel model;
     public FormListDontreo(EntityManagerFactory emf) {
     	this.emf = emf;
-    	this.list = new ArrayList<HoaDon>();
     	this.hoaDonDao = new HoaDonDao(emf);
+    	this.list = hoaDonDao.layHoaDonTam();
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setTitle("Thông tin đơn treo");
@@ -45,11 +49,31 @@ public class FormListDontreo extends javax.swing.JFrame {
         table.getTableHeader().setPreferredSize(new Dimension(30,30));
         scpTable.setVerticalScrollBar(new ScrollBar());
         ((DefaultTableCellRenderer)table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
-        setAlwaysOnTop(true);
+        model = (DefaultTableModel) table.getModel();
+		addDataTable(list);
+
     }
+    
+    
 
 
-    @SuppressWarnings("unchecked")
+    public HoaDon getHoaDon() {
+		return hoaDon;
+	}
+
+	public void setHoaDon(HoaDon hoaDon) {
+		this.hoaDon = hoaDon;
+	}
+
+	public boolean isClick() {
+		return isClick;
+	}
+
+	public void setClick(boolean isClick) {
+		this.isClick = isClick;
+	}
+
+	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -168,17 +192,58 @@ public class FormListDontreo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
-       
+    	if(jtCCCD.getText().equalsIgnoreCase("") && jtSĐT.getText().equalsIgnoreCase("")) {
+			JOptionPane.showMessageDialog(null, "Chưa nhập tiêu chí tìm kiếm");
+			return;
+		}
+		else {
+			if(!jtCCCD.getText().equalsIgnoreCase("")) {
+				String cccd = jtCCCD.getText();
+				list = hoaDonDao.layHoaDonTamBangCccd(cccd);
+				if(list.size() < 0) {
+					JOptionPane.showMessageDialog(null, "Không tìm thấy đơn tạm");
+					return;
+				}
+				addDataTable(list);
+			}
+			else {
+				String sdt = jtSĐT.getText();
+				list = hoaDonDao.layHoaDonTamBangSdt(sdt);
+				if(list.size() < 0) {
+					JOptionPane.showMessageDialog(null, "Không tìm thấy đơn tạm");
+					return;
+				}
+				addDataTable(list);
+			}
+		}
+
     }//GEN-LAST:event_btnTimActionPerformed
 
     private void btnXuLyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuLyActionPerformed
-       
+    	int index = table.getSelectedRow();
+		if(index == -1) {
+			JOptionPane.showMessageDialog(null, "Bạn chưa chọn đơn để xử lý");
+			return;
+		}
+		hoaDon = list.get(index);
+		isClick = true;
+		setVisible(false);
+
     }//GEN-LAST:event_btnXuLyActionPerformed
 
 
-    public void SetDataListHoaDon() {
-    	
-    }
+    private void addDataTable(List<HoaDon> list) {
+		if (list.size() < 0) {
+			return;
+		}
+		model.setRowCount(0);
+		for (int i = 0; i < list.size(); i++) {
+			model.addRow(new Object[] { list.get(i).getKhachHang().getCccd(), list.get(i).getKhachHang().getHoTen(),
+					list.get(i).getKhachHang().getSdt(), list.get(i).getNgayTao(), list.get(i).getGioTao(),
+					list.get(i).getListVes().size() });
+		}
+	}
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTim;

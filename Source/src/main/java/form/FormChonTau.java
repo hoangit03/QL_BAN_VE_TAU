@@ -136,6 +136,7 @@ public class FormChonTau extends javax.swing.JPanel {
 	private JComboBox<String> cbDT;
 	private Map<String, Set<String>> liscccd;
 	private TaiKhoan taiKhoan;
+	private HoaDon hoaDon;
 
 	public FormChonTau(EntityManagerFactory emf, MainForm main, List<Chuyen> listChuyens, Ga gaDi, Ga gaDen,
 			LocalDate ngayDi, LocalDate ngayVe, boolean isMotChieu, TaiKhoan taiKhoan) {
@@ -1099,19 +1100,20 @@ public class FormChonTau extends javax.swing.JPanel {
 	}// GEN-LAST:event_btnTimChuyenActionPerformed
 
 	private void btnXuLyTreoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnXuLyTreoActionPerformed
-		if(formDonTreo == null || !formDonTreo.isVisible()) {
-			if(formDonTreo == null) {
-				java.awt.EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						formDonTreo = new FormListDontreo( emf);
-						formDonTreo.setVisible(true);
+		if (formDonTreo == null || !formDonTreo.isVisible()) {
+			formDonTreo = new FormListDontreo(emf);
+			formDonTreo.addWindowListener(new WindowAdapter() {
+				@Override
+				public void windowDeactivated(WindowEvent e) {
+					if (formDonTreo.isClick()) {
+						hoaDon = formDonTreo.getHoaDon();
+						XoaTrang();
+						addDataHoaDon();
 					}
-				});
-			}
-			else {
-				formDonTreo.setVisible(true);
-			}
-				
+
+				}
+			});
+			formDonTreo.setVisible(true);
 		}
 	}// GEN-LAST:event_btnXuLyTreoActionPerformed
 
@@ -1191,91 +1193,89 @@ public class FormChonTau extends javax.swing.JPanel {
 				JOptionPane.showMessageDialog(null, "Bạn chưa chọn chổ ngồi", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 				return;
 			}
-			LocalDateTime currentDateTime = LocalDateTime.now();
-			DateTimeFormatter formatterHD = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
-			DateTimeFormatter formatterVe = DateTimeFormatter.ofPattern("HHmmddMMyyyy");
-			String mave = "";
-			String dem = "";
-			String cccd = jtCccd.getText();
-			String hoTen = jtHoT.getText();
-			String doiTuong = "";
-			String sdt = jtSdt.getText();
-			String email = jtEm.getText();
-	
-			
-			KhachHang kh = new KhachHang(cccd, sdt, hoTen, email);
-			if (checkData(kh) > 0) {
-				showMessageValue(checkData(kh), "Khách hàng đặt vé");
-				return;
-			}
-			String maHD = "HD" + currentDateTime.format(formatterHD);
-			HoaDon hd = new HoaDon(maHD, LocalTime.now(), LocalDate.now(), true);
-			hd.setKhachHang(kh);
-			KhuyenMai km = kmDao.layKhuyenMaiTotNhatBangLoai(listInfoVes.size());
-			Set<KhuyenMai> listKM = null;
-			if(km != null) {
-				listKM = new HashSet<KhuyenMai>();
-				listKM.add(km);
-			}
-			km = kmDao.layKhuyenMaiTotNhatBangLoai("Vé");
-			if(km != null) {
-				if(listKM != null)
-					listKM.add(km);
-				else {
+			if(hoaDon == null) {
+				LocalDateTime currentDateTime = LocalDateTime.now();
+				DateTimeFormatter formatterHD = DateTimeFormatter.ofPattern("ddMMyyyyHHmm");
+				DateTimeFormatter formatterVe = DateTimeFormatter.ofPattern("HHmmddMMyyyy");
+				String mave = "";
+				String dem = "";
+				String cccd = jtCccd.getText();
+				String hoTen = jtHoT.getText();
+				String doiTuong = "";
+				String sdt = jtSdt.getText();
+				String email = jtEm.getText();
+		
+				
+				KhachHang kh = new KhachHang(cccd, sdt, hoTen, email);
+				if (checkData(kh) > 0) {
+					showMessageValue(checkData(kh), "Khách hàng đặt vé");
+					return;
+				}
+				String maNhanVien = taiKhoan.getNhanVien().getMaNhanVien();
+				String maHD = "HD" + currentDateTime.format(formatterHD) + maNhanVien.substring(maNhanVien.length() - 4);
+				hoaDon = new HoaDon(maHD, LocalTime.now(), LocalDate.now(), true);
+				hoaDon.setKhachHang(kh);
+				KhuyenMai km = kmDao.layKhuyenMaiTotNhatBangLoai(listInfoVes.size());
+				Set<KhuyenMai> listKM = null;
+				if(km != null) {
 					listKM = new HashSet<KhuyenMai>();
 					listKM.add(km);
 				}
-			}
-			
-			hd.setLisKhuyenMais(listKM);
-			hd.setNhanVien(taiKhoan.getNhanVien());
-			List<Ve> listVeMa = veDao.layVeThuocMa(currentDateTime.format(formatterVe));
-			List<Ve> listVe = new ArrayList<Ve>();
-			for (int i = 0; i < model.getRowCount(); i++) {
-				cccd = model.getValueAt(i, 0).toString();
-				hoTen = model.getValueAt(i, 1).toString();
-				doiTuong = model.getValueAt(i, 2).toString();
-				kh = khachHangDao.getKhachHangByCCCD(cccd);
-				if(kh == null)
-					kh = new KhachHang(cccd, hoTen, doiTuong);
-				if (checkDataVe(kh) > 0) {
-					tbListVe.setRowSelectionInterval(i, i);
-					showMessageValue(checkData(kh), "vé");
-					return;
+				km = kmDao.layKhuyenMaiTotNhatBangLoai("Vé");
+				if(km != null) {
+					if(listKM != null)
+						listKM.add(km);
+					else {
+						listKM = new HashSet<KhuyenMai>();
+						listKM.add(km);
+					}
 				}
-				dem = ((listVeMa.size() + i) / 100 > 0) ? "" + (listVeMa.size() + i)
-						: ((listVeMa.size() + i) / 10 > 0) ? "0" + (listVeMa.size() + i) : "00" + (listVeMa.size() + i);
-				mave = currentDateTime.format(formatterVe) + dem + "Aplus";
-				Ve ve = new Ve(mave, listInfoVes.get(i).getChuyen().getDateLenTau(), true);
-				km = kmDao.layKhuyenMaiTotNhatBangLoai(doiTuong);
 				
-				Set<ChiTietVe> listCTV = new HashSet<ChiTietVe>();
-				listCTV.add(new ChiTietVe(ve,listInfoVes.get(i).getChuyen().getGaDi(), true));
-				listCTV.add(new ChiTietVe(ve,listInfoVes.get(i).getChuyen().getGaDen(), false));
-				ve.setLisChiTietVes(listCTV);
-				ve.setKhuyenMai(km);
-				ve.setHoaDon(hd);
-				ve.setKhachHang(kh);
-				ve.setChuyen(listInfoVes.get(i).getChuyen().getChuyen());
-				ve.setChoNgoi(listInfoVes.get(i).getChoNgoi());
-				listVe.add(ve);
-				dem = "";
-				mave = "";
+				hoaDon.setLisKhuyenMais(listKM);
+				hoaDon.setNhanVien(taiKhoan.getNhanVien());
+				List<Ve> listVeMa = veDao.layVeThuocMa(currentDateTime.format(formatterVe));
+				List<Ve> listVe = new ArrayList<Ve>();
+				for (int i = 0; i < model.getRowCount(); i++) {
+					cccd = model.getValueAt(i, 0).toString();
+					hoTen = model.getValueAt(i, 1).toString();
+					doiTuong = model.getValueAt(i, 2).toString();
+					kh = khachHangDao.getKhachHangByCCCD(cccd);
+					if(kh == null)
+						kh = new KhachHang(cccd, hoTen, doiTuong);
+					if (checkDataVe(kh) > 0) {
+						tbListVe.setRowSelectionInterval(i, i);
+						showMessageValue(checkData(kh), "vé");
+						return;
+					}
+					dem = ((listVeMa.size() + i) / 100 > 0) ? "" + (listVeMa.size() + i)
+							: ((listVeMa.size() + i) / 10 > 0) ? "0" + (listVeMa.size() + i) : "00" + (listVeMa.size() + i);
+					mave = currentDateTime.format(formatterVe) + dem + maNhanVien.substring(maNhanVien.length() - 4);
+					Ve ve = new Ve(mave, listInfoVes.get(i).getChuyen().getDateLenTau(), true);
+					km = kmDao.layKhuyenMaiTotNhatBangLoai(doiTuong);
+					
+					Set<ChiTietVe> listCTV = new HashSet<ChiTietVe>();
+					listCTV.add(new ChiTietVe(ve,listInfoVes.get(i).getChuyen().getGaDi(), true));
+					listCTV.add(new ChiTietVe(ve,listInfoVes.get(i).getChuyen().getGaDen(), false));
+					ve.setLisChiTietVes(listCTV);
+					ve.setKhuyenMai(km);
+					ve.setHoaDon(hoaDon);
+					ve.setKhachHang(kh);
+					ve.setChuyen(listInfoVes.get(i).getChuyen().getChuyen());
+					ve.setChoNgoi(listInfoVes.get(i).getChoNgoi());
+					listVe.add(ve);
+					dem = "";
+					mave = "";
+				}
+				hoaDon.setListVes(listVe);
 			}
-			hd.setListVes(listVe);
 			if(frameMuaVe == null) {
-				frameMuaVe = new jFrameMuaVe(emf,hd);
+				frameMuaVe = new jFrameMuaVe(emf,hoaDon);
 				frameMuaVe.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowDeactivated(WindowEvent e) {
-						System.out.println(frameMuaVe.isAddHoaDon());
 						if(frameMuaVe.isAddHoaDon()) {
-							listInfoVes.clear();
-							listChoChon.clear();
-							liscccd.clear();
-							DefaultTableModel md = (DefaultTableModel) tbListVe.getModel();
-							md.setRowCount(0);
-							listTau.removeAll();
+							XoaTrang();
+							hoaDon = null;
 							AddDataTau();
 							
 						}
@@ -1285,7 +1285,7 @@ public class FormChonTau extends javax.swing.JPanel {
 				frameMuaVe.setVisible(true);
 			}
 			else {
-				frameMuaVe.setHoadon(hd);
+				frameMuaVe.setHoadon(hoaDon);
 				frameMuaVe.setVisible(true);
 			}
 			
@@ -1313,6 +1313,54 @@ public class FormChonTau extends javax.swing.JPanel {
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		}
+	}
+	
+	private void addDataHoaDon() {
+			jtCccd.setText(hoaDon.getKhachHang().getCccd());
+			jtHoT.setText(hoaDon.getKhachHang().getHoTen());
+			jtSdt.setText(hoaDon.getKhachHang().getSdt());
+			jtEm.setText(hoaDon.getKhachHang().getEmail());
+			for(Ve ve : hoaDon.getListVes()) {
+				String maChuyen = ve.getChuyen().getMaChuyen();
+				if(!listChoChon.containsKey(maChuyen)) {
+					Set<ChoNgoi> listCN = new HashSet<ChoNgoi>();
+					listCN.add(ve.getChoNgoi());
+					listChoChon.put(maChuyen, listCN);
+				}
+				else {
+					listChoChon.get(maChuyen).add(ve.getChoNgoi());
+				}
+			}
+			for(ChiTietVe ctv : hoaDon.getListVes().get(0).getLisChiTietVes()) {
+				if(ctv.isChieu())
+					gaDi = ctv.getGa();
+				else
+					gaDen = ctv.getGa();
+			}
+			isMotChieu = true;
+			List<String> listTuyens = new TuyenDao(emf).layTuyenChuaGa(gaDi.getId(), gaDen.getId());
+			List<Chuyen> listChuyenVes = new ArrayList<Chuyen>();
+			ngayDi = hoaDon.getListVes().get(0).getChuyen().getNgayKhoiHanh();
+			for (String maTuyen : listTuyens) {
+				List<Chuyen> listtam = new ChuyenDao(emf).getAllChuyenByNgay(ngayDi, gaDi.getId() < gaDen.getId(), maTuyen);
+				listChuyenVes.addAll(listtam);
+			}
+			this.listChuyens = listChuyenVes;
+			updateDataChuyen();
+			AddDataTau();
+		}
+
+	private void XoaTrang() {
+		listInfoVes.clear();
+		listChoChon.clear();
+		liscccd.clear();
+		DefaultTableModel md = (DefaultTableModel) tbListVe.getModel();
+		md.setRowCount(0);
+		listTau.removeAll();
+		jtCccd.setText("");
+		jtHoT.setText("");
+		jtSdt.setText("");
+		jtEm.setText("");
 	}
 
 	private int checkDataVe(KhachHang khachHang) {
