@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 import entity.ChoNgoi;
 import entity.Chuyen;
+import entity.HoaDon;
 
 public class KhoangGhe extends javax.swing.JPanel {
 
@@ -34,12 +35,14 @@ public class KhoangGhe extends javax.swing.JPanel {
 	private Map<String, Set<ChoNgoi>> listChon;
 	private Model_Tau chuyen;
 	private List<Model_InfoVe> listInfoVes;
+	private HoaDon hoaDon;
 
-	public KhoangGhe(List<ChoNgoi> list, Map<String, Set<ChoNgoi>> listChon2, List<Model_InfoVe> listInfoVes,
+	public KhoangGhe(List<ChoNgoi> list, HoaDon hoaDon, Map<String, Set<ChoNgoi>> listChon2, List<Model_InfoVe> listInfoVes,
 			DefaultTableModel model, Model_Tau chuyen2, int from, int to) {
 		this.list = list;
 		this.model = model;
 		this.listChon = listChon2;
+		this.hoaDon = hoaDon;
 		this.chuyen = chuyen2;
 		this.listInfoVes = listInfoVes;
 		initComponents();
