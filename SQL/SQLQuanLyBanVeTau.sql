@@ -1020,5 +1020,5 @@ ORDER BY Toa.ViTri
 SELECT * FROM Ve Join ChiTietVe on ve.MaVe = ChiTietVe.MaVe
 
 
-SELECT * From HoaDon
+SELECT * From HoaDon JOIN Ve on Ve.MaHoaDon = HoaDon.MaHoaDon WHERE Ve.MaHoaDon = 'HD0305202420060001'
 

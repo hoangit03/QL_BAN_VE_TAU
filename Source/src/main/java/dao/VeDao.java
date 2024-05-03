@@ -30,6 +30,20 @@ public class VeDao {
 		}
 		return false;
 	}
+	
+	public boolean updateVe(Ve ve) {
+		EntityTransaction tx = em.getTransaction();
+		try {
+			tx.begin();
+			em.merge(ve);
+			tx.commit();
+			return true;
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	// lấy danh sách vé
 	public List<Ve> getAllVe() {

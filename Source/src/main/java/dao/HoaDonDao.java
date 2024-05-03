@@ -31,6 +31,19 @@ public class HoaDonDao {
 		}
 		return false;
 	}
+	public boolean updateHoaDon(HoaDon hoaDon) {
+		EntityTransaction tx = em.getTransaction();
+		try {
+			tx.begin();
+			em.merge(hoaDon);
+			tx.commit();
+			return true;
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 //  lấy Hoa Don bằng mã
 	public HoaDon getHoaDonByMa(String ma) {
