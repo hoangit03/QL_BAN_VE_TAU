@@ -78,19 +78,19 @@ public class Main extends javax.swing.JFrame {
 				case 4:
 					switch (subMenuIndex) {
 					case 0:
-						main.showForm(new GD_ThongKe());
+						main.showForm(new GD_ThongKeDoanhThu(emf));
 						menu.hideallMenu();
 						break;
 					case 1:
-						main.showForm(new GD_ThongKe());
+						main.showForm(new GD_ThongKe(emf));
 						menu.hideallMenu();
 						break;
 					case 2:
-						main.showForm(new GD_ThongKe());
+						main.showForm(new GD_ThongKe(emf));
 						menu.hideallMenu();
 						break;
 					case 3:
-						main.showForm(new GD_ThongKe());
+						main.showForm(new GD_ThongKe(emf));
 						menu.hideallMenu();
 						break;
 					}
