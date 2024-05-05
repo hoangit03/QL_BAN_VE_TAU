@@ -8,6 +8,7 @@ import entity.Ve;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 
 public class VeDao {
 	private EntityManager em;
@@ -71,5 +72,19 @@ public class VeDao {
 	    public List<Ve> layVeThuocMa(String ma){
 	    	return em.createQuery("SELECT v FROM Ve v WHERE v.maVe like :maVe", Ve.class).setParameter("maVe","%"+ ma+"%").getResultList();
 	    }
+	    
+	    public Object layTongVeTrongNgay(int nam, int thang, int ngay) {
+	        try {
+	            return em.createNamedQuery("Ve.TongVeNgayTheoThang")
+	            		 .setParameter("nam", nam)
+	                     .setParameter("thang", thang)
+	                     .setParameter("ngay", ngay)
+	                     .getSingleResult();
+	        } catch (NoResultException e) {
+	            // Xử lý nếu không có kết quả nào được trả về
+	            return 0;
+	        }
+	    }
+
 
 }
