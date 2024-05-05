@@ -31,6 +31,19 @@ public class HoaDonDao {
 		}
 		return false;
 	}
+	public boolean updateHoaDon(HoaDon hoaDon) {
+		EntityTransaction tx = em.getTransaction();
+		try {
+			tx.begin();
+			em.merge(hoaDon);
+			tx.commit();
+			return true;
+		} catch (Exception e) {
+			tx.rollback();
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 //  lấy Hoa Don bằng mã
 	public HoaDon getHoaDonByMa(String ma) {
@@ -53,4 +66,15 @@ public class HoaDonDao {
 				.setParameter("ma", "%" + ma + "%").getResultList();
 	}
 
+	public List<HoaDon> layHoaDonTamBangSdt(String sdt) {
+		LocalDate ngayHienTai = LocalDate.now();
+		return em.createQuery("SELECT hd FROM HoaDon hd WHERE hd.trangThai = false AND hd.ngayTao = :ngayTao AND hd.khachHang.sdt = :sdt",
+				HoaDon.class).setParameter("ngayTao", ngayHienTai).setParameter("sdt", sdt).getResultList();
+	}
+	
+	public List<HoaDon> layHoaDonTamBangCccd(String cccd){
+		LocalDate ngayHienTai = LocalDate.now();
+		return em.createQuery("SELECT hd FROM HoaDon hd WHERE hd.trangThai = false AND hd.ngayTao = :ngayTao AND hd.khachHang.cccd = :cccd",
+				HoaDon.class).setParameter("ngayTao", ngayHienTai).setParameter("cccd", cccd).getResultList();
+	}
 }

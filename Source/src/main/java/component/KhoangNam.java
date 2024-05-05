@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 import entity.ChoNgoi;
 import entity.Chuyen;
+import entity.HoaDon;
 
 
 public class KhoangNam extends javax.swing.JPanel {
@@ -29,6 +30,7 @@ public class KhoangNam extends javax.swing.JPanel {
     private Map<String, Set<ChoNgoi>> listChon;
     private Model_Tau chuyen;
     private List<Model_InfoVe> listInfoVes;
+    private HoaDon hoaDon;
 
     public int getSoLuong() {
         return soLuong;
@@ -49,11 +51,12 @@ public class KhoangNam extends javax.swing.JPanel {
     }
     
     
-    public KhoangNam(int vtKhoang,int soLuong,List<ChoNgoi> list, DefaultTableModel model,Map<String, Set<ChoNgoi>> listChon2,Model_Tau chuyen2, List<Model_InfoVe> listInfoVes) {
+    public KhoangNam(int vtKhoang,HoaDon hoaDon, int soLuong,List<ChoNgoi> list, DefaultTableModel model,Map<String, Set<ChoNgoi>> listChon2,Model_Tau chuyen2, List<Model_InfoVe> listInfoVes) {
         initComponents();
         this.soLuong = soLuong;
         this.list = list;
         this.vtKhoang = vtKhoang;
+        this.hoaDon = hoaDon;
         this.model = model;
         this.listChon = listChon2;
         this.chuyen = chuyen2;
@@ -161,6 +164,9 @@ public class KhoangNam extends javax.swing.JPanel {
                 	list.remove(choNgoi);
                 	temp = removeVes(listInfoVes, veInfo);
                 	listInfoVes.remove(temp);
+                	if(hoaDon != null) {
+                		System.out.println(hoaDon.getListVes().size());
+                	}
                 	model.removeRow(temp);
                 	model.fireTableDataChanged();
                 }

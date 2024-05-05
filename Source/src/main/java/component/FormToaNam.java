@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 import entity.ChoNgoi;
 import entity.Chuyen;
+import entity.HoaDon;
 import model.Model_InfoVe;
 import model.Model_Tau;
 
@@ -20,13 +21,15 @@ public class FormToaNam extends javax.swing.JPanel {
     private DefaultTableModel model;
     private Model_Tau chuyen;
     private List<Model_InfoVe> listInfoVes;
-    public FormToaNam(int soluong,Model_Tau chuyen2,List<ChoNgoi> list,Map<String, Set<ChoNgoi>> listChoChon,DefaultTableModel model, List<Model_InfoVe> listInfoVes) {
+    private HoaDon hoaDon;
+    public FormToaNam(int soluong,Model_Tau chuyen2,HoaDon hoaDon, List<ChoNgoi> list,Map<String, Set<ChoNgoi>> listChoChon,DefaultTableModel model, List<Model_InfoVe> listInfoVes) {
         initComponents();
         setOpaque(false);
         this.list = list;
         this.soLuong = soluong;
         this.model = model;
         this.listChon = listChoChon;
+        this.hoaDon = hoaDon;
         this.chuyen = chuyen2;
         this.listInfoVes = listInfoVes;
         addDataKhoangGhe();
@@ -41,7 +44,7 @@ public class FormToaNam extends javax.swing.JPanel {
     }
 
     public void addItemKhoang(int i,int soLuong){
-        KhoangNam item = new KhoangNam(i,soLuong,list,model,listChon,chuyen,listInfoVes);
+        KhoangNam item = new KhoangNam(i,hoaDon,soLuong,list,model,listChon,chuyen,listInfoVes);
         listKhoangNam.add(item);
         listKhoangNam.repaint();
         listKhoangNam.revalidate();
