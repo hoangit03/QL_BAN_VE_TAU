@@ -37,7 +37,7 @@ public class VeXuat extends javax.swing.JPanel {
         if(ve.getChoNgoi().getMoTa().equalsIgnoreCase("Ngồi mền"))
             return " ";
         if (ve.getChoNgoi().getViTri() < 3) {
-            return "hòa tâng "+1;
+            return "hòa tầng "+1;
         }
         if (ve.getChoNgoi().getViTri() < 5) {
             return "hòa tầng "+ 2;

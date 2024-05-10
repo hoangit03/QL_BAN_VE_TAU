@@ -1210,6 +1210,7 @@ public class FormChonTau extends javax.swing.JPanel {
 				KhachHang kh = new KhachHang(cccd, sdt, hoTen, email);
 				if (checkData(kh) > 0) {
 					showMessageValue(checkData(kh), "Khách hàng đặt vé");
+					hoaDon = null;
 					return;
 				}
 				String maNhanVien = taiKhoan.getNhanVien().getMaNhanVien();
@@ -1246,6 +1247,7 @@ public class FormChonTau extends javax.swing.JPanel {
 						kh = new KhachHang(cccd, hoTen, doiTuong);
 					if (checkDataVe(kh) > 0) {
 						tbListVe.setRowSelectionInterval(i, i);
+						hoaDon = null;
 						showMessageValue(checkData(kh), "vé");
 						return;
 					}
@@ -1287,6 +1289,9 @@ public class FormChonTau extends javax.swing.JPanel {
 					hoTen = model.getValueAt(i, 1).toString();
 					doiTuong = model.getValueAt(i, 2).toString();
 					kh = khachHangDao.getKhachHangByCCCD(cccd);
+					if(cccd.equalsIgnoreCase(hoaDon.getKhachHang().getCccd())) {
+						hoaDon.getKhachHang().setDoiTuong(doiTuong);
+					}
 					KhuyenMai km = null;
 					if (kh == null)
 						kh = new KhachHang(cccd, hoTen, doiTuong);
