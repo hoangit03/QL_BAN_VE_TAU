@@ -17,6 +17,7 @@ import dao.TaiKhoanDao;
 import entity.NhanVien;
 import entity.TaiKhoan;
 import jakarta.persistence.EntityManagerFactory;
+import swing.ScrollBar;
 
 public class FormTaiKhoan extends javax.swing.JPanel {
 	private EntityManagerFactory emf;
@@ -39,6 +40,8 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 		table.setShowVerticalLines(false);
 		table.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
 		table.getTableHeader().setPreferredSize(new Dimension(30, 30));
+		scroll.setHorizontalScrollBar(new ScrollBar());
+		scrollTable.setVerticalScrollBar(new ScrollBar());
 		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 		taiKhoanDao = new TaiKhoanDao(emf);
 		nhanVienDao = new NhanVienDao(emf);
@@ -69,13 +72,13 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbMK = new javax.swing.JLabel();
         jtMK = new javax.swing.JTextField();
         fHienThi = new form.Form();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scroll = new javax.swing.JScrollPane();
         jtaNV = new javax.swing.JTextArea();
         btnTim = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
         btnXoaT = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollTable = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
 
         setAlignmentX(0.0F);
@@ -172,7 +175,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         jtaNV.setRows(9);
         jtaNV.setTabSize(14);
         jtaNV.setSelectionColor(new java.awt.Color(0, 51, 204));
-        jScrollPane2.setViewportView(jtaNV);
+        scroll.setViewportView(jtaNV);
 
         javax.swing.GroupLayout fHienThiLayout = new javax.swing.GroupLayout(fHienThi);
         fHienThi.setLayout(fHienThiLayout);
@@ -180,14 +183,14 @@ public class FormTaiKhoan extends javax.swing.JPanel {
             fHienThiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fHienThiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
                 .addContainerGap())
         );
         fHienThiLayout.setVerticalGroup(
             fHienThiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fHienThiLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -258,14 +261,14 @@ public class FormTaiKhoan extends javax.swing.JPanel {
                 tableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(table);
+        scrollTable.setViewportView(table);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 1204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(fNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
@@ -305,7 +308,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
                             .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(30, 30, 30)
                         .addComponent(fHienThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -487,8 +490,6 @@ public class FormTaiKhoan extends javax.swing.JPanel {
     private javax.swing.JButton btnXoaT;
     private form.Form fHienThi;
     private form.Form fNhap;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jbTK;
     private javax.swing.JTextField jtMK;
     private javax.swing.JTextField jtMa;
@@ -498,6 +499,8 @@ public class FormTaiKhoan extends javax.swing.JPanel {
     private javax.swing.JLabel lbMa1;
     private javax.swing.JLabel lbTK;
     private javax.swing.JLabel lbTen1;
+    private javax.swing.JScrollPane scroll;
+    private javax.swing.JScrollPane scrollTable;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }
