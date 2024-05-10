@@ -22,7 +22,9 @@ import java.io.Serializable;
 	@NamedQuery(name = "KhuyenMai.findAllKMKH",query = "select km from KhuyenMai km where km.loaiKhuyenMai != :loai"),
 	@NamedQuery(name = "KhuyenMai.findAllKMHD",query = "select km from KhuyenMai km where km.loaiKhuyenMai = :loai"),
 	@NamedQuery(name = "KhuyenMai.findAll",query = "select km from KhuyenMai km"),
-	@NamedQuery(name = "KhuyenMai.findAllKMNB",query = "select km from KhuyenMai km where km.maKhuyenMai like :ma")
+	@NamedQuery(name = "KhuyenMai.findAllKMNB",query = "select km from KhuyenMai km where km.maKhuyenMai like :ma"),
+        @NamedQuery(name = "KhuyenMai.findAllTimeRange", query = "SELECT km FROM KhuyenMai km WHERE km.thoiGianBatDau >= :startTime AND km.thoiGianKetThuc <= :endTime")
+
 })
 public class KhuyenMai implements Serializable {
 

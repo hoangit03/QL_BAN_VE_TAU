@@ -19,10 +19,14 @@ import java.io.Serializable;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name = "NhanVien.findAll",query = "select nv from NhanVien nv where nv.loaiNV = :loai"),
-	@NamedQuery(name ="NhanVien.findSdt", query = "select nv from NhanVien nv where nv.sdt = :sdt"),
-	@NamedQuery(name ="NhanVien.findCccd", query = "select nv from NhanVien nv where nv.cccd = :cccd"),
-	@NamedQuery(name = "NhanVien.findAllByMa",query = "select nv from NhanVien nv where nv.maNhanVien like :ma")
+    @NamedQuery(name = "NhanVien.findAll", query = "select nv from NhanVien nv where nv.loaiNV = :loai"),
+    @NamedQuery(name = "NhanVien.findSdt", query = "select nv from NhanVien nv where nv.sdt = :sdt"),
+    @NamedQuery(name = "NhanVien.findCccd", query = "select nv from NhanVien nv where nv.cccd = :cccd"),
+    @NamedQuery(name = "NhanVien.findAllByMa", query = "select nv from NhanVien nv where nv.maNhanVien like :ma"),
+    @NamedQuery(name = "NhanVien.findByTrangThaiForUser", query = "SELECT nv FROM NhanVien nv WHERE nv.trangThai = :trangThai AND nv.loaiNV = :loai"),
+    @NamedQuery(name = "NhanVien.findByPartialMaAndLoai", query = "SELECT nv FROM NhanVien nv WHERE nv.maNhanVien LIKE :partialMa AND nv.loaiNV = :loai"),
+    @NamedQuery(name = "NhanVien.findBySDTForUser", query = "SELECT nv FROM NhanVien nv WHERE nv.sdt LIKE :partialSDT AND nv.loaiNV = :loai")
+
 })
 public class NhanVien implements Serializable {
 
@@ -41,7 +45,7 @@ public class NhanVien implements Serializable {
 
     @Column(name = "Email")
     private String email;
-    
+
     @Column(name = "GioiTinh")
     private boolean gioiTinh;
 
@@ -66,41 +70,31 @@ public class NhanVien implements Serializable {
     @OneToMany(mappedBy = "nhanVien")
     private Set<HoaDon> lisHoaDons;
 
-    
-    
-    
-
     public NhanVien(String maNhanVien, String hoTen, String cccd, String sdt, String email, boolean gioiTinh,
-			String diaChi, String loaiNV, boolean trangThai, LocalDate ngaySinh, LocalDate ngayVaoLam) {
-		super();
-		this.maNhanVien = maNhanVien;
-		this.hoTen = hoTen;
-		this.cccd = cccd;
-		this.sdt = sdt;
-		this.email = email;
-		this.gioiTinh = gioiTinh;
-		this.diaChi = diaChi;
-		this.loaiNV = loaiNV;
-		this.trangThai = trangThai;
-		this.ngaySinh = ngaySinh;
-		this.ngayVaoLam = ngayVaoLam;
-	}
+            String diaChi, String loaiNV, boolean trangThai, LocalDate ngaySinh, LocalDate ngayVaoLam) {
+        super();
+        this.maNhanVien = maNhanVien;
+        this.hoTen = hoTen;
+        this.cccd = cccd;
+        this.sdt = sdt;
+        this.email = email;
+        this.gioiTinh = gioiTinh;
+        this.diaChi = diaChi;
+        this.loaiNV = loaiNV;
+        this.trangThai = trangThai;
+        this.ngaySinh = ngaySinh;
+        this.ngayVaoLam = ngayVaoLam;
+    }
 
+    public boolean isGioiTinh() {
+        return gioiTinh;
+    }
 
+    public void setGioiTinh(boolean gioiTinh) {
+        this.gioiTinh = gioiTinh;
+    }
 
-	public boolean isGioiTinh() {
-		return gioiTinh;
-	}
-
-
-
-	public void setGioiTinh(boolean gioiTinh) {
-		this.gioiTinh = gioiTinh;
-	}
-
-
-
-	public NhanVien() {
+    public NhanVien() {
     }
 
     public Set<HoaDon> getLisHoaDons() {
@@ -111,8 +105,6 @@ public class NhanVien implements Serializable {
         this.lisHoaDons = lisHoaDons;
     }
 
-    
-    
     public TaiKhoan getTaiKhoan() {
         return taiKhoan;
     }
@@ -203,7 +195,9 @@ public class NhanVien implements Serializable {
 
     @Override
     public String toString() {
-        return "NhanVien{" + "maNhanVien=" + maNhanVien + ", hoTen=" + hoTen + ", cccd=" + cccd + ", sdt=" + sdt + ", email=" + email + ", diaChi=" + diaChi + ", loaiNV=" + loaiNV + ", trangThai=" + trangThai + ", ngaySinh=" + ngaySinh + ", ngayVaoLam=" + ngayVaoLam + '}';
+        return "NhanVien{" + "maNhanVien=" + maNhanVien + ", hoTen=" + hoTen + ", cccd=" + cccd + ", sdt=" + sdt
+                + ", email=" + email + ", diaChi=" + diaChi + ", loaiNV=" + loaiNV + ", trangThai=" + trangThai
+                + ", ngaySinh=" + ngaySinh + ", ngayVaoLam=" + ngayVaoLam + '}';
     }
 
     @Override
