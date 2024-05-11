@@ -577,8 +577,8 @@ public class GD_DoiTra extends javax.swing.JPanel {
 		if (index < 0)
 			return;
 
+		xoaTrangVe();
 		String maHD = tableHD.getValueAt(tableHD.getSelectedRow(), 0).toString();
-
 		HoaDon hd;
 		hd = hoaDonDao.getHoaDonByMa(maHD);
 		hienHoaDon(hd);
@@ -586,7 +586,6 @@ public class GD_DoiTra extends javax.swing.JPanel {
 		if (tableVe.getRowCount() > 0)
 			tableVe.setRowSelectionInterval(0, 0);
 		tableVe.clearSelection();
-		xoaTrangVe();
 
 	}// GEN-LAST:event_tableHDMouseClicked
 
@@ -776,7 +775,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 					gaChieuDen.getTenGa(), ve.getChuyen().getTau().getMaTau(), ve.getChoNgoi().getToa().getViTri(),
 					ve.getChoNgoi().getViTri(), ve.getThoiGianLenTau(),
 					(int) (ve.getChoNgoi().getGia() * Math.abs(gaChieuDen.getId() - gaChieuDi.getId())
-							* (ve.getKhuyenMai() == null ? 1 : 1 - ve.getKhuyenMai().getChietKhau())) };
+							* (ve.getKhuyenMai() == null ? 1 : 1 - ve.getKhuyenMai().getChietKhau()))};
 			model.addRow(row);
 		}
 		model.fireTableDataChanged();
@@ -831,7 +830,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 					if(chose == JOptionPane.YES_OPTION) {
 						boolean check = veDao.updateDoiVe(maVe, LocalDateTime.now());
 						if(check) {
-							tableVe.remove(tableVe.getSelectedRow());
+//							tableVe.remove(tableVe.getSelectedRow());
 						}
 					}
 					

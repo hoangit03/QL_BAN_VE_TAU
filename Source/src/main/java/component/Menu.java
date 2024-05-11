@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
+
+import entity.TaiKhoan;
 import model.Model_Menu;
 import net.miginfocom.swing.MigLayout;
 
@@ -39,13 +41,15 @@ public class Menu extends javax.swing.JPanel {
         this.eventShowPopup = eventShowPopup;
     }
 
+    private TaiKhoan taiKhoan;
     private final MigLayout layout;
     private EventMenuSelected event;
     private EventShowPopupMenu eventShowPopup;
     private boolean enableMenu = true;
     private boolean showMenu = true;
 
-    public Menu() {
+    public Menu(TaiKhoan taiKhoan) {
+    	this.taiKhoan = taiKhoan;
         initComponents();
         setOpaque(false);
         sp.getViewport().setOpaque(false);
@@ -63,10 +67,16 @@ public class Menu extends javax.swing.JPanel {
     public void initMenuItem() {
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/ve.png")), "Quản lý vé", "Mua vé", "Đổi-Trả vé"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khachhang.png")), "Khách Hàng"));
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên"));
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khuyenmai.png")), "Khuyến Mãi", "Khuyến mãi trên hóa đơn", "Khuyến mãi trên khách hàng"));
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Thống kê", "Thống kê doanh thu", "Thống kê lượt vé", "Thống kê đi lại", "Thống kê vé bán"));
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/tracuu.png")), "Tra cứu", "Tra cứu nhân viên", "Tra cứu khuyến mãi"));
+        if(taiKhoan.getNhanVien().getLoaiNV().equalsIgnoreCase("Admin")) {
+        	addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên"));
+        	addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khuyenmai.png")), "Khuyến Mãi", "Khuyến mãi trên hóa đơn", "Khuyến mãi trên khách hàng"));
+        	addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Thống kê", "Thống kê doanh thu", "Thống kê lượt vé"));
+        	
+        }
+        else {
+        	addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Thống kê", "Thống kê đi lại", "Thống kê vé bán"));
+        	addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/tracuu.png")), "Tra cứu", "Tra cứu nhân viên", "Tra cứu khuyến mãi"));
+        }
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/help.png")), "Hỗ trợ"));
     }
 

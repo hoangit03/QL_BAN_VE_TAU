@@ -34,7 +34,7 @@ public class Main extends javax.swing.JFrame {
 	public void init() {
 		layout = new MigLayout("fill", "0[]0[100%,fill]0", "0[fill,top]0");
 		bg.setLayout(layout);
-		menu = new Menu();
+		menu = new Menu(taiKhoan);
 		herder = new Herder(taiKhoan.getNhanVien().getHoTen(), taiKhoan.getNhanVien().getLoaiNV());
 		main = new MainForm();
 		menu.addEvent(new EventMenuSelected() {
@@ -45,7 +45,7 @@ public class Main extends javax.swing.JFrame {
 				case 0:
 					switch (subMenuIndex) {
 					case 0:
-						main.showForm(new GD_MuaVe(emf,taiKhoan));
+						main.showForm(new GD_MuaVe(emf, taiKhoan));
 						menu.hideallMenu();
 						break;
 					case 1:
@@ -59,54 +59,70 @@ public class Main extends javax.swing.JFrame {
 					menu.hideallMenu();
 					break;
 				case 2:
-					main.showForm(new GD_QuanLyNhanVien(emf));
-					menu.hideallMenu();
+					if (taiKhoan.getNhanVien().getLoaiNV().equalsIgnoreCase("Admin")) {
+						main.showForm(new GD_QuanLyNhanVien(emf));
+						menu.hideallMenu();
+					} else {
+						switch (subMenuIndex) {
+						case 0:
+							main.showForm(new GD_ThongKeDoanhThu(emf));
+							menu.hideallMenu();
+							break;
+						case 1:
+							main.showForm(new GD_ThongKe(emf));
+							menu.hideallMenu();
+							break;
+						}
+					}
 					break;
 				case 3:
-					switch (subMenuIndex) {
-					case 0:
-						main.showForm(new GD_KhuyenMaiHoaDon(emf));
-						menu.hideallMenu();
-						break;
-					case 1:
-						main.showForm(new GD_KhuyenMaiTrenKhachHang(emf));
-						menu.hideallMenu();
-						break;
+					if (taiKhoan.getNhanVien().getLoaiNV().equalsIgnoreCase("Admin")) {
+						switch (subMenuIndex) {
+						case 0:
+							main.showForm(new GD_KhuyenMaiHoaDon(emf));
+							menu.hideallMenu();
+							break;
+						case 1:
+							main.showForm(new GD_KhuyenMaiTrenKhachHang(emf));
+							menu.hideallMenu();
+							break;
 
+						}
+					} else {
+						switch (subMenuIndex) {
+						case 0:
+							main.showForm(new GD_TraCuuNhanVien(emf));
+							menu.hideallMenu();
+							break;
+						case 1:
+							main.showForm(new GD_TraCuuKhuyenMai(emf));
+							menu.hideallMenu();
+							break;
+
+						}
 					}
 					break;
 				case 4:
-					switch (subMenuIndex) {
-					case 0:
-						main.showForm(new GD_ThongKeDoanhThu(emf));
-						menu.hideallMenu();
-						break;
-					case 1:
-						main.showForm(new GD_ThongKe(emf));
-						menu.hideallMenu();
-						break;
-					case 2:
-						main.showForm(new GD_ThongKe(emf));
-						menu.hideallMenu();
-						break;
-					case 3:
-						main.showForm(new GD_ThongKe(emf));
-						menu.hideallMenu();
-						break;
+					if (taiKhoan.getNhanVien().getLoaiNV().equalsIgnoreCase("Admin")) {
+						switch (subMenuIndex) {
+						case 0:
+							main.showForm(new GD_ThongKeDoanhThu(emf));
+							menu.hideallMenu();
+							break;
+						case 1:
+							main.showForm(new GD_ThongKe(emf));
+							menu.hideallMenu();
+							break;
+						}
 					}
+					else {
+						System.out.println("Hỗ trợ");
+					}
+
 					break;
 				case 5:
-					switch (subMenuIndex) {
-					case 0:
-						main.showForm(new GD_TraCuuNhanVien(emf));
-						menu.hideallMenu();
-						break;
-					case 1:
-						main.showForm(new GD_TraCuuKhuyenMai(emf));
-						menu.hideallMenu();
-						break;
-					
-					}
+					System.out.println("Hỗ trợ");
+					break;
 				}
 			}
 
@@ -115,7 +131,6 @@ public class Main extends javax.swing.JFrame {
 		bg.add(menu, "w 300!, spany 2");
 		bg.add(herder, "h 100!,wrap");
 		bg.add(main, "w 100%, h 100%");
-
 		main.add(new GD_Chinh());
 	}
 
