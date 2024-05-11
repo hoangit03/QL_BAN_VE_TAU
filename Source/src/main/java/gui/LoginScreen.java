@@ -4,6 +4,7 @@ import dao.TaiKhoanDao;
 import entity.TaiKhoan;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.awt.event.KeyEvent;
 
 public class LoginScreen extends javax.swing.JFrame {
 
@@ -22,7 +23,7 @@ public class LoginScreen extends javax.swing.JFrame {
         taiKhoanDao = new TaiKhoanDao(emf);
     }
 
-    @SuppressWarnings("unchecked")
+    /*    @SuppressWarnings("unchecked");*/
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -102,10 +103,20 @@ public class LoginScreen extends javax.swing.JFrame {
                 txtusernameActionPerformed(evt);
             }
         });
+        txtusername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtusernameKeyPressed(evt);
+            }
+        });
         jPanel2.add(txtusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 230, 30));
 
         underPass.setText("_________________________________");
         underPass.setPreferredSize(new java.awt.Dimension(200, 15));
+        underPass.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                underPassKeyPressed(evt);
+            }
+        });
         jPanel2.add(underPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 260, 30));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -120,7 +131,7 @@ public class LoginScreen extends javax.swing.JFrame {
         txtpassword.setBackground(new java.awt.Color(204, 204, 204));
         txtpassword.setFont(txtpassword.getFont().deriveFont(txtpassword.getFont().getSize()+2f));
         txtpassword.setBorder(null);
-        txtpassword.setCaretColor(new java.awt.Color(255, 255, 255));
+        
         txtpassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtpasswordMouseClicked(evt);
@@ -129,6 +140,11 @@ public class LoginScreen extends javax.swing.JFrame {
         txtpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtpasswordActionPerformed(evt);
+            }
+        });
+        txtpassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtpasswordKeyPressed(evt);
             }
         });
         jPanel2.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 230, 30));
@@ -223,26 +239,24 @@ public class LoginScreen extends javax.swing.JFrame {
         if (taiKhoan != null && taiKhoan.getMatKhau().equalsIgnoreCase(passWord)) {
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
-                    new Main(emf,taiKhoan).setVisible(true);
+                    new Main(emf, taiKhoan).setVisible(true);
                     setVisible(false);
                 }
             });
         } else {
             error.setText("Tên tài khoản hoặc mật khẩu không chính xác");
         }
-        
 
 
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
-    
-    
+
     private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpasswordActionPerformed
 
     private void txtusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusernameActionPerformed
-        
+
     }//GEN-LAST:event_txtusernameActionPerformed
 
     private void txtusernameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtusernameMouseClicked
@@ -253,6 +267,35 @@ public class LoginScreen extends javax.swing.JFrame {
         error.setText("");
     }//GEN-LAST:event_txtpasswordMouseClicked
 
+    private void txtusernameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtusernameKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnDangNhapActionPerformed(null);
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            txtpassword.requestFocus(); // Chuyển focus đến ô mật khẩu
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            txtusername.requestFocus(); // Chuyển focus đến ô tên đăng nhập
+        }
+    }//GEN-LAST:event_txtusernameKeyPressed
+
+    private void underPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_underPassKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_underPassKeyPressed
+
+    private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btnDangNhapActionPerformed(null);
+        }
+        if (evt.getKeyCode() == KeyEvent.VK_UP) {
+            txtusername.requestFocus(); // Chuyển focus đến ô tên đăng nhập
+        } else if (evt.getKeyCode() == KeyEvent.VK_DOWN) {
+            txtpassword.requestFocus(); // Chuyển focus đến ô mật khẩu
+    }//GEN-LAST:event_txtpasswordKeyPressed
+
+    
+    }
     /**
      * @param args the command line arguments
      */
