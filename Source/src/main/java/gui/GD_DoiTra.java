@@ -9,8 +9,10 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
 import java.util.List;
@@ -42,6 +44,9 @@ public class GD_DoiTra extends javax.swing.JPanel {
 	private EntityManagerFactory emf;
 	private VeDao veDao;
 	private GaDao gaDao;;
+	DateTimeFormatter dinhDang2 = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    DateTimeFormatter dinhDangGio = DateTimeFormatter.ofPattern("HH:mm");
+    DateTimeFormatter dinhDangNgay = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 	public GD_DoiTra(EntityManagerFactory emf) {
 		initComponents();
@@ -653,7 +658,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 	private void renderHoaDon() {
 		khachHangDao = new KhachHangDao(emf);
 		hoaDonDao = new HoaDonDao(emf);
-		List<HoaDon> lhd = hoaDonDao.getAllHoaDon();
+		List<HoaDon> lhd = hoaDonDao.getAllHoaDonTrue();
 		DefaultTableModel model = (DefaultTableModel) tableHD.getModel();
 		model.setRowCount(0);
 
@@ -681,7 +686,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 
 			}
 			Object[] row = { hoaDon.getMaHoaDon(), hoaDon.getNhanVien().getMaNhanVien(), kh.getCccd(), kh.getHoTen(),
-					kh.getSdt(), km, hoaDon.getNgayTao(), hoaDon.getGioTao(),(int) tongTien };
+					kh.getSdt(), km, dinhDangNgay.format(hoaDon.getNgayTao()),dinhDangGio.format(hoaDon.getGioTao()),(int) tongTien };
 			model.addRow(row);
 		}
 		model.fireTableDataChanged();
@@ -773,7 +778,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			}
 			Object[] row = { ve.getMaVe(), kh.getCccd(), kh.getHoTen(), kh.getDoiTuong(), gaChieuDi.getTenGa(),
 					gaChieuDen.getTenGa(), ve.getChuyen().getTau().getMaTau(), ve.getChoNgoi().getToa().getViTri(),
-					ve.getChoNgoi().getViTri(), ve.getThoiGianLenTau(),
+					ve.getChoNgoi().getViTri(), dinhDang2.format(ve.getThoiGianLenTau()),
 					(int) (ve.getChoNgoi().getGia() * Math.abs(gaChieuDen.getId() - gaChieuDi.getId())
 							* (ve.getKhuyenMai() == null ? 1 : 1 - ve.getKhuyenMai().getChietKhau()))};
 			model.addRow(row);
@@ -807,7 +812,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			LocalDate timeDate = ngayDi.toLocalDate();
 
 			long tinhTime = ChronoUnit.DAYS.between(LocalDate.now(), ngayDi);
-
+			System.out.println(tableHD.getSelectedRow());
 			if (timeDate.isBefore(LocalDate.now())) {
 				JOptionPane.showMessageDialog(null, "Chuyến tàu này đã khởi hành , đổi vé không có hiệu lực",
 						"Thông báo", JOptionPane.INFORMATION_MESSAGE);
@@ -828,10 +833,20 @@ public class GD_DoiTra extends javax.swing.JPanel {
 							* 0.8 * (ve.getKhuyenMai() == null ? 1 : 1 - ve.getKhuyenMai().getChietKhau());
 					int chose = JOptionPane.showConfirmDialog(null, "Số tiền hoàn lại cho khách hàng là "+((int)soTienDuocTra/1000)*1000+ "VNĐ","Xác nhận",JOptionPane.YES_NO_OPTION);
 					if(chose == JOptionPane.YES_OPTION) {
-						boolean check = veDao.updateDoiVe(maVe, LocalDateTime.now());
+						boolean check = veDao.updateTrangThaiVeTamHetNgay(ve);
 						if(check) {
-//							tableVe.remove(tableVe.getSelectedRow());
+							if(tableVe.getRowCount() == 1) {
+								hoaDonDao.capNhatHDTheoTrangThai(ve.getHoaDon(), false);
+								DefaultTableModel model = (DefaultTableModel) tableHD.getModel();
+								model.removeRow(tableHD.getSelectedRow());
+								model.fireTableDataChanged();
+							}
+							DefaultTableModel model = (DefaultTableModel) tableVe.getModel();
+							model.removeRow(tableVe.getSelectedRow());
+							model.fireTableDataChanged();
+							
 						}
+						
 					}
 					
 

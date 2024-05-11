@@ -22,53 +22,48 @@ import java.io.Serializable;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name="Ve.FindByMaHd", query = "select v from Ve v where v.hoaDon.maHoaDon = :mhd and v.trangThai = true "),
-	@NamedQuery(name="Ve.FindByMaVe", query = "select v from Ve v where v.maVe = :mv and v.trangThai = true "),
-	@NamedQuery(
-		    name = "Ve.updateDoiTra", 
-				query = "UPDATE Ve v SET v.thoiGianLenTau = :newThoiGianLenTau , v.trangThai = :newTrangThai WHERE v.maVe = :maVe"		),
-	
-	@NamedQuery(name = "Ve.TongVeNgayTheoThang", query = "SELECT COUNT(v) FROM Ve v WHERE YEAR(v.thoiGianLenTau) = :nam AND MONTH(v.thoiGianLenTau) = :thang AND DAY(v.thoiGianLenTau) = :ngay")
+		@NamedQuery(name = "Ve.FindByMaHd", query = "select v from Ve v where v.hoaDon.maHoaDon = :mhd and v.trangThai = true "),
+		@NamedQuery(name = "Ve.FindByMaVe", query = "select v from Ve v where v.maVe = :mv and v.trangThai = true "),
+		@NamedQuery(name = "Ve.updateDoiTra", query = "UPDATE Ve v SET v.thoiGianLenTau = :newThoiGianLenTau , v.trangThai = :newTrangThai WHERE v.maVe = :maVe"),
+		@NamedQuery(name = "Ve.TongVeNgayTheoThang", query = "SELECT COUNT(v) FROM Ve v WHERE YEAR(v.thoiGianLenTau) = :nam AND MONTH(v.thoiGianLenTau) = :thang AND DAY(v.thoiGianLenTau) = :ngay")
 
 })
 public class Ve implements Serializable {
 
-    @Id
-    @Column(name = "MaVe")
-    private String maVe;
+	@Id
+	@Column(name = "MaVe")
+	private String maVe;
 
-    @Column(name = "ThoiGianLenTau",columnDefinition = "datetime")
-    private LocalDateTime thoiGianLenTau;
-    
-    @Column(name = "TrangThai")
-    private boolean trangThai;
+	@Column(name = "ThoiGianLenTau", columnDefinition = "datetime")
+	private LocalDateTime thoiGianLenTau;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MaChuyen")
-    private Chuyen chuyen;
+	@Column(name = "TrangThai")
+	private boolean trangThai;
 
-    @ManyToOne
-    @JoinColumn(name = "MaChoNgoi")
-    private ChoNgoi choNgoi;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MaChuyen")
+	private Chuyen chuyen;
 
-    @OneToMany(mappedBy = "ve")
-    private Set<ChiTietVe> lisChiTietVes;
+	@ManyToOne
+	@JoinColumn(name = "MaChoNgoi")
+	private ChoNgoi choNgoi;
 
-    @ManyToOne
-    @JoinColumn(name = "MaKhuyenMai")
-    private KhuyenMai khuyenMai;
+	@OneToMany(mappedBy = "ve")
+	private Set<ChiTietVe> lisChiTietVes;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CCCD")
-    private KhachHang khachHang;
+	@ManyToOne
+	@JoinColumn(name = "MaKhuyenMai")
+	private KhuyenMai khuyenMai;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MaHoaDon")
-    private HoaDon hoaDon;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CCCD")
+	private KhachHang khachHang;
 
-    
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "MaHoaDon")
+	private HoaDon hoaDon;
 
-    public Ve(String maVe, LocalDateTime thoiGianLenTau, boolean trangThai) {
+	public Ve(String maVe, LocalDateTime thoiGianLenTau, boolean trangThai) {
 		super();
 		this.maVe = maVe;
 		this.thoiGianLenTau = thoiGianLenTau;
@@ -76,77 +71,73 @@ public class Ve implements Serializable {
 	}
 
 	public Ve() {
-    }
+	}
 
-    public Set<ChiTietVe> getLisChiTietVes() {
-        return lisChiTietVes;
-    }
+	public Set<ChiTietVe> getLisChiTietVes() {
+		return lisChiTietVes;
+	}
 
-    public void setLisChiTietVes(Set<ChiTietVe> lisChiTietVes) {
-        this.lisChiTietVes = lisChiTietVes;
-    }
+	public void setLisChiTietVes(Set<ChiTietVe> lisChiTietVes) {
+		this.lisChiTietVes = lisChiTietVes;
+	}
 
-    public HoaDon getHoaDon() {
-        return hoaDon;
-    }
+	public HoaDon getHoaDon() {
+		return hoaDon;
+	}
 
-    public void setHoaDon(HoaDon hoaDon) {
-        this.hoaDon = hoaDon;
-    }
+	public void setHoaDon(HoaDon hoaDon) {
+		this.hoaDon = hoaDon;
+	}
 
-    
-    
-    public String getMaVe() {
-        return maVe;
-    }
+	public String getMaVe() {
+		return maVe;
+	}
 
-    public void setMaVe(String maVe) {
-        this.maVe = maVe;
-    }
+	public void setMaVe(String maVe) {
+		this.maVe = maVe;
+	}
 
-    public LocalDateTime getThoiGianLenTau() {
-        return thoiGianLenTau;
-    }
+	public LocalDateTime getThoiGianLenTau() {
+		return thoiGianLenTau;
+	}
 
-    public void setThoiGianLenTau(LocalDateTime thoiGianLenTau) {
-        this.thoiGianLenTau = thoiGianLenTau;
-    }
+	public void setThoiGianLenTau(LocalDateTime thoiGianLenTau) {
+		this.thoiGianLenTau = thoiGianLenTau;
+	}
 
-    public Chuyen getChuyen() {
-        return chuyen;
-    }
+	public Chuyen getChuyen() {
+		return chuyen;
+	}
 
-    public void setChuyen(Chuyen chuyen) {
-        this.chuyen = chuyen;
-    }
+	public void setChuyen(Chuyen chuyen) {
+		this.chuyen = chuyen;
+	}
 
-    public ChoNgoi getChoNgoi() {
-        return choNgoi;
-    }
+	public ChoNgoi getChoNgoi() {
+		return choNgoi;
+	}
 
-    public void setChoNgoi(ChoNgoi choNgoi) {
-        this.choNgoi = choNgoi;
-    }
+	public void setChoNgoi(ChoNgoi choNgoi) {
+		this.choNgoi = choNgoi;
+	}
 
-    public KhuyenMai getKhuyenMai() {
-        return khuyenMai;
-    }
+	public KhuyenMai getKhuyenMai() {
+		return khuyenMai;
+	}
 
-    public void setKhuyenMai(KhuyenMai khuyenMai) {
-        this.khuyenMai = khuyenMai;
-    }
+	public void setKhuyenMai(KhuyenMai khuyenMai) {
+		this.khuyenMai = khuyenMai;
+	}
 
-    public KhachHang getKhachHang() {
-        return khachHang;
-    }
+	public KhachHang getKhachHang() {
+		return khachHang;
+	}
 
-    public void setKhachHang(KhachHang khachHang) {
-        this.khachHang = khachHang;
-    }
-    
-    
+	public void setKhachHang(KhachHang khachHang) {
+		this.khachHang = khachHang;
+	}
 
-    public boolean isTrangThai() {
+	public boolean isTrangThai() {
 		return trangThai;
 	}
 
@@ -158,7 +149,5 @@ public class Ve implements Serializable {
 	public String toString() {
 		return "Ve [maVe=" + maVe + ", thoiGianLenTau=" + thoiGianLenTau + ", trangThai=" + trangThai + "]";
 	}
-
-	
 
 }

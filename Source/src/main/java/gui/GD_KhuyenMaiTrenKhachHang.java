@@ -34,7 +34,7 @@ public class GD_KhuyenMaiTrenKhachHang extends javax.swing.JPanel {
     
     private EntityManagerFactory emf;
     private KhuyenMaiDao khuyenMaiDao;
-    private SimpleDateFormat dinhDang = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private SimpleDateFormat dinhDang = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
     private SimpleDateFormat dinhDangMa = new SimpleDateFormat("dd-MM-yyyy");
     LocalDate localDate = LocalDate.now();
 	Date dateNow = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());

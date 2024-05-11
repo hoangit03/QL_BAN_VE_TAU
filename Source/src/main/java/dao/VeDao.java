@@ -31,7 +31,7 @@ public class VeDao {
 		}
 		return false;
 	}
-	
+
 	public boolean updateVe(Ve ve) {
 		EntityTransaction tx = em.getTransaction();
 		try {
@@ -54,53 +54,71 @@ public class VeDao {
 	public List<Ve> getListVeByMaHD(String mahd) {
 		return em.createNamedQuery("Ve.FindByMaHd", Ve.class).setParameter("mhd", mahd).getResultList();
 	}
+
 	public List<Ve> getListVeByMaVe(String mv) {
 		return em.createNamedQuery("Ve.FindByMaVe", Ve.class).setParameter("mv", mv).getResultList();
 	}
+
 //	    lấy Vé bằng mã
 	public Ve getVeByMa(String ma) {
 		return em.find(Ve.class, ma);
 	}
-	 public boolean updateDoiVe(String maVe, LocalDateTime localDateTime) {
-	        EntityTransaction transaction = null;
-	        try {
-	            transaction = em.getTransaction();
-	            transaction.begin();
+	
+	public List<Ve> layDSVeTamHetNgay() {
+		LocalDate ngayHienTai = LocalDate.now();
+		return em.createQuery("SELECT ve FROM Ve ve WHERE ve.trangThai = true AND ve.hoaDon.trangThai = false AND ve.hoaDon.ngayTao != :ngayHT", Ve.class).setParameter("ngayHT", ngayHienTai).getResultList();
+	}
 
-	            em.createNamedQuery("Ve.updateDoiTra")
-	                .setParameter("newThoiGianLenTau", localDateTime)
-	                .setParameter("newTrangThai", false)
-	                .setParameter("maVe", maVe)
-	                .executeUpdate();
+	public boolean updateTrangThaiVeTamHetNgay(Ve ve) {
+		try {
+			em.getTransaction().begin();
+			em.createQuery(
+					"UPDATE Ve ve SET ve.trangThai = false WHERE ve.maVe = :maVe")
+					.setParameter("maVe", ve.getMaVe())
+					.executeUpdate();
+			em.getTransaction().commit();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			em.getTransaction().rollback();
+			e.printStackTrace();
+		}
+		return false;
+	}
 
-	            transaction.commit();
-	            return true;
-	        } catch (Exception e) {
-	            if (transaction != null && transaction.isActive()) {
-	                transaction.rollback();
-	            }
-	            e.printStackTrace();
-	        }
-	        return false;
-	    }
+	public boolean updateDoiVe(String maVe, LocalDateTime localDateTime) {
+		EntityTransaction transaction = null;
+		try {
+			transaction = em.getTransaction();
+			transaction.begin();
 
-	    
-	    public List<Ve> layVeThuocMa(String ma){
-	    	return em.createQuery("SELECT v FROM Ve v WHERE v.maVe like :maVe", Ve.class).setParameter("maVe","%"+ ma+"%").getResultList();
-	    }
-	    
-	    public Object layTongVeTrongNgay(int nam, int thang, int ngay) {
-	        try {
-	            return em.createNamedQuery("Ve.TongVeNgayTheoThang")
-	            		 .setParameter("nam", nam)
-	                     .setParameter("thang", thang)
-	                     .setParameter("ngay", ngay)
-	                     .getSingleResult();
-	        } catch (NoResultException e) {
-	            // Xử lý nếu không có kết quả nào được trả về
-	            return 0;
-	        }
-	    }
+			em.createNamedQuery("Ve.updateDoiTra").setParameter("newThoiGianLenTau", localDateTime)
+					.setParameter("newTrangThai", false).setParameter("maVe", maVe).executeUpdate();
 
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			if (transaction != null && transaction.isActive()) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	public List<Ve> layVeThuocMa(String ma) {
+		return em.createQuery("SELECT v FROM Ve v WHERE v.maVe like :maVe", Ve.class)
+				.setParameter("maVe", "%" + ma + "%").getResultList();
+	}
+
+	public Object layTongVeTrongNgay(int nam, int thang, int ngay) {
+		try {
+			return em.createNamedQuery("Ve.TongVeNgayTheoThang").setParameter("nam", nam).setParameter("thang", thang)
+					.setParameter("ngay", ngay).getSingleResult();
+		} catch (NoResultException e) {
+			// Xử lý nếu không có kết quả nào được trả về
+			return 0;
+		}
+	}
 
 }
