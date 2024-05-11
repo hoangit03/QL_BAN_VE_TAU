@@ -7,7 +7,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDateTime;
+
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 
 public class Button extends JButton {
@@ -33,7 +36,10 @@ public class Button extends JButton {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
-                System.exit(0);
+            	int chose = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát không","Xác nhận",JOptionPane.YES_NO_OPTION);
+				if(chose == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
             }
         });
     }

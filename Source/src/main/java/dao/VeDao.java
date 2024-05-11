@@ -61,7 +61,7 @@ public class VeDao {
 	public Ve getVeByMa(String ma) {
 		return em.find(Ve.class, ma);
 	}
-	 public void updateDoiVe(String maVe, LocalDateTime localDateTime) {
+	 public boolean updateDoiVe(String maVe, LocalDateTime localDateTime) {
 	        EntityTransaction transaction = null;
 	        try {
 	            transaction = em.getTransaction();
@@ -74,12 +74,14 @@ public class VeDao {
 	                .executeUpdate();
 
 	            transaction.commit();
+	            return true;
 	        } catch (Exception e) {
 	            if (transaction != null && transaction.isActive()) {
 	                transaction.rollback();
 	            }
 	            e.printStackTrace();
 	        }
+	        return false;
 	    }
 
 	    

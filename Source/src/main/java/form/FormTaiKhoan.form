@@ -25,7 +25,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Component id="jScrollPane1" min="-2" pref="1204" max="-2" attributes="0"/>
+              <Component id="scrollTable" min="-2" pref="1204" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="fNhap" pref="390" max="32767" attributes="0"/>
@@ -78,7 +78,7 @@
                       <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="fHienThi" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="887" max="-2" attributes="0"/>
+                  <Component id="scrollTable" min="-2" pref="887" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="63" max="32767" attributes="0"/>
           </Group>
@@ -260,7 +260,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" pref="366" max="32767" attributes="0"/>
+                  <Component id="scroll" pref="366" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -269,14 +269,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" pref="389" max="32767" attributes="0"/>
+                  <Component id="scroll" pref="389" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+        <Container class="javax.swing.JScrollPane" name="scroll">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -379,7 +379,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaTActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="scrollTable">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>

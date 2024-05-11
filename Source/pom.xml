@@ -71,7 +71,7 @@
 		</dependency>
 		<!--
 		https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
-<!--		<dependency>
+		<!--		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
 			<version>12.3.0.jre17-preview</version>
@@ -115,6 +115,19 @@
 			<groupId>org.jfree</groupId>
 			<artifactId>jfreechart</artifactId>
 			<version>1.5.4</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>5.9.0</version> <!-- Điều chỉnh phiên bản cần thiết -->
+		</dependency>
+
+		<dependency>
+			<groupId>net.java.dev.jna</groupId>
+			<artifactId>jna-platform</artifactId>
+			<version>5.9.0</version> <!-- Phiên bản tương ứng với JNA -->
 		</dependency>
 
 

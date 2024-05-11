@@ -9,7 +9,12 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.ImageIcon;
+
+import entity.TaiKhoan;
 import model.Model_Menu;
 import net.miginfocom.swing.MigLayout;
 
@@ -39,13 +44,17 @@ public class Menu extends javax.swing.JPanel {
         this.eventShowPopup = eventShowPopup;
     }
 
+    private TaiKhoan taiKhoan;
+    private boolean isClickBlog = false;
+    private Blog blog;
     private final MigLayout layout;
     private EventMenuSelected event;
     private EventShowPopupMenu eventShowPopup;
     private boolean enableMenu = true;
     private boolean showMenu = true;
 
-    public Menu() {
+    public Menu(TaiKhoan taiKhoan) {
+    	this.taiKhoan = taiKhoan;
         initComponents();
         setOpaque(false);
         sp.getViewport().setOpaque(false);
@@ -63,10 +72,16 @@ public class Menu extends javax.swing.JPanel {
     public void initMenuItem() {
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/ve.png")), "Quản lý vé", "Mua vé", "Đổi-Trả vé"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khachhang.png")), "Khách Hàng"));
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên"));
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khuyenmai.png")), "Khuyến Mãi", "Khuyến mãi trên hóa đơn", "Khuyến mãi trên khách hàng"));
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Thống kê", "Thống kê doanh thu", "Thống kê lượt vé", "Thống kê đi lại", "Thống kê vé bán"));
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/tracuu.png")), "Tra cứu", "Tra cứu nhân viên", "Tra cứu khuyến mãi"));
+        if(taiKhoan.getNhanVien().getLoaiNV().equalsIgnoreCase("Admin")) {
+        	addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên"));
+        	addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khuyenmai.png")), "Khuyến Mãi", "Khuyến mãi trên hóa đơn", "Khuyến mãi trên khách hàng"));
+        	addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Thống kê", "Thống kê doanh thu", "Thống kê lượt vé"));
+        	
+        }
+        else {
+        	addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/thongke.png")), "Thống kê", "Thống kê đi lại", "Thống kê vé bán"));
+        	addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/tracuu.png")), "Tra cứu", "Tra cứu nhân viên", "Tra cứu khuyến mãi"));
+        }
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/help.png")), "Hỗ trợ"));
     }
 
@@ -121,6 +136,11 @@ public class Menu extends javax.swing.JPanel {
         Logo.setPreferredSize(new java.awt.Dimension(300, 300));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo.png"))); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout LogoLayout = new javax.swing.GroupLayout(Logo);
         Logo.setLayout(LogoLayout);
@@ -197,6 +217,22 @@ public class Menu extends javax.swing.JPanel {
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThoatActionPerformed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        if(isClickBlog)
+            return;
+        isClickBlog = true;
+        blog = new Blog();
+        blog.addWindowListener(new WindowAdapter() {
+        	@Override
+        	public void windowClosed(WindowEvent e) {
+        		isClickBlog = false;
+        	}
+        });
+        blog.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     @Override
     protected void paintChildren(Graphics g) {
