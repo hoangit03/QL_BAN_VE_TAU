@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 import entity.ChoNgoi;
 import entity.Chuyen;
+import entity.Ga;
 import entity.HoaDon;
 
 public class KhoangGhe extends javax.swing.JPanel {
@@ -63,13 +64,45 @@ public class KhoangGhe extends javax.swing.JPanel {
 			temp = getIndexChoNgoiTrong(i);
 			if (temp >= 0)
 				if (checkDataSelect(list.get(temp)))
-					addItemGhe(i, list.get(temp), true);
+					if(!checkDay(list.get(temp)))
+						addItemGhe(i, list.get(temp), true);
+					else
+						addItemGhe(i, null, true);
 				else
 					addItemGhe(i, list.get(temp), false);
 			else
 				addItemGhe(i, null, true);
 		}
 
+	}
+	
+	private boolean checkDay(ChoNgoi choNgoi) {
+		Ga gaDi = null;
+		Ga gaDen = null;
+		for (Model_InfoVe info : listInfoVes) {
+			if (info.getChoNgoi().getMaChoNgoi().equalsIgnoreCase(choNgoi.getMaChoNgoi())) {
+				gaDi = info.getChuyen().getGaDi();
+				gaDen = info.getChuyen().getGaDen();
+				if(chuyen.getGaDi().getId() == gaDi.getId() && chuyen.getGaDen().getId() == gaDen.getId())
+					return false;
+				if (chuyen.getGaDi().getId() < chuyen.getGaDen().getId()) {
+					if ((gaDi.getId() >= chuyen.getGaDi().getId() && gaDi.getId() < chuyen.getGaDen().getId())
+							|| (gaDen.getId() > chuyen.getGaDen().getId() && gaDen.getId() <= chuyen.getGaDen().getId())
+							|| (gaDi.getId() < chuyen.getGaDi().getId() && gaDen.getId() > chuyen.getGaDen().getId())) {
+						return true;
+					}
+
+				}
+				else {
+					if ((gaDi.getId() <= chuyen.getGaDi().getId() && gaDi.getId() > chuyen.getGaDen().getId())
+							|| (gaDen.getId() < chuyen.getGaDen().getId() && gaDen.getId() >= chuyen.getGaDen().getId())
+							|| (gaDi.getId() > chuyen.getGaDi().getId() && gaDen.getId() < chuyen.getGaDen().getId())) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	private int getIndexChoNgoiTrong(int vt) {
