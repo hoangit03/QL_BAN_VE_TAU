@@ -12,44 +12,43 @@ public class GD_MuaVe extends javax.swing.JPanel {
 
 	private EntityManagerFactory emf;
 	private TaiKhoan taiKhoan;
-    public GD_MuaVe(EntityManagerFactory emf, TaiKhoan taiKhoan) {
-    	this.emf = emf;
-    	this.taiKhoan = taiKhoan;
-        initComponents();
-        mainForm1.showForm(new FormMuaVe(mainForm1,emf,taiKhoan));
-    }
 
+	public GD_MuaVe(EntityManagerFactory emf, TaiKhoan taiKhoan) {
+		this.emf = emf;
+		this.taiKhoan = taiKhoan;
+		initComponents();
+		mainForm1.showForm(new FormMuaVe(mainForm1, emf, taiKhoan));
+	}
 
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+	@SuppressWarnings("unchecked")
+	// <editor-fold defaultstate="collapsed" desc="Generated
+	// Code">//GEN-BEGIN:initComponents
+	private void initComponents() {
 
-        groupLanDi = new javax.swing.ButtonGroup();
-        mainForm1 = new form.MainForm();
+		groupLanDi = new javax.swing.ButtonGroup();
+		mainForm1 = new form.MainForm();
 
-        setBackground(new java.awt.Color(204, 204, 204));
-        setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204)));
-        setPreferredSize(new java.awt.Dimension(1600, 1100));
+		setBackground(new java.awt.Color(204, 204, 204));
+		setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED,
+				new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204), new java.awt.Color(204, 204, 204),
+				new java.awt.Color(204, 204, 204)));
+		setPreferredSize(new java.awt.Dimension(1600, 1100));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, 1594, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, 1094, Short.MAX_VALUE)
-        );
-    }// </editor-fold>//GEN-END:initComponents
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+		this.setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, 1594, Short.MAX_VALUE));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, 1094, Short.MAX_VALUE));
+	}// </editor-fold>//GEN-END:initComponents
 
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.ButtonGroup groupLanDi;
+	private form.MainForm mainForm1;
+	// End of variables declaration//GEN-END:variables
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup groupLanDi;
-    private form.MainForm mainForm1;
-    // End of variables declaration//GEN-END:variables
-
-    public void remove(ActionListener aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+	public void remove(ActionListener aThis) {
+		throw new UnsupportedOperationException("Not supported yet."); // Generated from
+																		// nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	}
 }

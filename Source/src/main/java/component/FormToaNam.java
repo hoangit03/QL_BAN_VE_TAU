@@ -22,6 +22,7 @@ public class FormToaNam extends javax.swing.JPanel {
     private Model_Tau chuyen;
     private List<Model_InfoVe> listInfoVes;
     private HoaDon hoaDon;
+    
     public FormToaNam(int soluong,Model_Tau chuyen2,HoaDon hoaDon, List<ChoNgoi> list,Map<String, Set<ChoNgoi>> listChoChon,DefaultTableModel model, List<Model_InfoVe> listInfoVes) {
         initComponents();
         setOpaque(false);

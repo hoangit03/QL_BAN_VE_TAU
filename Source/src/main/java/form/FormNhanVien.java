@@ -135,7 +135,6 @@ public class FormNhanVien extends javax.swing.JPanel {
 
         jtMaNV.setEditable(false);
         jtMaNV.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jtMaNV.setBorder(null);
         jtMaNV.setPreferredSize(new java.awt.Dimension(300, 40));
 
         lbCCCD.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -143,7 +142,6 @@ public class FormNhanVien extends javax.swing.JPanel {
         lbCCCD.setText("CCCD");
 
         jtCCCD.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jtCCCD.setBorder(null);
         jtCCCD.setPreferredSize(new java.awt.Dimension(64, 40));
 
         lbTen.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -151,7 +149,6 @@ public class FormNhanVien extends javax.swing.JPanel {
         lbTen.setText("Họ tên");
 
         jtTen.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jtTen.setBorder(null);
         jtTen.setMinimumSize(new java.awt.Dimension(64, 30));
         jtTen.setPreferredSize(new java.awt.Dimension(64, 40));
 
@@ -191,7 +188,6 @@ public class FormNhanVien extends javax.swing.JPanel {
         lbDiaChi.setText("Địa chỉ");
 
         jtDiaChi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jtDiaChi.setBorder(null);
         jtDiaChi.setPreferredSize(new java.awt.Dimension(64, 40));
 
         lbEmail.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -199,7 +195,6 @@ public class FormNhanVien extends javax.swing.JPanel {
         lbEmail.setText("Email");
 
         jtEmail.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jtEmail.setBorder(null);
         jtEmail.setPreferredSize(new java.awt.Dimension(64, 40));
 
         lbSdt.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -207,7 +202,6 @@ public class FormNhanVien extends javax.swing.JPanel {
         lbSdt.setText("Số điện thoại");
 
         jtSDT.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jtSDT.setBorder(null);
         jtSDT.setPreferredSize(new java.awt.Dimension(64, 40));
 
         lbTrangThai.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N

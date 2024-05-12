@@ -70,7 +70,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbTK = new javax.swing.JLabel();
         jbTK = new javax.swing.JTextField();
         lbMK = new javax.swing.JLabel();
-        jtMK = new javax.swing.JTextField();
+        jtMK = new javax.swing.JPasswordField();
         fHienThi = new form.Form();
         scroll = new javax.swing.JScrollPane();
         jtaNV = new javax.swing.JTextArea();
@@ -93,7 +93,6 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbMa1.setText("Mã nhân viên");
 
         jtMa.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jtMa.setBorder(null);
         jtMa.setPreferredSize(new java.awt.Dimension(300, 40));
 
         lbTen1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -101,7 +100,6 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbTen1.setText("Họ tên");
 
         jtTen.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jtTen.setBorder(null);
         jtTen.setPreferredSize(new java.awt.Dimension(300, 40));
 
         lbTK.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -109,16 +107,14 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         lbTK.setText("Tên tài khoản");
 
         jbTK.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-        jbTK.setBorder(null);
         jbTK.setPreferredSize(new java.awt.Dimension(300, 40));
 
         lbMK.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbMK.setForeground(new java.awt.Color(255, 255, 255));
         lbMK.setText("Mật Khẩu");
 
-        jtMK.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jtMK.setBorder(null);
-        jtMK.setPreferredSize(new java.awt.Dimension(300, 40));
+        jtMK.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        jtMK.setPreferredSize(new java.awt.Dimension(120, 40));
 
         javax.swing.GroupLayout fNhapLayout = new javax.swing.GroupLayout(fNhap);
         fNhap.setLayout(fNhapLayout);
@@ -133,17 +129,17 @@ public class FormTaiKhoan extends javax.swing.JPanel {
                             .addComponent(lbMK))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtMK, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                            .addComponent(jbTK, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)))
+                            .addComponent(jbTK, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                            .addComponent(jtMK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(fNhapLayout.createSequentialGroup()
                         .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbMa1)
                             .addComponent(lbTen1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtMa, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-                            .addComponent(jtTen, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jtMa, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                            .addComponent(jtTen, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         fNhapLayout.setVerticalGroup(
             fNhapLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,7 +315,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 
 	private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCapNhatActionPerformed
 		String userName = jbTK.getText();
-		String password = jtMK.getText();
+		String password = new String(jtMK.getPassword());
 		TaiKhoan taiKhoan = taiKhoanDao.getTaiKhoanByUserName(userName);
 		if(taiKhoan == null) {
 			JOptionPane.showMessageDialog(btnCapNhat, "Không tìm thấy tài khoản muốn cập nhật", "Thông báo",
@@ -349,7 +345,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 
 	private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThemActionPerformed
 		String userName = jbTK.getText().trim();
-		String password = jtMK.getText();
+		String password = new String(jtMK.getPassword());
 		TaiKhoan taiKhoan = new TaiKhoan(userName, password);
 		int check = checkValue(taiKhoan);
 		if(check > 0) {
@@ -400,18 +396,28 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 	
 	private void addRowTable(TaiKhoan taiKhoan) {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		String mkTemp = matKhauAn(taiKhoan.getMatKhau());
 		model.addRow(new Object[] {taiKhoan.getNhanVien().getMaNhanVien(), taiKhoan.getNhanVien().getHoTen(),
-					taiKhoan.getTenTaiKhoan(), taiKhoan.getMatKhau()});
+					taiKhoan.getTenTaiKhoan(), mkTemp});
 		model.fireTableDataChanged();
+	}
+	
+	private String matKhauAn(String mk) {
+		String temp = "";
+		for(int i =0 ; i < mk.length();i++) {
+			temp += "#";
+		}
+		return temp;
 	}
 	
 	private void updateTable(TaiKhoan taiKhoan) {
 		String ma = jtMa.getText();
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		String mkTemp = matKhauAn(taiKhoan.getMatKhau());
 		for(int i = 0; i < table.getRowCount();i++) {
 			if(ma.equalsIgnoreCase(model.getValueAt(i, 0).toString())) {
 				model.setValueAt(taiKhoan.getTenTaiKhoan(), i, 2);
-				model.setValueAt(taiKhoan.getMatKhau(), i, 3);
+				model.setValueAt(mkTemp, i, 3);
 			}
 		}
 		model.fireTableDataChanged();
@@ -461,12 +467,13 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
+		TaiKhoan taikhoan = taiKhoanDao.getTaiKhoanByUserName(model.getValueAt(index, 2).toString());
 		jtMa.setText(model.getValueAt(index, 0).toString());
 		jtMa.setFocusable(false);
 		jtTen.setText(model.getValueAt(index, 1).toString());
 		jtTen.setFocusable(false);
 		jbTK.setText(model.getValueAt(index, 2).toString());
-		jtMK.setText(model.getValueAt(index, 3).toString());
+		jtMK.setText(taikhoan.getMatKhau());
 		NhanVien nhanVien = nhanVienDao.getNhanVienByMa(jtMa.getText());
 		addDataArea(nhanVien);
 	}
@@ -476,9 +483,11 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 		List<TaiKhoan> list = taiKhoanDao.getAllTaiKhoan();
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.setRowCount(0);
+		String mkTemp = "";
 		for (TaiKhoan taiKhoan : list) {
+			mkTemp = matKhauAn(taiKhoan.getMatKhau());
 			model.addRow(new Object[] { taiKhoan.getNhanVien().getMaNhanVien(), taiKhoan.getNhanVien().getHoTen(),
-					taiKhoan.getTenTaiKhoan(), taiKhoan.getMatKhau() });
+					taiKhoan.getTenTaiKhoan(), mkTemp });
 		}
 		model.fireTableDataChanged();
 	}
@@ -491,7 +500,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
     private form.Form fHienThi;
     private form.Form fNhap;
     private javax.swing.JTextField jbTK;
-    private javax.swing.JTextField jtMK;
+    private javax.swing.JPasswordField jtMK;
     private javax.swing.JTextField jtMa;
     private javax.swing.JTextField jtTen;
     private javax.swing.JTextArea jtaNV;

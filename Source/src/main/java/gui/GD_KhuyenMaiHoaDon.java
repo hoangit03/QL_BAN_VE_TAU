@@ -2,6 +2,8 @@
 package gui;
 
 import jakarta.persistence.EntityManagerFactory;
+import swing.ScrollBar;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -50,6 +52,7 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
 		table.setShowVerticalLines(false);
 		table.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
 		table.getTableHeader().setPreferredSize(new Dimension(30, 30));
+		jScrollPane1.setVerticalScrollBar(new ScrollBar());
 		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 		khuyenMaiDao = new KhuyenMaiDao(emf);
 		List<KhuyenMai> list = khuyenMaiDao.getAllKhuyenMaiHD();
@@ -414,7 +417,7 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
 		String numberMa = "KM" + dinhDangMa.format(timeStart).toString();
 		List<KhuyenMai> list = khuyenMaiDao.getAllKhuyenMaiByNumber(numberMa);
 
-		String index = (list.size() / 10 > 0) ? "" + (list.size()+1) : "0" + (list.size()+1);
+		String index = (list.size() / 10 > 0) ? "" + (list.size() + 1) : "0" + (list.size() + 1);
 		khuyenMai.setMaKhuyenMai(numberMa + index);
 		khuyenMai.setSoLuongVe(Integer.parseInt(soL));
 		khuyenMai.setChietKhau(Double.parseDouble(chietK));
