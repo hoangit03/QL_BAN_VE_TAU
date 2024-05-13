@@ -294,6 +294,10 @@ public class FormMuaVe extends javax.swing.JPanel {
         	JOptionPane.showMessageDialog(null, "Ga không tồn tại", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         	return;
         }
+        if(ga1.getId() == ga2.getId()) {
+        	JOptionPane.showMessageDialog(null, "Ga đi không được trùng với ga đến", "Thông báo", JOptionPane.WARNING_MESSAGE);
+        	return;
+        }
         if (ngayDi.getDate() == null) {
 			JOptionPane.showMessageDialog(null, "Chưa chọn ngày đi", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
@@ -311,8 +315,13 @@ public class FormMuaVe extends javax.swing.JPanel {
 					JOptionPane.INFORMATION_MESSAGE);
 			return;
         }
-        
+        LocalDate ngayHT = LocalDate.now();
         LocalDate ngDi = ngayDi.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        if(ngDi.isBefore(ngayHT) || ngDi.isEqual(ngayHT)) {
+        	JOptionPane.showMessageDialog(null, "Chọn ngày sau ngày hiện tại", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+        }
         LocalDate ngVe = null;
         if(radBtnKhuHoi.isSelected()) {
         	ngVe = ngayVe.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

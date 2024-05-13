@@ -400,6 +400,10 @@ public class GD_KhuyenMaiTrenKhachHang extends javax.swing.JPanel {
 	}// GEN-LAST:event_btnNgungActionPerformed
 
 	private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThemActionPerformed
+		int chose = JOptionPane.showConfirmDialog(null, "Bạn có muốn thêm khuyến mãi mới không","Xác nhận",JOptionPane.YES_NO_OPTION);
+		if(chose != JOptionPane.YES_OPTION) {
+			return;
+		}
 		String ten = jtTen.getText().trim();
 		String doiTuong = jcbDoiT.getSelectedItem().toString();
 		String chietK = jtChietK.getText().trim();
@@ -433,6 +437,10 @@ public class GD_KhuyenMaiTrenKhachHang extends javax.swing.JPanel {
 	}// GEN-LAST:event_btnXoaTActionPerformed
 
 	private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnCapNhatActionPerformed
+		int chose = JOptionPane.showConfirmDialog(null, "Bạn có muốn cập nhật khuyến mãi mới không","Xác nhận",JOptionPane.YES_NO_OPTION);
+		if(chose != JOptionPane.YES_OPTION) {
+			return;
+		}
 		String ma = jtMa.getText();
 		Date timeEnd = jDateEnd.getDate();
 		KhuyenMai khuyenMai = khuyenMaiDao.getKhuyenMaiByMa(ma);
