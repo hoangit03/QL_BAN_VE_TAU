@@ -30,7 +30,10 @@ public class VeXuat extends javax.swing.JPanel {
             else
                 gaDen = ctv.getGa();
         }
-        lbGia.setText((int)(ve.getChoNgoi().getGia() * Math.abs(gaDi.getId() - gaDen.getId())/1000)+".000");
+        if(ve.getKhuyenMai() != null)
+        	lbGia.setText((int)(ve.getChoNgoi().getGia() * Math.abs(gaDi.getId() - gaDen.getId()) *(1 - ve.getKhuyenMai().getChietKhau())/1000)+".000");
+        else
+        	lbGia.setText((int)(ve.getChoNgoi().getGia() * Math.abs(gaDi.getId() - gaDen.getId())/1000)+".000");
     }
 
     private String tangVt(Ve ve) {

@@ -55,9 +55,9 @@ public class ChoNgoiDao {
 	    return results;
 	}
 	
-	public List<ChoNgoi> getAllChoNgoiTrongVTToa(int id1, int id2,String maChuyen,int viTri, boolean trangThai) {
+	public List<ChoNgoi> getAllChoNgoiTrongVTToa(int id1, int id2,String maChuyen,int viTri, boolean trangThai, String maTau) {
 	    String jpql = "SELECT c FROM ChoNgoi c JOIN c.toa t" +
-	                  " WHERE t.viTri = :viTri AND c.maChoNgoi NOT IN (" +
+	                  " WHERE t.viTri = :viTri AND c.tau.maTau =:maTau AND c.maChoNgoi NOT IN (" +
 	                  "    SELECT v.choNgoi.maChoNgoi " +
 	                  "    FROM Ve v " +
 	                  "    JOIN v.lisChiTietVes ctv " +
@@ -78,6 +78,7 @@ public class ChoNgoiDao {
 
 	    List<ChoNgoi> results = em.createQuery(jpql, ChoNgoi.class)
 	    		.setParameter("viTri", viTri)
+	    		.setParameter("maTau", maTau)
 	            .setParameter("maChuyen", maChuyen)
 	            .setParameter("trangThai", trangThai)
 	            .setParameter("id1Param", id1)

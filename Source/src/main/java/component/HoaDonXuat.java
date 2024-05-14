@@ -47,6 +47,7 @@ public class HoaDonXuat extends javax.swing.JPanel {
         Ga gaDen = null;
         DataVe temp;
         int index;
+        double tien = 0;
         for (Ve ve : hoaDon.getListVes()) {
             for(ChiTietVe ctv : ve.getLisChiTietVes()){
                 if(ctv.isChieu()){
@@ -55,7 +56,13 @@ public class HoaDonXuat extends javax.swing.JPanel {
                 else
                     gaDen = ctv.getGa();
             }
-            temp = new DataVe(ve.getKhachHang().getDoiTuong(), gaDi.getTenGa(), gaDen.getTenGa(), 1, ve.getChoNgoi().getGia() * Math.abs(gaDi.getId() - gaDen.getId()));
+            if(ve.getKhuyenMai() != null) {
+            	tien = ve.getChoNgoi().getGia() * Math.abs(gaDi.getId() - gaDen.getId()) * (1 - ve.getKhuyenMai().getChietKhau());
+            }
+            else {
+            	tien = ve.getChoNgoi().getGia() * Math.abs(gaDi.getId() - gaDen.getId());
+            }
+            temp = new DataVe(ve.getKhachHang().getDoiTuong(), gaDi.getTenGa(), gaDen.getTenGa(), 1, tien);
             index = search(list, temp);
             if (index != -1) {
                 list.get(index).setIntervolSL();

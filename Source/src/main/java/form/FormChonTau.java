@@ -292,19 +292,19 @@ public class FormChonTau extends javax.swing.JPanel {
 
 		if (index < 5) {
 			List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(),
-					chuyen.getChuyen().getMaChuyen(), index, true);
+					chuyen.getChuyen().getMaChuyen(), index, true,chuyen.getMaTau());
 			spListKhoang.setViewportView(
 					formGhe = new FormToaGhe(chuyen, hoaDon, lisNgois, listChoChon, model, listInfoVes));
 			lbifToa.setText("Toa " + index + ": Ngồi mền điều hòa");
 		} else if (index < 8) {
 			List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(),
-					chuyen.getChuyen().getMaChuyen(), index, true);
+					chuyen.getChuyen().getMaChuyen(), index, true,chuyen.getMaTau());
 			spListKhoang.setViewportView(
 					formNam = new FormToaNam(6, chuyen, hoaDon, lisNgois, listChoChon, model, listInfoVes));
 			lbifToa.setText("Toa " + index + ": Giường nằm khoang 6 điều hòa");
 		} else {
 			List<ChoNgoi> lisNgois = choNgoiDao.getAllChoNgoiTrongVTToa(gaDi.getId(), gaDen.getId(),
-					chuyen.getChuyen().getMaChuyen(), index, true);
+					chuyen.getChuyen().getMaChuyen(), index, true,chuyen.getMaTau());
 			spListKhoang.setViewportView(
 					formNam = new FormToaNam(4, chuyen, hoaDon, lisNgois, listChoChon, model, listInfoVes));
 			lbifToa.setText("Toa " + index + ": Giường nằm khoang 4 điều hòa");
@@ -949,24 +949,43 @@ public class FormChonTau extends javax.swing.JPanel {
 		String doiTuong = model.getValueAt(index, 2).toString();
 		if (doiTuong.equalsIgnoreCase("Trẻ em")) {
 
-			SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyy");
+			DateTimeFormatter formatterHD = DateTimeFormatter.ofPattern("ddMMyyyy");
 			JDialog dialog = new JDialog();
 
 			JDateChooser dateChooser = new JDateChooser();
 			dialog.addWindowListener(new WindowAdapter() {
 				@Override
 				public void windowClosing(WindowEvent e) {
-					model.setValueAt("Người lớn", index, 2);
+					model.setValueAt("",index,0);
 					model.setValueAt(0, index, 5);
-					model.setValueAt(model.getValueAt(index, 4), index, 6);
+					String tien = model.getValueAt(index, 4).toString();
+					model.setValueAt(tien, index, 6);
+					model.setValueAt("Người lớn", index, 2);
 				}
+				
+				
 			});
 			dateChooser.addPropertyChangeListener("date", new PropertyChangeListener() {
 				@Override
 				public void propertyChange(PropertyChangeEvent evt) {
 					if ("date".equals(evt.getPropertyName())) {
-						Date dateChon = dateChooser.getDate();
-						String key = sdf.format(dateChon);
+						
+						LocalDate dateChon = dateChooser.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+						if(LocalDate.now().getYear() - dateChon.getYear() < 6) {
+							JOptionPane.showConfirmDialog(null, "Trẻ dưới 6 tuổi được miễn phí vé");
+							model.setValueAt("Người lớn", index, 2);
+							dialog.setVisible(false);
+							dialog.dispose();
+							return;
+						}
+						if(LocalDate.now().getYear() - dateChon.getYear() > 13) {
+							JOptionPane.showConfirmDialog(null, "Tuổi không nằm trong trường trình áp dụng");
+							model.setValueAt("Người lớn", index, 2);
+							dialog.setVisible(false);
+							dialog.dispose();
+							return;
+						}
+						String key = dateChon.format(formatterHD);
 						List<KhachHang> listccTam = khachHangDao.layKhachHangThuocMa(key);
 						int c = 0;
 						if (liscccd.containsKey(key))
@@ -1014,7 +1033,7 @@ public class FormChonTau extends javax.swing.JPanel {
 		} else {
 			Model_InfoVe veif = listInfoVes.get(index);
 			model.setValueAt(0, index, 5);
-			model.setValueAt(veif.getChoNgoi().getGia(), index, 6);
+			model.setValueAt(veif.getChoNgoi().getGia() * veif.getChuyen().getKhoangCachGa() , index, 6);
 		}
 	}
 
