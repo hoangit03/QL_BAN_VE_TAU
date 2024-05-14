@@ -15,6 +15,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 import static java.awt.image.ImageObserver.HEIGHT;
+import java.time.LocalDate;
 import javax.swing.BorderFactory;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -33,14 +34,15 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 
 	private EntityManagerFactory emf;
 	private VeDao veDao;
+        private GD_DoiTra gD_DoiTra;
 
 	public GD_ThongKeDoanhThu(EntityManagerFactory emf) {
 		this.emf = emf;
 		initComponents();
 		chartPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),
-				"Thống kê lượt vé theo tháng", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20) {
+				"Thống kê doanh thu theo tháng", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20) {
 				}, Color.black));
-		veDao = new VeDao(emf);
+		gD_DoiTra = new GD_DoiTra(emf);
 	}
 
 	/**
@@ -211,15 +213,13 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 	private void jMonthChooser1PropertyChange(java.beans.PropertyChangeEvent evt) {// GEN-FIRST:event_jMonthChooser1PropertyChange
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-		for (int i = 1; i <= 31; i++) {
-			dataset.setValue(
-					((Long) veDao.layTongVeTrongNgay(jYearChooser1.getYear(), jMonthChooser1.getMonth() + 1, i))
-							.intValue(),
+		for (int i = 1; i <= 30; i++) {
+			dataset.setValue(gD_DoiTra.tinhTongTienTheoNgay(LocalDate.of(2024, 4, i)),
 					"Tổng vé", i + "");
 		}
 
 		JFreeChart chart = ChartFactory.createBarChart("", "Tháng " + (jMonthChooser1.getMonth() + 1),
-				"Số lượng vé đã bán", dataset, PlotOrientation.VERTICAL, false, true, false);
+				"Doanh thu", dataset, PlotOrientation.VERTICAL, false, true, false);
 
 		CategoryPlot categoryPlot = chart.getCategoryPlot();
 		// categoryPlot.setRangeGridlinePaint(Color.BLUE);
@@ -229,7 +229,7 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 		renderer.setSeriesPaint(0, clr3);
 
 		NumberAxis rangeAxis = (NumberAxis) categoryPlot.getRangeAxis();
-		rangeAxis.setRange(0, 50);
+		rangeAxis.setRange(0, 5000000);
 
 		ChartPanel barpChartPanel = new ChartPanel(chart);
 		chartPanel.removeAll();
