@@ -851,6 +851,9 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			JOptionPane.showMessageDialog(null, "Bạn chưa nhập vé để đổi trả", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
+<<<<<<< HEAD
+	}      
+=======
 	}
 	
 	private void traHoaDon() {
@@ -908,6 +911,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 		}
 	}
 	
+>>>>>>> 4aa3affa583e3f47a9551c3eebca09a363ab5e5f
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInHoaDon;

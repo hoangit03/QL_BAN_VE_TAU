@@ -189,14 +189,10 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 					.intValue();
 		}
 
-		jTextField1.setText(khachHangDao.getAllKhachHang().size()+"");
-		jTextField2.setText(tongSoLuotVe + "");
-
 		JFreeChart chart = ChartFactory.createBarChart("", "Tháng " + (jMonthChooser1.getMonth() + 1),
 				"Số lượng vé đã bán", dataset, PlotOrientation.VERTICAL, false, true, false);
 
 		CategoryPlot categoryPlot = chart.getCategoryPlot();
-		// categoryPlot.setRangeGridlinePaint(Color.BLUE);
 		categoryPlot.setBackgroundPaint(Color.WHITE);
 		BarRenderer renderer = (BarRenderer) categoryPlot.getRenderer();
 		Color clr3 = new Color(0, 204, 204);
@@ -212,21 +208,32 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
                 
                 
                 //=====================================
-                DefaultPieDataset barDataset = new DefaultPieDataset( );
-                barDataset.setValue( "Sinh viên" , khachHangDao.layKhachHangBanDoiTuong("Sinh viên").size());  
-                barDataset.setValue( "Người lớn" , khachHangDao.layKhachHangBanDoiTuong("Người lớn").size());   
-                barDataset.setValue( "Trẻ em" , khachHangDao.layKhachHangBanDoiTuong("Trẻ em").size());    
+        DefaultPieDataset barDataset = new DefaultPieDataset( );
+        int sv = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth()+1, jYearChooser1.getYear(), "Sinh viên");
+        int nl = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth()+1, jYearChooser1.getYear(), "Người lớn");
+        int te = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth()+1, jYearChooser1.getYear(), "Trẻ em");
+        int ng = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth()+1, jYearChooser1.getYear(), "Người già");
+        
+        barDataset.setValue( "Sinh viên" , sv);  
+        barDataset.setValue( "Người lớn" , nl);   
+        barDataset.setValue( "Trẻ em" , te);   
+        barDataset.setValue( "Người già" , ng);  
       
+		jTextField1.setFont(new Font("Consalas", Font.BOLD, 18));
+		jTextField1.setText(sv+nl+te + ng + "");
+		jTextField2.setFont(new Font("Consalas", Font.BOLD, 18));
+		jTextField2.setText(tongSoLuotVe + "");
+		
       //create chart
-                JFreeChart piechart = ChartFactory.createPieChart("Hành khách",barDataset, false,true,false);//explain
+        JFreeChart piechart = ChartFactory.createPieChart("Hành khách",barDataset, false,true,false);//explain
       
-                PiePlot piePlot =(PiePlot) piechart.getPlot();
+        PiePlot piePlot =(PiePlot) piechart.getPlot();
       
        //changing pie chart blocks colors
-        piePlot.setSectionPaint("Sinh viên", new Color(255,255,102));
-        piePlot.setSectionPaint("Trẻ em", new Color(102,255,102));
-        piePlot.setSectionPaint("Người lớn", new Color(255,102,153));
-      
+        piePlot.setSectionPaint("Sinh viên", new Color(100,149,237));
+        piePlot.setSectionPaint("Trẻ em", new Color(30,144,255));
+        piePlot.setSectionPaint("Người lớn", new Color(135,206,250));
+        piePlot.setSectionPaint("Người già", new Color(135,180,250));
        
         piePlot.setBackgroundPaint(Color.white);
         
