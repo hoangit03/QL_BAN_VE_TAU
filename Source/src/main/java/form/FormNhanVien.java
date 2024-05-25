@@ -160,6 +160,7 @@ public class FormNhanVien extends javax.swing.JPanel {
         jDate.setAlignmentY(0.0F);
         jDate.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jDate.setPreferredSize(new java.awt.Dimension(88, 40));
+        jDate.setDateFormatString("dd/MM/yyyy");
 
         lbGioiTinh.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         lbGioiTinh.setForeground(new java.awt.Color(255, 255, 255));
