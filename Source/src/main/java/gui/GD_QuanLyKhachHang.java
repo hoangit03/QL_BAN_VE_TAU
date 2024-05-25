@@ -132,6 +132,11 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
 
 		btnXuatEX.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 		btnXuatEX.setText("Xuất Excel");
+		btnXuatEX.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				btnXuatEXActionPerformed(evt);
+			}
+		});
 
 		btnXT.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 		btnXT.setText("Xóa Trắng");
