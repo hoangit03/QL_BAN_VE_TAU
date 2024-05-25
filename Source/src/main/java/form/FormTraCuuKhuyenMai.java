@@ -390,8 +390,7 @@ public class FormTraCuuKhuyenMai extends javax.swing.JPanel {
 
     private void btnLocTheoNgayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocTheoNgayActionPerformed
         // Xoá bảng trước khi điền dữ liệu mới
-        DefaultTableModel model = (DefaultTableModel) tableTraCuuKM.getModel();
-        model.setRowCount(0);
+      
         // Lấy ngày bắt đầu và ngày kết thúc từ các JDateChooser
         Date ngayBatDau = jNgayBatDauKM.getDate();
         Date ngayKetThuc = jNgayKetThucKM.getDate();
@@ -413,6 +412,8 @@ public class FormTraCuuKhuyenMai extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi khi lấy danh sách khuyến mãi.", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        DefaultTableModel model = (DefaultTableModel) tableTraCuuKM.getModel();
+        model.setRowCount(0);
 
         // Hiển thị danh sách khuyến mãi lên giao diện người dùng
         addDataTable(danhSachKhuyenMai);

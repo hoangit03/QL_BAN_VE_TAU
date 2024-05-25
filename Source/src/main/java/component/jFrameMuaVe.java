@@ -316,6 +316,7 @@ public class jFrameMuaVe extends javax.swing.JFrame {
             if (tienNhap - tongTien >= 0) {
                 if (hoadon.isTrangThai()) {
                     if (khachHangDao.getKhachHangByCCCD(hoadon.getKhachHang().getCccd()) == null) {
+                    	hoadon.getKhachHang().setDoiTuong("Người lớn");
                         khachHangDao.addKhachHang(hoadon.getKhachHang());
                     }
                     hoaDonDao.addHoaDon(hoadon);

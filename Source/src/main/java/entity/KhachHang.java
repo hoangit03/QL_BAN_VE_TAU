@@ -32,7 +32,7 @@ public class KhachHang implements Serializable {
     private String sdt;
 
     @Column(name = "HoTen",nullable = false,columnDefinition = "nvarchar(255)")
-    private String hoTen;
+    private String hoTen; 
 
     @Column(name = "Email")
     private String email;
