@@ -3206,7 +3206,7 @@ VALUES
 	('HD12022300023', 'KM0609202303'),
 	('HD12022300023', 'KM0609202302'),
 	('HD12022300023', 'KM0609202301'),
-	('HD12022300030', 'KM0609202304');
+	('HD12022300030', 'KM0609202304')
 */
 
 
@@ -3292,27 +3292,7 @@ DROP TABLE Chuyen;
 DROP TABLE Tuyen;
 DROP TABLE Ga;
 DROP TABLE ChiTietKhuyenMai;*/
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------2
-                                                                                /*CHẠY BẢNG*/
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------2
-----------------------------------------------------------
------------------------CHỌN BẢNG--------------------------
-----------------------------------------------------------
-SELECT * FROM KhachHang;        --1
-SELECT * FROM NhanVien;         --2
-SELECT * FROM TaiKhoan;         --3
-SELECT * FROM HoaDon;           --4
-SELECT * FROM Tau;              --5
-SELECT * FROM Toa;              --6
-SELECT * FROM ChoNgoi;          --7
-SELECT * FROM Chuyen;           --8
-SELECT * FROM Tuyen;            --9
-SELECT * FROM Ga;               --10
-SELECT * FROM Ve;  
-SELECT * FROM ChiTietVe order by MaVe
---11
-        --12
-SELECT * FROM ChiTietKhuyenMai; --13
+
 
 
 
@@ -3407,3 +3387,22 @@ SELECT * FROM Ve Join ChiTietVe on ve.MaVe = ChiTietVe.MaVe
 
 SELECT * From HoaDon JOIN Ve on Ve.MaHoaDon = HoaDon.MaHoaDon WHERE Ve.MaHoaDon = 'HD0305202420060001'
 
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------2
+                                                                                /*CHẠY BẢNG*/
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------2
+----------------------------------------------------------
+-----------------------CHỌN BẢNG--------------------------
+----------------------------------------------------------
+SELECT * FROM KhachHang;        --1
+SELECT * FROM NhanVien;         --2
+SELECT * FROM TaiKhoan;         --3
+SELECT * FROM HoaDon;           --4
+SELECT * FROM Tau;              --5
+SELECT * FROM Toa;              --6
+SELECT * FROM ChoNgoi;          --7
+SELECT * FROM Chuyen;           --8
+SELECT * FROM Tuyen;            --9
+SELECT * FROM Ga;               --10
+SELECT * FROM Ve;  
+SELECT * FROM ChiTietVe order by MaVe
+SELECT * FROM ChiTietKhuyenMai; --13
