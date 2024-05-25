@@ -59,12 +59,12 @@ public class GD_DoiTra extends javax.swing.JPanel {
 		initComponents();
 		formHoaDon.setBorder(new EmptyBorder(0, 0, 0, 0));
 		formHoaDon.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE),
-				"Bảng hóa đơn", 0, 0, new Font(Font.SANS_SERIF, Font.PLAIN, 14) {
+				"Bảng hóa đơn", 0, 0, new Font(Font.SANS_SERIF, Font.PLAIN, 18) {
 				}, Color.WHITE));
 
 		formVe.setBorder(new EmptyBorder(0, 0, 0, 0));
 		formVe.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE), "Bảng vé", 0, 0,
-				new Font(Font.SANS_SERIF, Font.PLAIN, 14) {
+				new Font(Font.SANS_SERIF, Font.PLAIN, 18) {
 				}, Color.WHITE));
 
 		form1.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -126,6 +126,9 @@ public class GD_DoiTra extends javax.swing.JPanel {
         jtTenKHHD = new javax.swing.JTextField();
         lbSDT = new javax.swing.JLabel();
         jtSDT = new javax.swing.JTextField();
+        btnTimHD = new javax.swing.JButton();
+        btnInHoaDon = new javax.swing.JButton();
+        btnTraHD = new javax.swing.JButton();
         form2 = new form.Form();
         lbMV = new javax.swing.JLabel();
         jtMV = new javax.swing.JTextField();
@@ -135,13 +138,10 @@ public class GD_DoiTra extends javax.swing.JPanel {
         jtGia = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jtHoTenVe = new javax.swing.JTextField();
-        btnXoaT = new javax.swing.JButton();
-        btnTimHD = new javax.swing.JButton();
         btnTimV = new javax.swing.JButton();
         btnTra = new javax.swing.JButton();
         btnInVe = new javax.swing.JButton();
-        btnInHoaDon = new javax.swing.JButton();
-        btnTraHD = new javax.swing.JButton();
+        btnXoaT = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1600, 950));
 
@@ -174,7 +174,9 @@ public class GD_DoiTra extends javax.swing.JPanel {
         );
         formHoaDonLayout.setVerticalGroup(
             formHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollHD, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+            .addGroup(formHoaDonLayout.createSequentialGroup()
+                .addComponent(scrollHD, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tableVe.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -218,9 +220,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
         );
         formVeLayout.setVerticalGroup(
             formVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(formVeLayout.createSequentialGroup()
-                .addComponent(scrollVe, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(scrollVe, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
         );
 
         lbMHD.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -265,6 +265,42 @@ public class GD_DoiTra extends javax.swing.JPanel {
         jtSDT.setToolTipText("");
         jtSDT.setPreferredSize(new java.awt.Dimension(64, 40));
 
+        btnTimHD.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTimHD.setText("Tìm hóa đơn");
+        btnTimHD.setBorder(null);
+        btnTimHD.setBorderPainted(false);
+        btnTimHD.setMaximumSize(new java.awt.Dimension(75, 60));
+        btnTimHD.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnTimHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTimHDMouseClicked(evt);
+            }
+        });
+
+        btnInHoaDon.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnInHoaDon.setText("In Hóa đơn");
+        btnInHoaDon.setBorder(null);
+        btnInHoaDon.setBorderPainted(false);
+        btnInHoaDon.setMaximumSize(new java.awt.Dimension(75, 60));
+        btnInHoaDon.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnInHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnInHoaDonMouseClicked(evt);
+            }
+        });
+
+        btnTraHD.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTraHD.setText("Trả hóa đơn");
+        btnTraHD.setBorder(null);
+        btnTraHD.setBorderPainted(false);
+        btnTraHD.setMaximumSize(new java.awt.Dimension(75, 60));
+        btnTraHD.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnTraHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraHDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout form1Layout = new javax.swing.GroupLayout(form1);
         form1.setLayout(form1Layout);
         form1Layout.setHorizontalGroup(
@@ -272,24 +308,36 @@ public class GD_DoiTra extends javax.swing.JPanel {
             .addGroup(form1Layout.createSequentialGroup()
                 .addGroup(form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(form1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
                         .addGroup(form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbMNV)
-                            .addComponent(lbCCCCHD)
-                            .addComponent(lbMHD)
-                            .addComponent(lbSDT))
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, form1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lbTenHKHD)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtTenKHHD, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtMHD, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtCCCDHD, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtMNV, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                            .addGroup(form1Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbMNV)
+                                    .addComponent(lbCCCCHD)
+                                    .addComponent(lbMHD)
+                                    .addComponent(lbSDT))
+                                .addGap(23, 23, 23))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, form1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(lbTenHKHD)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGap(0, 0, 0)
+                        .addGroup(form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtMHD, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jtMNV, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jtCCCDHD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jtTenKHHD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jtSDT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))))
+                    .addGroup(form1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(form1Layout.createSequentialGroup()
+                                .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnTraHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnTimHD, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         form1Layout.setVerticalGroup(
             form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,7 +362,13 @@ public class GD_DoiTra extends javax.swing.JPanel {
                 .addGroup(form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbSDT))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addComponent(btnTimHD, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(form1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTraHD, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12))
         );
 
         lbMV.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -347,76 +401,6 @@ public class GD_DoiTra extends javax.swing.JPanel {
 
         jtHoTenVe.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jtHoTenVe.setPreferredSize(new java.awt.Dimension(71, 40));
-
-        javax.swing.GroupLayout form2Layout = new javax.swing.GroupLayout(form2);
-        form2.setLayout(form2Layout);
-        form2Layout.setHorizontalGroup(
-            form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(form2Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(lbCCCDV, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addComponent(lbGia))
-                    .addGroup(form2Layout.createSequentialGroup()
-                        .addComponent(lbMV)
-                        .addGap(4, 4, 4)))
-                .addGap(72, 72, 72)
-                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtGia, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jtCCCDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtMV, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                        .addComponent(jtHoTenVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-        form2Layout.setVerticalGroup(
-            form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(form2Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtMV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbMV))
-                .addGap(16, 16, 16)
-                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCCCDV)
-                    .addComponent(jtCCCDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtHoTenVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbGia)
-                    .addComponent(jtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
-
-        btnXoaT.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnXoaT.setText("Xóa trắng");
-        btnXoaT.setBorder(null);
-        btnXoaT.setBorderPainted(false);
-        btnXoaT.setMaximumSize(new java.awt.Dimension(75, 60));
-        btnXoaT.setPreferredSize(new java.awt.Dimension(75, 50));
-        btnXoaT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaTActionPerformed(evt);
-            }
-        });
-
-        btnTimHD.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnTimHD.setText("Tìm hóa đơn");
-        btnTimHD.setBorder(null);
-        btnTimHD.setBorderPainted(false);
-        btnTimHD.setMaximumSize(new java.awt.Dimension(75, 60));
-        btnTimHD.setPreferredSize(new java.awt.Dimension(75, 50));
-        btnTimHD.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnTimHDMouseClicked(evt);
-            }
-        });
 
         btnTimV.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnTimV.setText("Tìm vé");
@@ -454,27 +438,74 @@ public class GD_DoiTra extends javax.swing.JPanel {
             }
         });
 
-        btnInHoaDon.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnInHoaDon.setText("In Hóa đơn");
-        btnInHoaDon.setBorder(null);
-        btnInHoaDon.setBorderPainted(false);
-        btnInHoaDon.setMaximumSize(new java.awt.Dimension(75, 60));
-        btnInHoaDon.setPreferredSize(new java.awt.Dimension(75, 50));
-        btnInHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnInHoaDonMouseClicked(evt);
-            }
-        });
+        javax.swing.GroupLayout form2Layout = new javax.swing.GroupLayout(form2);
+        form2.setLayout(form2Layout);
+        form2Layout.setHorizontalGroup(
+            form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(form2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(form2Layout.createSequentialGroup()
+                        .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(lbCCCDV, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(lbGia))
+                            .addGroup(form2Layout.createSequentialGroup()
+                                .addComponent(lbMV)
+                                .addGap(4, 4, 4)))
+                        .addGap(72, 72, 72)
+                        .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtMV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtCCCDV, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtHoTenVe, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                            .addComponent(jtGia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(form2Layout.createSequentialGroup()
+                            .addComponent(btnInVe, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnTimV, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+        form2Layout.setVerticalGroup(
+            form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(form2Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtMV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbMV))
+                .addGap(16, 16, 16)
+                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbCCCDV)
+                    .addComponent(jtCCCDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jtHoTenVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbGia)
+                    .addComponent(jtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(btnTimV, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(form2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTra, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnInVe, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
 
-        btnTraHD.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnTraHD.setText("Trả hóa đơn");
-        btnTraHD.setBorder(null);
-        btnTraHD.setBorderPainted(false);
-        btnTraHD.setMaximumSize(new java.awt.Dimension(75, 60));
-        btnTraHD.setPreferredSize(new java.awt.Dimension(75, 50));
-        btnTraHD.addActionListener(new java.awt.event.ActionListener() {
+        btnXoaT.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnXoaT.setText("Xóa trắng");
+        btnXoaT.setBorder(null);
+        btnXoaT.setBorderPainted(false);
+        btnXoaT.setMaximumSize(new java.awt.Dimension(75, 60));
+        btnXoaT.setPreferredSize(new java.awt.Dimension(75, 50));
+        btnXoaT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTraHDActionPerformed(evt);
+                btnXoaTActionPerformed(evt);
             }
         });
 
@@ -486,55 +517,34 @@ public class GD_DoiTra extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(formHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(formVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(form1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(form2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(btnXoaT, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnXoaT, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnTimV, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnTimHD, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(btnTra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnInVe, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnInHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                                    .addComponent(btnTraHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(form1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(form2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(form1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(form2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnXoaT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnTimV, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnTimHD, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnInVe, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnInHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnTra, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnTraHD, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(formHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(formVe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(form1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnXoaT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(form2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -691,7 +701,8 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			List<Ve> listVe = hoaDon.getListVes();
 			double tongTien = 0;
 			for (Ve ve : listVe) {
-				
+				if(!ve.isTrangThai())
+					continue;
 				Set<ChiTietVe> listChiTietVes = ve.getLisChiTietVes();
 				Ga gaChieuDi = null;
 				Ga gaChieuDen = null;
@@ -702,7 +713,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 						gaChieuDen = ctv.getGa();
 				}
 				tongTien += ve.getChoNgoi().getGia() * Math.abs(gaChieuDen.getId() - gaChieuDi.getId())
-						* (ve.getKhuyenMai() == null ? 1 : ve.getKhuyenMai().getChietKhau());
+						* (ve.getKhuyenMai() == null ? 1 : 1 - ve.getKhuyenMai().getChietKhau());
 			}
 			Set<KhuyenMai> listKhuyenMai = hoaDon.getLisKhuyenMais();
 			double km = 0;

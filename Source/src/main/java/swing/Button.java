@@ -29,10 +29,19 @@ public class Button extends JButton {
     private Color effectColor = new Color(255, 255, 255);
 
     private JFrame frame;
+    private JFrame loginScreen;
     
     
     
-    public JFrame getFrame() {
+    public JFrame getLoginScreen() {
+		return loginScreen;
+	}
+
+	public void setLoginScreen(JFrame loginScreen) {
+		this.loginScreen = loginScreen;
+	}
+
+	public JFrame getFrame() {
 		return frame;
 	}
 
@@ -54,7 +63,7 @@ public class Button extends JButton {
             	int chose = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất không","Xác nhận",JOptionPane.YES_NO_OPTION);
 				if(chose == JOptionPane.YES_OPTION) {
 					frame.dispose();
-					new LoginScreen().setVisible(true);
+					loginScreen.setVisible(true);
 				}
             }
         });

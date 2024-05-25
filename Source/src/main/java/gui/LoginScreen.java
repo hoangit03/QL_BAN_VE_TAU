@@ -237,12 +237,9 @@ public class LoginScreen extends javax.swing.JFrame {
         String passWord = new String(txtpassword.getPassword());
         taiKhoan = taiKhoanDao.getTaiKhoanByUserName(userName);
         if (taiKhoan != null && taiKhoan.getMatKhau().equalsIgnoreCase(passWord)) {
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new Main(emf, taiKhoan).setVisible(true);
+            
+                    new Main(emf, taiKhoan,this).setVisible(true);
                     setVisible(false);
-                }
-            });
         } else {
             error.setText("Tên tài khoản hoặc mật khẩu không chính xác");
         }

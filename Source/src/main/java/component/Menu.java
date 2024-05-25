@@ -5,6 +5,7 @@ import event.EventMenuSelected;
 import event.EvenMenu;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Frame;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -54,10 +55,11 @@ public class Menu extends javax.swing.JPanel {
     private boolean enableMenu = true;
     private boolean showMenu = true;
 
-    public Menu(TaiKhoan taiKhoan,JFrame frame) {
+    public Menu(TaiKhoan taiKhoan,JFrame frame,JFrame freameLogin) {
     	this.taiKhoan = taiKhoan;
         initComponents();
         btnThoat.setFrame(frame);
+        btnThoat.setLoginScreen(freameLogin);
         setOpaque(false);
         sp.getViewport().setOpaque(false);
         sp.setViewportBorder(null);

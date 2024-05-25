@@ -19,11 +19,14 @@ public class Main extends javax.swing.JFrame {
 
 	private EntityManagerFactory emf;
 	private TaiKhoan taiKhoan;
+	private JFrame frame;
 
-	public Main(EntityManagerFactory emf, TaiKhoan taiKhoan) {
+	public Main(EntityManagerFactory emf, TaiKhoan taiKhoan,JFrame loginScreen) {
 		this.emf = emf;
 		this.taiKhoan = taiKhoan;
+		this.frame = loginScreen;
 		initComponents();
+		
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 //        setLocation(0, 0);
 		setResizable(false);
@@ -34,7 +37,7 @@ public class Main extends javax.swing.JFrame {
 	public void init() {
 		layout = new MigLayout("fill", "0[]0[100%,fill]0", "0[fill,top]0");
 		bg.setLayout(layout);
-		menu = new Menu(taiKhoan,this);
+		menu = new Menu(taiKhoan,this,frame);
 		herder = new Herder(taiKhoan.getNhanVien().getHoTen(), taiKhoan.getNhanVien().getLoaiNV());
 		main = new MainForm();
 		menu.addEvent(new EventMenuSelected() {
