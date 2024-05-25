@@ -28,13 +28,13 @@ public class Main extends javax.swing.JFrame {
 //        setLocation(0, 0);
 		setResizable(false);
 		init();
-
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public void init() {
 		layout = new MigLayout("fill", "0[]0[100%,fill]0", "0[fill,top]0");
 		bg.setLayout(layout);
-		menu = new Menu(taiKhoan);
+		menu = new Menu(taiKhoan,this);
 		herder = new Herder(taiKhoan.getNhanVien().getHoTen(), taiKhoan.getNhanVien().getLoaiNV());
 		main = new MainForm();
 		menu.addEvent(new EventMenuSelected() {

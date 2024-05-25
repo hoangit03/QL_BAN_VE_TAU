@@ -13,6 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 import entity.TaiKhoan;
 import model.Model_Menu;
@@ -53,9 +54,10 @@ public class Menu extends javax.swing.JPanel {
     private boolean enableMenu = true;
     private boolean showMenu = true;
 
-    public Menu(TaiKhoan taiKhoan) {
+    public Menu(TaiKhoan taiKhoan,JFrame frame) {
     	this.taiKhoan = taiKhoan;
         initComponents();
+        btnThoat.setFrame(frame);
         setOpaque(false);
         sp.getViewport().setOpaque(false);
         sp.setViewportBorder(null);
@@ -70,7 +72,7 @@ public class Menu extends javax.swing.JPanel {
     }
 
     public void initMenuItem() {
-        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/ve.png")), "Quản lý vé", "Mua vé", "Đổi-Trả vé"));
+        addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/ve.png")), "Quản lý vé", "Mua vé", "Trả vé"));
         addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/khachhang.png")), "Khách Hàng"));
         if(taiKhoan.getNhanVien().getLoaiNV().equalsIgnoreCase("Admin")) {
         	addMenu(new Model_Menu(new ImageIcon(getClass().getResource("/icon/nhanvien.png")), "Nhân viên"));
@@ -124,7 +126,7 @@ public class Menu extends javax.swing.JPanel {
     private void initComponents() {
 
         Logo = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lbIcon = new javax.swing.JLabel();
         sp = new javax.swing.JScrollPane();
         panel = new javax.swing.JPanel();
         btnThoat = new swing.Button();
@@ -135,10 +137,10 @@ public class Menu extends javax.swing.JPanel {
         Logo.setOpaque(false);
         Logo.setPreferredSize(new java.awt.Dimension(300, 300));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo.png"))); // NOI18N
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/logo.png"))); // NOI18N
+        lbIcon.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel2MouseClicked(evt);
+                lbIconMouseClicked(evt);
             }
         });
 
@@ -146,11 +148,11 @@ public class Menu extends javax.swing.JPanel {
         Logo.setLayout(LogoLayout);
         LogoLayout.setHorizontalGroup(
             LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2)
+            .addComponent(lbIcon)
         );
         LogoLayout.setVerticalGroup(
             LogoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lbIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         sp.setBorder(null);
@@ -185,7 +187,7 @@ public class Menu extends javax.swing.JPanel {
 
         btnThoat.setBorder(null);
         btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/thoat.png"))); // NOI18N
-        btnThoat.setText("Thoát");
+        btnThoat.setText("Đăng xuất");
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThoatActionPerformed(evt);
@@ -218,7 +220,7 @@ public class Menu extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThoatActionPerformed
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    private void lbIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         if(isClickBlog)
             return;
         isClickBlog = true;
@@ -248,7 +250,7 @@ public class Menu extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Logo;
     private swing.Button btnThoat;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lbIcon;
     private javax.swing.JPanel panel;
     private javax.swing.JScrollPane sp;
     // End of variables declaration//GEN-END:variables

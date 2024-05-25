@@ -10,7 +10,10 @@ import java.awt.event.MouseEvent;
 import java.time.LocalDateTime;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import gui.LoginScreen;
 
 
 public class Button extends JButton {
@@ -25,7 +28,19 @@ public class Button extends JButton {
 
     private Color effectColor = new Color(255, 255, 255);
 
-    public Button() {
+    private JFrame frame;
+    
+    
+    
+    public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public Button() {
         setContentAreaFilled(false);
         setFont(new Font(Font.SANS_SERIF,  Font.LAYOUT_RIGHT_TO_LEFT, 25));
         setBorderPainted(false);
@@ -36,9 +51,10 @@ public class Button extends JButton {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
-            	int chose = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát không","Xác nhận",JOptionPane.YES_NO_OPTION);
+            	int chose = JOptionPane.showConfirmDialog(null, "Bạn có muốn đăng xuất không","Xác nhận",JOptionPane.YES_NO_OPTION);
 				if(chose == JOptionPane.YES_OPTION) {
-					System.exit(0);
+					frame.dispose();
+					new LoginScreen().setVisible(true);
 				}
             }
         });
