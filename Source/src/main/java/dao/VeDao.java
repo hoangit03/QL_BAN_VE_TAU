@@ -9,6 +9,10 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
+import jakarta.persistence.TypedQuery;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class VeDao {
 	private EntityManager em;
@@ -121,4 +125,17 @@ public class VeDao {
 		}
 	}
 
+	public long countDoiTuongByMonthYear(int month, int year, String doiTuong){
+        long count = 0;
+
+            // Sử dụng NamedQuery để lấy danh sách vé theo tháng và năm của ngayTao
+            List<Ve> list = em.createNamedQuery("Ve.layVeTheoNgayTaoHoaDon").setParameter("month", month).setParameter("year", year).getResultList();
+            // Đếm số lượng khách hàng có đối tượng là "Sinh viên"
+            count = list.stream()
+                          .filter(ve -> doiTuong.equals(ve.getKhachHang().getDoiTuong()))
+                          .count();
+        return count;
+    }  
+    
+	
 }

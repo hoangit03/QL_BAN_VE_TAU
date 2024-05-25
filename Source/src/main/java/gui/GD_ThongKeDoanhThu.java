@@ -16,6 +16,7 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Set;
 
@@ -53,9 +54,9 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 				"Thống kê doanh thu theo tháng", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20) {
 				}, Color.black));
 		gD_DoiTra = new GD_DoiTra(emf);
-                hoaDonDao = new HoaDonDao(emf);
-                List<HoaDon> list = hoaDonDao.getAllHoaDon();
-                addDataTable(list);
+        hoaDonDao = new HoaDonDao(emf);
+        List<HoaDon> list = hoaDonDao.getAllHoaDon();
+        addDataTable(list);
 	}
         
         private void addDataTable(List<HoaDon> list) {
@@ -222,17 +223,42 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 
 	private void jMonthChooser1PropertyChange(java.beans.PropertyChangeEvent evt) {// GEN-FIRST:event_jMonthChooser1PropertyChange
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		double tongDoanhThuTrongNgay = 0;
+		switch (jMonthChooser1.getMonth()+1) {
+		case 2:
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			for (int i = 1; i <= 30; i++) {
+				dataset.setValue(gD_DoiTra.tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)),
+						"Tổng tiền", i+ "");
+				tongDoanhThuTrongNgay += gD_DoiTra.tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i));
+			}
+			break;
 
-		for (int i = 1; i <= 30; i++) {
-			dataset.setValue(gD_DoiTra.tinhTongTienTheoNgay(LocalDate.of(2024, 4, i)),
-					"Tổng vé", i + "");
+		default:
+			for (int i = 1; i <= 31; i++) {
+				dataset.setValue(gD_DoiTra.tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)),
+						"Tổng tiền", i+ "");
+				tongDoanhThuTrongNgay += gD_DoiTra.tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i));
+			}
+			break;
+		}
+		
+		DecimalFormat dtf = new DecimalFormat("#,##,000 VNĐ");
+		if (tongDoanhThuTrongNgay == 0) {
+			jTextField3.setText("0 VNĐ");
+			jTextField3.setFont(new Font("Consalas", Font.BOLD, 18));
+		} else {
+			jTextField3.setText(dtf.format(tongDoanhThuTrongNgay));
+			jTextField3.setFont(new Font("Consalas", Font.BOLD, 18));
 		}
 
-		JFreeChart chart = ChartFactory.createBarChart("", "Tháng " + (jMonthChooser1.getMonth() + 1),
+		JFreeChart chart = ChartFactory.createBarChart("", "Tháng " + (jMonthChooser1.getMonth()+1),
 				"Doanh thu", dataset, PlotOrientation.VERTICAL, false, true, false);
 
 		CategoryPlot categoryPlot = chart.getCategoryPlot();
-		// categoryPlot.setRangeGridlinePaint(Color.BLUE);
 		categoryPlot.setBackgroundPaint(Color.WHITE);
 		BarRenderer renderer = (BarRenderer) categoryPlot.getRenderer();
 		Color clr3 = new Color(0, 204, 0);

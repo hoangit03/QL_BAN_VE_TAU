@@ -776,7 +776,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			for (ChiTietVe ctv : listChiTietVes) {
 				if (ctv.isChieu())
 					gaChieuDi = ctv.getGa();
-//				else
+				else
 					gaChieuDen = ctv.getGa();
 			}
 			Object[] row = { ve.getMaVe(), kh.getCccd(), kh.getHoTen(), kh.getDoiTuong(), gaChieuDi.getTenGa(),
@@ -863,7 +863,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			JOptionPane.showMessageDialog(null, "Bạn chưa nhập vé để đổi trả", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
-	}
+	}      
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInHoaDon;
