@@ -9,8 +9,11 @@ import dao.VeDao;
 import entity.HoaDon;
 import entity.KhachHang;
 import jakarta.persistence.EntityManagerFactory;
+import swing.ScrollBar;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
@@ -24,6 +27,8 @@ import static java.awt.image.ImageObserver.HEIGHT;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -50,6 +55,15 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 	public GD_ThongKeDoanhThu(EntityManagerFactory emf) {
 		this.emf = emf;
 		initComponents();
+		
+		table.setShowGrid(false);
+		table.setShowHorizontalLines(false);
+		table.setShowVerticalLines(false);
+		table.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
+		table.getTableHeader().setPreferredSize(new Dimension(30, 30));
+		scroll.setVerticalScrollBar(new ScrollBar());
+		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
+		
 		chartPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),
 				"Thống kê doanh thu theo tháng", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20) {
 				}, Color.black));
@@ -60,7 +74,7 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 	}
         
         private void addDataTable(List<HoaDon> list) {
-		DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		model.setRowCount(0);
 		for (HoaDon hoaDon : list) {
 			Object[] row = {hoaDon.getMaHoaDon(), hoaDon.getNhanVien().getMaNhanVien(), hoaDon.getKhachHang().getCccd(), dinhDangNgay.format(hoaDon.getNgayTao()),
@@ -89,8 +103,8 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        scroll = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
         chartPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(43, 84, 100));
@@ -167,7 +181,8 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông Tin Hóa Đơn", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        table.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -178,9 +193,10 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
                 "Mã hóa đơn", "Mã nhân viên", "Mã khách hàng", "Ngày tạo", "Giờ tạo", "Khuyến mãi", "Tổng tiền"
             }
         ));
-        jScrollPane1.setViewportView(jTable);
+        table.setRowHeight(30);
+        scroll.setViewportView(table);
 
-        jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        jPanel2.add(scroll, java.awt.BorderLayout.CENTER);
 
         chartPanel.setLayout(new java.awt.BorderLayout());
 
@@ -292,9 +308,9 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
     private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable;
     private javax.swing.JTextField jTextField3;
     private com.toedter.calendar.JYearChooser jYearChooser1;
+    private javax.swing.JScrollPane scroll;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

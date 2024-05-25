@@ -578,7 +578,22 @@ public class GD_DoiTra extends javax.swing.JPanel {
 	}// GEN-LAST:event_btnInHoaDonMouseClicked
 
 	private void btnTraHDActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTraHDActionPerformed
-		
+//		String maHD = tableHD.getValueAt(tableHD.getSelectedRow(), 0).toString();
+//		HoaDon hd = hoaDonDao.getHoaDonByMa(maHD);
+//		int chose = JOptionPane.showConfirmDialog(null, "Bạn có muốn trả hóa đơn không", "Xác nhận",
+//				JOptionPane.YES_NO_OPTION);
+//		if (chose == JOptionPane.YES_OPTION) {
+//			int count;
+//			hoaDonDao.capNhatHDTheoTrangThai(hd, false);
+//			List<Ve> listVe = hd.getListVes();
+//			for (Ve ve : listVe) {
+//			}
+//			JOptionPane.showMessageDialog(null, "Trả hóa đơn thành công");
+//			xoaTrangHoaDon();
+//			xoaTrangVe();
+//			renderHoaDon();
+//		
+//		}
 	}// GEN-LAST:event_btnTraHDActionPerformed
 
 	private void tableHDMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tableHDMouseClicked
@@ -668,6 +683,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			List<Ve> listVe = hoaDon.getListVes();
 			double tongTien = 0;
 			for (Ve ve : listVe) {
+				
 				Set<ChiTietVe> listChiTietVes = ve.getLisChiTietVes();
 				Ga gaChieuDi = null;
 				Ga gaChieuDen = null;
@@ -811,59 +827,72 @@ public class GD_DoiTra extends javax.swing.JPanel {
 		if (tableVe.getRowCount() > 0) {
 			String maVe = tableVe.getValueAt(tableVe.getSelectedRow(), 0).toString();
 			Ve ve = veDao.getVeByMa(maVe);
-			LocalDateTime ngayDi = ve.getThoiGianLenTau();
-			LocalDate timeDate = ngayDi.toLocalDate();
-
-			long tinhTime = ChronoUnit.DAYS.between(LocalDate.now(), ngayDi);
-			System.out.println(tableHD.getSelectedRow());
-			if (timeDate.isBefore(LocalDate.now())) {
-				JOptionPane.showMessageDialog(null, "Chuyến tàu này đã khởi hành , đổi vé không có hiệu lực",
-						"Thông báo", JOptionPane.INFORMATION_MESSAGE);
-			} else {
-
-				if (tinhTime > 1) {
-					Set<ChiTietVe> listChiTietVes = ve.getLisChiTietVes();
-					Ga gaChieuDi = null;
-					Ga gaChieuDen = null;
-					for (ChiTietVe ctv : listChiTietVes) {
-						if (ctv.isChieu())
-							gaChieuDi = ctv.getGa();
-						else
-							gaChieuDen = ctv.getGa();
-					}
-//					chi dc tra 70%
-					double soTienDuocTra = ve.getChoNgoi().getGia() * Math.abs(gaChieuDen.getId() - gaChieuDi.getId())
-							* 0.8 * (ve.getKhuyenMai() == null ? 1 : 1 - ve.getKhuyenMai().getChietKhau());
-					int chose = JOptionPane.showConfirmDialog(null,
-							"Số tiền hoàn lại cho khách hàng là " + ((int) soTienDuocTra / 1000) * 1000 + "VNĐ",
-							"Xác nhận", JOptionPane.YES_NO_OPTION);
-					if (chose == JOptionPane.YES_OPTION) {
-						boolean check = veDao.updateTrangThaiVeTamHetNgay(ve);
-						if (check) {
-							if (tableVe.getRowCount() == 1) {
-								hoaDonDao.capNhatHDTheoTrangThai(ve.getHoaDon(), false);
-								DefaultTableModel model = (DefaultTableModel) tableHD.getModel();
-								model.removeRow(tableHD.getSelectedRow());
-								model.fireTableDataChanged();
-							}
-							DefaultTableModel model = (DefaultTableModel) tableVe.getModel();
-							model.removeRow(tableVe.getSelectedRow());
-							model.fireTableDataChanged();
-
-						}
-
-					}
-
-				} else {
-					JOptionPane.showMessageDialog(null, "Vé không thể đổi trả do sắp đến giờ khởi hành", "Thông báo",
-							JOptionPane.INFORMATION_MESSAGE);
-				}
-			}
+			traVe(ve);
 		} else {
 			JOptionPane.showMessageDialog(null, "Bạn chưa nhập vé để đổi trả", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
+<<<<<<< HEAD
 	}      
+=======
+	}
+	
+	private void traHoaDon() {
+		
+	}
+	
+	private void traVe(Ve ve) {
+		LocalDateTime ngayDi = ve.getThoiGianLenTau();
+		LocalDate timeDate = ngayDi.toLocalDate();
+
+		long tinhTime = ChronoUnit.DAYS.between(LocalDate.now(), ngayDi);
+		System.out.println(tableHD.getSelectedRow());
+		if (timeDate.isBefore(LocalDate.now())) {
+			JOptionPane.showMessageDialog(null, "Chuyến tàu này đã khởi hành , đổi vé không có hiệu lực",
+					"Thông báo", JOptionPane.INFORMATION_MESSAGE);
+		} else {
+
+			if (tinhTime > 1) {
+				Set<ChiTietVe> listChiTietVes = ve.getLisChiTietVes();
+				Ga gaChieuDi = null;
+				Ga gaChieuDen = null;
+				for (ChiTietVe ctv : listChiTietVes) {
+					if (ctv.isChieu())
+						gaChieuDi = ctv.getGa();
+					else
+						gaChieuDen = ctv.getGa();
+				}
+//				chi dc tra 70%
+				double soTienDuocTra = ve.getChoNgoi().getGia() * Math.abs(gaChieuDen.getId() - gaChieuDi.getId())
+						* 0.8 * (ve.getKhuyenMai() == null ? 1 : 1 - ve.getKhuyenMai().getChietKhau());
+				int chose = JOptionPane.showConfirmDialog(null,
+						"Số tiền hoàn lại cho khách hàng là " + ((int) soTienDuocTra / 1000) * 1000 + "VNĐ",
+						"Xác nhận", JOptionPane.YES_NO_OPTION);
+				if (chose == JOptionPane.YES_OPTION) {
+					boolean check = veDao.updateTrangThaiVeTamHetNgay(ve);
+					if (check) {
+						if (tableVe.getRowCount() == 1) {
+							hoaDonDao.capNhatHDTheoTrangThai(ve.getHoaDon(), false);
+							DefaultTableModel model = (DefaultTableModel) tableHD.getModel();
+							model.removeRow(tableHD.getSelectedRow());
+							model.fireTableDataChanged();
+						}
+						DefaultTableModel model = (DefaultTableModel) tableVe.getModel();
+						model.removeRow(tableVe.getSelectedRow());
+						model.fireTableDataChanged();
+
+					}
+
+				}
+
+			} else {
+				JOptionPane.showMessageDialog(null, "Vé không thể đổi trả do sắp đến giờ khởi hành", "Thông báo",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+	}
+	
+>>>>>>> 4aa3affa583e3f47a9551c3eebca09a363ab5e5f
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInHoaDon;

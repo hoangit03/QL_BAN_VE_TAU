@@ -292,9 +292,25 @@ public class FormTraCuuNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_jtSDTActionPerformed
 
     private void btnTraCuuActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTraCuuActionPerformed
-        FindBySDT();
-        FindByMa();
-        
+        String tieuChi = "";
+        if (!jtCCCD.getText().trim().equalsIgnoreCase("")) {
+            tieuChi = jtCCCD.getText();
+            List<NhanVien> list = new ArrayList<NhanVien>();
+            NhanVien nhanVien = nhanVienDao.getNhanVienByCCCD(tieuChi);
+            list.add(nhanVien);
+            addDataTable(list);
+        }
+        if (!jtSDT.getText().trim().equalsIgnoreCase("")) {
+            tieuChi = jtSDT.getText();
+            List<NhanVien> list = new ArrayList<NhanVien>();
+            NhanVien nhanVien = nhanVienDao.getNhanVienBySDT(tieuChi);
+            list.add(nhanVien);
+            addDataTable(list);
+        } else {
+            JOptionPane.showMessageDialog(btnTraCuu, "Chưa nhập tiêu chí tìm kiếm(CCCD,SĐT)", "Thông báo",
+                    JOptionPane.INFORMATION_MESSAGE);
+        }
+
     }// GEN-LAST:event_btnTraCuuActionPerformed
 
     private void jcbTrangThaiActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jcbTrangThaiActionPerformed
@@ -357,7 +373,8 @@ public class FormTraCuuNhanVien extends javax.swing.JPanel {
         jtMaNV.setText("");
         jtCCCD.setText("");
         jtSDT.setText("");
-        jcbTrangThai.setSelectedIndex(-1);
+        jcbTrangThai.setSelectedIndex(0);
+        btnLocActionPerformed(evt);
 
     }// GEN-LAST:event_btnXoaTrangActionPerformed
 
@@ -378,85 +395,5 @@ public class FormTraCuuNhanVien extends javax.swing.JPanel {
     private javax.swing.JLabel lbTrangThai;
     private javax.swing.JTable tableTraCuuNV;
     // End of variables declaration//GEN-END:variables
-private void FindByMa() {
-        // Sử dụng DocumentListener để theo dõi sự thay đổi trong trường jtMaNV
-        jtMaNV.getDocument().addDocumentListener(new DocumentListener() {
-            private ActionEvent evt;
 
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                updateSuggestions();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                updateSuggestions();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                updateSuggestions();
-            }
-
-            private void updateSuggestions() {
-                String tieuChi = jtMaNV.getText();
-                boolean showMessage = (!jtMaNV.getText().trim().equals("")); // Mặc định hiển thị thông báo
-//                System.out.println("UPDATING...");
-                if (!tieuChi.isEmpty()) {
-                    List<NhanVien> list = nhanVienDao.getNhanVienByPartialMaAndLoai(tieuChi, "User");
-                    if (!list.isEmpty()) {
-                        addDataTable(list);
-                        showMessage = false; // Không hiển thị thông báo nếu có kết quả tìm kiếm
-                    }
-                }
-
-                if (showMessage) {
-                    // Chỉ hiển thị thông báo nếu biến showMessage vẫn là true
-                    JOptionPane.showMessageDialog(null, "Không tìm thấy nhân viên với mã này", "Thông báo",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    SwingUtilities.invokeLater(() -> btnXoaTrangActionPerformed(evt));
-                }
-            }
-        });
-    }
-private void FindBySDT(){
-            // Sử dụng DocumentListener để theo dõi sự thay đổi trong trường jtMaNV
-        jtSDT.getDocument().addDocumentListener(new DocumentListener() {
-            private ActionEvent evt;
-
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                updateSuggestions();
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                updateSuggestions();
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                updateSuggestions();
-            }
-
-            private void updateSuggestions() {
-                String tieuChi = jtSDT.getText();
-                boolean showMessage = (!jtSDT.getText().trim().equals("")); // Mặc định hiển thị thông báo
-//                System.out.println("UPDATING...");
-                if (!tieuChi.isEmpty()) {
-                    List<NhanVien> list = nhanVienDao.getNhanVienBySDTForUser(tieuChi, "User");
-                    if (!list.isEmpty()) {
-                        addDataTable(list);
-                        showMessage = false; // Không hiển thị thông báo nếu có kết quả tìm kiếm
-                    }
-                }
-
-                if (showMessage) {
-                    // Chỉ hiển thị thông báo nếu biến showMessage vẫn là true
-                    JOptionPane.showMessageDialog(null, "Không tìm thấy SDT với mã này", "Thông báo",
-                            JOptionPane.INFORMATION_MESSAGE);
-                    SwingUtilities.invokeLater(() -> btnXoaTrangActionPerformed(evt));
-                }
-            }
-        });
-}}
+}

@@ -54,7 +54,8 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
 		table.getTableHeader().setPreferredSize(new Dimension(30, 30));
 		scroll.setVerticalScrollBar(new ScrollBar());
 		jPanel1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.WHITE),
-				"Thông tin khách hàng", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20)));
+				"Thông tin khách hàng", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20) {
+				}, Color.WHITE));
 		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 
 		khachHangDao = new KhachHangDao(emf);
@@ -63,6 +64,7 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
 	}
 
 	@SuppressWarnings("unchecked")
+	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -94,7 +96,9 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUẢN LÝ KHÁCH HÀNG");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin khách hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24))); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin khách hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 24), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setOpaque(false);
 
         lbCCCD.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -143,7 +147,6 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
                 btnXuatEXActionPerformed(evt);
             }
         });
-
 
         btnXT.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnXT.setText("Xóa Trắng");
@@ -264,7 +267,6 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
                 .addGap(0, 159, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
 	private void tableMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tableMouseClicked
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
