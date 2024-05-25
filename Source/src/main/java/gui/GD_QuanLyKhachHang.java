@@ -144,6 +144,7 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
             }
         });
 
+
         btnXT.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnXT.setText("Xóa Trắng");
         btnXT.addActionListener(new java.awt.event.ActionListener() {

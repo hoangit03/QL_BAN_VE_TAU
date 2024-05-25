@@ -4,14 +4,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import entity.KhachHang;
 import entity.NhanVien;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -119,32 +124,60 @@ public class NhanVienDao {
     
 
     public void writeToExcel(String filePath) {
-        String[] rowHead = {"Mã nhân viên", "CCCD", "Họ và tên", "Ngày sinh", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái"};
+        String[] rowHead = {"STT", "Mã nhân viên", "CCCD", "Họ và tên", "Ngày sinh", "Giới tính", "Địa chỉ", "Email", "Số điện thoại", "Trạng thái"};
 
         List<NhanVien> nhanVien = getAllNhanVien();
 
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet spreadSheet = workbook.createSheet("Nhân viên");
-        Row headerRow = spreadSheet.createRow(0);
-
-        //Creating header
+        
+        Row titleRow = spreadSheet.createRow(0);
+        Cell titleCell = titleRow.createCell(0);
+	    titleCell.setCellValue("DANH SÁCH NHÂN VIÊN");
+	    spreadSheet.addMergedRegion(new CellRangeAddress(0, 0, 0, rowHead.length - 1));
+        
+	    XSSFCellStyle titleStyle = workbook.createCellStyle();
+	    XSSFFont titleFont = workbook.createFont();
+	    titleFont.setFontHeightInPoints((short) 20);
+	    titleFont.setColor(IndexedColors.RED.getIndex());
+	    titleFont.setBold(true);
+	    titleStyle.setFont(titleFont);
+	    titleStyle.setAlignment(HorizontalAlignment.CENTER);
+	    
+	    titleCell.setCellStyle(titleStyle);
+	    
+	    Row headerRow = spreadSheet.createRow(1);
+		XSSFCellStyle headerStyle = workbook.createCellStyle();
+	    XSSFFont headerFont = workbook.createFont();
+	    headerFont.setBold(true);
+	    headerStyle.setFont(headerFont);
+	    
+	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    //Creating header
         for (int i = 0; i < rowHead.length; i++) {
             Cell cell = headerRow.createCell(i);
             cell.setCellValue(rowHead[i]);
+            cell.setCellStyle(headerStyle);
         }
 
+        XSSFCellStyle sttStyle = workbook.createCellStyle();
+	    sttStyle.setAlignment(HorizontalAlignment.CENTER);
         //Creating data rows 
         for (int i = 0; i < nhanVien.size(); i++) {
-            Row dataRow = spreadSheet.createRow(i + 1);
-            dataRow.createCell(0).setCellValue(nhanVien.get(i).getMaNhanVien());
-            dataRow.createCell(1).setCellValue(nhanVien.get(i).getCccd());
-            dataRow.createCell(2).setCellValue(nhanVien.get(i).getHoTen());
-            dataRow.createCell(3).setCellValue(nhanVien.get(i).getNgaySinh());
-            dataRow.createCell(4).setCellValue(nhanVien.get(i).isGioiTinh() ? "Nam" : "Nữ");
-            dataRow.createCell(5).setCellValue(nhanVien.get(i).getDiaChi());
-            dataRow.createCell(6).setCellValue(nhanVien.get(i).getEmail());
-            dataRow.createCell(7).setCellValue(nhanVien.get(i).getSdt());
-            dataRow.createCell(8).setCellValue(nhanVien.get(i).getTrangThai() ? "Đang làm" : "Nghỉ");
+        	Row dataRow = spreadSheet.createRow(i+2);
+			Cell sttCell = dataRow.createCell(0);
+	        sttCell.setCellValue(i + 1); // Setting STT value
+	        sttCell.setCellStyle(sttStyle);
+            
+            dataRow.createCell(1).setCellValue(nhanVien.get(i).getMaNhanVien());
+            dataRow.createCell(2).setCellValue(nhanVien.get(i).getCccd());
+            dataRow.createCell(3).setCellValue(nhanVien.get(i).getHoTen());
+            dataRow.createCell(4).setCellValue(nhanVien.get(i).getNgaySinh().format(dateFormatter));
+            dataRow.createCell(5).setCellValue(nhanVien.get(i).isGioiTinh() ? "Nam" : "Nữ");
+            dataRow.createCell(6).setCellValue(nhanVien.get(i).getDiaChi());
+            dataRow.createCell(7).setCellValue(nhanVien.get(i).getEmail());
+            dataRow.createCell(8).setCellValue(nhanVien.get(i).getSdt());
+            dataRow.createCell(9).setCellValue(nhanVien.get(i).getTrangThai() ? "Đang làm" : "Nghỉ");
         }
 
         //Write the workbook in file

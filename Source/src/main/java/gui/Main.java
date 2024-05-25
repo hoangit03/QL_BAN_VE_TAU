@@ -69,7 +69,7 @@ public class Main extends javax.swing.JFrame {
 							menu.hideallMenu();
 							break;
 						case 1:
-							main.showForm(new GD_ThongKe(emf));
+							main.showForm(new GD_ThongKeLuotVe(emf));
 							menu.hideallMenu();
 							break;
 						}
@@ -110,7 +110,7 @@ public class Main extends javax.swing.JFrame {
 							menu.hideallMenu();
 							break;
 						case 1:
-							main.showForm(new GD_ThongKe(emf));
+							main.showForm(new GD_ThongKeLuotVe(emf));
 							menu.hideallMenu();
 							break;
 						}
