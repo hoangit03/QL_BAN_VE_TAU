@@ -17,8 +17,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -40,6 +43,8 @@ import entity.KhuyenMai;
 import entity.Ve;
 import jakarta.persistence.EntityManagerFactory;
 import java.util.Date;
+import java.util.HashMap;
+
 import swing.ScrollBar;
 
 public class GD_DoiTra extends javax.swing.JPanel {
@@ -1055,5 +1060,41 @@ public class GD_DoiTra extends javax.swing.JPanel {
 
 		return tongTien;
 	}
+	
+	public Map<String, Long> getVeCountByGaChieuDiChieuDen() {
+        List<Ve> veList = veDao.getAllVe();
+        Map<String, Long> gaCountMap = new HashMap<>();
+
+        for (Ve ve : veList) {
+            if (!ve.isTrangThai())
+                continue;
+
+            Set<ChiTietVe> listChiTietVes = ve.getLisChiTietVes();
+            Ga gaChieuDi = null;
+            Ga gaChieuDen = null;
+
+            for (ChiTietVe ctv : listChiTietVes) {
+                if (ctv.isChieu())
+                    gaChieuDi = ctv.getGa();
+                else
+                    gaChieuDen = ctv.getGa();
+            }
+
+            if (gaChieuDi != null && gaChieuDen != null) {
+                String key = gaChieuDen.getTenGa() + " - " + gaChieuDi.getTenGa();
+                gaCountMap.put(key, gaCountMap.getOrDefault(key, 0L) + 1);
+            }
+        }
+
+        return gaCountMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
+    }
 
 }

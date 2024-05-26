@@ -26,7 +26,8 @@ import java.io.Serializable;
 		@NamedQuery(name = "Ve.FindByMaVe", query = "select v from Ve v where v.maVe = :mv and v.trangThai = true "),
 		@NamedQuery(name = "Ve.updateDoiTra", query = "UPDATE Ve v SET v.thoiGianLenTau = :newThoiGianLenTau , v.trangThai = :newTrangThai WHERE v.maVe = :maVe"),
 		@NamedQuery(name = "Ve.TongVeNgayTheoThang", query = "SELECT COUNT(v) FROM Ve v WHERE YEAR(v.thoiGianLenTau) = :nam AND MONTH(v.thoiGianLenTau) = :thang AND DAY(v.thoiGianLenTau) = :ngay"),
-        @NamedQuery(name = "Ve.layVeTheoNgayTaoHoaDon", query = "SELECT v FROM Ve v WHERE MONTH(v.hoaDon.ngayTao) = :month AND YEAR(v.hoaDon.ngayTao) = :year AND v.trangThai = true")
+        @NamedQuery(name = "Ve.layVeTheoNgayTaoHoaDon", query = "SELECT v FROM Ve v WHERE MONTH(v.hoaDon.ngayTao) = :month AND YEAR(v.hoaDon.ngayTao) = :year AND v.trangThai = true"),
+		@NamedQuery(name = "Ve.findAll", query = "SELECT v FROM Ve v WHERE v.trangThai = true")
 })
 public class Ve implements Serializable {
 
