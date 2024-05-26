@@ -4,7 +4,6 @@
  */
 package gui;
 
-import dao.KhachHangDao;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -12,7 +11,12 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
@@ -25,9 +29,14 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.util.Rotation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import dao.KhachHangDao;
 import dao.VeDao;
+import entity.ChiTietVe;
+import entity.Ga;
+import entity.Ve;
 import jakarta.persistence.EntityManagerFactory;
 import swing.ScrollBar;
 
@@ -54,12 +63,6 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 	public GD_ThongKeLuotVe(EntityManagerFactory emf) {
 		this.emf = emf;
 		initComponents();
-		chartPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),
-				"Thống kê lượt vé theo tháng", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20) {
-				}, Color.black));
-//                panelBarChart.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),
-//				"Hành khách", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20) {
-//				}, Color.black));
 		jTable1.setShowGrid(false);
 		jTable1.setShowHorizontalLines(false);
 		jTable1.setShowVerticalLines(false);
@@ -83,7 +86,6 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// Code">//GEN-BEGIN:initComponents
 	private void initComponents() {
-
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -93,7 +95,6 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
         panelBarChart = new javax.swing.JPanel();
         chartPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -116,11 +117,9 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Tổng số lượt vé");
 
-
 		jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
 		jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -152,21 +151,20 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         panelBarChart.setBackground(new java.awt.Color(255, 255, 255));
+        panelBarChart.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Biểu đồ tỷ lệ hành khách", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         panelBarChart.setLayout(new java.awt.BorderLayout());
 
         chartPanel.setBackground(new java.awt.Color(255, 255, 255));
+        chartPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thống kê lượt vé trong tháng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         chartPanel.setLayout(new java.awt.BorderLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Chuyến đi nhiều nhất trong tháng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
         jPanel2.setPreferredSize(new java.awt.Dimension(507, 400));
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Chuyến nhiều nhất trong tháng");
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -189,15 +187,11 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -254,15 +248,15 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelBarChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panelBarChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chartPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addComponent(chartPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -284,11 +278,13 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 					.intValue();
 		}
 
+		//=================BIỂU ĐỒ CỘT====================
 		JFreeChart chart = ChartFactory.createBarChart("", "Tháng " + (jMonthChooser1.getMonth() + 1),
 				"Số lượng vé đã bán", dataset, PlotOrientation.VERTICAL, false, true, false);
 
 		CategoryPlot categoryPlot = chart.getCategoryPlot();
 		categoryPlot.setBackgroundPaint(Color.WHITE);
+		categoryPlot.setOutlineVisible(false);
 		BarRenderer renderer = (BarRenderer) categoryPlot.getRenderer();
 		Color clr3 = new Color(0, 204, 204);
 		renderer.setSeriesPaint(0, clr3);
@@ -297,11 +293,10 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 		rangeAxis.setRange(0, 50);
 
 		ChartPanel barpChartPanel = new ChartPanel(chart);
+		barpChartPanel.setBorder(null);
 		chartPanel.removeAll();
 		chartPanel.add(barpChartPanel, BorderLayout.CENTER);
 		chartPanel.validate();
-                
-                
                 //=====================================
         DefaultPieDataset barDataset = new DefaultPieDataset( );
         int sv = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth()+1, jYearChooser1.getYear(), "Sinh viên");
@@ -321,9 +316,8 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 		jTextField2.setText(tongSoLuotVe + "");
 		jTextField2.setEditable(false);
 		
-      //create chart
-        JFreeChart piechart = ChartFactory.createPieChart("Biểu đồ tỷ lệ hành khách",barDataset, false,true,false);//explain
-      
+      //===================BIỂU ĐỒ TRÒN==================
+        JFreeChart piechart = ChartFactory.createPieChart(null, barDataset, false,true,false);//explain
         PiePlot piePlot =(PiePlot) piechart.getPlot();
       
        //changing pie chart blocks colors
@@ -333,12 +327,16 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
         piePlot.setSectionPaint("Người cao tuổi", new Color(135,180,250));
        
         piePlot.setBackgroundPaint(Color.white);
-        
+        piePlot.setOutlineVisible(false);
         piePlot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0} {1} ({2})"));
 //        piePlot.setLabelPaint(Color.BLUE);
         piePlot.setLabelBackgroundPaint(Color.cyan);
         piePlot.setLabelFont(new Font("Conslas", Font.ITALIC, 16));
         
+        piePlot.setExplodePercent("Sinh viên", 0.1); // Explode Sinh viên section slightly
+        piePlot.setExplodePercent("Trẻ em", 0.1); // Explode Trẻ em section slightly
+        piePlot.setExplodePercent("Người lớn", 0.1); // Explode Người lớn section slightly
+        piePlot.setExplodePercent("Người cao tuổi", 0.1);
         //create chartPanel to display chart(graph)
         ChartPanel barChartPanel = new ChartPanel(piechart);
         barChartPanel.setPreferredSize(new Dimension(300, 300));
@@ -347,7 +345,7 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
         panelBarChart.validate();
         
         //====================Hiển thị bảng Số lượt Chuyến===============
-        Map<String, Long> veCountByGa = gD_DoiTra.getVeCountByGaChieuDiChieuDen();
+        Map<String, Long> veCountByGa = getVeCountByGaChieuDiChieuDen();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0); // Xóa tất cả các hàng cũ nếu có
 
@@ -358,6 +356,43 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
         model.fireTableDataChanged();
         
 	}// GEN-LAST:event_jMonthChooser1PropertyChange
+	
+	//=========ĐẾM TỔNG VÉ THEO CHUYẾN===========
+	public Map<String, Long> getVeCountByGaChieuDiChieuDen() {
+        List<Ve> veList = veDao.layDSVe();
+        Map<String, Long> gaCountMap = new HashMap<>();
+
+        for (Ve ve : veList) {
+            if (!ve.isTrangThai())
+                continue;
+
+            Set<ChiTietVe> listChiTietVes = ve.getLisChiTietVes();
+            Ga gaChieuDi = null;
+            Ga gaChieuDen = null;
+
+            for (ChiTietVe ctv : listChiTietVes) {
+                if (ctv.isChieu())
+                    gaChieuDi = ctv.getGa();
+                else
+                    gaChieuDen = ctv.getGa();
+            }
+
+            if (gaChieuDi != null && gaChieuDen != null) {
+                String key = gaChieuDen.getTenGa() + " - " + gaChieuDi.getTenGa();
+                gaCountMap.put(key, gaCountMap.getOrDefault(key, 0L) + 1);
+            }
+        }
+
+        return gaCountMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.<String, Long>comparingByValue().reversed())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (e1, e2) -> e1,
+                        LinkedHashMap::new
+                ));
+    }
 
 	@Override
 	protected void paintChildren(Graphics g) {
@@ -374,7 +409,6 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -385,6 +419,5 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField2;
     private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JPanel panelBarChart;
-    // End of variables declaration//GEN-END:variables
 
 }
