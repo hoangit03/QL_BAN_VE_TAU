@@ -638,6 +638,11 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			}
 			km = 1 - km;
 			
+			if (tongTien == 0) {
+				JOptionPane.showMessageDialog(null, "Không thể trả hóa đơn, không có vé để trả");
+				return;
+			}
+			
 			if(count != 0) {
 				xoaTrangVe();
 				hienBangVe(maHD, "");
@@ -762,10 +767,10 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			for (KhuyenMai khuyenMai : listKhuyenMai) {
 				km += khuyenMai.getChietKhau();
 			}
-			km = 1 - km;
+			
 			Object[] row = { hoaDon.getMaHoaDon(), hoaDon.getNhanVien().getMaNhanVien(), kh.getCccd(), kh.getHoTen(),
 					kh.getSdt(), km, dinhDangNgay.format(hoaDon.getNgayTao()), dinhDangGio.format(hoaDon.getGioTao()),
-					(int) (tongTien * km / 1000) * 1000};
+					(int) (tongTien * (1 - km) / 1000) * 1000};
 			model.addRow(row);
 		}
 		model.fireTableDataChanged();
@@ -890,7 +895,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			Ve ve = veDao.layVeBangMa(maVe);
 			traVe(ve);
 		} else {
-			JOptionPane.showMessageDialog(null, "Bạn chưa nhập vé để đổi trả", "Thông báo",
+			JOptionPane.showMessageDialog(null, "Bạn chưa nhập vé để trả", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 
@@ -924,7 +929,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 				} else if (tinhTime <= 3) {
 					soTienDuocTra = soTienDuocTra * 0.5;
 				}
-				boolean check = veDao.capNhatTrangThaiVeTamHetNgay(ve);
+				boolean check = veDao.updateDoiVe(ve.getMaVe(), LocalDateTime.now());
 				if (check) {
 					return soTienDuocTra;
 				} else {
@@ -944,7 +949,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 		long tinhTime = ChronoUnit.DAYS.between(LocalDate.now(), ngayDi);
 		System.out.println(tableHD.getSelectedRow());
 		if (timeDate.isBefore(LocalDate.now())) {
-			JOptionPane.showMessageDialog(null, "Chuyến tàu này đã khởi hành , đổi vé không có hiệu lực", "Thông báo",
+			JOptionPane.showMessageDialog(null, "Chuyến tàu này đã khởi hành , trả vé không có hiệu lực", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 		} else {
 
@@ -966,11 +971,19 @@ public class GD_DoiTra extends javax.swing.JPanel {
 				} else if (tinhTime <= 3) {
 					soTienDuocTra = soTienDuocTra * 0.5;
 				}
+				if(ve.getHoaDon().getLisKhuyenMais() != null) {
+					Set<KhuyenMai> listKhuyenMai = ve.getHoaDon().getLisKhuyenMais();
+					double km = 0;
+					for (KhuyenMai khuyenMai : listKhuyenMai) {
+						km += khuyenMai.getChietKhau();
+					}
+					soTienDuocTra = soTienDuocTra * (1 - km);
+				}
 				int chose = JOptionPane.showConfirmDialog(null,
 						"Số tiền hoàn lại cho khách hàng là " + ((int) soTienDuocTra / 1000) * 1000 + "VNĐ", "Xác nhận",
 						JOptionPane.YES_NO_OPTION);
 				if (chose == JOptionPane.YES_OPTION) {
-					boolean check = veDao.capNhatTrangThaiVeTamHetNgay(ve);
+					boolean check = veDao.updateDoiVe(ve.getMaVe(), LocalDateTime.now());
 					if (check) {
 						if (tableVe.getRowCount() == 1) {
 							hoaDonDao.capNhatHDTheoTrangThai(ve.getHoaDon(), false);
@@ -987,7 +1000,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 				}
 
 			} else {
-				JOptionPane.showMessageDialog(null, "Vé không thể đổi trả do sắp đến giờ khởi hành", "Thông báo",
+				JOptionPane.showMessageDialog(null, "Vé không thể trả do sắp đến giờ khởi hành", "Thông báo",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
