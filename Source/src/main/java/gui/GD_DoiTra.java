@@ -561,12 +561,13 @@ public class GD_DoiTra extends javax.swing.JPanel {
 	}// </editor-fold>//GEN-END:initComponents
 
 	private void btnInVeMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnInVeMouseClicked
-		if (isClickVe)
-			return;
-		isClickVe = true;
+		
 		int index = tableVe.getSelectedRow();
 		if (index < 0)
 			return;
+		if (isClickVe)
+			return;
+		isClickVe = true;
 		int chose = JOptionPane.showConfirmDialog(null, "Bạn có muốn in vé không", "Xác nhận",
 				JOptionPane.YES_NO_OPTION);
 		if (chose == JOptionPane.YES_OPTION) {
@@ -583,12 +584,13 @@ public class GD_DoiTra extends javax.swing.JPanel {
 	}// GEN-LAST:event_btnInVeMouseClicked
 
 	private void btnInHoaDonMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_btnInHoaDonMouseClicked
-		if (isClickHD)
-			return;
-		isClickHD = true;
+		
 		int index = tableHD.getSelectedRow();
 		if (index < 0)
 			return;
+		if (isClickHD)
+			return;
+		isClickHD = true;
 		int chose = JOptionPane.showConfirmDialog(null, "Bạn có muốn in hóa đơn không", "Xác nhận",
 				JOptionPane.YES_NO_OPTION);
 		if (chose == JOptionPane.YES_OPTION) {
@@ -1025,6 +1027,4 @@ public class GD_DoiTra extends javax.swing.JPanel {
 	private javax.swing.JScrollPane scrollVe;
 	private javax.swing.JTable tableHD;
 	private javax.swing.JTable tableVe;
-
-	// End of variables declaration//GEN-END:variables
 }

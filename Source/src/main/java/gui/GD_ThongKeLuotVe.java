@@ -297,7 +297,6 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 		chartPanel.removeAll();
 		chartPanel.add(barpChartPanel, BorderLayout.CENTER);
 		chartPanel.validate();
-
                 //=====================================
         DefaultPieDataset barDataset = new DefaultPieDataset( );
         int sv = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth()+1, jYearChooser1.getYear(), "Sinh viên");
@@ -420,5 +419,5 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField2;
     private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JPanel panelBarChart;
-    // End of variables declaration//GEN-END:variables
+
 }
