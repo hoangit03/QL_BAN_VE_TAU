@@ -5,9 +5,12 @@
 package gui;
 
 import dao.HoaDonDao;
-import dao.VeDao;
+import dao.KhachHangDao;
+import entity.ChiTietVe;
+import entity.Ga;
 import entity.HoaDon;
-import entity.KhachHang;
+import entity.KhuyenMai;
+import entity.Ve;
 import jakarta.persistence.EntityManagerFactory;
 import swing.ScrollBar;
 
@@ -23,7 +26,6 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Set;
 
-import static java.awt.image.ImageObserver.HEIGHT;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import javax.swing.BorderFactory;
@@ -46,10 +48,9 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 
 	private EntityManagerFactory emf;
-	private VeDao veDao;
-        private GD_DoiTra gD_DoiTra;
-        private HoaDonDao hoaDonDao;
-        DateTimeFormatter dinhDangGio = DateTimeFormatter.ofPattern("HH:mm");
+	private KhachHangDao khachHangDao;
+    private HoaDonDao hoaDonDao;
+    DateTimeFormatter dinhDangGio = DateTimeFormatter.ofPattern("HH:mm");
 	DateTimeFormatter dinhDangNgay = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
 	public GD_ThongKeDoanhThu(EntityManagerFactory emf) {
@@ -67,8 +68,8 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 		chartPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.black),
 				"Thống kê doanh thu theo tháng", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20) {
 				}, Color.black));
-		gD_DoiTra = new GD_DoiTra(emf);
         hoaDonDao = new HoaDonDao(emf);
+        khachHangDao = new KhachHangDao(emf);
         List<HoaDon> list = hoaDonDao.getAllHoaDon();
         addDataTable(list);
 	}
@@ -251,17 +252,17 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 		case 9:
 		case 11:
 			for (int i = 1; i <= 30; i++) {
-				dataset.setValue(gD_DoiTra.tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)),
+				dataset.setValue(tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)),
 						"Tổng tiền", i+ "");
-				tongDoanhThuTrongNgay += gD_DoiTra.tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i));
+				tongDoanhThuTrongNgay += tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i));
 			}
 			break;
 
 		default:
 			for (int i = 1; i <= 31; i++) {
-				dataset.setValue(gD_DoiTra.tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)),
+				dataset.setValue(tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)),
 						"Tổng tiền", i+ "");
-				tongDoanhThuTrongNgay += gD_DoiTra.tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i));
+				tongDoanhThuTrongNgay += tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i));
 			}
 			break;
 		}
@@ -294,6 +295,37 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 		chartPanel.add(barpChartPanel, BorderLayout.CENTER);
 		chartPanel.validate();
 	}// GEN-LAST:event_jMonthChooser1PropertyChange
+	
+	public double tinhTongTienTheoNgay(LocalDate ngay) {
+		List<HoaDon> lhd = hoaDonDao.getAllHoaDonTrue();
+
+		double tongTien = 0;
+
+		for (HoaDon hoaDon : lhd) {
+			LocalDate ngayTaoHoaDon = hoaDon.getNgayTao();
+			if (ngayTaoHoaDon.equals(ngay)) {
+				List<Ve> listVe = hoaDon.getListVes();
+				for (Ve ve : listVe) {
+					Set<ChiTietVe> listChiTietVes = ve.getLisChiTietVes();
+					Ga gaChieuDi = null;
+					Ga gaChieuDen = null;
+					for (ChiTietVe ctv : listChiTietVes) {
+						if (ctv.isChieu())
+							gaChieuDi = ctv.getGa();
+						else
+							gaChieuDen = ctv.getGa();
+					}
+					tongTien += ve.getChoNgoi().getGia() * Math.abs(gaChieuDen.getId() - gaChieuDi.getId())
+							* (ve.getKhuyenMai() == null ? 1 : ve.getKhuyenMai().getChietKhau());
+				}
+				Set<KhuyenMai> listKhuyenMai = hoaDon.getLisKhuyenMais();
+				for (KhuyenMai khuyenMai : listKhuyenMai) {
+					tongTien -= tongTien * khuyenMai.getChietKhau();
+				}
+			}
+		}
+		return tongTien;
+	}
 
 	@Override
 	protected void paintChildren(Graphics g) {

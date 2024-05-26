@@ -9,10 +9,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class VeDao {
 	private EntityManager em;
@@ -136,6 +132,4 @@ public class VeDao {
                           .count();
         return count;
     }  
-    
-	
 }
