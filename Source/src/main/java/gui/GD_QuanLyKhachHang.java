@@ -239,7 +239,7 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CCCD", "Họ tên", "Số điện thoại", "Email", "Đối tượng"
+                "CCCD", "Họ tên", "Email", "Số điện thoại", "Đối tượng"
             }
         ));
         table.setRowHeight(30);
