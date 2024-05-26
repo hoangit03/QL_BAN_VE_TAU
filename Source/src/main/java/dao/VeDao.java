@@ -22,7 +22,7 @@ public class VeDao {
 	}
 
 	// Thêm Vé
-	public boolean addVe(Ve ve) {
+	public boolean themVe(Ve ve) {
 		EntityTransaction tx = em.getTransaction();
 		try {
 			tx.begin();
@@ -36,7 +36,7 @@ public class VeDao {
 		return false;
 	}
 
-	public boolean updateVe(Ve ve) {
+	public boolean capNhatVe(Ve ve) {
 		EntityTransaction tx = em.getTransaction();
 		try {
 			tx.begin();
@@ -51,20 +51,20 @@ public class VeDao {
 	}
 
 	// lấy danh sách vé
-	public List<Ve> getAllVe() {
+	public List<Ve> layDSVe() {
 		return em.createNamedQuery("Ve.findAll", Ve.class).getResultList();
 	}
 
-	public List<Ve> getListVeByMaHD(String mahd) {
+	public List<Ve> layDSVeBangMaHD(String mahd) {
 		return em.createNamedQuery("Ve.FindByMaHd", Ve.class).setParameter("mhd", mahd).getResultList();
 	}
 
-	public List<Ve> getListVeByMaVe(String mv) {
+	public List<Ve> layDSVeBangMaVe(String mv) {
 		return em.createNamedQuery("Ve.FindByMaVe", Ve.class).setParameter("mv", mv).getResultList();
 	}
 
 //	    lấy Vé bằng mã
-	public Ve getVeByMa(String ma) {
+	public Ve layVeBangMa(String ma) {
 		return em.find(Ve.class, ma);
 	}
 	
@@ -73,7 +73,7 @@ public class VeDao {
 		return em.createQuery("SELECT ve FROM Ve ve WHERE ve.trangThai = true AND ve.hoaDon.trangThai = false AND ve.hoaDon.ngayTao != :ngayHT", Ve.class).setParameter("ngayHT", ngayHienTai).getResultList();
 	}
 
-	public boolean updateTrangThaiVeTamHetNgay(Ve ve) {
+	public boolean capNhatTrangThaiVeTamHetNgay(Ve ve) {
 		try {
 			em.getTransaction().begin();
 			em.createQuery(

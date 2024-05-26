@@ -37,6 +37,7 @@ public class FormNhanVien extends javax.swing.JPanel {
 	private EntityManagerFactory emf;
 	private NhanVienDao nhanVienDao;
 	private MainForm mainForm;
+	private List<NhanVien> listNhanVien;
 
 	public FormNhanVien(EntityManagerFactory emf, MainForm mainForm) {
 		this.emf = emf;
@@ -55,8 +56,8 @@ public class FormNhanVien extends javax.swing.JPanel {
 		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 
 		nhanVienDao = new NhanVienDao(emf);
-		List<NhanVien> list = nhanVienDao.getAllNhanVien();
-		addDataTable(list);
+		listNhanVien = nhanVienDao.getAllNhanVien();
+		addDataTable(listNhanVien);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -479,7 +480,7 @@ public class FormNhanVien extends javax.swing.JPanel {
 			list.add(nhanVien);
 			addDataTable(list);
 		}
-		if (!jtSDT.getText().trim().equalsIgnoreCase("")) {
+		else if (!jtSDT.getText().trim().equalsIgnoreCase("")) {
 			tieuChi = jtSDT.getText();
 			List<NhanVien> list = new ArrayList<NhanVien>();
 			NhanVien nhanVien = nhanVienDao.getNhanVienBySDT(tieuChi);
@@ -631,6 +632,7 @@ public class FormNhanVien extends javax.swing.JPanel {
 		jDate.setDate(null);
 		groupRadio.clearSelection();
 		jcbTrangThai.setSelectedIndex(0);
+		addDataTable(listNhanVien);
 	}
 
 	private void btnXoaTrangActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnXoaTrangActionPerformed

@@ -42,8 +42,8 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 	 */
 	private EntityManagerFactory emf;
 	private VeDao veDao;
-        private KhachHangDao khachHangDao;
-        private GD_DoiTra gD_DoiTra;
+	private KhachHangDao khachHangDao;
+	private GD_DoiTra gD_DoiTra;
 
 	public GD_ThongKeLuotVe(EntityManagerFactory emf) {
 		this.emf = emf;
@@ -55,8 +55,8 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 //				"Hành khách", 0, HEIGHT, new Font(Font.SANS_SERIF, Font.BOLD, 20) {
 //				}, Color.black));
 		veDao = new VeDao(emf);
-                khachHangDao = new KhachHangDao(emf);
-                gD_DoiTra = new GD_DoiTra(emf);
+		khachHangDao = new KhachHangDao(emf);
+		gD_DoiTra = new GD_DoiTra(emf);
 	}
 
 	/**
@@ -67,115 +67,123 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+	// <editor-fold defaultstate="collapsed" desc="Generated
+	// Code">//GEN-BEGIN:initComponents
+	private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
-        panelBarChart = new javax.swing.JPanel();
-        chartPanel = new javax.swing.JPanel();
+		jLabel1 = new javax.swing.JLabel();
+		jPanel1 = new javax.swing.JPanel();
+		jLabel2 = new javax.swing.JLabel();
+		jLabel3 = new javax.swing.JLabel();
+		jTextField1 = new javax.swing.JTextField();
+		jTextField2 = new javax.swing.JTextField();
+		jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
+		jYearChooser1 = new com.toedter.calendar.JYearChooser();
+		panelBarChart = new javax.swing.JPanel();
+		chartPanel = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(43, 84, 100));
+		setBackground(new java.awt.Color(43, 84, 100));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("THỐNG KÊ");
+		jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+		jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+		jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		jLabel1.setText("THỐNG KÊ");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin chi tiết", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
+		jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin chi tiết",
+				javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
+				new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Tổng số hành khách :");
+		jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+		jLabel2.setText("Tổng số hành khách :");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Tổng số lượng vé :");
+		jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+		jLabel3.setText("Tổng số lượng vé :");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+		jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+		jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jMonthChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jMonthChooser1PropertyChange(evt);
-            }
-        });
+		jMonthChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+			public void propertyChange(java.beans.PropertyChangeEvent evt) {
+				jMonthChooser1PropertyChange(evt);
+			}
+		});
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(61, 61, 61)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(226, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jMonthChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(jYearChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(50, 50, 50)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(207, Short.MAX_VALUE))
-        );
+		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+		jPanel1.setLayout(jPanel1Layout);
+		jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(jPanel1Layout.createSequentialGroup().addGap(63, 63, 63)
+						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+								.addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE)
+								.addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+										Short.MAX_VALUE))
+						.addGap(61, 61, 61)
+						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+								.addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 242,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 242,
+										javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(226, Short.MAX_VALUE))
+				.addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+						jPanel1Layout.createSequentialGroup()
+								.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(jMonthChooser1, javax.swing.GroupLayout.PREFERRED_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(29, 29, 29).addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE,
+										79, javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(44, 44, 44)));
+		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(jPanel1Layout.createSequentialGroup()
+						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+								.addComponent(jMonthChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+								.addComponent(jYearChooser1, javax.swing.GroupLayout.DEFAULT_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGap(31, 31, 31)
+						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(jLabel2).addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE,
+										37, javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addGap(50, 50, 50)
+						.addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+								.addComponent(jLabel3).addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE,
+										37, javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addContainerGap(207, Short.MAX_VALUE)));
 
-        panelBarChart.setLayout(new java.awt.BorderLayout());
+		panelBarChart.setLayout(new java.awt.BorderLayout());
 
-        chartPanel.setLayout(new java.awt.BorderLayout());
+		chartPanel.setLayout(new java.awt.BorderLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(panelBarChart, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(chartPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(60, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelBarChart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(chartPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-    }// </editor-fold>//GEN-END:initComponents
+		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+		this.setLayout(layout);
+		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+						Short.MAX_VALUE)
+				.addGroup(layout.createSequentialGroup().addGap(15, 15, 15).addGroup(layout
+						.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+						.addGroup(layout.createSequentialGroup()
+								.addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addGap(18, 18, 18).addComponent(panelBarChart, javax.swing.GroupLayout.PREFERRED_SIZE,
+										790, javax.swing.GroupLayout.PREFERRED_SIZE))
+						.addComponent(chartPanel, javax.swing.GroupLayout.DEFAULT_SIZE,
+								javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addContainerGap(60, Short.MAX_VALUE)));
+		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(layout.createSequentialGroup()
+						.addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44,
+								javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+								.addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(panelBarChart, javax.swing.GroupLayout.DEFAULT_SIZE,
+										javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGap(18, 18, 18)
+						.addComponent(chartPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+						.addContainerGap()));
+	}// </editor-fold>//GEN-END:initComponents
 
 	private void jMonthChooser1PropertyChange(java.beans.PropertyChangeEvent evt) {// GEN-FIRST:event_jMonthChooser1PropertyChange
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -205,53 +213,54 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 		chartPanel.removeAll();
 		chartPanel.add(barpChartPanel, BorderLayout.CENTER);
 		chartPanel.validate();
-                
-                
-                //=====================================
-        DefaultPieDataset barDataset = new DefaultPieDataset( );
-        int sv = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth()+1, jYearChooser1.getYear(), "Sinh viên");
-        int nl = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth()+1, jYearChooser1.getYear(), "Người lớn");
-        int te = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth()+1, jYearChooser1.getYear(), "Trẻ em");
-        int ng = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth()+1, jYearChooser1.getYear(), "Người già");
-        
-        barDataset.setValue( "Sinh viên" , sv);  
-        barDataset.setValue( "Người lớn" , nl);   
-        barDataset.setValue( "Trẻ em" , te);   
-        barDataset.setValue( "Người già" , ng);  
-      
+
+		// =====================================
+		DefaultPieDataset barDataset = new DefaultPieDataset();
+		int sv = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth() + 1, jYearChooser1.getYear(),
+				"Sinh viên");
+		int nl = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth() + 1, jYearChooser1.getYear(),
+				"Người lớn");
+		int te = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth() + 1, jYearChooser1.getYear(), "Trẻ em");
+		int ng = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth() + 1, jYearChooser1.getYear(),
+				"Người già");
+
+		barDataset.setValue("Sinh viên", sv);
+		barDataset.setValue("Người lớn", nl);
+		barDataset.setValue("Trẻ em", te);
+		barDataset.setValue("Người già", ng);
+
 		jTextField1.setFont(new Font("Consalas", Font.BOLD, 18));
-		jTextField1.setText(sv+nl+te + ng + "");
+		jTextField1.setText(sv + nl + te + ng + "");
 		jTextField2.setFont(new Font("Consalas", Font.BOLD, 18));
 		jTextField2.setText(tongSoLuotVe + "");
-		
-      //create chart
-        JFreeChart piechart = ChartFactory.createPieChart("Hành khách",barDataset, false,true,false);//explain
-      
-        PiePlot piePlot =(PiePlot) piechart.getPlot();
-      
-       //changing pie chart blocks colors
-        piePlot.setSectionPaint("Sinh viên", new Color(100,149,237));
-        piePlot.setSectionPaint("Trẻ em", new Color(30,144,255));
-        piePlot.setSectionPaint("Người lớn", new Color(135,206,250));
-        piePlot.setSectionPaint("Người già", new Color(135,180,250));
-       
-        piePlot.setBackgroundPaint(Color.white);
-        
-        piePlot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0} ({2})"));
-        //create chartPanel to display chart(graph)
-        ChartPanel barChartPanel = new ChartPanel(piechart);
-        barChartPanel.setPreferredSize(new Dimension(400, 300));
-        panelBarChart.removeAll();
-        panelBarChart.add(barChartPanel, BorderLayout.CENTER);
-        panelBarChart.validate();
+
+		// create chart
+		JFreeChart piechart = ChartFactory.createPieChart("Hành khách", barDataset, false, true, false);// explain
+
+		PiePlot piePlot = (PiePlot) piechart.getPlot();
+
+		// changing pie chart blocks colors
+		piePlot.setSectionPaint("Sinh viên", new Color(100, 149, 237));
+		piePlot.setSectionPaint("Trẻ em", new Color(30, 144, 255));
+		piePlot.setSectionPaint("Người lớn", new Color(135, 206, 250));
+		piePlot.setSectionPaint("Người già", new Color(135, 180, 250));
+
+		piePlot.setBackgroundPaint(Color.white);
+
+		piePlot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0} ({2})"));
+		// create chartPanel to display chart(graph)
+		ChartPanel barChartPanel = new ChartPanel(piechart);
+		barChartPanel.setPreferredSize(new Dimension(400, 300));
+		panelBarChart.removeAll();
+		panelBarChart.add(barChartPanel, BorderLayout.CENTER);
+		panelBarChart.validate();
 	}// GEN-LAST:event_jMonthChooser1PropertyChange
-        
-        public void showPieChart(){
-        
-        //create dataset
 
-    }
+	public void showPieChart() {
 
+		// create dataset
+
+	}
 
 	@Override
 	protected void paintChildren(Graphics g) {
@@ -263,16 +272,16 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 		super.paintChildren(g);
 	}
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel chartPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private com.toedter.calendar.JMonthChooser jMonthChooser1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
-    private javax.swing.JPanel panelBarChart;
-    // End of variables declaration//GEN-END:variables
+	// Variables declaration - do not modify//GEN-BEGIN:variables
+	private javax.swing.JPanel chartPanel;
+	private javax.swing.JLabel jLabel1;
+	private javax.swing.JLabel jLabel2;
+	private javax.swing.JLabel jLabel3;
+	private com.toedter.calendar.JMonthChooser jMonthChooser1;
+	private javax.swing.JPanel jPanel1;
+	private javax.swing.JTextField jTextField1;
+	private javax.swing.JTextField jTextField2;
+	private com.toedter.calendar.JYearChooser jYearChooser1;
+	private javax.swing.JPanel panelBarChart;
+	// End of variables declaration//GEN-END:variables
 }

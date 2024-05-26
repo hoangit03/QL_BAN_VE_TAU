@@ -37,6 +37,7 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
 	private SimpleDateFormat dinhDangMa = new SimpleDateFormat("ddMMyyyy");
 	LocalDate localDate = LocalDate.now();
 	Date dateNow = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+	private List<KhuyenMai> list;
 
 	public GD_KhuyenMaiHoaDon(EntityManagerFactory emf) {
 		this.emf = emf;
@@ -55,7 +56,7 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
 		jScrollPane1.setVerticalScrollBar(new ScrollBar());
 		((DefaultTableCellRenderer) table.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 		khuyenMaiDao = new KhuyenMaiDao(emf);
-		List<KhuyenMai> list = khuyenMaiDao.getAllKhuyenMaiHD();
+		list = khuyenMaiDao.getAllKhuyenMaiHD();
 		addDataTable(list);
 	}
 
@@ -381,14 +382,28 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
 		}
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		for (int i = 0; i < model.getRowCount(); i++) {
-			if (khuyenMai.getMaKhuyenMai().equalsIgnoreCase(model.getValueAt(0, i).toString()))
+			if (khuyenMai.getMaKhuyenMai().equalsIgnoreCase(model.getValueAt(i, 0).toString())) {
 				table.setRowSelectionInterval(i, i);
+			}
 		}
 		selectedRowTable();
 	}// GEN-LAST:event_btnTimActionPerformed
 
 	private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLocActionPerformed
+		Date ngayBatDau = jDateStart.getDate();
+        Date ngayKetThuc = jDateStart.getDate();
 
+        // Kiểm tra xem đã chọn đủ thông tin ngày bắt đầu và ngày kết thúc chưa
+        if (ngayBatDau == null || ngayKetThuc == null) {
+            // Hiển thị thông báo lỗi nếu không chọn đủ thông tin
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn đầy đủ ngày bắt đầu và ngày kết thúc.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Chạy truy vấn để lấy danh sách khuyến mãi trong khoảng thời gian từ ngày bắt đầu đến ngày kết thúc
+        List<KhuyenMai> danhSachKhuyenMai = null;
+        danhSachKhuyenMai = khuyenMaiDao.layDSKhuyenMaiTheoKhoangThoiGian(ngayBatDau, ngayKetThuc,"KMHD");
+        addDataTable(danhSachKhuyenMai);
 	}// GEN-LAST:event_btnLocActionPerformed
 
 	private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnThemActionPerformed
@@ -527,7 +542,7 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case 3:
-			JOptionPane.showMessageDialog(btnThem, "Ngày áp dụng phải sau ngày bắt đầu", "Thông báo",
+			JOptionPane.showMessageDialog(btnThem, "Ngày áp dụng phải trước ngày kết thúc", "Thông báo",
 					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case 4:
@@ -553,13 +568,14 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
 		jDateEnd.setDate(null);
 		jDateStart.setDate(null);
 		jtChietK.setText("");
+		addDataTable(list);
 	}
 
 	private void selectedRowTable() {
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		int index = table.getSelectedRow();
 		if (index < 0) {
-			JOptionPane.showMessageDialog(btnTim, "Chưa chọn tài khoản", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(btnTim, "Chưa chọn dòng", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 		jtMa.setText(model.getValueAt(index, 0).toString());

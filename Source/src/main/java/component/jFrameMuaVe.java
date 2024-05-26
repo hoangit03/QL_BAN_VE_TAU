@@ -288,7 +288,7 @@ public class jFrameMuaVe extends javax.swing.JFrame {
                     } else {
                         khachHangDao.updateKhachHang(v.getKhachHang());
                     }
-                    veDao.addVe(v);
+                    veDao.themVe(v);
                     for (ChiTietVe ctv : v.getLisChiTietVes()) {
                         chiTietVeDao.addChiTietVe(ctv);
                     }
@@ -326,7 +326,7 @@ public class jFrameMuaVe extends javax.swing.JFrame {
                         } else {
                             khachHangDao.updateKhachHang(v.getKhachHang());
                         }
-                        veDao.addVe(v);
+                        veDao.themVe(v);
                         for (ChiTietVe ctv : v.getLisChiTietVes()) {
                             chiTietVeDao.addChiTietVe(ctv);
                         }
@@ -344,10 +344,10 @@ public class jFrameMuaVe extends javax.swing.JFrame {
                         } else {
                             khachHangDao.updateKhachHang(v.getKhachHang());
                         }
-                        if (veDao.getVeByMa(v.getMaVe()) == null) {
-                            veDao.addVe(v);
+                        if (veDao.layVeBangMa(v.getMaVe()) == null) {
+                            veDao.themVe(v);
                         } else {
-                            veDao.updateVe(v);
+                            veDao.capNhatVe(v);
                         }
                         for (ChiTietVe ctv : v.getLisChiTietVes()) {
                             chiTietVeDao.addChiTietVe(ctv);

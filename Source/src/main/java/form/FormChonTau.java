@@ -132,7 +132,6 @@ public class FormChonTau extends javax.swing.JPanel {
 	DefaultTableModel model;
 	private boolean isJrVe = false;
 	private boolean isJrDi = true;
-	private int countTreEm = 0;
 	private JComboBox<String> cbDT;
 	private Map<String, Set<String>> liscccd;
 	private TaiKhoan taiKhoan;

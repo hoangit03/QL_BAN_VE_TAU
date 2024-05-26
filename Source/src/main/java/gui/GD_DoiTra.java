@@ -565,7 +565,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 		int chose = JOptionPane.showConfirmDialog(null, "Bạn có muốn in vé không", "Xác nhận",
 				JOptionPane.YES_NO_OPTION);
 		if (chose == JOptionPane.YES_OPTION) {
-			Ve ve = veDao.getVeByMa(tableVe.getValueAt(index, 0).toString());
+			Ve ve = veDao.layVeBangMa(tableVe.getValueAt(index, 0).toString());
 			frame = new FrameShowDoiTra(null, ve);
 			frame.addWindowListener(new WindowAdapter() {
 				@Override
@@ -669,7 +669,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 	private void tableVeMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tableVeMouseClicked
 		String maVe = tableVe.getValueAt(tableVe.getSelectedRow(), 0).toString();
 		Ve ve;
-		ve = veDao.getVeByMa(maVe);
+		ve = veDao.layVeBangMa(maVe);
 		hienChiTietVe(ve);
 
 	}// GEN-LAST:event_tableVeMouseClicked
@@ -835,7 +835,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 	}
 
 	private void hienBangVe(String maHD, String maVe) {
-		List<Ve> listVe = !maHD.equals("") ? veDao.getListVeByMaHD(maHD) : veDao.getListVeByMaVe(maVe);
+		List<Ve> listVe = !maHD.equals("") ? veDao.layDSVeBangMaHD(maHD) : veDao.layDSVeBangMaVe(maVe);
 		DefaultTableModel model = (DefaultTableModel) tableVe.getModel();
 		model.setRowCount(0);
 		for (Ve ve : listVe) {
@@ -865,7 +865,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			JOptionPane.showMessageDialog(null, "Chưa nhập mã vé", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 			jtMV.requestFocus();
 		} else {
-			Ve ve = veDao.getVeByMa(maVe);
+			Ve ve = veDao.layVeBangMa(maVe);
 			if (ve != null) {
 				hienBangVe("", maVe);
 				tableVe.setRowSelectionInterval(0, 0);
@@ -880,7 +880,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 	private void traVe() {
 		if (tableVe.getRowCount() > 0) {
 			String maVe = tableVe.getValueAt(tableVe.getSelectedRow(), 0).toString();
-			Ve ve = veDao.getVeByMa(maVe);
+			Ve ve = veDao.layVeBangMa(maVe);
 			traVe(ve);
 		} else {
 			JOptionPane.showMessageDialog(null, "Bạn chưa nhập vé để đổi trả", "Thông báo",
@@ -917,7 +917,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 				} else if (tinhTime <= 3) {
 					soTienDuocTra = soTienDuocTra * 0.5;
 				}
-				boolean check = veDao.updateTrangThaiVeTamHetNgay(ve);
+				boolean check = veDao.capNhatTrangThaiVeTamHetNgay(ve);
 				if (check) {
 					return soTienDuocTra;
 				} else {
@@ -963,7 +963,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 						"Số tiền hoàn lại cho khách hàng là " + ((int) soTienDuocTra / 1000) * 1000 + "VNĐ", "Xác nhận",
 						JOptionPane.YES_NO_OPTION);
 				if (chose == JOptionPane.YES_OPTION) {
-					boolean check = veDao.updateTrangThaiVeTamHetNgay(ve);
+					boolean check = veDao.capNhatTrangThaiVeTamHetNgay(ve);
 					if (check) {
 						if (tableVe.getRowCount() == 1) {
 							hoaDonDao.capNhatHDTheoTrangThai(ve.getHoaDon(), false);

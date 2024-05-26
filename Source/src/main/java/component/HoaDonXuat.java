@@ -62,7 +62,7 @@ public class HoaDonXuat extends javax.swing.JPanel {
             else {
             	tien = ve.getChoNgoi().getGia() * Math.abs(gaDi.getId() - gaDen.getId());
             }
-            temp = new DataVe(ve.getKhachHang().getDoiTuong(), gaDi.getTenGa(), gaDen.getTenGa(), 1, tien);
+            temp = new DataVe(ve.getKhachHang().getDoiTuong(), gaDen.getTenGa(), gaDi.getTenGa(), 1, tien);
             index = search(list, temp);
             if (index != -1) {
                 list.get(index).setIntervolSL();
