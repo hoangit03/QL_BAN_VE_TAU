@@ -158,6 +158,11 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
 
         btnTim.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnTim.setText("Tìm");
+        btnTim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTimMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,12 +192,12 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnXuatEX, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnCN, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnXT, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCN, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(80, 80, 80))
+                                .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(79, 79, 79))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,14 +222,14 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbDT, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbBoxDT, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 339, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXT, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCN, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnXuatEX, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                    .addComponent(btnTim, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnXuatEX, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCN, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -264,9 +269,26 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scroll))
-                .addGap(0, 159, Short.MAX_VALUE))
+                .addGap(0, 160, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimMouseClicked
+    	String tieuChi = "";
+		if (!txtSDT.getText().trim().equalsIgnoreCase("")) {
+			tieuChi = txtSDT.getText();
+			List<KhachHang> list = new ArrayList<KhachHang>();
+			KhachHang khachHang = khachHangDao.getKhachHangByPhoneNumber(tieuChi);
+			list.add(khachHang);
+			addDataTable(list);
+		} else if (tieuChi.isEmpty()) {
+			JOptionPane.showMessageDialog(btnTim, "Chưa nhập tiêu chí tìm kiếm SĐT", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(btnCN, "Không tìm thấy khách hàng", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+    }//GEN-LAST:event_btnTimMouseClicked
 
 	private void tableMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_tableMouseClicked
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
@@ -355,23 +377,6 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
 
 	}// GEN-LAST:event_btnCNActionPerformed
 
-	// Tìm khách hàng bằng số điện thoại
-	private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {
-		String tieuChi = "";
-		if (!txtSDT.getText().trim().equalsIgnoreCase("")) {
-			tieuChi = txtSDT.getText();
-			List<KhachHang> list = new ArrayList<KhachHang>();
-			KhachHang khachHang = khachHangDao.getKhachHangByPhoneNumber(tieuChi);
-			list.add(khachHang);
-			addDataTable(list);
-		} else if (tieuChi.isEmpty()) {
-			JOptionPane.showMessageDialog(btnTim, "Chưa nhập tiêu chí tìm kiếm SĐT", "Thông báo",
-					JOptionPane.INFORMATION_MESSAGE);
-		} else {
-			JOptionPane.showMessageDialog(btnCN, "Không tìm thấy khách hàng", "Thông báo",
-					JOptionPane.INFORMATION_MESSAGE);
-		}
-	}
 
 	private void xoaTrang() {
 		txtCCCD.setText("");

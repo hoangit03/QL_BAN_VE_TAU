@@ -92,6 +92,15 @@ public class KhuyenMaiDao {
                 .setParameter("endTime", endTime)
                 .getResultList();
     }
+    
+//    lấy khuyến mãi theo loại trong 1 khoảng thười gian
+    public List<KhuyenMai> layDSKhuyenMaiTheoKhoangThoiGian(Date startTime, Date endTime,String loai) {
+        return em.createQuery("SELECT km FROM KhuyenMai km WHERE km.thoiGianBatDau >= :startTime AND km.thoiGianKetThuc <= :endTime AND km.loaiKhuyenMai = :loai", KhuyenMai.class)
+                .setParameter("startTime", startTime)
+                .setParameter("endTime", endTime)
+                .setParameter("loai", loai)
+                .getResultList();
+    }
 	
 	public KhuyenMai layKhuyenMaiTotNhatBangLoai(int soLuong) {
 		try {

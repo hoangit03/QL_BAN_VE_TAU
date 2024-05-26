@@ -13,7 +13,7 @@ public class TuyenDao {
 	        em = emf.createEntityManager();
 	    }
 //	    lấy Tuyen bằng mã
-	    public Tuyen getTuyenByMa(String ma) {
+	    public Tuyen layTuyenBangMa(String ma) {
 	    	return em.find(Tuyen.class, ma);
 	    }
 //	    lấy toàn bộ danh sách Tuyến

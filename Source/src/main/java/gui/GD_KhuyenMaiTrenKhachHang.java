@@ -386,7 +386,7 @@ public class GD_KhuyenMaiTrenKhachHang extends javax.swing.JPanel {
 	}// GEN-LAST:event_btnTimActionPerformed
 
 	private void btnLocActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnLocActionPerformed
-
+		
 	}// GEN-LAST:event_btnLocActionPerformed
 
 	private void btnNgungActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnNgungActionPerformed

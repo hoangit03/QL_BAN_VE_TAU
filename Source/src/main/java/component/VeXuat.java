@@ -22,13 +22,18 @@ public class VeXuat extends javax.swing.JPanel {
         lbDoiTuong.setText(ve.getKhachHang().getDoiTuong());
         lbTen.setText(ve.getKhachHang().getHoTen());
         lbCccd.setText(ve.getKhachHang().getCccd());
+        lbMaVe.setText(ve.getMaVe());
         Ga gaDi = null;
         Ga gaDen = null;
         for(ChiTietVe ctv : ve.getLisChiTietVes()){
-            if(ctv.isChieu())
+            if(ctv.isChieu()) {
                 gaDi = ctv.getGa();
-            else
+                lbGaDi.setText(ctv.getGa().getTenGa());
+            }
+            else {
                 gaDen = ctv.getGa();
+                lbGaDen.setText(ctv.getGa().getTenGa());
+            }
         }
         if(ve.getKhuyenMai() != null)
         	lbGia.setText((int)(ve.getChoNgoi().getGia() * Math.abs(gaDi.getId() - gaDen.getId()) *(1 - ve.getKhuyenMai().getChietKhau())/1000)+".000");

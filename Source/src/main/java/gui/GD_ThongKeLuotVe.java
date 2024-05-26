@@ -32,6 +32,7 @@ import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.chart.util.Rotation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import dao.KhachHangDao;
 import dao.VeDao;
 import entity.ChiTietVe;
 import entity.Ga;
@@ -56,6 +57,8 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 	 */
 	private EntityManagerFactory emf;
 	private VeDao veDao;
+	private KhachHangDao khachHangDao;
+	private GD_DoiTra gD_DoiTra;
 
 	public GD_ThongKeLuotVe(EntityManagerFactory emf) {
 		this.emf = emf;
@@ -68,6 +71,8 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 		jScrollPane1.setVerticalScrollBar(new ScrollBar());
 		((DefaultTableCellRenderer) jTable1.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);
 		veDao = new VeDao(emf);
+		khachHangDao = new KhachHangDao(emf);
+		gD_DoiTra = new GD_DoiTra(emf);
 	}
 
 	/**
@@ -78,9 +83,9 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
 	// <editor-fold defaultstate="collapsed" desc="Generated
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
+	// <editor-fold defaultstate="collapsed" desc="Generated
+	// Code">//GEN-BEGIN:initComponents
+	private void initComponents() {
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -96,12 +101,12 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
         jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
 
-        setBackground(new java.awt.Color(43, 84, 100));
+		setBackground(new java.awt.Color(43, 84, 100));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("THỐNG KÊ");
+		jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+		jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+		jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+		jLabel1.setText("THỐNG KÊ");
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Số lượt", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
@@ -112,9 +117,9 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Tổng số lượt vé");
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+		jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+		jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -292,8 +297,7 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 		chartPanel.removeAll();
 		chartPanel.add(barpChartPanel, BorderLayout.CENTER);
 		chartPanel.validate();
-                
-                
+
                 //=====================================
         DefaultPieDataset barDataset = new DefaultPieDataset( );
         int sv = (int) veDao.countDoiTuongByMonthYear(jMonthChooser1.getMonth()+1, jYearChooser1.getYear(), "Sinh viên");
@@ -356,7 +360,7 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
 	
 	//=========ĐẾM TỔNG VÉ THEO CHUYẾN===========
 	public Map<String, Long> getVeCountByGaChieuDiChieuDen() {
-        List<Ve> veList = veDao.getAllVe();
+        List<Ve> veList = veDao.layDSVe();
         Map<String, Long> gaCountMap = new HashMap<>();
 
         for (Ve ve : veList) {
