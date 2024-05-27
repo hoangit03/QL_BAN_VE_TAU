@@ -616,6 +616,7 @@ public class jFrameMuaVe extends javax.swing.JFrame {
 		ifSdt.setText(hoadon.getKhachHang().getSdt());
 		ifSLV.setText(hoadon.getListVes().size() + "");
 		jtGia.setText("");
+		ifTienThoi.setText(" ");
 
 		double tongTien = 0;
 		for (Ve ve : hoadon.getListVes()) {

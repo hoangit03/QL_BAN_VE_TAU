@@ -42,7 +42,7 @@ public class VeXuat extends javax.swing.JPanel {
     }
 
     private String tangVt(Ve ve) {
-        if(ve.getChoNgoi().getMoTa().equalsIgnoreCase("Ngồi mền"))
+        if(ve.getChoNgoi().getMoTa().equalsIgnoreCase("Ngồi mềm"))
             return " ";
         if (ve.getChoNgoi().getViTri() < 3) {
             return "hòa tầng "+1;
@@ -55,7 +55,7 @@ public class VeXuat extends javax.swing.JPanel {
     }
 
     private String getcheckCho(Ve ve) {
-        if (!ve.getChoNgoi().getMoTa().equalsIgnoreCase("Ngồi mền")) {
+        if (!ve.getChoNgoi().getMoTa().equalsIgnoreCase("Ngồi mềm")) {
             return "Nằm " + ve.getChoNgoi().getMoTa() + " điều";
         }
 
