@@ -253,10 +253,6 @@ public class FormChonTau extends javax.swing.JPanel {
 			jtHoT.setText(kh.getHoTen());
 			jtSdt.setText(kh.getSdt());
 			jtEm.setText(kh.getEmail());
-		} else {
-			jtHoT.setText("");
-			jtSdt.setText("");
-			jtEm.setText("");
 		}
 	}
 
