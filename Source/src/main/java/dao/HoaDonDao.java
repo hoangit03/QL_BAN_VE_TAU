@@ -7,6 +7,7 @@ import entity.HoaDon;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
+import jakarta.persistence.NoResultException;
 
 public class HoaDonDao {
 	private EntityManager em;
@@ -97,4 +98,22 @@ public class HoaDonDao {
 		return em.createQuery("SELECT hd FROM HoaDon hd WHERE hd.trangThai = false AND hd.ngayTao = :ngayTao AND hd.khachHang.cccd = :cccd",
 				HoaDon.class).setParameter("ngayTao", ngayHienTai).setParameter("cccd", cccd).getResultList();
 	}
+	
+	public Object layTongHoaDonTrongThang(int nam, int thang, int ngay) {
+	try {
+		return em.createNamedQuery("HoaDon.TongHoaDonTrueNgayTheoThang").setParameter("nam", nam).setParameter("thang", thang)
+				.setParameter("ngay", ngay).getSingleResult();
+		} catch (NoResultException e) {
+			return 0;
+		}
+	}
+
+	public Object layTongHoaDonTraTrongThang(int nam, int thang, int ngay) {
+		try {
+			return em.createNamedQuery("HoaDon.TongHoaDonFalseNgayTheoThang").setParameter("nam", nam).setParameter("thang", thang)
+				.setParameter("ngay", ngay).getSingleResult();
+			} catch (NoResultException e) {
+				return 0;
+			}
+		}
 }
