@@ -117,7 +117,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 		btnInVe.setBackground(new java.awt.Color(0, 199, 255));
 		btnInVe.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
 		btnInVe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/printer.png"))); // NOI18N
-		btnTraHD.setText("Trả tật vé");
+		btnTraHD.setText("Trả tập vé");
 		btnTraHD.setBackground(new java.awt.Color(0, 199, 255));
 		btnTraHD.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
 		btnTraHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/paper.png"))); // NOI18N
