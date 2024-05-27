@@ -668,14 +668,14 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			if(count != 0) {
 				xoaTrangVe();
 				hienBangVe(maHD, "");
-				JOptionPane.showMessageDialog(null, "Hóa đơn chưa trả hết vé, tiền trả lại: " + (int) (tongTien * km / 1000) * 1000 + "VNĐ" + "\nXem quy định trả vé tại mục... hỗ trợ");
+				JOptionPane.showMessageDialog(null, "Hóa đơn chưa trả hết vé, tiền trả lại: " + (int) (tongTien * km / 1000) * 1000 + "VNĐ" + "\nXem quy định trả vé tại mục 3 phần hỗ trợ");
 			}
 			else {
 				hoaDonDao.capNhatHDTheoTrangThai(hd, false);
 				xoaTrangVe();
 				xoaTrangHoaDon();
 				renderHoaDon();
-				JOptionPane.showMessageDialog(null, "Trả hóa đơn thành công, tiền trả lại: " + (int) (tongTien * km / 1000) * 1000 + "VNĐ" + "\nXem quy định trả vé tại mục... hỗ trợ");
+				JOptionPane.showMessageDialog(null, "Trả hóa đơn thành công, tiền trả lại: " + (int) (tongTien * km / 1000) * 1000 + "VNĐ" + "\nXem quy định trả vé tại mục 3 phần hỗ trợ");
 			}
 				
 			
@@ -1002,7 +1002,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 					soTienDuocTra = soTienDuocTra * (1 - km);
 				}
 				int chose = JOptionPane.showConfirmDialog(null,
-						"Số tiền hoàn lại cho khách hàng là " + ((int) soTienDuocTra / 1000) * 1000 + "VNĐ", "Xác nhận",
+						"Số tiền hoàn lại cho khách hàng là " + ((int) soTienDuocTra / 1000) * 1000 + "VNĐ" +" Xem quy định trả vé tại mục 3 phần hỗ trợ", "Xác nhận",
 						JOptionPane.YES_NO_OPTION);
 				if (chose == JOptionPane.YES_OPTION) {
 					boolean check = veDao.updateDoiVe(ve.getMaVe(), LocalDateTime.now());
