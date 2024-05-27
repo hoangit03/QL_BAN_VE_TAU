@@ -615,13 +615,13 @@ public class FormChonTau extends javax.swing.JPanel {
 		});
 
 		lbNgayDi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-		lbVe.setText("Ngày về");
+		lbNgayDi.setText("Ngày về");
 
 		dateDi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
 		dateDi.setPreferredSize(new java.awt.Dimension(88, 40));
 
 		lbVe.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-		lbNgayDi.setText("Ngày đi");
+		lbVe.setText("Ngày đi");
 
 		dateVe.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
 		dateVe.setPreferredSize(new java.awt.Dimension(88, 40));

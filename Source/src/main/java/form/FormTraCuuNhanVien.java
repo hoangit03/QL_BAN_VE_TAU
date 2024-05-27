@@ -306,14 +306,14 @@ public class FormTraCuuNhanVien extends javax.swing.JPanel {
             list.add(nhanVien);
             addDataTable(list);
         }
-        if (!jtSDT.getText().trim().equalsIgnoreCase("")) {
+        else if (!jtSDT.getText().trim().equalsIgnoreCase("")) {
             tieuChi = jtSDT.getText();
             List<NhanVien> list = new ArrayList<NhanVien>();
             NhanVien nhanVien = nhanVienDao.getNhanVienBySDT(tieuChi);
             list.add(nhanVien);
             addDataTable(list);
         } else {
-            JOptionPane.showMessageDialog(btnTraCuu, "Chưa nhập tiêu chí tìm kiếm(CCCD,SĐT)", "Thông báo",
+            JOptionPane.showMessageDialog(null, "Chưa nhập tiêu chí tìm kiếm(CCCD,SĐT)", "Thông báo",
                     JOptionPane.INFORMATION_MESSAGE);
         }
 
