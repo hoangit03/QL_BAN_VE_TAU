@@ -112,10 +112,10 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Số lượt", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Tổng số lượt khách");
+        jLabel2.setText("Tổng lượt khách");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Tổng số lượt vé");
+        jLabel3.setText("Tổng số vé đã đặt");
 
 		jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
@@ -362,9 +362,16 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
         List<Ve> veList = veDao.layDSVe();
         Map<String, Long> gaCountMap = new HashMap<>();
 
+        int month = jMonthChooser1.getMonth()+1;
+        int year = jYearChooser1.getYear();
+        
         for (Ve ve : veList) {
             if (!ve.isTrangThai())
                 continue;
+
+            if (ve.getThoiGianLenTau().getMonth().getValue() == month
+            		&& ve.getThoiGianLenTau().getYear() == year) {
+				
 
             Set<ChiTietVe> listChiTietVes = ve.getLisChiTietVes();
             Ga gaChieuDi = null;
@@ -378,9 +385,10 @@ public class GD_ThongKeLuotVe extends javax.swing.JPanel {
             }
 
             if (gaChieuDi != null && gaChieuDen != null) {
-                String key = gaChieuDen.getTenGa() + " - " + gaChieuDi.getTenGa();
+                String key = gaChieuDi.getTenGa() + " - " + gaChieuDen.getTenGa();
                 gaCountMap.put(key, gaCountMap.getOrDefault(key, 0L) + 1);
             }
+			}
         }
 
         return gaCountMap.entrySet()

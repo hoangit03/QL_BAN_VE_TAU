@@ -6,6 +6,7 @@ package gui;
 
 import dao.HoaDonDao;
 import dao.KhachHangDao;
+import dao.VeDao;
 import entity.ChiTietVe;
 import entity.Ga;
 import entity.HoaDon;
@@ -50,6 +51,7 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 	private EntityManagerFactory emf;
 	private KhachHangDao khachHangDao;
     private HoaDonDao hoaDonDao;
+    private VeDao veDao;
     DateTimeFormatter dinhDangGio = DateTimeFormatter.ofPattern("HH:mm");
 	DateTimeFormatter dinhDangNgay = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -67,6 +69,7 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 		
         hoaDonDao = new HoaDonDao(emf);
         khachHangDao = new KhachHangDao(emf);
+        veDao = new VeDao(emf);
         List<HoaDon> list = hoaDonDao.getAllHoaDon();
         addDataTable(list);
 	}
@@ -100,6 +103,8 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -133,6 +138,11 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 
         jTextField5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel7.setText("Vé trả");
+
+        jTextField6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,33 +150,40 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(107, 107, 107)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField4)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(107, 107, 107)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField4)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField6))
                 .addGap(0, 69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -255,7 +272,7 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -280,6 +297,7 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 		double tongDoanhThuTrongNgay = 0;
 		int tongHoaDon = 0;
 		int tongHoaDonTra = 0;
+		int tongVeTra = 0;
 		switch (jMonthChooser1.getMonth()+1) {
 		case 2:
 		case 4:
@@ -292,6 +310,7 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 				tongDoanhThuTrongNgay += tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i));
 				tongHoaDon += ((Long)hoaDonDao.layTongHoaDonTrongThang(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)).intValue();
 				tongHoaDonTra += ((Long)hoaDonDao.layTongHoaDonTraTrongThang(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)).intValue();
+				tongVeTra += ((Long)veDao.layTongVeHuyTrongThang(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)).intValue();
 			}
 			break;
 
@@ -302,6 +321,7 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 				tongDoanhThuTrongNgay += tinhTongTienTheoNgay(LocalDate.of(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i));
 				tongHoaDon += ((Long)hoaDonDao.layTongHoaDonTrongThang(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)).intValue();
 				tongHoaDonTra += ((Long)hoaDonDao.layTongHoaDonTraTrongThang(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)).intValue();
+				tongVeTra += ((Long)veDao.layTongVeHuyTrongThang(jYearChooser1.getYear(), jMonthChooser1.getMonth()+1, i)).intValue();
 			}
 			break;
 		}
@@ -321,12 +341,15 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
 		jTextField4.setEditable(false);
 		jTextField5.setText(tongHoaDonTra + "");
 		jTextField5.setEditable(false);
+		jTextField6.setText(tongVeTra + "");
+		jTextField6.setEditable(false);
 		
 		JFreeChart chart = ChartFactory.createBarChart("", "Tháng " + (jMonthChooser1.getMonth()+1),
 				"Doanh thu", dataset, PlotOrientation.VERTICAL, false, true, false);
 
 		CategoryPlot categoryPlot = chart.getCategoryPlot();
 		categoryPlot.setBackgroundPaint(Color.WHITE);
+		categoryPlot.setOutlineVisible(false);
 		BarRenderer renderer = (BarRenderer) categoryPlot.getRenderer();
 		Color clr3 = new Color(0, 204, 204);
 		renderer.setSeriesPaint(0, clr3);
@@ -393,6 +416,7 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -400,6 +424,7 @@ public class GD_ThongKeDoanhThu extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JTable table;
