@@ -132,4 +132,16 @@ public class VeDao {
                           .count();
         return count;
     }  
+	
+	public Object layTongVeHuyTrongThang(int nam, int thang, int ngay) {
+		try {
+			return em.createNamedQuery("Ve.TongVeHuyTrongThang").setParameter("nam", nam)
+					.setParameter("thang", thang)
+					.setParameter("ngay", ngay)
+					.getSingleResult();
+		} catch (NoResultException e) {
+			// Xử lý nếu không có kết quả nào được trả về
+			return 0;
+		}
+	}
 }
