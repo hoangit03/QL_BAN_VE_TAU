@@ -7,6 +7,11 @@ import event.EventMenuSelected;
 import form.MainForm;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 
@@ -119,12 +124,28 @@ public class Main extends javax.swing.JFrame {
 						}
 					}
 					else {
-						System.out.println("Hỗ trợ");
+						if (Desktop.isDesktopSupported()) {
+						    try {
+						        File myFile = new File("./troGiup/Support.pdf");
+						        Desktop.getDesktop().open(myFile);
+						    } catch (IOException ex) {
+						        // no application registered for PDFs
+						    	ex.printStackTrace();
+						    }
+						}
 					}
 
 					break;
 				case 5:
-					System.out.println("Hỗ trợ");
+					if (Desktop.isDesktopSupported()) {
+					    try {
+					        File myFile = new File("./troGiup/Support.pdf");
+					        Desktop.getDesktop().open(myFile);
+					    } catch (IOException ex) {
+					        // no application registered for PDFs
+					    	ex.printStackTrace();
+					    }
+					}
 					break;
 				}
 			}
