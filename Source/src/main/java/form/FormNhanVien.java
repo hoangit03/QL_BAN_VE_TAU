@@ -489,6 +489,11 @@ public class FormNhanVien extends javax.swing.JPanel {
 			tieuChi = jtCCCD.getText();
 			List<NhanVien> list = new ArrayList<NhanVien>();
 			NhanVien nhanVien = nhanVienDao.getNhanVienByCCCD(tieuChi);
+			if (nhanVien == null) {
+				JOptionPane.showMessageDialog(btnTim, "Không tìm thấy nhân viên", "Thông báo",
+						JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
 			list.add(nhanVien);
 			addDataTable(list);
 		}
@@ -496,6 +501,11 @@ public class FormNhanVien extends javax.swing.JPanel {
 			tieuChi = jtSDT.getText();
 			List<NhanVien> list = new ArrayList<NhanVien>();
 			NhanVien nhanVien = nhanVienDao.getNhanVienBySDT(tieuChi);
+			if (nhanVien == null) {
+				JOptionPane.showMessageDialog(btnTim, "Không tìm thấy nhân viên", "Thông báo",
+						JOptionPane.INFORMATION_MESSAGE);
+				return;
+			}
 			list.add(nhanVien);
 			addDataTable(list);
 		} else {
