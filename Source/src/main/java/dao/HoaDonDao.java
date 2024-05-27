@@ -63,7 +63,7 @@ public class HoaDonDao {
 
 	public List<HoaDon> layHoaDonTam() {
 		LocalDate ngayHienTai = LocalDate.now();
-		return em.createQuery("SELECT hd FROM HoaDon hd WHERE hd.trangThai = false AND hd.ngayTao = :ngayTao",
+		return em.createQuery("SELECT hd FROM HoaDon hd join hd.listVes ve WHERE hd.trangThai = false AND hd.ngayTao = :ngayTao AND ve.trangThai = true",
 				HoaDon.class).setParameter("ngayTao", ngayHienTai).getResultList();
 	}
 	
