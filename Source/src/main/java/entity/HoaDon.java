@@ -11,6 +11,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,7 +28,11 @@ import java.io.Serializable;
 
 @Entity
 @NamedQueries({
-	@org.hibernate.annotations.NamedQuery(name = "HoaDon.findAll",query = "select hd from HoaDon hd")
+	@org.hibernate.annotations.NamedQuery(name = "HoaDon.findAll",query = "select hd from HoaDon hd"),
+	@NamedQuery(name = "HoaDon.TongHoaDonTrueNgayTheoThang", query = "SELECT COUNT(hd) FROM HoaDon hd "
+	+ "WHERE YEAR(hd.ngayTao) = :nam AND MONTH(hd.ngayTao) = :thang AND DAY(hd.ngayTao) = :ngay AND hd.trangThai = true"),
+	@NamedQuery(name = "HoaDon.TongHoaDonFalseNgayTheoThang", query = "SELECT COUNT(hd) FROM HoaDon hd "
+	+ "WHERE YEAR(hd.ngayTao) = :nam AND MONTH(hd.ngayTao) = :thang AND DAY(hd.ngayTao) = :ngay AND hd.trangThai = false")
 })
 public class HoaDon implements Serializable {
 
