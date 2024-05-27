@@ -624,7 +624,7 @@ public class GD_DoiTra extends javax.swing.JPanel {
 			double tien = 0;
 			int count = 0;
 			for (Ve ve : listVe) {
-				if (ve.isTrangThai())
+				if (!ve.isTrangThai())
 					continue;
 				tien= traVeHoaDon(ve);
 				if(tien == 0)

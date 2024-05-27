@@ -317,11 +317,11 @@ public class FormMuaVe extends javax.swing.JPanel {
         }
         LocalDate ngayHT = LocalDate.now();
         LocalDate ngDi = ngayDi.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        if(ngDi.isBefore(ngayHT) || ngDi.isEqual(ngayHT)) {
-        	JOptionPane.showMessageDialog(null, "Chọn ngày sau ngày hiện tại", "Thông báo",
-					JOptionPane.INFORMATION_MESSAGE);
-			return;
-        }
+//        if(ngDi.isBefore(ngayHT) || ngDi.isEqual(ngayHT)) {
+//        	JOptionPane.showMessageDialog(null, "Chọn ngày sau ngày hiện tại", "Thông báo",
+//					JOptionPane.INFORMATION_MESSAGE);
+//			return;
+//        }
         LocalDate ngVe = null;
         if(radBtnKhuHoi.isSelected()) {
         	ngVe = ngayVe.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
