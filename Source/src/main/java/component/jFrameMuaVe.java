@@ -105,7 +105,7 @@ public class jFrameMuaVe extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(238, 241, 241));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         lbCCCD.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
@@ -133,6 +133,7 @@ public class jFrameMuaVe extends javax.swing.JFrame {
 
         btnTreoD.setBackground(new java.awt.Color(153, 153, 255));
         btnTreoD.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTreoD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/up.png"))); // NOI18N
         btnTreoD.setText("Treo đơn");
         btnTreoD.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -142,6 +143,7 @@ public class jFrameMuaVe extends javax.swing.JFrame {
 
         btnThanhToan.setBackground(new java.awt.Color(51, 255, 102));
         btnThanhToan.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/dollar.png"))); // NOI18N
         btnThanhToan.setText("Thanh toán");
         btnThanhToan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -307,7 +309,10 @@ public class jFrameMuaVe extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTreoD, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnTreoD, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(230, 230, 230)
+                        .addComponent(btnThanhToan))
                     .addComponent(lbTienTreo)
                     .addComponent(lbCCCD)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -331,11 +336,7 @@ public class jFrameMuaVe extends javax.swing.JFrame {
                                     .addComponent(ifSdt)
                                     .addComponent(ifHoTen))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(panelGY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(48, 48, 48)))))))
+                                .addComponent(panelGY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(

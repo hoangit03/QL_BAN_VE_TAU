@@ -23,9 +23,9 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <Component id="btnNhanVien" min="-2" pref="120" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnTaiKhoan" min="-2" max="-2" attributes="0"/>
+              <Component id="btnNhanVien" min="-2" pref="132" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnTaiKhoan" min="-2" pref="138" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Component id="mainForm1" max="32767" attributes="0"/>
@@ -34,9 +34,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnNhanVien" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="btnTaiKhoan" min="-2" pref="45" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnNhanVien" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="btnTaiKhoan" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="mainForm1" pref="1049" max="32767" attributes="0"/>
@@ -47,8 +47,11 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnNhanVien">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="c7" red="0" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="SansSerif" size="18" style="0"/>
+          <Font name="SansSerif" size="20" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Nh&#xe2;n vi&#xea;n"/>
         <Property name="borderPainted" type="boolean" value="false"/>
@@ -68,8 +71,11 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnTaiKhoan">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="c7" red="0" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="SansSerif" size="18" style="0"/>
+          <Font name="SansSerif" size="20" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="T&#xe0;i kho&#x1ea3;n"/>
         <Property name="borderPainted" type="boolean" value="false"/>

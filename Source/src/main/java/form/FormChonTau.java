@@ -163,6 +163,23 @@ public class FormChonTau extends javax.swing.JPanel {
 		this.liscccd = new HashMap<String, Set<String>>();
 		this.listInfoVes = new ArrayList<Model_InfoVe>();
 		initComponents();
+		
+		btnTimChuyen.setBackground(new java.awt.Color(0, 199, 255));
+		btnTimChuyen.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+		btnTimChuyen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search2.png"))); // NOI18N
+		
+		btnHuyCho.setBackground(new java.awt.Color(231, 55, 55));
+		btnHuyCho.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+		btnHuyCho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/delete.png"))); // NOI18N
+		
+		btnXacNhan.setBackground(new java.awt.Color(0, 199, 255));
+		btnXacNhan.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+		btnXacNhan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/check.png"))); // NOI18N
+		
+		btnXuLyTreo.setBackground(new java.awt.Color(0, 199, 255));
+		btnXuLyTreo.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+		btnXuLyTreo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xuly.png"))); // NOI18N
+		
 		model = (DefaultTableModel) tbListVe.getModel();
 		cbDT = new JComboBox<String>();
 		cbDT.addItem("Người lớn");
@@ -598,13 +615,13 @@ public class FormChonTau extends javax.swing.JPanel {
 		});
 
 		lbNgayDi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-		lbNgayDi.setText("Ngày đi");
+		lbVe.setText("Ngày về");
 
 		dateDi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
 		dateDi.setPreferredSize(new java.awt.Dimension(88, 40));
 
 		lbVe.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
-		lbVe.setText("Ngày về");
+		lbNgayDi.setText("Ngày đi");
 
 		dateVe.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
 		dateVe.setPreferredSize(new java.awt.Dimension(88, 40));

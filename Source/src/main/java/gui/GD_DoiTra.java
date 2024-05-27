@@ -102,6 +102,28 @@ public class GD_DoiTra extends javax.swing.JPanel {
 		scrollVe.setVerticalScrollBar(new ScrollBar());
 		((DefaultTableCellRenderer) tableVe.getTableHeader().getDefaultRenderer())
 				.setHorizontalAlignment(JLabel.CENTER);
+		btnTimHD.setBackground(new java.awt.Color(0, 199, 255));
+		btnTimHD.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+		btnTimHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search2.png"))); // NOI18N
+		btnXoaT.setBackground(new java.awt.Color(0, 199, 255));
+		btnXoaT.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+		btnXoaT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoaTrang.png"))); // NOI18N
+		btnTimV.setBackground(new java.awt.Color(0, 199, 255));
+		btnTimV.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+		btnTimV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search2.png"))); // NOI18N
+		btnInHoaDon.setBackground(new java.awt.Color(0, 199, 255));
+		btnInHoaDon.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+		btnInHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/printer.png"))); // NOI18N
+		btnInVe.setBackground(new java.awt.Color(0, 199, 255));
+		btnInVe.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+		btnInVe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/printer.png"))); // NOI18N
+		btnTraHD.setText("Trả tật vé");
+		btnTraHD.setBackground(new java.awt.Color(0, 199, 255));
+		btnTraHD.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+		btnTraHD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/paper.png"))); // NOI18N
+		btnTra.setBackground(new java.awt.Color(0, 199, 255));
+		btnTra.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+		btnTra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/document.png"))); // NOI18N
 
 		renderHoaDon();
 

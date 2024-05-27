@@ -17,10 +17,10 @@ public class LoginScreen extends javax.swing.JFrame {
 
         txtusername.setBackground(new java.awt.Color(0, 0, 0, 1));
         txtpassword.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtusername.setText("21030001");
-        txtpassword.setText("Passw0rd");
-//        txtusername.setText("21950009");
-//        txtpassword.setText("Password123");
+//        txtusername.setText("21030001");
+//        txtpassword.setText("Passw0rd");
+        txtusername.setText("21950009");
+        txtpassword.setText("Password123");
         emf = Persistence.createEntityManagerFactory("SourceMSSQL");
         taiKhoanDao = new TaiKhoanDao(emf);
     }

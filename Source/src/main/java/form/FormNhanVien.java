@@ -304,7 +304,9 @@ public class FormNhanVien extends javax.swing.JPanel {
                 .addGap(54, 54, 54))
         );
 
-        btnXoaTrang.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnXoaTrang.setBackground(new java.awt.Color(0, 199, 255));
+        btnXoaTrang.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnXoaTrang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoaTrang.png"))); // NOI18N
         btnXoaTrang.setText("Xóa Trắng");
         btnXoaTrang.setBorder(null);
         btnXoaTrang.setBorderPainted(false);
@@ -316,7 +318,9 @@ public class FormNhanVien extends javax.swing.JPanel {
             }
         });
 
-        btnThem.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnThem.setBackground(new java.awt.Color(0, 199, 255));
+        btnThem.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.setBorder(null);
         btnThem.setBorderPainted(false);
@@ -328,7 +332,9 @@ public class FormNhanVien extends javax.swing.JPanel {
             }
         });
 
-        btnCapNhat.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnCapNhat.setBackground(new java.awt.Color(0, 199, 255));
+        btnCapNhat.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/update.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
         btnCapNhat.setBorder(null);
         btnCapNhat.setBorderPainted(false);
@@ -340,7 +346,9 @@ public class FormNhanVien extends javax.swing.JPanel {
             }
         });
 
-        btnTaoTaiKhoan.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTaoTaiKhoan.setBackground(new java.awt.Color(0, 199, 255));
+        btnTaoTaiKhoan.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnTaoTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add.png"))); // NOI18N
         btnTaoTaiKhoan.setText("Tạo tài khoản");
         btnTaoTaiKhoan.setBorder(null);
         btnTaoTaiKhoan.setBorderPainted(false);
@@ -352,7 +360,9 @@ public class FormNhanVien extends javax.swing.JPanel {
             }
         });
 
-        btnExcel.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnExcel.setBackground(new java.awt.Color(0, 199, 255));
+        btnExcel.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/excel.png"))); // NOI18N
         btnExcel.setText("Xuất Excel");
         btnExcel.setBorder(null);
         btnExcel.setBorderPainted(false);
@@ -363,7 +373,9 @@ public class FormNhanVien extends javax.swing.JPanel {
             }
         });
 
-        btnTim.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTim.setBackground(new java.awt.Color(0, 199, 255));
+        btnTim.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search2.png"))); // NOI18N
         btnTim.setText("Tìm");
         btnTim.setBorder(null);
         btnTim.setBorderPainted(false);

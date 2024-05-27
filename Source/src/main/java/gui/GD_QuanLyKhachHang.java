@@ -132,7 +132,9 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
         cbBoxDT.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         cbBoxDT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Trẻ em", "Người lớn", "Sinh viên", "Người cao tuỏi" }));
 
-        btnCN.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnCN.setBackground(new java.awt.Color(0, 199, 255));
+        btnCN.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnCN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/update.png"))); // NOI18N
         btnCN.setText("Cập nhật");
         btnCN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +142,9 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
             }
         });
 
-        btnXuatEX.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnXuatEX.setBackground(new java.awt.Color(0, 199, 255));
+        btnXuatEX.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnXuatEX.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/excel.png"))); // NOI18N
         btnXuatEX.setText("Xuất Excel");
         btnXuatEX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +152,9 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
             }
         });
 
-        btnXT.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnXT.setBackground(new java.awt.Color(0, 199, 255));
+        btnXT.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnXT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoaTrang.png"))); // NOI18N
         btnXT.setText("Xóa Trắng");
         btnXT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +162,9 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
             }
         });
 
-        btnTim.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTim.setBackground(new java.awt.Color(0, 199, 255));
+        btnTim.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search2.png"))); // NOI18N
         btnTim.setText("Tìm");
         btnTim.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -197,7 +205,7 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
                                 .addComponent(btnXT, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(79, 79, 79))
+                .addGap(65, 65, 65))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,12 +232,12 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
                     .addComponent(cbBoxDT, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnXT, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(btnXT, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnXuatEX, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCN, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnXuatEX, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCN, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -269,7 +277,7 @@ public class GD_QuanLyKhachHang extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(scroll))
-                .addGap(0, 160, Short.MAX_VALUE))
+                .addGap(0, 112, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

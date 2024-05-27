@@ -53,67 +53,70 @@ public class GD_TraCuuNhanVien extends javax.swing.JPanel {
 
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		mainForm1 = new form.MainForm();
-		btnTraCuuKhuyenMai = new javax.swing.JButton();
-		btnTraCuuNhanVien = new javax.swing.JButton();
+        mainForm1 = new form.MainForm();
+        btnTraCuuKhuyenMai = new javax.swing.JButton();
+        btnTraCuuNhanVien = new javax.swing.JButton();
 
-		setOpaque(false);
-		setPreferredSize(new java.awt.Dimension(1600, 1100));
+        setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(1600, 1100));
 
-		mainForm1.setPreferredSize(new java.awt.Dimension(1600, 1000));
+        mainForm1.setPreferredSize(new java.awt.Dimension(1600, 1000));
 
-		btnTraCuuKhuyenMai.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-		btnTraCuuKhuyenMai.setText("Tra cứu khuyến mãi");
-		btnTraCuuKhuyenMai.setBorderPainted(false);
-		btnTraCuuKhuyenMai.setMargin(new java.awt.Insets(0, 0, 0, 0));
-		btnTraCuuKhuyenMai.setMaximumSize(new java.awt.Dimension(120, 45));
-		btnTraCuuKhuyenMai.setMinimumSize(new java.awt.Dimension(120, 45));
-		btnTraCuuKhuyenMai.setPreferredSize(new java.awt.Dimension(120, 45));
-		btnTraCuuKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnTraCuuKhuyenMaiActionPerformed(evt);
-			}
-		});
+        btnTraCuuKhuyenMai.setBackground(new java.awt.Color(0, 199, 255));
+        btnTraCuuKhuyenMai.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnTraCuuKhuyenMai.setText("Tra cứu khuyến mãi");
+        btnTraCuuKhuyenMai.setBorderPainted(false);
+        btnTraCuuKhuyenMai.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnTraCuuKhuyenMai.setMaximumSize(new java.awt.Dimension(120, 45));
+        btnTraCuuKhuyenMai.setMinimumSize(new java.awt.Dimension(120, 45));
+        btnTraCuuKhuyenMai.setPreferredSize(new java.awt.Dimension(120, 45));
+        btnTraCuuKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraCuuKhuyenMaiActionPerformed(evt);
+            }
+        });
 
-		btnTraCuuNhanVien.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-		btnTraCuuNhanVien.setText("Tra cứu nhân viên");
-		btnTraCuuNhanVien.setBorderPainted(false);
-		btnTraCuuNhanVien.setMargin(new java.awt.Insets(0, 0, 0, 0));
-		btnTraCuuNhanVien.setMaximumSize(new java.awt.Dimension(120, 45));
-		btnTraCuuNhanVien.setMinimumSize(new java.awt.Dimension(120, 45));
-		btnTraCuuNhanVien.setPreferredSize(new java.awt.Dimension(120, 45));
-		btnTraCuuNhanVien.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				btnTraCuuNhanVienActionPerformed(evt);
-			}
-		});
+        btnTraCuuNhanVien.setBackground(new java.awt.Color(0, 199, 255));
+        btnTraCuuNhanVien.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnTraCuuNhanVien.setText("Tra cứu nhân viên");
+        btnTraCuuNhanVien.setBorderPainted(false);
+        btnTraCuuNhanVien.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnTraCuuNhanVien.setMaximumSize(new java.awt.Dimension(120, 45));
+        btnTraCuuNhanVien.setMinimumSize(new java.awt.Dimension(120, 45));
+        btnTraCuuNhanVien.setPreferredSize(new java.awt.Dimension(120, 45));
+        btnTraCuuNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraCuuNhanVienActionPerformed(evt);
+            }
+        });
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-		this.setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-						.addComponent(btnTraCuuNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 191,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addGap(39, 39, 39)
-						.addComponent(btnTraCuuKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 191,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(1179, Short.MAX_VALUE))
-				.addGroup(layout.createSequentialGroup().addContainerGap().addComponent(mainForm1,
-						javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-								.addComponent(btnTraCuuNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnTraCuuKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addGap(12, 12, 12)
-						.addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, 1031, Short.MAX_VALUE)
-						.addGap(12, 12, 12)));
-	}// </editor-fold>//GEN-END:initComponents
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnTraCuuNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTraCuuKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(1149, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTraCuuNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTraCuuKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, 1031, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
+        );
+    }// </editor-fold>//GEN-END:initComponents
 
 	private void btnTraCuuKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnTraCuuKhuyenMaiActionPerformed
 		// TODO add your handling code here:
@@ -123,9 +126,9 @@ public class GD_TraCuuNhanVien extends javax.swing.JPanel {
 		// TODO add your handling code here:
 	}// GEN-LAST:event_btnTraCuuNhanVienActionPerformed
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton btnTraCuuKhuyenMai;
-	private javax.swing.JButton btnTraCuuNhanVien;
-	private form.MainForm mainForm1;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnTraCuuKhuyenMai;
+    private javax.swing.JButton btnTraCuuNhanVien;
+    private form.MainForm mainForm1;
+    // End of variables declaration//GEN-END:variables
 }

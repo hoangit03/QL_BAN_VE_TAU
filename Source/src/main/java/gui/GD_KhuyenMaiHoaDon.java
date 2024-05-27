@@ -250,7 +250,8 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
                 .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        btnTamN.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTamN.setBackground(new java.awt.Color(0, 199, 255));
+        btnTamN.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
         btnTamN.setText("Tạm ngưng");
         btnTamN.setBorder(null);
         btnTamN.setBorderPainted(false);
@@ -261,7 +262,9 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
             }
         });
 
-        btnTim.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTim.setBackground(new java.awt.Color(0, 199, 255));
+        btnTim.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search2.png"))); // NOI18N
         btnTim.setText("Tìm");
         btnTim.setBorder(null);
         btnTim.setBorderPainted(false);
@@ -272,7 +275,9 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
             }
         });
 
-        btnLoc.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnLoc.setBackground(new java.awt.Color(0, 199, 255));
+        btnLoc.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnLoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loc.png"))); // NOI18N
         btnLoc.setText("Lọc");
         btnLoc.setBorder(null);
         btnLoc.setBorderPainted(false);
@@ -283,7 +288,9 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
             }
         });
 
-        btnThem.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnThem.setBackground(new java.awt.Color(0, 199, 255));
+        btnThem.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/addIcon.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.setBorder(null);
         btnThem.setBorderPainted(false);
@@ -294,7 +301,9 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
             }
         });
 
-        btnCapN.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnCapN.setBackground(new java.awt.Color(0, 199, 255));
+        btnCapN.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnCapN.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/update.png"))); // NOI18N
         btnCapN.setText("Cập nhật");
         btnCapN.setBorder(null);
         btnCapN.setBorderPainted(false);
@@ -305,7 +314,9 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
             }
         });
 
-        btnXoaT.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnXoaT.setBackground(new java.awt.Color(0, 199, 255));
+        btnXoaT.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnXoaT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoaTrang.png"))); // NOI18N
         btnXoaT.setText("Xóa trắng");
         btnXoaT.setBorder(null);
         btnXoaT.setBorderPainted(false);
@@ -351,15 +362,15 @@ public class GD_KhuyenMaiHoaDon extends javax.swing.JPanel {
                 .addComponent(formText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnXoaT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCapN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnXoaT, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCapN, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTamN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTamN, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

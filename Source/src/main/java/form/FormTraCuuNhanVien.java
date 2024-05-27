@@ -150,7 +150,9 @@ public class FormTraCuuNhanVien extends javax.swing.JPanel {
         jtCCCD.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jtCCCD.setPreferredSize(new java.awt.Dimension(64, 40));
 
-        btnTraCuu.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTraCuu.setBackground(new java.awt.Color(0, 199, 255));
+        btnTraCuu.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnTraCuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search2.png"))); // NOI18N
         btnTraCuu.setText("Tra Cứu");
         btnTraCuu.setBorder(null);
         btnTraCuu.setBorderPainted(false);
@@ -162,7 +164,9 @@ public class FormTraCuuNhanVien extends javax.swing.JPanel {
             }
         });
 
-        btnXoaTrang.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnXoaTrang.setBackground(new java.awt.Color(0, 199, 255));
+        btnXoaTrang.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnXoaTrang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoaTrang.png"))); // NOI18N
         btnXoaTrang.setText("Xóa Trắng");
         btnXoaTrang.setBorder(null);
         btnXoaTrang.setBorderPainted(false);
@@ -188,7 +192,9 @@ public class FormTraCuuNhanVien extends javax.swing.JPanel {
             }
         });
 
-        btnLoc.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnLoc.setBackground(new java.awt.Color(0, 199, 255));
+        btnLoc.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnLoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/loc.png"))); // NOI18N
         btnLoc.setText("Lọc");
         btnLoc.setBorder(null);
         btnLoc.setBorderPainted(false);
@@ -260,12 +266,12 @@ public class FormTraCuuNhanVien extends javax.swing.JPanel {
                 .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbTrangThai)
                     .addComponent(jcbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 569, Short.MAX_VALUE)
                 .addGroup(formThongTinLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLoc, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnXoaTrang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnXoaTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
 

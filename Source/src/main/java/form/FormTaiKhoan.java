@@ -178,7 +178,7 @@ public class FormTaiKhoan extends javax.swing.JPanel {
         );
 
         jtaNV.setEditable(false);
-        jtaNV.setBackground(new java.awt.Color(102, 102, 255));
+        jtaNV.setBackground(new java.awt.Color(0, 51, 204));
         jtaNV.setColumns(20);
         jtaNV.setFont(new java.awt.Font("SansSerif", 0, 15)); // NOI18N
         jtaNV.setForeground(new java.awt.Color(255, 255, 255));
@@ -204,7 +204,9 @@ public class FormTaiKhoan extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        btnTim.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnTim.setBackground(new java.awt.Color(0, 199, 255));
+        btnTim.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnTim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search2.png"))); // NOI18N
         btnTim.setText("Tìm");
         btnTim.setBorder(null);
         btnTim.setPreferredSize(new java.awt.Dimension(82, 55));
@@ -214,7 +216,9 @@ public class FormTaiKhoan extends javax.swing.JPanel {
             }
         });
 
-        btnThem.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnThem.setBackground(new java.awt.Color(0, 199, 255));
+        btnThem.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/add.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.setBorder(null);
         btnThem.setBorderPainted(false);
@@ -225,7 +229,9 @@ public class FormTaiKhoan extends javax.swing.JPanel {
             }
         });
 
-        btnCapNhat.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnCapNhat.setBackground(new java.awt.Color(0, 199, 255));
+        btnCapNhat.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/update.png"))); // NOI18N
         btnCapNhat.setText("Cập nhật");
         btnCapNhat.setBorder(null);
         btnCapNhat.setBorderPainted(false);
@@ -236,7 +242,9 @@ public class FormTaiKhoan extends javax.swing.JPanel {
             }
         });
 
-        btnXoaT.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnXoaT.setBackground(new java.awt.Color(0, 199, 255));
+        btnXoaT.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnXoaT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/xoaTrang.png"))); // NOI18N
         btnXoaT.setText("Xóa trắng");
         btnXoaT.setBorder(null);
         btnXoaT.setBorderPainted(false);
@@ -306,12 +314,12 @@ public class FormTaiKhoan extends javax.swing.JPanel {
                         .addComponent(fNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnXoaT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnTim, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnXoaT, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(fHienThi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scrollTable, javax.swing.GroupLayout.PREFERRED_SIZE, 887, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -356,6 +364,11 @@ public class FormTaiKhoan extends javax.swing.JPanel {
 			if(ma.equalsIgnoreCase(model.getValueAt(i, 0).toString())) {
 				table.setRowSelectionInterval(i, i);
 			}
+		}
+		if (table.getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(btnTim, "Không tìm thấy tài khoản", "Thông báo",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
 		}
 		selectRowTable();
 		

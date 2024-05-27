@@ -49,60 +49,61 @@ public class GD_QuanLyNhanVien extends javax.swing.JPanel {
 
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated
-	// Code">//GEN-BEGIN:initComponents
-	private void initComponents() {
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
 
-		btnNhanVien = new javax.swing.JButton();
-		btnTaiKhoan = new javax.swing.JButton();
-		mainForm1 = new form.MainForm();
+        btnNhanVien = new javax.swing.JButton();
+        btnTaiKhoan = new javax.swing.JButton();
+        mainForm1 = new form.MainForm();
 
-		setOpaque(false);
-		setPreferredSize(new java.awt.Dimension(1600, 1100));
+        setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(1600, 1100));
 
-		btnNhanVien.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-		btnNhanVien.setText("Nhân viên");
-		btnNhanVien.setBorderPainted(false);
-		btnNhanVien.setMargin(new java.awt.Insets(0, 0, 0, 0));
-		btnNhanVien.setMaximumSize(new java.awt.Dimension(120, 45));
-		btnNhanVien.setMinimumSize(new java.awt.Dimension(120, 45));
-		btnNhanVien.setPreferredSize(new java.awt.Dimension(120, 45));
+        btnNhanVien.setBackground(new java.awt.Color(0, 199, 255));
+        btnNhanVien.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnNhanVien.setText("Nhân viên");
+        btnNhanVien.setBorderPainted(false);
+        btnNhanVien.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnNhanVien.setMaximumSize(new java.awt.Dimension(120, 45));
+        btnNhanVien.setMinimumSize(new java.awt.Dimension(120, 45));
+        btnNhanVien.setPreferredSize(new java.awt.Dimension(120, 45));
 
-		btnTaiKhoan.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-		btnTaiKhoan.setText("Tài khoản");
-		btnTaiKhoan.setBorderPainted(false);
-		btnTaiKhoan.setFocusTraversalPolicyProvider(true);
-		btnTaiKhoan.setMaximumSize(new java.awt.Dimension(120, 45));
-		btnTaiKhoan.setMinimumSize(new java.awt.Dimension(120, 45));
-		btnTaiKhoan.setPreferredSize(new java.awt.Dimension(120, 45));
+        btnTaiKhoan.setBackground(new java.awt.Color(0, 199, 255));
+        btnTaiKhoan.setFont(new java.awt.Font("SansSerif", 1, 20)); // NOI18N
+        btnTaiKhoan.setText("Tài khoản");
+        btnTaiKhoan.setBorderPainted(false);
+        btnTaiKhoan.setFocusTraversalPolicyProvider(true);
+        btnTaiKhoan.setMaximumSize(new java.awt.Dimension(120, 45));
+        btnTaiKhoan.setMinimumSize(new java.awt.Dimension(120, 45));
+        btnTaiKhoan.setPreferredSize(new java.awt.Dimension(120, 45));
 
-		mainForm1.setPreferredSize(new java.awt.Dimension(1600, 1000));
+        mainForm1.setPreferredSize(new java.awt.Dimension(1600, 1000));
 
-		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-		this.setLayout(layout);
-		layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-						.addComponent(btnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 120,
-								javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-						.addComponent(btnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE,
-								javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-				.addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-						Short.MAX_VALUE));
-		layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-				.addGroup(layout.createSequentialGroup()
-						.addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-								.addComponent(btnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-										javax.swing.GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 45,
-										javax.swing.GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-						.addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, 1049, Short.MAX_VALUE)));
-	}// </editor-fold>//GEN-END:initComponents
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mainForm1, javax.swing.GroupLayout.DEFAULT_SIZE, 1049, Short.MAX_VALUE))
+        );
+    }// </editor-fold>//GEN-END:initComponents
 
-	// Variables declaration - do not modify//GEN-BEGIN:variables
-	private javax.swing.JButton btnNhanVien;
-	private javax.swing.JButton btnTaiKhoan;
-	private form.MainForm mainForm1;
-	// End of variables declaration//GEN-END:variables
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNhanVien;
+    private javax.swing.JButton btnTaiKhoan;
+    private form.MainForm mainForm1;
+    // End of variables declaration//GEN-END:variables
 }
